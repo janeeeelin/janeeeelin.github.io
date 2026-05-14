@@ -811,7 +811,7 @@
           我們一起成長吧！
         </p>
         <div class="social-links">
-          <a class="social-btn instagram" href="#" target="_blank" rel="noopener">
+          <a class="social-btn instagram" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
               <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -847,6 +847,7 @@
           <button class="tag-filter-btn active" data-tag="">全部</button>
           <button class="tag-filter-btn" data-tag="claude-code">Claude Code</button>
           <button class="tag-filter-btn" data-tag="mac">Mac 教學</button>
+          <button class="tag-filter-btn" data-tag="beginner">新手教學</button>
         </div>
 
         <!-- 筆記列表 -->
@@ -959,6 +960,116 @@ npm --version</code></pre>
 cd ~/Desktop/claude-test
 claude</code></pre>
     <p>看到 Claude Code 的提示符號出現，成功了！對工程小白的我來說，這一刻真的超有成就感 🌱</p>
+  </div>
+</div>`
+      },
+      {
+        id: 'note-2',
+        date: '2026-05-14',
+        tags: ['beginner', 'claude-code'],
+        tagLabels: { 'beginner': '新手教學', 'claude-code': 'Claude Code' },
+        title: '新手小白如何做好一個網站',
+        content: `<p style="margin-bottom:0.9rem">這篇是專門寫給和我一樣的工程小白看的！我自己就是完全不懂程式，但照著這些步驟，真的做出了一個網站。你也可以的 💪</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">✓</span>你需要準備什麼</div>
+  <div class="step-body">
+    <p>其實沒有你想的那麼多：</p>
+    <p>🖥️ <strong>一台電腦</strong>（Mac 或 Windows 都可以）<br>
+    🤖 <strong>Claude Code</strong>（免費，接下來會教你裝）<br>
+    ⏳ <strong>耐心</strong>（這個最重要，遇到錯誤不要慌）</p>
+    <p>就這樣，真的不需要學過任何程式語言！</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>安裝環境（只需要做一次）</div>
+  <div class="step-body">
+    <p>打開<strong>終端機（Terminal）</strong>，按順序貼上這三段指令，每段按 Enter 等跑完再貼下一段：</p>
+    <p><strong>① 裝 Homebrew</strong>（Mac 的工具管理員）：</p>
+    <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+    <p><strong>② 裝 Node.js</strong>（Claude Code 需要它才能跑）：</p>
+    <pre><code>brew install node</code></pre>
+    <p><strong>③ 裝 Claude Code</strong>：</p>
+    <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+    <p>跑完沒有紅色錯誤訊息就是成功了 🎉 如果空間不足，可以先參考第一篇筆記清快取。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>建立資料夾，啟動 Claude Code</div>
+  <div class="step-body">
+    <p>建一個放網站的資料夾，再進去啟動 Claude Code：</p>
+    <pre><code>mkdir ~/Desktop/my-website
+cd ~/Desktop/my-website
+claude</code></pre>
+    <p>看到 Claude Code 的提示符號出現，就代表啟動成功，可以開始和它說話了！</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>用說話的方式告訴 Claude 你要什麼</div>
+  <div class="step-body">
+    <p>這是我最喜歡的部分——直接打<strong>中文</strong>就好，把 Claude Code 當成一個超厲害的朋友：</p>
+    <p>💬「<strong>幫我建一個簡單的個人網頁，背景要藍色，標題是我的名字</strong>」<br>
+    💬「<strong>幫我在網頁上加一段自我介紹</strong>」<br>
+    💬「<strong>把字體改大一點，顏色改成深藍色</strong>」</p>
+    <p>Claude 會直接幫你寫好所有程式碼，你只需要說你想要什麼就好。不用懂任何語法，說人話就行！</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>一步一步修改，每次只改一件事</div>
+  <div class="step-body">
+    <p>新手最容易犯的錯是一次要改太多，結果不知道哪裡出問題。我的建議是：</p>
+    <p>✅ <strong>改完一件事就去瀏覽器看效果</strong>（雙擊 index.html 就能預覽）<br>
+    ✅ <strong>滿意了再繼續改下一件</strong><br>
+    ✅ <strong>不喜歡就直接說</strong>「我不喜歡這個樣子，改回去」</p>
+    <p>沒有什麼是改不回去的，放心大膽試試看 😄</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>上傳到 GitHub Pages，讓全世界都看到</div>
+  <div class="step-body">
+    <p>先去 <strong>github.com</strong> 申請免費帳號。帳號名稱想好，因為你的網址會是 <code>帳號名稱.github.io</code>。</p>
+    <p>接著安裝 GitHub CLI 並登入：</p>
+    <pre><code>brew install gh
+gh auth login</code></pre>
+    <p>然後建立 repo 並上傳（把下面的 <code>你的帳號</code> 換成你實際的帳號名稱）：</p>
+    <pre><code>git init
+git add index.html
+git commit -m "my first website"
+gh repo create 你的帳號.github.io --public
+git remote add origin https://github.com/你的帳號/你的帳號.github.io.git
+git push -u origin main</code></pre>
+    <p>幾分鐘後打開 <code>你的帳號.github.io</code> 就能看到你的網站了 🌐</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">⚠</span>常見錯誤和解決方法</div>
+  <div class="step-body">
+    <p>🔴 <strong>磁碟空間不足，無法安裝</strong><br>
+    → 參考第一篇筆記，用終端機清除 App 快取，通常能釋出好幾 GB 空間。</p>
+    <p>🔴 <strong>指令跑一半卡住不動</strong><br>
+    → 等久一點（網路慢很正常），或按 <code>Ctrl + C</code> 取消後重新貼一次。</p>
+    <p>🔴 <strong>看到紅色錯誤訊息</strong><br>
+    → 把整段錯誤文字複製，貼給 Claude Code 問「這是什麼意思，怎麼解決？」它會告訴你。</p>
+    <p>🔴 <strong>網站打開是空白的</strong><br>
+    → 確認資料夾裡有 index.html，用瀏覽器直接打開確認內容沒問題，再重新 push 一次。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>給小白的心理建設</div>
+  <div class="step-body">
+    <p>說真的，我剛開始也覺得很難，很多指令看不懂，遇到奇怪的錯誤也不知道怎麼辦。但是——</p>
+    <p>👉 <strong>不懂沒關係</strong>，把看不懂的東西丟給 Claude Code 問，它不會嫌你問題蠢<br>
+    👉 <strong>錯了可以重來</strong>，程式不會爆炸，最多就是重新做一次<br>
+    👉 <strong>每個工程師都是從小白開始的</strong>，你只是剛好比他們晚一點開始而已</p>
+    <p>現在你正在看的這個網站，就是我用 Claude Code 一句一句說出來做的。<br>
+    如果我可以，你也可以 🌱</p>
   </div>
 </div>`
       }
