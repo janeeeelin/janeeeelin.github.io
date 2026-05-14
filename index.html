@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jane的第一個網頁</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 18% 18%, rgba(100,165,255,0.28) 0%, transparent 52%),
+        radial-gradient(ellipse at 82% 82%, rgba(20,70,180,0.38) 0%, transparent 52%),
+        linear-gradient(155deg, #0c3889 0%, #1a5cbe 45%, #09286a 100%);
+      padding-top: 64px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      border-radius: 50%;
+      opacity: 0.06;
+      background: white;
+      pointer-events: none;
+    }
+    body::before { width: 520px; height: 520px; top: -160px; left: -160px; }
+    body::after  { width: 420px; height: 420px; bottom: -110px; right: -110px; }
+
+    /* ── Navbar ──────────────────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 64px;
+      background: rgba(8, 30, 85, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.3s;
+    }
+    #navbar.scrolled { background: rgba(8, 30, 85, 0.94); }
+    .nav-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.92);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+    }
+    .nav-link {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      padding-bottom: 3px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+      border-bottom-color: #e8c030;
+    }
+
+    /* ── SVG Sunflowers ──────────────────────────────────────────────────── */
+    .sf-deco {
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      overflow: visible;
+    }
+    .sf-tr { width: 235px; top: -68px;  right: -68px;  transform: rotate(18deg);  opacity: 0.50; }
+    .sf-bl { width: 190px; bottom: -58px; left: -58px;  transform: rotate(-11deg); opacity: 0.46; }
+    .sf-tl { width: 138px; top: -38px;  left: -38px;   transform: rotate(-30deg); opacity: 0.32; }
+    .sf-br { width: 158px; bottom: -45px; right: -45px; transform: rotate(25deg);  opacity: 0.36; }
+
+    /* ── Layout ──────────────────────────────────────────────────────────── */
+    .wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      position: relative;
+      z-index: 1;
+    }
+    section { scroll-margin-top: 76px; }
+
+    /* ── Hero ────────────────────────────────────────────────────────────── */
+    .hero {
+      background: rgba(255,255,255,0.95);
+      border-radius: 20px;
+      padding: 3rem 2.5rem 2.5rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.24), 0 1px 0 rgba(255,255,255,0.8) inset;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #e0b025, #1a6bb5, #e0b025);
+    }
+    .hero-deco { display: block; font-size: 1.4rem; color: #c9a830; letter-spacing: 0.6rem; margin-bottom: 0.8rem; opacity: 0.75; }
+    .hero h1 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 700;
+      color: #0d3b8e;
+      letter-spacing: 0.05em;
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+    .hero-sub { font-size: 0.82rem; color: #c0c0c0; letter-spacing: 0.28em; text-transform: uppercase; }
+    .hero-divider { width: 48px; height: 3px; background: linear-gradient(90deg, #e0b025, #1a6bb5); border-radius: 2px; margin: 1.2rem auto; }
+    .hero p { color: #666; font-size: 1.05rem; line-height: 1.9; }
+
+    /* ── Cards ───────────────────────────────────────────────────────────── */
+    .card {
+      background: rgba(255,255,255,0.94);
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.17), 0 1px 0 rgba(255,255,255,0.7) inset;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #1a6bb5, #5ba3f5);
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #1a6bb5;
+      background: #e8f0fe;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      margin-bottom: 0.8rem;
+    }
+    .card h2 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.5rem;
+      color: #1a2a4a;
+      margin-bottom: 1rem;
+    }
+    .card p { color: #555; font-size: 1.05rem; line-height: 1.9; }
+
+    /* ── Search ──────────────────────────────────────────────────────────── */
+    .search-wrapper {
+      position: relative;
+      margin-bottom: 0.9rem;
+    }
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      color: #aaa;
+      pointer-events: none;
+    }
+    #search-input {
+      width: 100%;
+      padding: 0.72rem 1rem 0.72rem 2.6rem;
+      border: 1.5px solid #dde8ff;
+      border-radius: 24px;
+      font-size: 0.95rem;
+      font-family: 'Noto Sans TC', sans-serif;
+      background: white;
+      color: #333;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    #search-input:focus {
+      border-color: #1a6bb5;
+      box-shadow: 0 0 0 3px rgba(26,107,181,0.12);
+    }
+    #search-input::placeholder { color: #ccc; }
+
+    /* ── Tag Filter ──────────────────────────────────────────────────────── */
+    .tag-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .tag-filter-label { font-size: 0.8rem; color: #999; margin-right: 0.2rem; }
+    .tag-filter-btn {
+      padding: 0.28rem 0.85rem;
+      border-radius: 20px;
+      border: 1.5px solid #c8d8f0;
+      background: transparent;
+      color: #5588cc;
+      font-size: 0.82rem;
+      font-family: 'Noto Sans TC', sans-serif;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .tag-filter-btn:hover { background: #e8f0fe; border-color: #1a6bb5; }
+    .tag-filter-btn.active { background: #1a6bb5; border-color: #1a6bb5; color: white; }
+
+    /* ── Note item ───────────────────────────────────────────────────────── */
+    .note-item {
+      border: 1px solid #dde8ff;
+      border-radius: 12px;
+      padding: 1.4rem 1.5rem;
+      background: linear-gradient(135deg, #f9fbff 0%, #eef3ff 100%);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .note-item:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,107,181,0.13); }
+    .note-header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.7rem;
+    }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag {
+      font-size: 0.75rem;
+      background: #d4e4fa;
+      color: #1a5cbe;
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .note-tag:hover { background: #1a6bb5; color: white; }
+    .note-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      cursor: pointer;
+      padding: 0.15rem 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .note-toggle:hover h3 { color: #1a6bb5; }
+    .note-toggle h3 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem;
+      color: #1a2a4a;
+      transition: color 0.18s;
+      flex: 1;
+    }
+    .chevron {
+      width: 18px; height: 18px;
+      color: #bbb;
+      flex-shrink: 0;
+      transition: transform 0.32s ease, color 0.18s;
+    }
+    .chevron.open { transform: rotate(180deg); color: #1a6bb5; }
+
+    .note-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s ease;
+    }
+    .note-body.open { grid-template-rows: 1fr; }
+    .note-body-inner { overflow: hidden; }
+    .note-body-inner > .note-content { padding-top: 0.75rem; }
+
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    code {
+      background: #dde8ff;
+      color: #1a5cbe;
+      padding: 0.1em 0.4em;
+      border-radius: 4px;
+      font-size: 0.88em;
+    }
+
+    /* ── Like button ─────────────────────────────────────────────────────── */
+    .like-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.32rem 0.75rem;
+      border-radius: 20px;
+      border: 1.5px solid #e0c0d0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #b06070;
+      font-family: 'Noto Sans TC', sans-serif;
+      transition: all 0.18s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .like-btn:hover { background: #fff0f4; border-color: #c05070; }
+    .like-btn.liked { background: #fff0f4; border-color: #c05070; }
+    .like-btn.liked .like-icon { color: #e02040; }
+    .like-count { font-size: 0.85rem; }
+
+    /* ── Comments ────────────────────────────────────────────────────────── */
+    .comments-section {
+      margin-top: 1.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #e8eeff;
+    }
+    .comments-title {
+      font-size: 0.9rem;
+      color: #777;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment {
+      background: white;
+      border: 1px solid #e8eeff;
+      border-radius: 8px;
+      padding: 0.65rem 0.9rem;
+    }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1.5px solid #dde8ff;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: 'Noto Sans TC', sans-serif;
+      color: #333;
+      resize: vertical;
+      outline: none;
+      background: white;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .comment-form textarea:focus {
+      border-color: #1a6bb5;
+      box-shadow: 0 0 0 3px rgba(26,107,181,0.10);
+    }
+    .comment-form button {
+      align-self: flex-end;
+      padding: 0.42rem 1.25rem;
+      background: #1a6bb5;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-family: 'Noto Sans TC', sans-serif;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.1s;
+    }
+    .comment-form button:hover { background: #155a9a; }
+    .comment-form button:active { transform: scale(0.97); }
+
+    #no-results { display: none; text-align: center; padding: 2rem; color: #aaa; font-size: 0.95rem; }
+
+    /* ── Timeline ────────────────────────────────────────────────────────── */
+    .timeline { position: relative; padding: 0.5rem 0 0.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #c8d8f080, #1a6bb5, #c8d8f080);
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: flex;
+      margin-bottom: 2rem;
+      position: relative;
+      align-items: flex-start;
+    }
+    .timeline-item.left {
+      flex-direction: row;
+      padding-right: calc(50% + 2.5rem);
+      justify-content: flex-end;
+    }
+    .timeline-item.right {
+      flex-direction: row-reverse;
+      padding-left: calc(50% + 2.5rem);
+      justify-content: flex-end;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 4px;
+      transform: translateX(-50%);
+      width: 40px; height: 40px;
+      background: white;
+      border: 2px solid #1a6bb5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      box-shadow: 0 2px 10px rgba(26,107,181,0.2);
+      z-index: 2;
+    }
+    .timeline-item.upcoming .timeline-dot { border-style: dashed; opacity: 0.65; }
+    .timeline-card {
+      background: linear-gradient(135deg, #f8faff, #eef3ff);
+      border: 1px solid #dde8ff;
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+      max-width: 100%;
+    }
+    .timeline-item.upcoming .timeline-card { opacity: 0.72; }
+    .timeline-date { font-size: 0.75rem; color: #1a6bb5; font-weight: 500; display: block; margin-bottom: 0.25rem; }
+    .timeline-card h4 { font-family: 'Noto Serif TC', serif; font-size: 0.98rem; color: #1a2a4a; margin-bottom: 0.3rem; }
+    .timeline-card p { font-size: 0.87rem; color: #666; line-height: 1.7; }
+
+    /* ── Tools ───────────────────────────────────────────────────────────── */
+    .tools-grid { display: flex; flex-direction: column; gap: 0.85rem; }
+    .tool-card {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: linear-gradient(135deg, #f8faff, #eef3ff);
+      border: 1px solid #dde8ff;
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .tool-card:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(26,107,181,0.12); }
+    .tool-emoji { font-size: 1.7rem; flex-shrink: 0; line-height: 1.2; }
+    .tool-info { flex: 1; }
+    .tool-header { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.3rem; }
+    .tool-header h4 { font-family: 'Noto Serif TC', serif; font-size: 1rem; color: #1a2a4a; }
+    .tool-badge {
+      font-size: 0.7rem;
+      background: #d4e4fa;
+      color: #1a5cbe;
+      padding: 0.1rem 0.5rem;
+      border-radius: 12px;
+    }
+    .tool-info p { font-size: 0.87rem; color: #666; line-height: 1.65; }
+
+    /* ── Social links ────────────────────────────────────────────────────── */
+    .social-links {
+      display: flex;
+      gap: 0.7rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.48rem 1.1rem;
+      border-radius: 24px;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 500;
+      font-family: 'Noto Sans TC', sans-serif;
+      transition: transform 0.18s, box-shadow 0.18s;
+      letter-spacing: 0.02em;
+    }
+    .social-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
+    .social-btn:active { transform: scale(0.97); }
+    .social-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .social-btn.instagram {
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: white;
+    }
+    .social-btn.linkedin { background: #0a66c2; color: white; }
+
+    /* ── Note step blocks ────────────────────────────────────────────────── */
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header {
+      background: linear-gradient(90deg, #e8f0fe, #f2f7ff);
+      padding: 0.52rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #1a3a6a;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      border-bottom: 1px solid #dce8ff;
+    }
+    .step-num {
+      width: 22px; height: 22px;
+      background: #1a6bb5;
+      color: white;
+      border-radius: 50%;
+      font-size: 0.68rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    pre {
+      background: #1b2b46;
+      border-radius: 7px;
+      overflow-x: auto;
+      margin: 0.5rem 0;
+    }
+    pre code {
+      display: block;
+      padding: 0.85rem 1.1rem;
+      background: transparent;
+      color: #9dcfee;
+      font-size: 0.82rem;
+      border-radius: 0;
+      white-space: pre;
+      font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+      line-height: 1.65;
+    }
+
+    /* ── Visitor counter ─────────────────────────────────────────────────── */
+    .visitor-count {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.48);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────────── */
+    .footer {
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.84rem;
+      padding: 0.5rem 0 1.5rem;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .nav-links { gap: 1.1rem; }
+      .nav-link { font-size: 0.82rem; }
+      .card { padding: 1.5rem 1.2rem; }
+      .timeline::before { left: 19px; }
+      .timeline-item { flex-direction: column !important; padding: 0 0 0 3.8rem !important; justify-content: flex-start !important; }
+      .timeline-dot { left: 19px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ Navbar ══════════════════════════════════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">Jane's Notes ✦</a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#about">關於我</a></li>
+        <li><a class="nav-link" href="#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="#tools">工具推薦</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ══ CSS 水彩向日葵 ══════════════════════════════════════════════════════ -->
+
+  <!-- 右上角 -->
+  <svg class="sf-deco sf-tr" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="wc-tr" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.046" numOctaves="4" seed="3" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+        <feGaussianBlur in="d" stdDeviation="0.9"/>
+      </filter>
+      <filter id="gl-tr"><feGaussianBlur stdDeviation="2"/></filter>
+      <radialGradient id="pg-tr" cx="50%" cy="78%" r="80%">
+        <stop offset="0%"   stop-color="#fad85c"/>
+        <stop offset="52%"  stop-color="#ebb82e" stop-opacity="0.90"/>
+        <stop offset="100%" stop-color="#d49010" stop-opacity="0.52"/>
+      </radialGradient>
+      <radialGradient id="cg-tr" cx="38%" cy="32%" r="76%">
+        <stop offset="0%" stop-color="#6b3d18"/>
+        <stop offset="100%" stop-color="#2c1104"/>
+      </radialGradient>
+    </defs>
+    <ellipse cx="103" cy="106" rx="37" ry="33" fill="#9b5c10" opacity="0.13" filter="url(#gl-tr)"/>
+    <g filter="url(#wc-tr)" opacity="0.90">
+      <ellipse cx="100" cy="63" rx="11.5" ry="34" fill="url(#pg-tr)" transform="rotate(0,100,100)"/>
+      <ellipse cx="100" cy="63" rx="11.5" ry="34" fill="url(#pg-tr)" transform="rotate(45,100,100)"/>
+      <ellipse cx="100" cy="63" rx="11.5" ry="34" fill="url(#pg-tr)" transform="rotate(90,100,100)"/>
+      <ellipse cx="100" cy="63" rx="11.5" ry="34" fill="url(#pg-tr)" transform="rotate(135,100,100)"/>
+      <ellipse cx="100" cy="63" rx="11.5" ry="34" fill="url(#pg-tr)" transform="rotate(180,100,100)"/>
+      <ellipse cx="100" cy="63" rx="11.5" ry="34" fill="url(#pg-tr)" transform="rotate(225,100,100)"/>
+      <ellipse cx="100" cy="63" rx="11.5" ry="34" fill="url(#pg-tr)" transform="rotate(270,100,100)"/>
+      <ellipse cx="100" cy="63" rx="11.5" ry="34" fill="url(#pg-tr)" transform="rotate(315,100,100)"/>
+    </g>
+    <g filter="url(#wc-tr)" opacity="0.80">
+      <ellipse cx="100" cy="71" rx="9" ry="25" fill="#d8901c" transform="rotate(22.5,100,100)"/>
+      <ellipse cx="100" cy="71" rx="9" ry="25" fill="#d8901c" transform="rotate(67.5,100,100)"/>
+      <ellipse cx="100" cy="71" rx="9" ry="25" fill="#d8901c" transform="rotate(112.5,100,100)"/>
+      <ellipse cx="100" cy="71" rx="9" ry="25" fill="#d8901c" transform="rotate(157.5,100,100)"/>
+      <ellipse cx="100" cy="71" rx="9" ry="25" fill="#d8901c" transform="rotate(202.5,100,100)"/>
+      <ellipse cx="100" cy="71" rx="9" ry="25" fill="#d8901c" transform="rotate(247.5,100,100)"/>
+      <ellipse cx="100" cy="71" rx="9" ry="25" fill="#d8901c" transform="rotate(292.5,100,100)"/>
+      <ellipse cx="100" cy="71" rx="9" ry="25" fill="#d8901c" transform="rotate(337.5,100,100)"/>
+    </g>
+    <circle cx="100" cy="100" r="29" fill="url(#cg-tr)" filter="url(#wc-tr)"/>
+    <circle cx="100" cy="100" r="22" fill="#3d1f08" opacity="0.54"/>
+    <g fill="#7a4820" opacity="0.74">
+      <circle cx="100" cy="84" r="2.2"/><circle cx="111.3" cy="88.7" r="2"/><circle cx="116" cy="100" r="2.2"/>
+      <circle cx="111.3" cy="111.3" r="2"/><circle cx="100" cy="116" r="2.2"/><circle cx="88.7" cy="111.3" r="2"/>
+      <circle cx="84" cy="100" r="2.2"/><circle cx="88.7" cy="88.7" r="2"/>
+    </g>
+    <g fill="#5a3010" opacity="0.64">
+      <circle cx="103.4" cy="91.7" r="1.7"/><circle cx="108.3" cy="96.5" r="1.7"/><circle cx="108.3" cy="103.5" r="1.7"/>
+      <circle cx="103.4" cy="108.3" r="1.7"/><circle cx="96.6" cy="108.3" r="1.7"/><circle cx="91.7" cy="103.5" r="1.7"/>
+      <circle cx="91.7" cy="96.5" r="1.7"/><circle cx="96.6" cy="91.7" r="1.7"/>
+    </g>
+    <circle cx="100" cy="100" r="4" fill="#4a2510" opacity="0.70"/>
+  </svg>
+
+  <!-- 左下角 -->
+  <svg class="sf-deco sf-bl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="wc-bl" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.050" numOctaves="4" seed="7" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="5.5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+        <feGaussianBlur in="d" stdDeviation="1.0"/>
+      </filter>
+      <filter id="gl-bl"><feGaussianBlur stdDeviation="2"/></filter>
+      <radialGradient id="pg-bl" cx="50%" cy="76%" r="80%">
+        <stop offset="0%"   stop-color="#f5cc48"/>
+        <stop offset="55%"  stop-color="#e0a428" stop-opacity="0.88"/>
+        <stop offset="100%" stop-color="#c87e08" stop-opacity="0.48"/>
+      </radialGradient>
+      <radialGradient id="cg-bl" cx="40%" cy="35%" r="76%">
+        <stop offset="0%" stop-color="#62380e"/>
+        <stop offset="100%" stop-color="#2a1002"/>
+      </radialGradient>
+    </defs>
+    <ellipse cx="102" cy="105" rx="34" ry="30" fill="#7a4508" opacity="0.11" filter="url(#gl-bl)"/>
+    <g filter="url(#wc-bl)" opacity="0.88">
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-bl)" transform="rotate(0,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-bl)" transform="rotate(45,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-bl)" transform="rotate(90,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-bl)" transform="rotate(135,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-bl)" transform="rotate(180,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-bl)" transform="rotate(225,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-bl)" transform="rotate(270,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-bl)" transform="rotate(315,100,100)"/>
+    </g>
+    <g filter="url(#wc-bl)" opacity="0.78">
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88018" transform="rotate(22.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88018" transform="rotate(67.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88018" transform="rotate(112.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88018" transform="rotate(157.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88018" transform="rotate(202.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88018" transform="rotate(247.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88018" transform="rotate(292.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88018" transform="rotate(337.5,100,100)"/>
+    </g>
+    <circle cx="100" cy="100" r="28" fill="url(#cg-bl)" filter="url(#wc-bl)"/>
+    <circle cx="100" cy="100" r="21" fill="#3a1c06" opacity="0.52"/>
+    <g fill="#724018" opacity="0.72">
+      <circle cx="100" cy="84" r="2"/><circle cx="111.3" cy="88.7" r="1.8"/><circle cx="116" cy="100" r="2"/>
+      <circle cx="111.3" cy="111.3" r="1.8"/><circle cx="100" cy="116" r="2"/><circle cx="88.7" cy="111.3" r="1.8"/>
+      <circle cx="84" cy="100" r="2"/><circle cx="88.7" cy="88.7" r="1.8"/>
+    </g>
+    <circle cx="100" cy="100" r="3.5" fill="#421808" opacity="0.65"/>
+  </svg>
+
+  <!-- 左上角 -->
+  <svg class="sf-deco sf-tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="wc-tl" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.056" numOctaves="4" seed="12" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G" result="d"/>
+        <feGaussianBlur in="d" stdDeviation="1.1"/>
+      </filter>
+      <radialGradient id="pg-tl" cx="50%" cy="76%" r="80%">
+        <stop offset="0%"   stop-color="#fad860"/>
+        <stop offset="58%"  stop-color="#e8b234" stop-opacity="0.84"/>
+        <stop offset="100%" stop-color="#cc8a0c" stop-opacity="0.44"/>
+      </radialGradient>
+      <radialGradient id="cg-tl" cx="42%" cy="36%" r="76%">
+        <stop offset="0%" stop-color="#703e18"/>
+        <stop offset="100%" stop-color="#301508"/>
+      </radialGradient>
+    </defs>
+    <g filter="url(#wc-tl)" opacity="0.85">
+      <ellipse cx="100" cy="66" rx="10" ry="30" fill="url(#pg-tl)" transform="rotate(0,100,100)"/>
+      <ellipse cx="100" cy="66" rx="10" ry="30" fill="url(#pg-tl)" transform="rotate(45,100,100)"/>
+      <ellipse cx="100" cy="66" rx="10" ry="30" fill="url(#pg-tl)" transform="rotate(90,100,100)"/>
+      <ellipse cx="100" cy="66" rx="10" ry="30" fill="url(#pg-tl)" transform="rotate(135,100,100)"/>
+      <ellipse cx="100" cy="66" rx="10" ry="30" fill="url(#pg-tl)" transform="rotate(180,100,100)"/>
+      <ellipse cx="100" cy="66" rx="10" ry="30" fill="url(#pg-tl)" transform="rotate(225,100,100)"/>
+      <ellipse cx="100" cy="66" rx="10" ry="30" fill="url(#pg-tl)" transform="rotate(270,100,100)"/>
+      <ellipse cx="100" cy="66" rx="10" ry="30" fill="url(#pg-tl)" transform="rotate(315,100,100)"/>
+    </g>
+    <g filter="url(#wc-tl)" opacity="0.75">
+      <ellipse cx="100" cy="74" rx="8" ry="22" fill="#d08e20" transform="rotate(22.5,100,100)"/>
+      <ellipse cx="100" cy="74" rx="8" ry="22" fill="#d08e20" transform="rotate(67.5,100,100)"/>
+      <ellipse cx="100" cy="74" rx="8" ry="22" fill="#d08e20" transform="rotate(112.5,100,100)"/>
+      <ellipse cx="100" cy="74" rx="8" ry="22" fill="#d08e20" transform="rotate(157.5,100,100)"/>
+      <ellipse cx="100" cy="74" rx="8" ry="22" fill="#d08e20" transform="rotate(202.5,100,100)"/>
+      <ellipse cx="100" cy="74" rx="8" ry="22" fill="#d08e20" transform="rotate(247.5,100,100)"/>
+      <ellipse cx="100" cy="74" rx="8" ry="22" fill="#d08e20" transform="rotate(292.5,100,100)"/>
+      <ellipse cx="100" cy="74" rx="8" ry="22" fill="#d08e20" transform="rotate(337.5,100,100)"/>
+    </g>
+    <circle cx="100" cy="100" r="27" fill="url(#cg-tl)" filter="url(#wc-tl)"/>
+    <circle cx="100" cy="100" r="20" fill="#3a1c06" opacity="0.50"/>
+    <g fill="#6a3515" opacity="0.68">
+      <circle cx="100" cy="84" r="1.9"/><circle cx="111.3" cy="88.7" r="1.7"/><circle cx="116" cy="100" r="1.9"/>
+      <circle cx="111.3" cy="111.3" r="1.7"/><circle cx="100" cy="116" r="1.9"/><circle cx="88.7" cy="111.3" r="1.7"/>
+      <circle cx="84" cy="100" r="1.9"/><circle cx="88.7" cy="88.7" r="1.7"/>
+    </g>
+    <circle cx="100" cy="100" r="3.5" fill="#401808" opacity="0.60"/>
+  </svg>
+
+  <!-- 右下角 -->
+  <svg class="sf-deco sf-br" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="wc-br" x="-30%" y="-30%" width="160%" height="160%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.043" numOctaves="4" seed="19" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G" result="d"/>
+        <feGaussianBlur in="d" stdDeviation="0.8"/>
+      </filter>
+      <filter id="gl-br"><feGaussianBlur stdDeviation="2"/></filter>
+      <radialGradient id="pg-br" cx="50%" cy="76%" r="80%">
+        <stop offset="0%"   stop-color="#f6d050"/>
+        <stop offset="55%"  stop-color="#e6ac2c" stop-opacity="0.88"/>
+        <stop offset="100%" stop-color="#cc880c" stop-opacity="0.50"/>
+      </radialGradient>
+      <radialGradient id="cg-br" cx="40%" cy="33%" r="76%">
+        <stop offset="0%" stop-color="#673812"/>
+        <stop offset="100%" stop-color="#2c1004"/>
+      </radialGradient>
+    </defs>
+    <ellipse cx="101" cy="104" rx="32" ry="29" fill="#7a4008" opacity="0.10" filter="url(#gl-br)"/>
+    <g filter="url(#wc-br)" opacity="0.87">
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-br)" transform="rotate(0,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-br)" transform="rotate(45,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-br)" transform="rotate(90,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-br)" transform="rotate(135,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-br)" transform="rotate(180,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-br)" transform="rotate(225,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-br)" transform="rotate(270,100,100)"/>
+      <ellipse cx="100" cy="65" rx="10.5" ry="31" fill="url(#pg-br)" transform="rotate(315,100,100)"/>
+    </g>
+    <g filter="url(#wc-br)" opacity="0.77">
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88515" transform="rotate(22.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88515" transform="rotate(67.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88515" transform="rotate(112.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88515" transform="rotate(157.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88515" transform="rotate(202.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88515" transform="rotate(247.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88515" transform="rotate(292.5,100,100)"/>
+      <ellipse cx="100" cy="73" rx="8.5" ry="23" fill="#c88515" transform="rotate(337.5,100,100)"/>
+    </g>
+    <circle cx="100" cy="100" r="28" fill="url(#cg-br)" filter="url(#wc-br)"/>
+    <circle cx="100" cy="100" r="21" fill="#381a04" opacity="0.52"/>
+    <g fill="#6e3d18" opacity="0.70">
+      <circle cx="100" cy="84" r="2"/><circle cx="111.3" cy="88.7" r="1.8"/><circle cx="116" cy="100" r="2"/>
+      <circle cx="111.3" cy="111.3" r="1.8"/><circle cx="100" cy="116" r="2"/><circle cx="88.7" cy="111.3" r="1.8"/>
+      <circle cx="84" cy="100" r="2"/><circle cx="88.7" cy="88.7" r="1.8"/>
+    </g>
+    <circle cx="100" cy="100" r="3.5" fill="#3e1808" opacity="0.62"/>
+  </svg>
+
+  <!-- ══ Main Content ══════════════════════════════════════════════════════════ -->
+  <div class="wrapper">
+
+    <!-- Hero -->
+    <section id="home">
+      <div class="hero">
+        <span class="hero-deco">✦ ✦ ✦</span>
+        <h1>Jane 的第一個網頁</h1>
+        <p class="hero-sub">Learning · Notes · Growth</p>
+        <div class="hero-divider"></div>
+        <p>歡迎來到我的小小角落！</p>
+      </div>
+    </section>
+
+    <!-- 關於我 -->
+    <section id="about">
+      <div class="card">
+        <span class="section-label">About Me</span>
+        <h2>關於我</h2>
+        <p>
+          嗨，我是 Jane 👋<br><br>
+          這裡記錄著我學習 Claude AI 的心得與筆記。<br>
+          雖然我是個工程小白，還在一步一步摸索中，<br>
+          但希望這些真實的學習歷程，能為同樣在起步的你<br>
+          帶來一點幫助與收穫。<br><br>
+          我們一起成長吧！
+        </p>
+        <div class="social-links">
+          <a class="social-btn instagram" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+            Instagram
+          </a>
+          <a class="social-btn linkedin" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 學習筆記 -->
+    <section id="notes">
+      <div class="card">
+        <span class="section-label">Notes</span>
+        <h2>學習筆記</h2>
+
+        <!-- 搜尋欄 -->
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input id="search-input" type="text" placeholder="搜尋筆記標題或內容…">
+        </div>
+
+        <!-- 標籤篩選 -->
+        <div class="tag-filter-bar">
+          <span class="tag-filter-label">篩選：</span>
+          <button class="tag-filter-btn active" data-tag="">全部</button>
+          <button class="tag-filter-btn" data-tag="claude-code">Claude Code</button>
+          <button class="tag-filter-btn" data-tag="mac">Mac 教學</button>
+        </div>
+
+        <!-- 筆記列表 -->
+        <div id="notes-container"></div>
+        <div id="no-results">😶 找不到符合的筆記</div>
+      </div>
+    </section>
+
+    <!-- 學習時間軸 -->
+    <section id="timeline">
+      <div class="card">
+        <span class="section-label">Timeline</span>
+        <h2>學習時間軸</h2>
+        <div class="timeline" id="timeline-container"></div>
+      </div>
+    </section>
+
+    <!-- 工具推薦 -->
+    <section id="tools">
+      <div class="card">
+        <span class="section-label">Tools</span>
+        <h2>工具推薦</h2>
+        <div class="tools-grid" id="tools-container"></div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="visitor-count" id="visitor-counter">👁 已有 0 人來訪</div>
+      © 2026 Jane &nbsp;·&nbsp; Made with ✦ Claude Code
+    </div>
+  </div>
+
+  <script>
+    // ── Data ──────────────────────────────────────────────────────────────────
+
+    const NOTES = [
+      {
+        id: 'note-1',
+        date: '2026-05-14',
+        tags: ['claude-code', 'mac'],
+        tagLabels: { 'claude-code': 'Claude Code', 'mac': 'Mac 教學' },
+        title: '如何在空間不足的 Mac 上安裝 Claude Code',
+        content: `<p style="margin-bottom:0.9rem">今天一早想安裝 Claude Code，結果被一個錯誤訊息擋下來了——Mac 磁碟空間不足。這是我踏入工程世界的第一個障礙，記錄下來給有同樣困擾的朋友參考。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>發現問題：需要 10.57 GB</div>
+  <div class="step-body">
+    <p>安裝程式提示至少需要 <strong>10.57 GB</strong> 的可用空間，但 Mac 只剩不到 5 GB。這比我預期的麻煩多了。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>用終端機找出佔空間的元兇</div>
+  <div class="step-body">
+    <p>打開<strong>終端機（Terminal）</strong>，掃描哪些資料夾最佔空間：</p>
+    <pre><code>du -sh ~/* 2>/dev/null | sort -rh | head -20</code></pre>
+    <p>發現 Library 最大，繼續往 Caches 裡挖：</p>
+    <pre><code>du -sh ~/Library/Caches/* 2>/dev/null | sort -rh | head -10</code></pre>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>發現 Claude App 快取佔了 13 GB！</div>
+  <div class="step-body">
+    <p>掃描結果讓我嚇一跳——之前裝的 Claude 桌面版快取竟佔了將近 <strong>13 GB</strong>。另外 Slack、WebEx 也各自佔了數 GB，三個加起來超過 16 GB。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>清除快取，成功釋出 10 GB</div>
+  <div class="step-body">
+    <p>清除 Claude App 快取（先確認 Claude 桌面版已關閉）：</p>
+    <pre><code>rm -rf ~/Library/Caches/Claude</code></pre>
+    <p>清除 Slack 快取：</p>
+    <pre><code>rm -rf ~/Library/Caches/com.tinyspeck.slackmacgap</code></pre>
+    <p>清除 WebEx 快取：</p>
+    <pre><code>rm -rf ~/Library/Caches/Cisco\ WebEx\ LLC</code></pre>
+    <p>清完後總共釋出超過 <strong>10 GB</strong>，終於有足夠空間了！</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>安裝 Homebrew（Mac 套件管理工具）</div>
+  <div class="step-body">
+    <p>Claude Code 需要 Node.js 環境，先透過 Homebrew 來安裝。在終端機貼上：</p>
+    <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+    <p>安裝完成後確認：</p>
+    <pre><code>brew --version</code></pre>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">06</span>安裝 Node.js</div>
+  <div class="step-body">
+    <p>透過 Homebrew 安裝 Node.js：</p>
+    <pre><code>brew install node</code></pre>
+    <p>確認安裝成功：</p>
+    <pre><code>node --version
+npm --version</code></pre>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">07</span>安裝 Claude Code，大功告成 🎉</div>
+  <div class="step-body">
+    <p>環境準備好之後，用 npm 全域安裝 Claude Code：</p>
+    <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+    <p>建立測試資料夾並啟動：</p>
+    <pre><code>mkdir ~/Desktop/claude-test
+cd ~/Desktop/claude-test
+claude</code></pre>
+    <p>看到 Claude Code 的提示符號出現，成功了！對工程小白的我來說，這一刻真的超有成就感 🌱</p>
+  </div>
+</div>`
+      }
+    ];
+
+    const TIMELINE = [
+      {
+        date: '2026-05-14',
+        title: '踏出第一步',
+        desc: '在磁碟空間不足的 Mac 上，成功安裝 Claude Code，並完成人生第一個網頁。',
+        icon: '🌱',
+        done: true
+      },
+      {
+        date: '2026-05 進行中',
+        title: '學習 HTML & CSS',
+        desc: '用 Claude Code 建立部落格頁面，慢慢理解網頁結構與樣式原理。',
+        icon: '📚',
+        done: false
+      },
+      {
+        date: '即將到來',
+        title: '分享與成長',
+        desc: '記錄更多學習心得，希望幫助其他工程小白少走彎路，一起成長。',
+        icon: '✨',
+        done: false
+      }
+    ];
+
+    const TOOLS = [
+      { name: 'Claude Code', emoji: '🤖', desc: 'Anthropic 推出的 AI 程式助手，用對話就能寫程式，初學者超友善。', badge: '必裝' },
+      { name: 'Claude.ai',   emoji: '💬', desc: '網頁版 Claude，隨時可以問問題、解釋程式碼、學習新知識。', badge: '免費' },
+      { name: 'VS Code',     emoji: '🖊️', desc: '輕量且強大的程式編輯器，擴充套件豐富，是工程師的標配。', badge: '免費' },
+      { name: 'Notion',      emoji: '📓', desc: '筆記與知識管理工具，很適合整理 AI 學習的碎片資料。', badge: '推薦' }
+    ];
+
+    // ── State ─────────────────────────────────────────────────────────────────
+    let activeTag = null;
+    let searchQuery = '';
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function stripHtml(html) {
+      const el = document.createElement('div');
+      el.innerHTML = html;
+      return el.textContent || '';
+    }
+
+    // ── Likes ─────────────────────────────────────────────────────────────────
+    function getLikeState(id) {
+      return {
+        count: parseInt(localStorage.getItem('like_count_' + id) || '0'),
+        liked: localStorage.getItem('liked_' + id) === '1'
+      };
+    }
+
+    function toggleLike(id) {
+      const s = getLikeState(id);
+      const liked = !s.liked;
+      const count = liked ? s.count + 1 : Math.max(0, s.count - 1);
+      localStorage.setItem('liked_' + id, liked ? '1' : '0');
+      localStorage.setItem('like_count_' + id, count);
+      const btn = document.querySelector('[data-like-id="' + id + '"]');
+      if (btn) {
+        btn.classList.toggle('liked', liked);
+        btn.querySelector('.like-icon').textContent = liked ? '♥' : '♡';
+        btn.querySelector('.like-count').textContent = count;
+      }
+    }
+
+    function initLike(id) {
+      const s = getLikeState(id);
+      const btn = document.querySelector('[data-like-id="' + id + '"]');
+      if (!btn) return;
+      btn.classList.toggle('liked', s.liked);
+      btn.querySelector('.like-icon').textContent = s.liked ? '♥' : '♡';
+      btn.querySelector('.like-count').textContent = s.count;
+    }
+
+    // ── Comments ──────────────────────────────────────────────────────────────
+    function getComments(id) {
+      try { return JSON.parse(localStorage.getItem('comments_' + id) || '[]'); }
+      catch { return []; }
+    }
+
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="' + id + '"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({
+        id: Date.now(),
+        text,
+        date: new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: '2-digit', day: '2-digit' })
+      });
+      localStorage.setItem('comments_' + id, JSON.stringify(comments));
+      ta.value = '';
+      renderComments(id);
+    }
+
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="' + id + '"]');
+      const cnt  = document.querySelector('[data-comment-count="' + id + '"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c =>
+            '<div class="comment">' +
+              '<span class="comment-date">' + escapeHtml(c.date) + '</span>' +
+              '<p>' + escapeHtml(c.text).replace(/\n/g, '<br>') + '</p>' +
+            '</div>'
+          ).join('');
+    }
+
+    // ── Notes ─────────────────────────────────────────────────────────────────
+    function noteTagsHTML(note) {
+      return note.tags.map(t =>
+        '<span class="note-tag" onclick="filterByTagChip(\'' + t + '\')">' +
+          escapeHtml(note.tagLabels[t] || t) +
+        '</span>'
+      ).join('');
+    }
+
+    const CHEVRON = '<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+
+    function noteHTML(note) {
+      return '<div class="note-item" id="' + note.id + '">' +
+        '<div class="note-header-row">' +
+          '<div class="note-meta">' +
+            '<span class="note-date">' + escapeHtml(note.date) + '</span>' +
+            noteTagsHTML(note) +
+          '</div>' +
+          '<button class="like-btn" data-like-id="' + note.id + '" onclick="toggleLike(\'' + note.id + '\')">' +
+            '<span class="like-icon">♡</span>' +
+            '<span class="like-count">0</span>' +
+          '</button>' +
+        '</div>' +
+        '<div class="note-toggle" onclick="toggleNote(\'' + note.id + '\')">' +
+          '<h3>' + escapeHtml(note.title) + '</h3>' +
+          CHEVRON +
+        '</div>' +
+        '<div class="note-body" id="body-' + note.id + '">' +
+          '<div class="note-body-inner">' +
+            '<p class="note-content">' + note.content + '</p>' +
+            '<div class="comments-section">' +
+              '<p class="comments-title">💬 留言 (<span data-comment-count="' + note.id + '">0</span>)</p>' +
+              '<div data-comments-list="' + note.id + '" class="comments-list"></div>' +
+              '<div class="comment-form">' +
+                '<textarea data-comment-input="' + note.id + '" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>' +
+                '<button onclick="submitComment(\'' + note.id + '\')">送出</button>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }
+
+    function toggleNote(id) {
+      const body    = document.getElementById('body-' + id);
+      const chevron = document.querySelector('#' + id + ' .chevron');
+      if (!body) return;
+      const open = body.classList.toggle('open');
+      if (chevron) chevron.classList.toggle('open', open);
+    }
+
+    function renderNotes() {
+      const container = document.getElementById('notes-container');
+      container.innerHTML = NOTES.map(noteHTML).join('');
+      NOTES.forEach(n => { initLike(n.id); renderComments(n.id); });
+    }
+
+    // ── Filter & Search ───────────────────────────────────────────────────────
+    function updateTagFilterUI() {
+      document.querySelectorAll('.tag-filter-btn').forEach(btn => {
+        const t = btn.dataset.tag;
+        btn.classList.toggle('active', t === '' ? activeTag === null : t === activeTag);
+      });
+    }
+
+    function applyFilter() {
+      const q = searchQuery.toLowerCase();
+      let visible = 0;
+      NOTES.forEach(note => {
+        const el = document.getElementById(note.id);
+        if (!el) return;
+        const tagOk    = !activeTag || note.tags.includes(activeTag);
+        const searchOk = !q || note.title.toLowerCase().includes(q) || stripHtml(note.content).toLowerCase().includes(q);
+        el.style.display = tagOk && searchOk ? '' : 'none';
+        if (tagOk && searchOk) visible++;
+      });
+      document.getElementById('no-results').style.display = visible === 0 ? '' : 'none';
+    }
+
+    function filterByTagChip(tag) {
+      activeTag = activeTag === tag ? null : tag;
+      updateTagFilterUI();
+      applyFilter();
+      document.getElementById('notes').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ── Timeline ──────────────────────────────────────────────────────────────
+    function renderTimeline() {
+      const el = document.getElementById('timeline-container');
+      el.innerHTML = TIMELINE.map((ev, i) =>
+        '<div class="timeline-item ' + (ev.done ? 'done' : 'upcoming') + ' ' + (i % 2 === 0 ? 'left' : 'right') + '">' +
+          '<div class="timeline-dot">' + ev.icon + '</div>' +
+          '<div class="timeline-card">' +
+            '<span class="timeline-date">' + escapeHtml(ev.date) + '</span>' +
+            '<h4>' + escapeHtml(ev.title) + '</h4>' +
+            '<p>' + escapeHtml(ev.desc) + '</p>' +
+          '</div>' +
+        '</div>'
+      ).join('');
+    }
+
+    // ── Tools ─────────────────────────────────────────────────────────────────
+    function renderTools() {
+      const el = document.getElementById('tools-container');
+      el.innerHTML = TOOLS.map(t =>
+        '<div class="tool-card">' +
+          '<span class="tool-emoji">' + t.emoji + '</span>' +
+          '<div class="tool-info">' +
+            '<div class="tool-header">' +
+              '<h4>' + escapeHtml(t.name) + '</h4>' +
+              '<span class="tool-badge">' + escapeHtml(t.badge) + '</span>' +
+            '</div>' +
+            '<p>' + escapeHtml(t.desc) + '</p>' +
+          '</div>' +
+        '</div>'
+      ).join('');
+    }
+
+    // ── Navbar active on scroll ───────────────────────────────────────────────
+    function initNavScroll() {
+      const links = document.querySelectorAll('.nav-link[href^="#"]');
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            links.forEach(a => {
+              a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id);
+            });
+          }
+        });
+      }, { rootMargin: '-20% 0px -70% 0px' });
+      document.querySelectorAll('section[id]').forEach(s => obs.observe(s));
+
+      const nav = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 8);
+      }, { passive: true });
+    }
+
+    // ── Init ──────────────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNotes();
+      renderTimeline();
+      renderTools();
+      initNavScroll();
+
+      document.getElementById('search-input').addEventListener('input', e => {
+        searchQuery = e.target.value;
+        applyFilter();
+      });
+
+      document.querySelectorAll('.tag-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tag = btn.dataset.tag;
+          activeTag = tag === '' ? null : (activeTag === tag ? null : tag);
+          updateTagFilterUI();
+          applyFilter();
+        });
+      });
+
+      // 訪客計數器
+      (function() {
+        const count = parseInt(localStorage.getItem('visitor_count') || '0') + 1;
+        localStorage.setItem('visitor_count', count);
+        const el = document.getElementById('visitor-counter');
+        if (el) el.textContent = '👁 已有 ' + count.toLocaleString() + ' 人來訪';
+      })();
+
+      document.addEventListener('keydown', e => {
+        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+          const ta = document.activeElement;
+          if (ta && ta.dataset.commentInput) submitComment(ta.dataset.commentInput);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
