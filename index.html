@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jane的第一個網頁</title>
+  <title>Jane的AI學習筆記 - Claude AI 學習歷程</title>
+  <meta name="description" content="Jane 的 Claude AI 學習筆記，記錄一個工程小白從零開始學習 Claude Code 的真實歷程，包含 Mac 安裝教學、網頁製作心得，希望幫助更多同樣在起步的朋友。">
+  <meta property="og:title" content="Jane的AI學習筆記 - Claude AI 學習歷程">
+  <meta property="og:description" content="工程小白的 Claude AI 學習歷程，從安裝到建立網站的完整記錄，語氣輕鬆，新手友善。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -553,14 +560,129 @@
       letter-spacing: 0.06em;
     }
 
+    /* ── Note Cover ─────────────────────────────────────────────────────── */
+    .note-cover {
+      width: 100%;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      margin-bottom: 1.4rem;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255,209,102,0.12) 0%, rgba(255,107,53,0.08) 100%);
+    }
+    .note-cover svg { width: 100%; height: 100%; }
+
+    /* ── Share Bar ───────────────────────────────────────────────────────── */
+    .share-bar {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1.4rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      align-items: center;
+    }
+    .share-bar-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em;
+      margin-right: 0.2rem;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.38rem 0.85rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.05);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.78rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      text-decoration: none;
+      font-family: inherit;
+    }
+    .share-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #6fcf97; }
+
+    /* ── Back to Top ─────────────────────────────────────────────────────── */
+    #back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f7c948, #e8833a);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+      z-index: 999;
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+    #back-to-top svg { width: 20px; height: 20px; stroke: #1a1008; }
+
+    /* ── Hamburger ───────────────────────────────────────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     /* ── Responsive ──────────────────────────────────────────────────────── */
     @media (max-width: 600px) {
-      .nav-links { gap: 1.1rem; }
-      .nav-link { font-size: 0.82rem; }
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: rgba(20,12,4,0.97);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 0.4rem 0 0.8rem;
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
       .card { padding: 1.5rem 1.2rem; }
       .timeline::before { left: 19px; }
       .timeline-item { flex-direction: column !important; padding: 0 0 0 3.8rem !important; justify-content: flex-start !important; }
       .timeline-dot { left: 19px; }
+      .note-cover { height: 120px; }
+      .share-bar { flex-wrap: wrap; }
+      #back-to-top { bottom: 1.2rem; right: 1.2rem; width: 40px; height: 40px; }
+      .sf-deco { display: none; }
+      .hero-title { font-size: clamp(1.8rem, 8vw, 2.8rem); }
+      .hero-sub { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -570,7 +692,8 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#home" class="nav-logo">Jane's Notes ✦</a>
-      <ul class="nav-links">
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
         <li><a class="nav-link" href="#about">關於我</a></li>
         <li><a class="nav-link" href="#notes">學習筆記</a></li>
         <li><a class="nav-link" href="#tools">工具推薦</a></li>
@@ -1200,6 +1323,81 @@ git push -u origin main</code></pre>
       ).join('');
     }
 
+    const NOTE_COVERS = {
+      'note-1': `<svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cv1bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1a1008"/>
+            <stop offset="100%" stop-color="#2a1a0a"/>
+          </linearGradient>
+        </defs>
+        <rect width="480" height="160" fill="url(#cv1bg)" rx="12"/>
+        <!-- laptop body -->
+        <rect x="150" y="45" width="180" height="110" rx="8" fill="#2d2d2d" stroke="#555" stroke-width="1.5"/>
+        <rect x="158" y="53" width="164" height="90" rx="4" fill="#1a1a2e"/>
+        <!-- screen content lines -->
+        <rect x="166" y="62" width="80" height="5" rx="2" fill="#f7c948" opacity="0.8"/>
+        <rect x="166" y="74" width="120" height="3" rx="1.5" fill="#6fcf97" opacity="0.7"/>
+        <rect x="166" y="83" width="100" height="3" rx="1.5" fill="#56ccf2" opacity="0.6"/>
+        <rect x="166" y="92" width="90" height="3" rx="1.5" fill="#f7c948" opacity="0.5"/>
+        <rect x="166" y="101" width="110" height="3" rx="1.5" fill="#6fcf97" opacity="0.4"/>
+        <rect x="166" y="110" width="70" height="3" rx="1.5" fill="#56ccf2" opacity="0.5"/>
+        <!-- cursor blink -->
+        <rect x="166" y="122" width="8" height="10" rx="1" fill="#f7c948" opacity="0.9"/>
+        <!-- laptop base -->
+        <rect x="138" y="155" width="204" height="6" rx="3" fill="#3d3d3d" stroke="#555" stroke-width="1"/>
+        <!-- gear icon -->
+        <circle cx="360" cy="85" r="22" fill="none" stroke="#f7c948" stroke-width="2" opacity="0.6"/>
+        <circle cx="360" cy="85" r="12" fill="none" stroke="#f7c948" stroke-width="2" opacity="0.6"/>
+        <line x1="360" y1="60" x2="360" y2="70" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <line x1="360" y1="100" x2="360" y2="110" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <line x1="335" y1="85" x2="345" y2="85" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <line x1="375" y1="85" x2="385" y2="85" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <line x1="342" y1="67" x2="348" y2="73" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <line x1="372" y1="97" x2="378" y2="103" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <line x1="342" y1="103" x2="348" y2="97" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <line x1="372" y1="73" x2="378" y2="67" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+        <!-- terminal symbol -->
+        <text x="90" y="95" font-family="monospace" font-size="28" fill="#6fcf97" opacity="0.7">$_</text>
+        <!-- decorative dots -->
+        <circle cx="80" cy="40" r="4" fill="#f7c948" opacity="0.3"/>
+        <circle cx="400" cy="130" r="6" fill="#e8833a" opacity="0.25"/>
+        <circle cx="420" cy="50" r="3" fill="#56ccf2" opacity="0.3"/>
+      </svg>`,
+      'note-2': `<svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cv2bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0d1a1a"/>
+            <stop offset="100%" stop-color="#1a2a1a"/>
+          </linearGradient>
+        </defs>
+        <rect width="480" height="160" fill="url(#cv2bg)" rx="12"/>
+        <!-- person silhouette -->
+        <circle cx="160" cy="55" r="20" fill="#e8833a" opacity="0.7"/>
+        <path d="M130 155 Q130 110 160 110 Q190 110 190 155" fill="#e8833a" opacity="0.7"/>
+        <!-- arms raised -->
+        <line x1="130" y1="115" x2="105" y2="90" stroke="#e8833a" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+        <line x1="190" y1="115" x2="215" y2="90" stroke="#e8833a" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+        <!-- lightbulb -->
+        <circle cx="310" cy="65" r="30" fill="none" stroke="#f7c948" stroke-width="2.5" opacity="0.8"/>
+        <circle cx="310" cy="65" r="30" fill="#f7c948" opacity="0.1"/>
+        <path d="M298 88 L322 88" stroke="#f7c948" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+        <path d="M301 96 L319 96" stroke="#f7c948" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+        <path d="M304 104 L316 104" stroke="#f7c948" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+        <line x1="310" y1="35" x2="310" y2="25" stroke="#f7c948" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+        <line x1="330" y1="45" x2="340" y2="38" stroke="#f7c948" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+        <line x1="290" y1="45" x2="280" y2="38" stroke="#f7c948" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+        <!-- stars -->
+        <text x="380" y="55" font-size="18" fill="#f7c948" opacity="0.6">✦</text>
+        <text x="60" y="50" font-size="12" fill="#6fcf97" opacity="0.5">✦</text>
+        <text x="420" y="110" font-size="14" fill="#56ccf2" opacity="0.4">✦</text>
+        <text x="75" y="130" font-size="10" fill="#f7c948" opacity="0.4">✦</text>
+        <!-- speech bubble with code -->
+        <rect x="215" y="20" width="75" height="34" rx="8" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <text x="225" y="42" font-family="monospace" font-size="13" fill="#6fcf97" opacity="0.8">&lt;/web&gt;</text>
+      </svg>`
+    };
+
     const CHEVRON = '<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
 
     function noteHTML(note) {
@@ -1220,7 +1418,20 @@ git push -u origin main</code></pre>
         '</div>' +
         '<div class="note-body" id="body-' + note.id + '">' +
           '<div class="note-body-inner">' +
+            (NOTE_COVERS[note.id] ? '<div class="note-cover">' + NOTE_COVERS[note.id] + '</div>' : '') +
             '<p class="note-content">' + note.content + '</p>' +
+            '<div class="share-bar">' +
+              '<span class="share-bar-label">分享</span>' +
+              '<button class="share-btn" onclick="shareNote(\'facebook\',\'' + note.id + '\')">' +
+                '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook' +
+              '</button>' +
+              '<button class="share-btn" onclick="shareNote(\'line\',\'' + note.id + '\')">' +
+                '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE' +
+              '</button>' +
+              '<button class="share-btn" id="copy-' + note.id + '" onclick="shareNote(\'copy\',\'' + note.id + '\')">' +
+                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結' +
+              '</button>' +
+            '</div>' +
             '<div class="comments-section">' +
               '<p class="comments-title">💬 留言 (<span data-comment-count="' + note.id + '">0</span>)</p>' +
               '<div data-comments-list="' + note.id + '" class="comments-list"></div>' +
@@ -1309,6 +1520,56 @@ git push -u origin main</code></pre>
       ).join('');
     }
 
+    // ── Share ─────────────────────────────────────────────────────────────────
+    function shareNote(platform, noteId) {
+      const url = window.location.href.split('#')[0] + '#' + noteId;
+      if (platform === 'facebook') {
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url), '_blank', 'width=600,height=400');
+      } else if (platform === 'line') {
+        window.open('https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(url), '_blank', 'width=600,height=400');
+      } else if (platform === 'copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-' + noteId);
+          if (!btn) return;
+          btn.classList.add('copied');
+          btn.innerHTML = btn.innerHTML.replace('複製連結', '已複製！');
+          setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = btn.innerHTML.replace('已複製！', '複製連結');
+          }, 2000);
+        });
+      }
+    }
+
+    // ── Back to Top ───────────────────────────────────────────────────────────
+    function initBackToTop() {
+      const btn = document.getElementById('back-to-top');
+      if (!btn) return;
+      window.addEventListener('scroll', () => {
+        btn.classList.toggle('visible', window.scrollY > 300);
+      }, { passive: true });
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // ── Hamburger ─────────────────────────────────────────────────────────────
+    function initHamburger() {
+      const btn = document.getElementById('hamburger');
+      const links = document.getElementById('nav-links');
+      if (!btn || !links) return;
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('open');
+        links.classList.toggle('open');
+      });
+      links.querySelectorAll('.nav-link').forEach(a => {
+        a.addEventListener('click', () => {
+          btn.classList.remove('open');
+          links.classList.remove('open');
+        });
+      });
+    }
+
     // ── Navbar active on scroll ───────────────────────────────────────────────
     function initNavScroll() {
       const links = document.querySelectorAll('.nav-link[href^="#"]');
@@ -1335,6 +1596,8 @@ git push -u origin main</code></pre>
       renderTimeline();
       renderTools();
       initNavScroll();
+      initBackToTop();
+      initHamburger();
 
       document.getElementById('search-input').addEventListener('input', e => {
         searchQuery = e.target.value;
@@ -1366,5 +1629,12 @@ git push -u origin main</code></pre>
       });
     });
   </script>
+  <!-- ══ Back to Top ════════════════════════════════════════════════════════ -->
+  <button id="back-to-top" aria-label="回到頂部">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
 </body>
 </html>
