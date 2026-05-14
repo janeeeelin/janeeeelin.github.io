@@ -683,6 +683,13 @@
       .sf-deco { display: none; }
       .hero-title { font-size: clamp(1.8rem, 8vw, 2.8rem); }
       .hero-sub { font-size: 0.9rem; }
+      p, .card p, .hero p, .note-content, .step-body p {
+        line-height: 1.95;
+        letter-spacing: 0.02em;
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+      .card p + p { margin-top: 0.75rem; }
     }
   </style>
 </head>
@@ -691,7 +698,7 @@
   <!-- ══ Navbar ══════════════════════════════════════════════════════════════ -->
   <nav id="navbar">
     <div class="nav-inner">
-      <a href="#home" class="nav-logo">Jane's Notes ✦</a>
+      <a href="#home" class="nav-logo">Jane's AI Notes ✦</a>
       <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
       <ul class="nav-links" id="nav-links">
         <li><a class="nav-link" href="#about">關於我</a></li>
@@ -925,14 +932,9 @@
       <div class="card">
         <span class="section-label">About Me</span>
         <h2>關於我</h2>
-        <p>
-          嗨，我是 Jane 👋<br><br>
-          這裡記錄著我學習 Claude AI 的心得與筆記。<br>
-          雖然我是個工程小白，還在一步一步摸索中，<br>
-          但希望這些真實的學習歷程，能為同樣在起步的你<br>
-          帶來一點幫助與收穫。<br><br>
-          我們一起成長吧！
-        </p>
+        <p>嗨，我是 Jane 👋</p>
+        <p>這裡記錄著我學習 Claude AI 的心得與筆記。雖然我是個工程小白，還在一步一步摸索中，但希望這些真實的學習歷程，能為同樣在起步的你帶來一點幫助與收穫。</p>
+        <p>我們一起成長吧！</p>
         <div class="social-links">
           <a class="social-btn instagram" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
