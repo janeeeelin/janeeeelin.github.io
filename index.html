@@ -1032,6 +1032,7 @@
           <button class="tag-filter-btn" data-tag="beginner">新手教學</button>
           <button class="tag-filter-btn" data-tag="claude-ai">Claude AI</button>
           <button class="tag-filter-btn" data-tag="ig">IG 經營</button>
+          <button class="tag-filter-btn" data-tag="seo-aio">SEO／AIO</button>
         </div>
 
         <!-- 筆記列表 -->
@@ -1068,6 +1069,96 @@
     // ── Data ──────────────────────────────────────────────────────────────────
 
     const NOTES = [
+      {
+        id: 'note-4',
+        date: '2026-05-29',
+        tags: ['seo-aio', 'beginner'],
+        tagLabels: { 'seo-aio': 'SEO／AIO', 'beginner': '新手教學' },
+        title: '從 SEO 到 AIO：業主必懂的五大內容轉型心法',
+        content: `<p style="margin-bottom:0.9rem">你的文章在 Google 排名還不錯，但最近流量開始掉？原因很可能不是你寫得不好——而是搜尋行為正在改變。這篇寫給想把內容升級的業主，不需要懂技術，只需要懂邏輯。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">？</span>SEO 和 AIO 到底差在哪</div>
+  <div class="step-body">
+    <p><strong>SEO（Search Engine Optimization）</strong>——讓 Google 把你的網頁排在前面，使用者點進來看。</p>
+    <p><strong>AIO（AI Optimization）</strong>——讓 AI（ChatGPT、Claude、Gemini、Google AI Overview）在回答問題時，直接引用你的內容、甚至唸出你的名字。</p>
+    <p>關鍵差異：SEO 是爭排名，AIO 是爭被引用。用戶不一定會點進你的網站，但 AI 可能直接把你的答案說給他聽。</p>
+    <p>兩個都重要——但如果你現在只做 SEO，你正在慢慢輸掉未來的流量。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>心法一：從「關鍵字」思維轉向「問題」思維</div>
+  <div class="step-body">
+    <p>舊 SEO 思維：把關鍵字塞進標題和內文，讓 Google 爬蟲認出你。</p>
+    <p>AIO 思維：<strong>直接回答一個完整的問題</strong>，讓 AI 覺得你的內容「可以直接引用」。</p>
+    <p>✗ 舊寫法標題：「台北室內設計推薦 2026」<br>
+    ✓ 新寫法標題：「台北找室內設計師前，業主最常問的 5 個問題」</p>
+    <p>AI 在搜尋時尋找的是「能直接回答使用者問題的段落」，而不是關鍵字密度高的頁面。你的每一段內容，都應該能獨立回答一個問題。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>心法二：結構清晰比文采重要</div>
+  <div class="step-body">
+    <p>AI 在讀你的文章時，它在找的是結構——標題、副標、條列、定義句。文筆再好，如果沒有清晰的結構，AI 抓不到重點，就不會引用你。</p>
+    <p>幾個立刻可以做的事：</p>
+    <p>📌 <strong>每個段落第一句就說結論</strong>，不要把結論藏在最後<br>
+    📌 <strong>多用「是什麼」「為什麼」「怎麼做」</strong>當副標題<br>
+    📌 <strong>定義專業名詞</strong>——AI 特別喜歡引用有清晰定義的段落<br>
+    📌 <strong>條列優於長段落</strong>——讓 AI 容易擷取</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>心法三：建立你的「專業權威感」</div>
+  <div class="step-body">
+    <p>AI 在決定要不要引用你的內容時，有一個隱性標準：<strong>這個來源可不可信？</strong></p>
+    <p>這對應 Google 的 E-E-A-T 原則（經驗、專業、權威、可信度），在 AIO 時代更重要。</p>
+    <p>業主可以怎麼做：</p>
+    <p>✓ <strong>在文章裡說明你的經歷</strong>——「我們服務過 XX 間餐廳」比「我們很專業」有力<br>
+    ✓ <strong>引用真實數據或案例</strong>——哪怕是自己的客戶數據<br>
+    ✓ <strong>作者署名要清楚</strong>——AI 更願意引用「有人負責」的內容<br>
+    ✓ <strong>定期更新文章日期</strong>——新鮮度是 AI 選擇引用來源的標準之一</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>心法四：寫「AI 會被問到的問題」</div>
+  <div class="step-body">
+    <p>最直接的 AIO 策略：<strong>想像你的客戶會問 ChatGPT 什麼，然後把答案寫成文章。</strong></p>
+    <p>做法很簡單：</p>
+    <p>① 打開 ChatGPT 或 Claude，輸入你客戶最常問你的問題<br>
+    ② 看 AI 怎麼回答，它引用了哪些概念<br>
+    ③ 用你的專業和真實經驗，把同樣的問題寫得比 AI 更好、更具體、更有憑據</p>
+    <p>當你的內容比 AI 現有的答案更好時，AI 就會開始引用你。</p>
+    <p>這不是在和 AI 競爭，而是讓 AI 成為你的通路。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>心法五：SEO 和 AIO 不衝突，同步做</div>
+  <div class="step-body">
+    <p>很多業主擔心：「我要放棄 SEO 去做 AIO 嗎？」</p>
+    <p>答案是：<strong>不需要選邊站。</strong> 好的 AIO 內容，本來就符合 SEO 的基本原則——清晰結構、回答問題、有權威感。</p>
+    <p>兩件事同步做：</p>
+    <p>✓ <strong>技術 SEO 繼續維持</strong>——網站速度、手機版顯示、基本 meta 標籤<br>
+    ✓ <strong>內容策略升級為 AIO</strong>——問題導向、結構清晰、權威建立</p>
+    <p>你不需要重寫所有舊文章。從現在開始，新文章用 AIO 思維寫；舊文章每個月挑 2-3 篇更新結構就夠了。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">📚</span>線上課程怎麼選？三個判斷標準</div>
+  <div class="step-body">
+    <p>市面上現在有很多講師在推 SEO／AIO 線上課程，怎麼判斷值不值得學？</p>
+    <p>✓ <strong>講師有沒有實際操作案例</strong>——能秀出真實客戶成效，而不只是理論<br>
+    ✓ <strong>課程內容有沒有跟上 2025 年後的 AI 搜尋變化</strong>——2023 年以前的 SEO 課程很多已經過時<br>
+    ✓ <strong>有沒有教你「寫什麼」而不只是「怎麼優化」</strong>——工具會變，內容思維才是核心</p>
+    <p>最後一點最重要：<strong>任何課程都只是起點，你的產業知識和真實經驗，才是 AI 無法取代、也最值得被引用的內容。</strong></p>
+  </div>
+</div>`
+      },
       {
         id: 'note-1',
         date: '2026-05-14',
