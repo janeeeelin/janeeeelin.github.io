@@ -750,6 +750,14 @@
       .card p + p { margin-top: 0.75rem; }
     }
   </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
 </head>
 <body>
 
@@ -1062,8 +1070,7 @@
     </section>
 
     <div class="footer">
-      <div class="visitor-count" id="visitor-counter">👁 已有 0 人來訪</div>
-      © 2026 Jane's Lens &nbsp;·&nbsp; Made with ✦ Claude Code
+      © 2026 Jane's Lens
     </div>
   </div>
 
@@ -1791,14 +1798,6 @@ git push -u origin main</code></pre>
           applyFilter();
         });
       });
-
-      // 訪客計數器
-      (function() {
-        const count = parseInt(localStorage.getItem('visitor_count') || '0') + 1;
-        localStorage.setItem('visitor_count', count);
-        const el = document.getElementById('visitor-counter');
-        if (el) el.textContent = '👁 已有 ' + count.toLocaleString() + ' 人來訪';
-      })();
 
       document.addEventListener('keydown', e => {
         if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
