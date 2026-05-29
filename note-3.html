@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>你知道 Claude 可以直接進你的 IG，教你怎麼經營嗎？ - Jane 的 AI 學習筆記</title>
+  <meta name="description" content="透過 Claude in Chrome 擴充功能，Claude 可以直接看你的 Instagram 帳號並給出具體的經營建議。這篇記錄我親身試用的過程與收穫。">
+  <meta property="og:title" content="你知道 Claude 可以直接進你的 IG，教你怎麼經營嗎？ - Jane 的 AI 學習筆記">
+  <meta property="og:description" content="Claude in Chrome 可以直接看你的 IG 並給經營建議，不需要截圖。這篇記錄試用過程與收穫。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-3.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: radial-gradient(ellipse at 18% 18%, rgba(100,165,255,0.28) 0%, transparent 52%), radial-gradient(ellipse at 82% 82%, rgba(20,70,180,0.38) 0%, transparent 52%), linear-gradient(155deg, #0c3889 0%, #1a5cbe 45%, #09286a 100%); padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: rgba(8,30,85,0.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1rem; color: rgba(255,255,255,0.92); text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #fff; border-bottom-color: #e8c030; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.85); border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) { .hamburger { display: flex; } .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(20,12,4,0.97); flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid rgba(255,255,255,0.08); } .nav-links.open { display: flex; } .nav-links li { width: 100%; text-align: center; } .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; } }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: rgba(255,255,255,0.96); border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 12px 40px rgba(0,0,0,0.17), 0 1px 0 rgba(255,255,255,0.7) inset; position: relative; overflow: hidden; }
+    .note-page-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #1a6bb5, #5ba3f5); }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 1.4rem; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: rgba(255,255,255,0.4); font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #f7c948, #e8833a); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.3); opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: #1a1008; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } }
+  </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's AI Notes ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html#about">關於我</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-05-29</span>
+        <span class="note-tag">Claude AI</span>
+        <span class="note-tag">IG 經營</span>
+      </div>
+      <h1 class="note-page-title">你知道 Claude 可以直接進你的 IG，教你怎麼經營嗎？</h1>
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">我也是最近才發現這件事——原來 Claude 不只能聊天寫程式，它還可以直接「看到」你的 Instagram，幫你分析帳號、給你方向建議。這篇記錄我親身試用的過程。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">！</span>先說結論</div>
+  <div class="step-body">
+    <p>透過 <strong>Claude in Chrome</strong> 這個瀏覽器擴充功能，Claude 可以連進你正在瀏覽的網頁，包括你的 IG 主頁。它能看到你的頭貼、bio、精選限時動態、貼文九宮格——然後直接幫你分析、給建議。不需要把截圖一張一張傳給它。它就在你的瀏覽器旁邊，陪你一起看。</p>
+  </div>
+</div>
+
+<svg style="display:block;width:100%;max-width:460px;margin:1rem auto 0;border-radius:10px" viewBox="0 0 460 155" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="n3ill" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0d1014"/><stop offset="100%" stop-color="#0d1a24"/></linearGradient></defs><rect width="460" height="155" fill="url(#n3ill)" rx="10"/><rect x="15" y="15" width="248" height="128" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/><rect x="15" y="15" width="248" height="26" rx="8" fill="#1c2128"/><rect x="15" y="32" width="248" height="9" fill="#1c2128"/><circle cx="30" cy="28" r="4" fill="#ff5f57" opacity="0.8"/><circle cx="44" cy="28" r="4" fill="#febc2e" opacity="0.8"/><circle cx="58" cy="28" r="4" fill="#28c840" opacity="0.8"/><rect x="75" y="21" width="160" height="14" rx="7" fill="#0d1117" stroke="#30363d" stroke-width="1"/><text x="155" y="32" text-anchor="middle" font-family="monospace" font-size="8" fill="#56ccf2">instagram.com/@you</text><circle cx="55" cy="70" r="17" fill="none" stroke="#f7c948" stroke-width="1.5" opacity="0.8"/><circle cx="55" cy="70" r="10" fill="#f7c948" opacity="0.2"/><text x="90" y="66" font-family="sans-serif" font-size="9" fill="#e2e8f0" font-weight="bold">@username</text><rect x="90" y="71" width="80" height="3" rx="1.5" fill="#4b5563"/><rect x="90" y="78" width="55" height="3" rx="1.5" fill="#4b5563"/><rect x="20" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="60" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="100" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="140" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="180" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="220" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><line x1="266" y1="77" x2="294" y2="77" stroke="#6fcf97" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round"/><polyline points="290,71 298,77 290,83" fill="none" stroke="#6fcf97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="280" y="70" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#6fcf97">分析</text><rect x="305" y="15" width="140" height="128" rx="8" fill="#1a2040" stroke="#56ccf2" stroke-width="1.5"/><rect x="305" y="15" width="140" height="28" rx="8" fill="#1e2d50"/><rect x="305" y="34" width="140" height="9" fill="#1e2d50"/><circle cx="323" cy="29" r="7" fill="#56ccf2" opacity="0.25"/><text x="323" y="33" text-anchor="middle" font-family="monospace" font-size="10" fill="#56ccf2" font-weight="bold">C</text><text x="350" y="33" font-family="sans-serif" font-size="8.5" fill="#e2e8f0">Claude in Chrome</text><rect x="345" y="54" width="90" height="26" rx="6" fill="#2d4060"/><text x="390" y="66" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#e2e8f0">分析我的 IG，</text><text x="390" y="76" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#e2e8f0">給我建議</text><rect x="310" y="90" width="128" height="45" rx="6" fill="#243350"/><text x="374" y="104" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#6fcf97">* 正在分析...</text><rect x="318" y="110" width="100" height="3" rx="1.5" fill="#56ccf2" opacity="0.6"/><rect x="318" y="117" width="78" height="3" rx="1.5" fill="#56ccf2" opacity="0.4"/><rect x="318" y="124" width="90" height="3" rx="1.5" fill="#56ccf2" opacity="0.5"/><rect x="318" y="133" width="5" height="8" rx="1" fill="#f7c948" opacity="0.9"/></svg>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>怎麼讓 Claude 連進你的瀏覽器</div>
+  <div class="step-body">
+    <p>這個功能叫做 <strong>Claude in Chrome</strong>，需要先安裝一個 Chrome 擴充功能：</p>
+    <p>① 確認你有 <strong>Claude 付費方案</strong>（Pro、Max、Team 或 Enterprise）<br>② 在 Claude.ai 左下角點名字縮寫 → Settings<br>③ 找到 Claude in Chrome，打開它<br>④ 去 Chrome Web Store 搜尋「Claude」，點「Add to Chrome」<br>⑤ 裝好後把 Claude 釘選在工具列</p>
+    <p>⚠️ 目前只支援 Google Chrome。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>打開你的 IG，叫 Claude 幫你看</div>
+  <div class="step-body">
+    <p>安裝好後直接打開 IG 主頁，在 Claude 側邊欄輸入：「幫我分析我的 IG 帳號，給我經營建議」。Claude 會截圖你的頁面，然後開始分析——大頭貼、bio、精選動態、貼文九宮格全部都看。</p>
+    <p>它第一眼看到我的帳號就說：<strong>「你的精選動態全是旅遊地名，這是生活型帳號的語言，不是思想型帳號的語言。」</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>它說中了我</div>
+  <div class="step-body">
+    <p>我說我把深入的觀點都放限時動態。它說：<strong>「你把最值錢的東西放在會消失的地方。」</strong></p>
+    <p>限時動態 24 小時後消失、只有追蹤者看得到、演算法不推給陌生人。我以為那樣是保護自己，結果是在限制自己的影響力。</p>
+    <p>它給我一個最簡單的建議：「下次想在限時動態打觀點之前，先把它做成貼文，再分享到限時動態。同樣的時間，影響力差十倍。」</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>這個功能適合你嗎？</div>
+  <div class="step-body">
+    <p>如果你也有 IG 帳號但搞不清楚方向，這個方式值得試試。不需要找社群顧問，就是打開你的 IG，叫 Claude 陪你一起看。</p>
+    <p>👉 <strong>它會讓你看到自己沒注意到的盲點</strong><br>👉 <strong>它不給制式建議，它問你問題</strong><br>👉 <strong>最後你得到的，是你自己想清楚的答案</strong></p>
+    <p>這大概是我目前用 AI 最有收穫的一次對話。</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-3')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-3')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-3" onclick="shareNote('copy','note-3')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-3">0</span>)</p>
+        <div data-comments-list="note-3" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-3" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-3')">送出</button>
+        </div>
+      </div>
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text"><p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p></div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>來找我聊聊</a>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">© 2026 Jane's AI Notes · 用 Claude Code 親手做的</footer>
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() { this.classList.toggle('open'); document.getElementById('nav-links').classList.toggle('open'); });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) { const ta=document.querySelector('[data-comment-input="'+id+'"]'); const text=ta?ta.value.trim():''; if(!text) return; const c=getComments(id); c.push({id:Date.now(),text,date:new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'})}); localStorage.setItem('comments_'+id,JSON.stringify(c)); ta.value=''; renderComments(id); }
+    function renderComments(id) { const list=document.querySelector('[data-comments-list="'+id+'"]'); const cnt=document.querySelector('[data-comment-count="'+id+'"]'); if(!list) return; const c=getComments(id); if(cnt) cnt.textContent=c.length; list.innerHTML=c.length===0?'<p class="no-comments">還沒有留言，來說點什麼吧！</p>':c.map(x=>'<div class="comment"><span class="comment-date">'+escapeHtml(x.date)+'</span><p>'+escapeHtml(x.text).replace(/\n/g,'<br>')+'</p></div>').join(''); }
+    renderComments('note-3');
+    document.querySelector('[data-comment-input="note-3"]').addEventListener('keydown', function(e) { if((e.ctrlKey||e.metaKey)&&e.key==='Enter') submitComment('note-3'); });
+    function shareNote(type,id) { const url='https://janeeeelin.github.io/'+id+'.html'; if(type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank'); else if(type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank'); else if(type==='copy') { navigator.clipboard.writeText(url).then(()=>{ const btn=document.getElementById('copy-'+id); if(btn){btn.classList.add('copied');btn.textContent='已複製！';setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結';},2000);}});} }
+  </script>
+</body>
+</html>

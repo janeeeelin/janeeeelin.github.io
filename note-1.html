@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>如何在空間不足的 Mac 上安裝 Claude Code - Jane 的 AI 學習筆記</title>
+  <meta name="description" content="Mac 磁碟空間不足怎麼辦？這篇記錄我如何清除 Claude、Slack、WebEx 快取釋出 10 GB，再成功安裝 Claude Code 的完整步驟。">
+  <meta property="og:title" content="如何在空間不足的 Mac 上安裝 Claude Code - Jane 的 AI 學習筆記">
+  <meta property="og:description" content="Mac 磁碟空間不足怎麼辦？這篇記錄我如何清除快取釋出 10 GB，再成功安裝 Claude Code 的完整步驟。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-1.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 18% 18%, rgba(100,165,255,0.28) 0%, transparent 52%),
+        radial-gradient(ellipse at 82% 82%, rgba(20,70,180,0.38) 0%, transparent 52%),
+        linear-gradient(155deg, #0c3889 0%, #1a5cbe 45%, #09286a 100%);
+      padding-top: 64px;
+    }
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 64px;
+      background: rgba(8,30,85,0.72);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-inner {
+      max-width: 800px; margin: 0 auto; padding: 0 1.5rem;
+      height: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1rem; color: rgba(255,255,255,0.92); text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #fff; border-bottom-color: #e8c030; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.85); border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(20,12,4,0.97); flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid rgba(255,255,255,0.08); }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card {
+      background: rgba(255,255,255,0.96);
+      border-radius: 16px;
+      padding: 2.2rem 2.4rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.17), 0 1px 0 rgba(255,255,255,0.7) inset;
+      position: relative; overflow: hidden;
+    }
+    .note-page-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #1a6bb5, #5ba3f5); }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, rgba(255,209,102,0.12) 0%, rgba(255,107,53,0.08) 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    code { background: #dde8ff; color: #1a5cbe; padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.88em; }
+    pre { background: #1b2b46; border-radius: 7px; overflow-x: auto; margin: 0.5rem 0; }
+    pre code { display: block; padding: 0.85rem 1.1rem; background: transparent; color: #9dcfee; font-size: 0.82rem; border-radius: 0; white-space: pre; font-family: 'SF Mono','Menlo','Consolas',monospace; line-height: 1.65; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: rgba(255,255,255,0.4); font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #f7c948, #e8833a); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.3); opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: #1a1008; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's AI Notes ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html#about">關於我</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-05-14</span>
+        <span class="note-tag">Claude Code</span>
+        <span class="note-tag">Mac 教學</span>
+      </div>
+      <h1 class="note-page-title">如何在空間不足的 Mac 上安裝 Claude Code</h1>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="cv1bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1a1008"/><stop offset="100%" stop-color="#2a1a0a"/></linearGradient></defs>
+          <rect width="480" height="160" fill="url(#cv1bg)" rx="12"/>
+          <rect x="150" y="45" width="180" height="110" rx="8" fill="#2d2d2d" stroke="#555" stroke-width="1.5"/>
+          <rect x="158" y="53" width="164" height="90" rx="4" fill="#1a1a2e"/>
+          <rect x="166" y="62" width="80" height="5" rx="2" fill="#f7c948" opacity="0.8"/>
+          <rect x="166" y="74" width="120" height="3" rx="1.5" fill="#6fcf97" opacity="0.7"/>
+          <rect x="166" y="83" width="100" height="3" rx="1.5" fill="#56ccf2" opacity="0.6"/>
+          <rect x="166" y="92" width="90" height="3" rx="1.5" fill="#f7c948" opacity="0.5"/>
+          <rect x="166" y="101" width="110" height="3" rx="1.5" fill="#6fcf97" opacity="0.4"/>
+          <rect x="166" y="110" width="70" height="3" rx="1.5" fill="#56ccf2" opacity="0.5"/>
+          <rect x="166" y="122" width="8" height="10" rx="1" fill="#f7c948" opacity="0.9"/>
+          <rect x="138" y="155" width="204" height="6" rx="3" fill="#3d3d3d" stroke="#555" stroke-width="1"/>
+          <circle cx="360" cy="85" r="22" fill="none" stroke="#f7c948" stroke-width="2" opacity="0.6"/>
+          <circle cx="360" cy="85" r="12" fill="none" stroke="#f7c948" stroke-width="2" opacity="0.6"/>
+          <line x1="360" y1="60" x2="360" y2="70" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+          <line x1="360" y1="100" x2="360" y2="110" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+          <line x1="335" y1="85" x2="345" y2="85" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+          <line x1="375" y1="85" x2="385" y2="85" stroke="#f7c948" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+          <text x="90" y="95" font-family="monospace" font-size="28" fill="#6fcf97" opacity="0.7">$_</text>
+          <circle cx="80" cy="40" r="4" fill="#f7c948" opacity="0.3"/>
+          <circle cx="400" cy="130" r="6" fill="#e8833a" opacity="0.25"/>
+          <circle cx="420" cy="50" r="3" fill="#56ccf2" opacity="0.3"/>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">今天一早想安裝 Claude Code，結果被一個錯誤訊息擋下來了——Mac 磁碟空間不足。這是我踏入工程世界的第一個障礙，記錄下來給有同樣困擾的朋友參考。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>發現問題：需要 10.57 GB</div>
+  <div class="step-body">
+    <p>安裝程式提示至少需要 <strong>10.57 GB</strong> 的可用空間，但 Mac 只剩不到 5 GB。這比我預期的麻煩多了。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>用終端機找出佔空間的元兇</div>
+  <div class="step-body">
+    <p>打開<strong>終端機（Terminal）</strong>，掃描哪些資料夾最佔空間：</p>
+    <pre><code>du -sh ~/* 2>/dev/null | sort -rh | head -20</code></pre>
+    <p>發現 Library 最大，繼續往 Caches 裡挖：</p>
+    <pre><code>du -sh ~/Library/Caches/* 2>/dev/null | sort -rh | head -10</code></pre>
+    <svg style="display:block;width:100%;max-width:460px;margin:1rem auto 0;border-radius:10px" viewBox="0 0 460 125" xmlns="http://www.w3.org/2000/svg"><rect width="460" height="125" fill="#0d1117" rx="10"/><rect width="460" height="26" fill="#161b22" rx="10"/><rect y="17" width="460" height="9" fill="#161b22"/><circle cx="16" cy="13" r="4.5" fill="#ff5f57"/><circle cx="33" cy="13" r="4.5" fill="#febc2e"/><circle cx="50" cy="13" r="4.5" fill="#28c840"/><text x="20" y="50" font-family="monospace" font-size="11" fill="#6fcf97">$ du -sh ~/Library/Caches/* | sort -rh</text><text x="20" y="67" font-family="monospace" font-size="12" fill="#f7c948" font-weight="bold">13.2G   Claude</text><text x="20" y="83" font-family="monospace" font-size="11" fill="#56ccf2"> 4.8G   com.tinyspeck.slackmacgap</text><text x="20" y="98" font-family="monospace" font-size="11" fill="#56ccf2"> 2.3G   Cisco WebEx LLC</text><text x="20" y="113" font-family="monospace" font-size="11" fill="#8b949e"> 0.9G   com.apple.Safari</text></svg>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>發現 Claude App 快取佔了 13 GB！</div>
+  <div class="step-body">
+    <p>掃描結果讓我嚇一跳——之前裝的 Claude 桌面版快取竟佔了將近 <strong>13 GB</strong>。另外 Slack、WebEx 也各自佔了數 GB，三個加起來超過 16 GB。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>清除快取，成功釋出 10 GB</div>
+  <div class="step-body">
+    <p>清除 Claude App 快取（先確認 Claude 桌面版已關閉）：</p>
+    <pre><code>rm -rf ~/Library/Caches/Claude</code></pre>
+    <p>清除 Slack 快取：</p>
+    <pre><code>rm -rf ~/Library/Caches/com.tinyspeck.slackmacgap</code></pre>
+    <p>清除 WebEx 快取：</p>
+    <pre><code>rm -rf ~/Library/Caches/Cisco\ WebEx\ LLC</code></pre>
+    <p>清完後總共釋出超過 <strong>10 GB</strong>，終於有足夠空間了！</p>
+    <svg style="display:block;width:100%;max-width:460px;margin:1rem auto 0;border-radius:10px" viewBox="0 0 460 105" xmlns="http://www.w3.org/2000/svg"><rect width="460" height="105" fill="#0d1a14" rx="10"/><rect x="15" y="17" width="115" height="70" rx="8" fill="none" stroke="#f7c948" stroke-width="1.5"/><text x="72" y="45" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f7c948">Claude Cache</text><text x="72" y="63" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#f7c948" font-weight="bold">13 GB</text><text x="72" y="79" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f7c948" opacity="0.7">佔用中</text><line x1="132" y1="52" x2="162" y2="52" stroke="#56ccf2" stroke-width="2" stroke-linecap="round"/><polyline points="158,46 166,52 158,58" fill="none" stroke="#56ccf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="148" y="44" text-anchor="middle" font-family="monospace" font-size="8" fill="#56ccf2">rm -rf</text><rect x="170" y="17" width="115" height="70" rx="8" fill="none" stroke="#56ccf2" stroke-width="1.5"/><line x1="205" y1="38" x2="250" y2="68" stroke="#56ccf2" stroke-width="2" stroke-linecap="round"/><line x1="250" y1="38" x2="205" y2="68" stroke="#56ccf2" stroke-width="2" stroke-linecap="round"/><text x="227" y="85" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#56ccf2">快取清除</text><line x1="288" y1="52" x2="318" y2="52" stroke="#6fcf97" stroke-width="2" stroke-linecap="round"/><polyline points="314,46 322,52 314,58" fill="none" stroke="#6fcf97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="326" y="17" width="120" height="70" rx="8" fill="none" stroke="#6fcf97" stroke-width="1.5"/><text x="386" y="45" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6fcf97">空間釋出</text><text x="386" y="65" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#6fcf97" font-weight="bold">+10 GB</text><text x="386" y="82" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#6fcf97">&#10003;</text></svg>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>安裝 Homebrew（Mac 套件管理工具）</div>
+  <div class="step-body">
+    <p>Claude Code 需要 Node.js 環境，先透過 Homebrew 來安裝。在終端機貼上：</p>
+    <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+    <p>安裝完成後確認：</p>
+    <pre><code>brew --version</code></pre>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">06</span>安裝 Node.js</div>
+  <div class="step-body">
+    <p>透過 Homebrew 安裝 Node.js：</p>
+    <pre><code>brew install node</code></pre>
+    <p>確認安裝成功：</p>
+    <pre><code>node --version
+npm --version</code></pre>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">07</span>安裝 Claude Code，大功告成 🎉</div>
+  <div class="step-body">
+    <p>環境準備好之後，用 npm 全域安裝 Claude Code：</p>
+    <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+    <p>建立測試資料夾並啟動：</p>
+    <pre><code>mkdir ~/Desktop/claude-test
+cd ~/Desktop/claude-test
+claude</code></pre>
+    <p>看到 Claude Code 的提示符號出現，成功了！對工程小白的我來說，這一刻真的超有成就感 🌱</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-1')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-1')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-1" onclick="shareNote('copy','note-1')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-1">0</span>)</p>
+        <div data-comments-list="note-1" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-1" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-1')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's AI Notes · 用 Claude Code 親手做的</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    // Navbar
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    // Back to top
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    // Like
+    function getLikeState(id) { return { count: parseInt(localStorage.getItem('like_count_'+id)||'0'), liked: localStorage.getItem('liked_'+id)==='1' }; }
+    // Comments
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-1');
+    // Ctrl+Enter submit
+    document.querySelector('[data-comment-input="note-1"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-1'); });
+    // Share
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+</body>
+</html>

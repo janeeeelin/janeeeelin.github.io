@@ -1577,7 +1577,7 @@ git push -u origin main</code></pre>
           '</button>' +
         '</div>' +
         '<div class="note-toggle" onclick="toggleNote(\'' + note.id + '\')">' +
-          '<h3>' + escapeHtml(note.title) + '</h3>' +
+          '<h3><a href="' + note.id + '.html" onclick="event.stopPropagation()" style="color:inherit;text-decoration:none;">' + escapeHtml(note.title) + '</a></h3>' +
           CHEVRON +
         '</div>' +
         '<div class="note-body" id="body-' + note.id + '">' +
