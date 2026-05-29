@@ -552,6 +552,25 @@
       letter-spacing: 0.04em;
     }
 
+    /* ── FAQ ────────────────────────────────────────────────────────────── */
+    .faq-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+    .faq-item { border: 1px solid #dde8ff; border-radius: 10px; overflow: hidden; }
+    .faq-item dt {
+      background: linear-gradient(90deg, #e8f0fe, #f2f7ff);
+      padding: 0.7rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1a3a6a;
+      border-bottom: 1px solid #dde8ff;
+    }
+    .faq-item dd {
+      padding: 0.75rem 1rem;
+      font-size: 0.93rem;
+      color: #555;
+      line-height: 1.82;
+      margin: 0;
+    }
+
     /* ── Footer ──────────────────────────────────────────────────────────── */
     .footer {
       text-align: center;
@@ -1048,6 +1067,36 @@
         <!-- 筆記列表 -->
         <div id="notes-container"></div>
         <div id="no-results">😶 找不到符合的筆記</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="card">
+        <span class="section-label">FAQ</span>
+        <h2>常見問題</h2>
+        <dl class="faq-list">
+          <div class="faq-item">
+            <dt>Q：Claude in Chrome 是什麼？</dt>
+            <dd>A：Claude in Chrome 是 Anthropic 推出的 Chrome 瀏覽器擴充功能，讓 Claude AI 可以直接看到你正在瀏覽的網頁並提供協助，包括分析 Instagram 帳號、優化內容策略等。需要 Claude 付費方案才能使用。</dd>
+          </div>
+          <div class="faq-item">
+            <dt>Q：Claude 可以幫我分析 Instagram 帳號嗎？</dt>
+            <dd>A：可以。透過 Claude in Chrome，Claude 能直接讀取你的 IG 主頁，分析帳號定位、受眾方向、內容策略，並給出具體建議。</dd>
+          </div>
+          <div class="faq-item">
+            <dt>Q：SEO 和 AIO 有什麼差別？</dt>
+            <dd>A：SEO 是讓 Google 把你的網頁排在搜尋結果前面；AIO（AI Optimization）是讓 ChatGPT、Claude、Gemini、Google AI Overview 等 AI 工具在回答問題時引用你的內容。兩者都重要，但 AIO 是未來趨勢。</dd>
+          </div>
+          <div class="faq-item">
+            <dt>Q：工程小白可以用 Claude Code 做網站嗎？</dt>
+            <dd>A：完全可以。Claude Code 讓你用說中文的方式告訴 AI 你想要什麼，它會直接幫你寫好所有程式碼。不需要學任何程式語言，只需要清楚表達你的需求。</dd>
+          </div>
+          <div class="faq-item">
+            <dt>Q：如何在 Mac 磁碟空間不足的情況下安裝 Claude Code？</dt>
+            <dd>A：先用終端機指令掃描佔空間的快取資料夾，清除 Claude App、Slack、WebEx 等應用程式的快取，通常可以釋出 10GB 以上的空間，再進行安裝。</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
