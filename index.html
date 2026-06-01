@@ -153,6 +153,9 @@
     .hero-sub { font-size: 0.82rem; color: #aaa; letter-spacing: 0.28em; text-transform: uppercase; }
     .hero-divider { width: 48px; height: 3px; background: linear-gradient(90deg, #1a6bb5, #5ba3f5); border-radius: 2px; margin: 1.2rem auto; }
     .hero p { color: #555; font-size: 1.05rem; line-height: 1.9; }
+    .hero-flower { position: absolute; pointer-events: none; }
+    .hero-flower-tl { width: 88px; height: 88px; top: -16px; left: -16px; opacity: 0.28; }
+    .hero-flower-br { width: 72px; height: 72px; bottom: -14px; right: -14px; opacity: 0.20; transform: rotate(145deg); }
 
     /* ── Cards ───────────────────────────────────────────────────────────── */
     .card {
@@ -1078,6 +1081,22 @@
     <!-- Hero -->
     <section id="home">
       <div class="hero">
+        <svg class="hero-flower hero-flower-tl" viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,0 C-7,-14 -9,-26 0,-34 C9,-26 7,-14 0,0" fill="rgba(168,196,224,0.12)" stroke="#a8c4e0" stroke-width="1.2"/>
+          <path d="M0,0 C-7,-14 -9,-26 0,-34 C9,-26 7,-14 0,0" fill="rgba(168,196,224,0.12)" stroke="#a8c4e0" stroke-width="1.2" transform="rotate(72)"/>
+          <path d="M0,0 C-7,-14 -9,-26 0,-34 C9,-26 7,-14 0,0" fill="rgba(168,196,224,0.12)" stroke="#a8c4e0" stroke-width="1.2" transform="rotate(144)"/>
+          <path d="M0,0 C-7,-14 -9,-26 0,-34 C9,-26 7,-14 0,0" fill="rgba(168,196,224,0.12)" stroke="#a8c4e0" stroke-width="1.2" transform="rotate(216)"/>
+          <path d="M0,0 C-7,-14 -9,-26 0,-34 C9,-26 7,-14 0,0" fill="rgba(168,196,224,0.12)" stroke="#a8c4e0" stroke-width="1.2" transform="rotate(288)"/>
+          <circle r="5" fill="#1a6bb5" opacity="0.6"/>
+        </svg>
+        <svg class="hero-flower hero-flower-br" viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,0 C-7,-14 -9,-26 0,-34 C9,-26 7,-14 0,0" fill="rgba(168,196,224,0.10)" stroke="#a8c4e0" stroke-width="1.2"/>
+          <path d="M0,0 C-7,-14 -9,-26 0,-34 C9,-26 7,-14 0,0" fill="rgba(168,196,224,0.10)" stroke="#a8c4e0" stroke-width="1.2" transform="rotate(72)"/>
+          <path d="M0,0 C-7,-14 -9,-26 0,-34 C9,-26 7,-14 0,0" fill="rgba(168,196,224,0.10)" stroke="#a8c4e0" stroke-width="1.2" transform="rotate(144)"/>
+          <path d="M0,0 C-7,-14 -9,-26 0,-34 C9,-26 7,-14 0,0" fill="rgba(168,196,224,0.10)" stroke="#a8c4e0" stroke-width="1.2" transform="rotate(216)"/>
+          <path d="M0,0 C-7,-14 -9,-26 0,-34 C9,-26 7,-14 0,0" fill="rgba(168,196,224,0.10)" stroke="#a8c4e0" stroke-width="1.2" transform="rotate(288)"/>
+          <circle r="5" fill="#1a6bb5" opacity="0.5"/>
+        </svg>
         <span class="hero-deco">✦ ✦ ✦</span>
         <h1>Jane's Lens</h1>
         <p class="hero-sub">我們共同見證，AI 正在重寫世界的規則</p>
