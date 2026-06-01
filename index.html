@@ -39,6 +39,16 @@
       transition: box-shadow 0.3s;
     }
     #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    #reading-progress {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #1a6bb5, #5ba3f5);
+      transition: width 0.1s linear;
+      z-index: 1;
+      pointer-events: none;
+    }
     .nav-inner {
       max-width: 1160px;
       margin: 0 auto;
@@ -864,6 +874,7 @@
         <li><a class="nav-link" href="#timeline">時間軸</a></li>
       </ul>
     </div>
+    <div id="reading-progress"></div>
   </nav>
 
   <!-- ══ CSS 水彩向日葵 ══════════════════════════════════════════════════════ -->
@@ -1964,6 +1975,17 @@ git push -u origin main</code></pre>
       }
     }
 
+    // ── Reading Progress Bar ──────────────────────────────────────────────────
+    function initProgressBar() {
+      const bar = document.getElementById('reading-progress');
+      if (!bar) return;
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = docHeight > 0 ? (scrollTop / docHeight * 100) + '%' : '0%';
+      }, { passive: true });
+    }
+
     // ── Back to Top ───────────────────────────────────────────────────────────
     function initBackToTop() {
       const btn = document.getElementById('back-to-top');
@@ -2018,6 +2040,7 @@ git push -u origin main</code></pre>
       renderNotes();
       renderTimeline();
       renderTools();
+      initProgressBar();
       initNavScroll();
       initBackToTop();
       initHamburger();
