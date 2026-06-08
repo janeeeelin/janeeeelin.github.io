@@ -753,6 +753,25 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+    /* ── Reading Time ───────────────────────────────────────────────────── */
+    .read-time { font-size: 0.78rem; color: #aaa; display: flex; align-items: center; gap: 0.2rem; }
+
+    /* ── Related Articles ───────────────────────────────────────────────── */
+    .related-section { margin: 1.2rem 0; padding: 1rem 1.2rem; background: #f0f6ff; border: 1px solid #dde8ff; border-radius: 10px; }
+    .related-title { font-size: 0.78rem; font-weight: 600; color: #7a9cc8; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.7rem; }
+    .related-list { display: flex; flex-direction: column; gap: 0.45rem; }
+    .related-item { display: flex; flex-direction: column; gap: 0.2rem; padding: 0.45rem 0.65rem; border-radius: 6px; cursor: pointer; transition: background 0.15s; }
+    .related-item:hover { background: rgba(26,107,181,0.08); }
+    .related-item-title { font-size: 0.88rem; color: #1a3a6a; font-weight: 500; line-height: 1.4; }
+    .related-item-tags { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.15rem; }
+
+    /* ── Quote Card ─────────────────────────────────────────────────────── */
+    .quote-card { margin: 1.2rem 0; padding: 1rem 1.2rem 0.85rem 1.4rem; border-left: 4px solid #1a6bb5; background: linear-gradient(135deg, #eef4ff, #e8f0fe); border-radius: 0 10px 10px 0; }
+    .quote-card blockquote { font-size: 1.05rem; font-style: italic; color: #1a3a6a; line-height: 1.75; font-family: 'Noto Serif TC', serif; margin: 0; }
+    .quote-copy-btn { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 0.65rem; padding: 0.25rem 0.75rem; border: 1px solid #c8d8f0; background: white; color: #5588cc; font-size: 0.74rem; border-radius: 16px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; transition: all 0.18s; }
+    .quote-copy-btn:hover { background: #e8f0fe; border-color: #1a6bb5; }
+    .quote-copy-btn.copied { border-color: #27ae60; color: #27ae60; background: #f0fff4; }
+
     /* ── Responsive ──────────────────────────────────────────────────────── */
     @media (max-width: 900px) {
       .page-layout { grid-template-columns: 1fr; }
@@ -1326,6 +1345,7 @@
         tags: ['seo-aio', 'beginner'],
         tagLabels: { 'seo-aio': 'SEO／AIO', 'beginner': '新手教學' },
         title: '從 SEO 到 AIO：業主必懂的五大內容轉型心法',
+        quote: '真正稀缺的，從來不是資訊，而是那個能夠分辨、選擇的眼光。',
         content: `<p style="margin-bottom:0.9rem">你的文章在 Google 排名還不錯，但最近流量開始掉？原因很可能不是你寫得不好——而是搜尋行為正在改變。這篇寫給想把內容升級的業主，不需要懂技術，只需要懂邏輯。</p>
 
 <div class="note-step">
@@ -1424,6 +1444,7 @@
         tags: ['claude-code', 'mac'],
         tagLabels: { 'claude-code': 'Claude Code', 'mac': 'Mac 教學' },
         title: '如何在空間不足的 Mac 上安裝 Claude Code',
+        quote: '清完快取，不只是清空間，是為自己清出一條路。',
         content: `<p style="margin-bottom:0.9rem">今天一早想安裝 Claude Code，結果被一個錯誤訊息擋下來了——Mac 磁碟空間不足。這是我踏入工程世界的第一個障礙，記錄下來給有同樣困擾的朋友參考。</p>
 
 <div class="note-step">
@@ -1513,6 +1534,7 @@ claude</code></pre>
         tags: ['beginner', 'claude-code'],
         tagLabels: { 'beginner': '新手教學', 'claude-code': 'Claude Code' },
         title: '新手小白如何做好一個網站',
+        quote: '不懂沒關係，把看不懂的東西丟給 Claude Code 問，它不會嫌你問題蠢。',
         content: `<p style="margin-bottom:0.9rem">這篇是專門寫給和我一樣的工程小白看的！我自己就是完全不懂程式，但照著這些步驟，真的做出了一個網站。你也可以的 💪</p>
 
 <div class="note-step">
@@ -1632,6 +1654,7 @@ git push -u origin main</code></pre>
         tags: ['claude-ai', 'ig'],
         tagLabels: { 'claude-ai': 'Claude AI', 'ig': 'IG 經營' },
         title: '你知道 Claude 可以直接進你的 IG，教你怎麼經營嗎？',
+        quote: '你把最值錢的東西放在會消失的地方。',
         content: `<p style="margin-bottom:0.9rem">我也是最近才發現這件事——原來 Claude 不只能聊天寫程式，它還可以直接「看到」你的 Instagram，幫你分析帳號、給你方向建議。這篇記錄我親身試用的過程。</p><div class="note-step"><div class="step-header"><span class="step-num">！</span>先說結論</div><div class="step-body"><p>透過 <strong>Claude in Chrome</strong> 這個瀏覽器擴充功能，Claude 可以連進你正在瀏覽的網頁，包括你的 IG 主頁。它能看到你的頭貼、bio、精選限時動態、貼文九宮格——然後直接幫你分析、給建議。不需要把截圖一張一張傳給它。它就在你的瀏覽器旁邊，陪你一起看。</p></div></div><svg style="display:block;width:100%;max-width:460px;margin:1rem auto 0;border-radius:10px" viewBox="0 0 460 155" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="n3ill" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0d1014"/><stop offset="100%" stop-color="#0d1a24"/></linearGradient></defs><rect width="460" height="155" fill="url(#n3ill)" rx="10"/><rect x="15" y="15" width="248" height="128" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/><rect x="15" y="15" width="248" height="26" rx="8" fill="#1c2128"/><rect x="15" y="32" width="248" height="9" fill="#1c2128"/><circle cx="30" cy="28" r="4" fill="#ff5f57" opacity="0.8"/><circle cx="44" cy="28" r="4" fill="#febc2e" opacity="0.8"/><circle cx="58" cy="28" r="4" fill="#28c840" opacity="0.8"/><rect x="75" y="21" width="160" height="14" rx="7" fill="#0d1117" stroke="#30363d" stroke-width="1"/><text x="155" y="32" text-anchor="middle" font-family="monospace" font-size="8" fill="#56ccf2">instagram.com/@you</text><circle cx="55" cy="70" r="17" fill="none" stroke="#f7c948" stroke-width="1.5" opacity="0.8"/><circle cx="55" cy="70" r="10" fill="#f7c948" opacity="0.2"/><text x="90" y="66" font-family="sans-serif" font-size="9" fill="#e2e8f0" font-weight="bold">@username</text><rect x="90" y="71" width="80" height="3" rx="1.5" fill="#4b5563"/><rect x="90" y="78" width="55" height="3" rx="1.5" fill="#4b5563"/><rect x="20" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="60" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="100" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="140" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="180" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="220" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="20" y="97" width="36" height="36" rx="2" fill="#f7c948" opacity="0.08"/><rect x="60" y="97" width="36" height="36" rx="2" fill="#56ccf2" opacity="0.06"/><line x1="266" y1="77" x2="294" y2="77" stroke="#6fcf97" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round"/><polyline points="290,71 298,77 290,83" fill="none" stroke="#6fcf97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="280" y="70" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#6fcf97">分析</text><rect x="305" y="15" width="140" height="128" rx="8" fill="#1a2040" stroke="#56ccf2" stroke-width="1.5"/><rect x="305" y="15" width="140" height="28" rx="8" fill="#1e2d50"/><rect x="305" y="34" width="140" height="9" fill="#1e2d50"/><circle cx="323" cy="29" r="7" fill="#56ccf2" opacity="0.25"/><text x="323" y="33" text-anchor="middle" font-family="monospace" font-size="10" fill="#56ccf2" font-weight="bold">C</text><text x="350" y="33" font-family="sans-serif" font-size="8.5" fill="#e2e8f0">Claude in Chrome</text><rect x="345" y="54" width="90" height="26" rx="6" fill="#2d4060"/><text x="390" y="66" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#e2e8f0">分析我的 IG，</text><text x="390" y="76" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#e2e8f0">給我建議</text><rect x="310" y="90" width="128" height="45" rx="6" fill="#243350"/><text x="374" y="104" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#6fcf97">* 正在分析...</text><rect x="318" y="110" width="100" height="3" rx="1.5" fill="#56ccf2" opacity="0.6"/><rect x="318" y="117" width="78" height="3" rx="1.5" fill="#56ccf2" opacity="0.4"/><rect x="318" y="124" width="90" height="3" rx="1.5" fill="#56ccf2" opacity="0.5"/><rect x="318" y="133" width="5" height="8" rx="1" fill="#f7c948" opacity="0.9"/></svg><div class="note-step"><div class="step-header"><span class="step-num">01</span>怎麼讓 Claude 連進你的瀏覽器</div><div class="step-body"><p>這個功能叫做 <strong>Claude in Chrome</strong>，需要先安裝一個 Chrome 擴充功能：</p><p>① 確認你有 <strong>Claude 付費方案</strong>（Pro、Max、Team 或 Enterprise）<br>② 在 Claude.ai 左下角點名字縮寫 → Settings<br>③ 找到 Claude in Chrome，打開它<br>④ 去 Chrome Web Store 搜尋「Claude」，點「Add to Chrome」<br>⑤ 裝好後把 Claude 釘選在工具列</p><p>⚠️ 目前只支援 Google Chrome。</p></div></div><div class="note-step"><div class="step-header"><span class="step-num">02</span>打開你的 IG，叫 Claude 幫你看</div><div class="step-body"><p>安裝好後直接打開 IG 主頁，在 Claude 側邊欄輸入：「幫我分析我的 IG 帳號，給我經營建議」。Claude 會截圖你的頁面，然後開始分析——大頭貼、bio、精選動態、貼文九宮格全部都看。</p><p>它第一眼看到我的帳號就說：<strong>「你的精選動態全是旅遊地名，這是生活型帳號的語言，不是思想型帳號的語言。」</strong></p></div></div><div class="note-step"><div class="step-header"><span class="step-num">03</span>它說中了我</div><div class="step-body"><p>我說我把深入的觀點都放限時動態。它說：<strong>「你把最值錢的東西放在會消失的地方。」</strong></p><p>限時動態 24 小時後消失、只有追蹤者看得到、演算法不推給陌生人。我以為那樣是保護自己，結果是在限制自己的影響力。</p><p>它給我一個最簡單的建議：「下次想在限時動態打觀點之前，先把它做成貼文，再分享到限時動態。同樣的時間，影響力差十倍。」</p></div></div><div class="note-step"><div class="step-header"><span class="step-num">💛</span>這個功能適合你嗎？</div><div class="step-body"><p>如果你也有 IG 帳號但搞不清楚方向，這個方式值得試試。不需要找社群顧問，就是打開你的 IG，叫 Claude 陪你一起看。</p><p>👉 <strong>它會讓你看到自己沒注意到的盲點</strong><br>👉 <strong>它不給制式建議，它問你問題</strong><br>👉 <strong>最後你得到的，是你自己想清楚的答案</strong></p><p>這大概是我目前用 AI 最有收穫的一次對話。</p></div></div><div class="note-step"><div class="step-header"><span class="step-num">FAQ</span>常見問題</div><div class="step-body"><p><strong>Q：Claude in Chrome 是什麼？</strong></p><p>A：Claude in Chrome 是 Anthropic 推出的 Chrome 瀏覽器擴充功能，讓 Claude AI 可以直接看到你正在瀏覽的網頁並提供協助，包括分析 Instagram 帳號、優化內容策略等。需要 Claude 付費方案才能使用。</p><p><strong>Q：Claude 可以幫我分析 Instagram 帳號嗎？</strong></p><p>A：可以。透過 Claude in Chrome，Claude 能直接讀取你的 IG 主頁，分析帳號定位、受眾方向、內容策略，並給出具體建議。</p></div></div>`
       }
     ];
@@ -1837,6 +1860,61 @@ git push -u origin main</code></pre>
       </svg>`
     };
 
+    // ── Reading time ──────────────────────────────────────────────────────────
+    function readTime(content) {
+      const chars = stripHtml(content).trim().length;
+      return '約 ' + Math.max(1, Math.round(chars / 300)) + ' 分鐘閱讀';
+    }
+
+    // ── Quote card ────────────────────────────────────────────────────────────
+    function quoteCardHTML(id, quote) {
+      return '<div class="quote-card">' +
+        '<blockquote>' + escapeHtml(quote) + '</blockquote>' +
+        '<button class="quote-copy-btn" onclick="copyQuote(this)">複製金句</button>' +
+      '</div>\n';
+    }
+    function copyQuote(btn) {
+      const text = btn.closest('.quote-card').querySelector('blockquote').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        btn.textContent = '已複製 ✓';
+        setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '複製金句'; }, 2000);
+      });
+    }
+    function injectQuote(content, id, quote) {
+      if (!quote) return content;
+      const qHtml = quoteCardHTML(id, quote);
+      const first = content.indexOf('<div class="note-step">');
+      if (first === -1) return content + '\n' + qHtml;
+      const second = content.indexOf('<div class="note-step">', first + 1);
+      const pos = second !== -1 ? second : content.length;
+      return content.slice(0, pos) + qHtml + content.slice(pos);
+    }
+
+    // ── Related articles ──────────────────────────────────────────────────────
+    function relatedHTML(noteId) {
+      const others = NOTES.filter(n => n.id !== noteId).slice(0, 2);
+      if (!others.length) return '';
+      return '<div class="related-section">' +
+        '<div class="related-title">你可能也喜歡</div>' +
+        '<div class="related-list">' +
+        others.map(n =>
+          '<div class="related-item" onclick="goToNote(\'' + n.id + '\')">' +
+            '<div class="related-item-title">' + escapeHtml(n.title) + '</div>' +
+            '<div class="related-item-tags">' +
+              n.tags.map(t => '<span class="note-tag">' + escapeHtml(n.tagLabels[t] || t) + '</span>').join('') +
+            '</div>' +
+          '</div>'
+        ).join('') +
+        '</div></div>';
+    }
+    function goToNote(id) {
+      const body = document.getElementById('body-' + id);
+      if (body && !body.classList.contains('open')) toggleNote(id);
+      const el = document.getElementById(id);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+
     const CHEVRON = '<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
 
     function noteHTML(note) {
@@ -1845,6 +1923,7 @@ git push -u origin main</code></pre>
           '<div class="note-meta">' +
             '<span class="note-date">' + escapeHtml(note.date) + '</span>' +
             noteTagsHTML(note) +
+            '<span class="read-time">⏱ ' + readTime(note.content) + '</span>' +
           '</div>' +
           '<button class="like-btn" data-like-id="' + note.id + '" onclick="toggleLike(\'' + note.id + '\')">' +
             '<span class="like-icon">♡</span>' +
@@ -1858,7 +1937,7 @@ git push -u origin main</code></pre>
         '<div class="note-body" id="body-' + note.id + '">' +
           '<div class="note-body-inner">' +
             (NOTE_COVERS[note.id] ? '<div class="note-cover">' + NOTE_COVERS[note.id] + '</div>' : '') +
-            '<p class="note-content">' + note.content + '</p>' +
+            '<div class="note-content">' + injectQuote(note.content, note.id, note.quote) + '</div>' +
             '<div class="share-bar">' +
               '<span class="share-bar-label">分享</span>' +
               '<button class="share-btn" onclick="shareNote(\'facebook\',\'' + note.id + '\')">' +
@@ -1871,6 +1950,7 @@ git push -u origin main</code></pre>
                 '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結' +
               '</button>' +
             '</div>' +
+            relatedHTML(note.id) +
             '<div class="comments-section">' +
               '<p class="comments-title">💬 留言 (<span data-comment-count="' + note.id + '">0</span>)</p>' +
               '<div data-comments-list="' + note.id + '" class="comments-list"></div>' +
