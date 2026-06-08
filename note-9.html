@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOL 合作怎麼用 AI 評估？廣告人的篩選清單 - Jane's Lens</title>
+  <meta name="description" content="粉絲數不是重點，CP 值才是。廣告人的 KOL 評估清單：用 AI 算互動率、CPE、受眾契合度，付錢之前先把帳算清楚。">
+  <meta property="og:title" content="KOL 合作怎麼用 AI 評估？廣告人的篩選清單 - Jane's Lens">
+  <meta property="og:description" content="付錢之前，先把帳算清楚。用 AI 計算互動率、CPE、CPM，評估受眾契合度，設計 60 秒業配創意。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-9.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.ai-tools { background: #fef9c3; color: #854d0e; }
+    .note-tag.ig { background: #fce7f3; color: #be185d; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #1a0a2e 0%, #0f1a2e 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html#about">關於我</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="about.html">關於平台</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-06-08</span>
+        <span class="note-tag ai-tools">AI 工具</span>
+        <span class="note-tag ig">IG 經營</span>
+      </div>
+      <h1 class="note-page-title">KOL 合作怎麼用 AI 評估？廣告人的篩選清單</h1>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv9bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1a0a2e"/>
+              <stop offset="100%" stop-color="#0f1a2e"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv9bg)" rx="12"/>
+          <!-- KOL silhouette left -->
+          <circle cx="72" cy="52" r="18" fill="none" stroke="#f472b6" stroke-width="1.5" opacity="0.85"/>
+          <circle cx="72" cy="52" r="10" fill="#f472b6" opacity="0.2"/>
+          <text x="72" y="57" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f472b6" opacity="0.9">★</text>
+          <text x="72" y="88" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f472b6" opacity="0.65">KOL</text>
+          <!-- Follower count bubble -->
+          <rect x="32" y="98" width="80" height="22" rx="11" fill="rgba(244,114,182,0.12)" stroke="#f472b6" stroke-width="1" opacity="0.7"/>
+          <text x="72" y="113" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f472b6" opacity="0.85">10 萬粉絲</text>
+          <!-- Arrow to AI -->
+          <line x1="116" y1="80" x2="152" y2="80" stroke="#888" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/>
+          <polygon points="152,76 160,80 152,84" fill="#888" opacity="0.5"/>
+          <!-- AI analysis box center -->
+          <rect x="162" y="54" width="96" height="52" rx="9" fill="rgba(26,107,181,0.15)" stroke="#5ba3f5" stroke-width="1.5" opacity="0.8"/>
+          <text x="210" y="73" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#5ba3f5" font-weight="bold" opacity="0.95">AI 評估</text>
+          <text x="210" y="86" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#9dcfee" opacity="0.8">互動率 · CPE · CPM</text>
+          <text x="210" y="98" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#9dcfee" opacity="0.8">受眾契合度分析</text>
+          <!-- Arrow to result -->
+          <line x1="258" y1="80" x2="294" y2="80" stroke="#888" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/>
+          <polygon points="294,76 302,80 294,84" fill="#888" opacity="0.5"/>
+          <!-- Result boxes right -->
+          <rect x="304" y="34" width="76" height="28" rx="7" fill="rgba(52,211,153,0.12)" stroke="#34d399" stroke-width="1.2" opacity="0.85"/>
+          <text x="342" y="52" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#34d399" opacity="0.95">✓ 強烈推薦</text>
+          <rect x="304" y="70" width="76" height="28" rx="7" fill="rgba(251,191,36,0.10)" stroke="#fbbf24" stroke-width="1.2" opacity="0.75"/>
+          <text x="342" y="88" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#fbbf24" opacity="0.9">～ 可以談談</text>
+          <rect x="304" y="106" width="76" height="28" rx="7" fill="rgba(248,113,113,0.10)" stroke="#f87171" stroke-width="1.2" opacity="0.7"/>
+          <text x="342" y="124" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#f87171" opacity="0.85">✗ 不建議</text>
+          <!-- Metrics floating top -->
+          <text x="130" y="28" font-family="sans-serif" font-size="7.5" fill="#aaa" opacity="0.6">互動率 0.3% ⚠</text>
+          <text x="230" y="28" font-family="sans-serif" font-size="7.5" fill="#aaa" opacity="0.6">CPE NT$12</text>
+          <!-- Bottom label -->
+          <text x="240" y="150" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#555">KOL 評估系統 · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">做了多年廣告，我看過太多業主在 KOL 合作上踩雷：粉絲數漂亮但互動率是假的、受眾根本不對、60 秒業配內容創意全無、單集流量不如預期、轉換率低得可憐——然後報價還不便宜。這篇想說的是：在你付錢之前，先讓 AI 幫你把帳算清楚。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 廣告人的真心話：業主最大的盲點是「廣告就是要有轉換」——但在轉換之前，你有沒有選對人？用 AI 評估 KOL 的 CP 值，是這個問題的起點。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">痛點</span>KOL 合作最常見的四個地雷</div>
+  <div class="step-body">
+    <p>在談怎麼用 AI 評估之前，先說清楚業界真實存在的問題：</p>
+    <p>💥 <strong>地雷一：粉絲數漂亮，互動率是假的</strong><br>
+    買粉、買讚、買留言在台灣是公開的秘密。一個有 10 萬粉絲的帳號，真實互動率可能只有 0.3%——比你公司的官方帳號還低。</p>
+    <p>💥 <strong>地雷二：受眾根本不是你的客戶</strong><br>
+    網紅的粉絲喜歡他這個人，不代表他們會買你的產品。美妝網紅的粉絲可能對你的 B2B 軟體完全沒興趣——但報價單上不會告訴你這件事。</p>
+    <p>💥 <strong>地雷三：60 秒業配，創意和品牌完全脫節</strong><br>
+    很多網紅的業配方式是：前面說自己的內容，最後 15 秒硬塞品牌訊息。觀眾早就滑走了。真正有效的業配，是創意內容和品牌自然融合——但這需要雙方都願意花時間溝通。</p>
+    <p>💥 <strong>地雷四：報價不透明，CP 值無從計算</strong><br>
+    「這支影片報價 8 萬，幫你觸及 5 萬人」——但這 5 萬人裡有多少是你的目標受眾？觸及之後有多少人會採取行動？這些問題，你付錢之前就應該問清楚。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>用 AI 計算 KOL 的真實 CP 值</div>
+  <div class="step-body">
+    <p>CP 值的計算，過去需要媒體採購的專業知識。現在你可以把數據丟給 AI，請它幫你算。</p>
+    <p><strong>你需要收集的數據：</strong><br>
+    📌 粉絲總數<br>
+    📌 最近 10 篇貼文的平均按讚數、留言數、分享數<br>
+    📌 報價金額<br>
+    📌 對方提供的「觸及人數」或「觀看次數」預估</p>
+    <p><strong>然後把這些數據貼給 Claude，問：</strong></p>
+    <p>💬「這是一個 KOL 的數據：粉絲數 XX、平均按讚 XX、平均留言 XX、報價 XX 元、預估觸及 XX 人。請幫我計算：互動率是多少？CPE（每次互動成本）是多少？CPM（每千次觸及成本）是多少？和業界平均相比，這個報價合理嗎？」</p>
+    <p>AI 會幫你算出幾個關鍵指標，讓你有數字根據去談判或決策。</p>
+    <p><strong>業界參考標準：</strong><br>
+    📌 健康的互動率：IG 1-3%、YouTube 2-5%、TikTok 5-10%<br>
+    📌 低於 0.5% 的互動率要特別謹慎<br>
+    📌 台灣市場 CPM 合理範圍：NT$100-500，依平台和受眾而異</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>用 AI 分析 KOL 的受眾是不是你的客戶</div>
+  <div class="step-body">
+    <p>這一步很多業主跳過，但它是最關鍵的。</p>
+    <p><strong>做法一：讓 AI 分析留言內容</strong><br>
+    去這個 KOL 最近的貼文，複製 30-50 則留言，貼給 Claude：</p>
+    <p>💬「這些是一個 KOL 貼文的留言，請幫我分析：留言者大概是什麼年齡層？他們的主要興趣是什麼？有沒有消費能力的線索？這群人和『30-40 歲、有購買力、關注健康飲食的台灣女性』這個受眾描述吻合嗎？」</p>
+    <p><strong>做法二：讓 AI 評估內容與品牌的吻合度</strong><br>
+    把這個 KOL 最近十篇貼文的標題或主題，加上你的品牌描述，一起貼給 AI：</p>
+    <p>💬「這是一個 KOL 最近的內容主題，這是我們品牌的核心價值和目標受眾。請評估這個 KOL 的受眾和內容風格，與我們品牌的契合度是高、中、還是低？理由是什麼？」</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>用 AI 設計 60 秒業配的創意方向</div>
+  <div class="step-body">
+    <p>這是最多業主和網紅都做錯的地方。</p>
+    <p>60 秒業配最常見的失敗模式：網紅說自己的事 45 秒，最後 15 秒念稿介紹品牌。觀眾早就不在了，品牌訊息完全沒有進入。</p>
+    <p><strong>用 AI 設計真正融合的業配創意：</strong></p>
+    <p>💬「這個 KOL 的內容風格是 XX（例如：日常生活分享、幽默情境劇、知識型解說）。我的品牌是 XX，核心訊息是 XX，目標受眾是 XX。請幫我設計三個 60 秒業配的創意方向，要求品牌訊息自然融入內容，不能有明顯的廣告感。」</p>
+    <p>然後把 AI 給你的創意方向，帶到和網紅的溝通會議裡討論。這樣你有了具體的方向，網紅也有了可以發揮的空間，不再是各說各話。</p>
+    <p><strong>跨領域行銷的關鍵：</strong>找到品牌和網紅內容之間的「共同價值」。不是強迫網紅說你要說的話，而是找到他的粉絲也在意、同時也能呈現你品牌價值的那個交叉點。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>用 AI 建立你的 KOL 篩選清單</div>
+  <div class="step-body">
+    <p>把以下這個 prompt 存起來，每次評估新的 KOL 合作就用它：</p>
+    <p style="background:#1b2b46; border-radius:8px; padding:1rem 1.2rem; color:#9dcfee; font-size:0.85rem; font-family:monospace; line-height:1.8;">
+    我正在評估一個 KOL 合作，以下是相關資料：<br><br>
+    【KOL 基本資料】<br>
+    - 平台：<br>
+    - 粉絲數：<br>
+    - 主要內容類型：<br>
+    - 最近 10 篇平均按讚：<br>
+    - 最近 10 篇平均留言：<br>
+    - 報價：<br><br>
+    【品牌資料】<br>
+    - 品牌名稱和產品：<br>
+    - 目標受眾：<br>
+    - 核心訊息：<br>
+    - 預算：<br><br>
+    請幫我：1) 計算互動率和 CPE 2) 評估受眾契合度 3) 判斷報價是否合理 4) 給出合作建議（強烈推薦／可以談談／不建議）及理由
+    </p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>廣告人的真心建議</div>
+  <div class="step-body">
+    <p>很多業主說「廣告就是要有轉換」——這沒有錯，但轉換是結果，不是起點。</p>
+    <p>在轉換之前，你需要：對的人、對的訊息、對的時機。</p>
+    <p>KOL 合作最大的價值不是「賣東西」，而是「讓對的人認識你的品牌」。如果你選了一個受眾完全不對的網紅，再好的創意、再高的預算，轉換都不會好。</p>
+    <p>用 AI 把這些基本功做好，不是要取代你的直覺和經驗——而是讓你的直覺和經驗有數據支撐。</p>
+    <p>付錢之前，先把帳算清楚。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：KOL 合作的互動率多少才算健康？</strong></p>
+    <p>A：一般參考標準是 Instagram 1-3%、YouTube 2-5%、TikTok 5-10%。低於 0.5% 要特別謹慎，可能有買粉買讚的情況。但互動率只是指標之一，受眾的質量和品牌契合度同樣重要。</p>
+    <p><strong>Q：如何判斷 KOL 的粉絲是否為真實受眾？</strong></p>
+    <p>A：除了看互動率，可以觀察留言內容的質量——真實互動的留言通常有具體內容，假留言多半是表情符號或制式短句。也可以把留言貼給 AI 分析，讓它判斷留言模式是否自然。</p>
+    <p><strong>Q：60 秒業配如何讓品牌訊息自然融入？</strong></p>
+    <p>A：關鍵是找到品牌和網紅內容的「共同價值」。不是讓網紅念廣告稿，而是找到他的粉絲也在意、同時能呈現品牌價值的交叉點。用 AI 幫你設計創意方向，再和網紅一起討論，效果遠比直接給稿好。</p>
+    <p><strong>Q：CPE 和 CPM 分別是什麼？</strong></p>
+    <p>A：CPE（Cost Per Engagement）是每次互動成本，計算方式是報價除以總互動數（按讚+留言+分享）；CPM（Cost Per Mille）是每千次觸及成本，計算方式是報價除以觸及人數再乘以 1000。這兩個數字可以幫你客觀比較不同 KOL 的報價合理性。</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-9')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-9')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-9" onclick="shareNote('copy','note-9')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-9">0</span>)</p>
+        <div data-comments-list="note-9" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-9" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-9')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-9');
+    document.querySelector('[data-comment-input="note-9"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-9'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+</body>
+</html>

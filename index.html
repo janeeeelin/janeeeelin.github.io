@@ -1401,6 +1401,127 @@
 
     const NOTES = [
       {
+        id: 'note-9',
+        date: '2026-06-08',
+        tags: ['ai-tools', 'ig'],
+        tagLabels: { 'ai-tools': 'AI 工具', 'ig': 'IG 經營' },
+        title: 'KOL 合作怎麼用 AI 評估？廣告人的篩選清單',
+        subtitle: '粉絲數不是重點，CP 值才是——用 AI 算清楚再決定',
+        quote: '付錢之前，先把帳算清楚。對的人、對的訊息、對的時機——轉換是結果，不是起點。',
+        content: `<p style="margin-bottom:0.9rem">做了多年廣告，我看過太多業主在 KOL 合作上踩雷：粉絲數漂亮但互動率是假的、受眾根本不對、60 秒業配內容創意全無、單集流量不如預期、轉換率低得可憐——然後報價還不便宜。這篇想說的是：在你付錢之前，先讓 AI 幫你把帳算清楚。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 廣告人的真心話：業主最大的盲點是「廣告就是要有轉換」——但在轉換之前，你有沒有選對人？用 AI 評估 KOL 的 CP 值，是這個問題的起點。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">痛點</span>KOL 合作最常見的四個地雷</div>
+  <div class="step-body">
+    <p>在談怎麼用 AI 評估之前，先說清楚業界真實存在的問題：</p>
+    <p>💥 <strong>地雷一：粉絲數漂亮，互動率是假的</strong><br>
+    買粉、買讚、買留言在台灣是公開的秘密。一個有 10 萬粉絲的帳號，真實互動率可能只有 0.3%——比你公司的官方帳號還低。</p>
+    <p>💥 <strong>地雷二：受眾根本不是你的客戶</strong><br>
+    網紅的粉絲喜歡他這個人，不代表他們會買你的產品。美妝網紅的粉絲可能對你的 B2B 軟體完全沒興趣——但報價單上不會告訴你這件事。</p>
+    <p>💥 <strong>地雷三：60 秒業配，創意和品牌完全脫節</strong><br>
+    很多網紅的業配方式是：前面說自己的內容，最後 15 秒硬塞品牌訊息。觀眾早就滑走了。真正有效的業配，是創意內容和品牌自然融合——但這需要雙方都願意花時間溝通。</p>
+    <p>💥 <strong>地雷四：報價不透明，CP 值無從計算</strong><br>
+    「這支影片報價 8 萬，幫你觸及 5 萬人」——但這 5 萬人裡有多少是你的目標受眾？觸及之後有多少人會採取行動？這些問題，你付錢之前就應該問清楚。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>用 AI 計算 KOL 的真實 CP 值</div>
+  <div class="step-body">
+    <p>CP 值的計算，過去需要媒體採購的專業知識。現在你可以把數據丟給 AI，請它幫你算。</p>
+    <p><strong>你需要收集的數據：</strong><br>
+    📌 粉絲總數<br>
+    📌 最近 10 篇貼文的平均按讚數、留言數、分享數<br>
+    📌 報價金額<br>
+    📌 對方提供的「觸及人數」或「觀看次數」預估</p>
+    <p><strong>然後把這些數據貼給 Claude，問：</strong></p>
+    <p>💬「這是一個 KOL 的數據：粉絲數 XX、平均按讚 XX、平均留言 XX、報價 XX 元、預估觸及 XX 人。請幫我計算：互動率是多少？CPE（每次互動成本）是多少？CPM（每千次觸及成本）是多少？和業界平均相比，這個報價合理嗎？」</p>
+    <p>AI 會幫你算出幾個關鍵指標，讓你有數字根據去談判或決策。</p>
+    <p><strong>業界參考標準：</strong><br>
+    📌 健康的互動率：IG 1-3%、YouTube 2-5%、TikTok 5-10%<br>
+    📌 低於 0.5% 的互動率要特別謹慎<br>
+    📌 台灣市場 CPM 合理範圍：NT$100-500，依平台和受眾而異</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>用 AI 分析 KOL 的受眾是不是你的客戶</div>
+  <div class="step-body">
+    <p>這一步很多業主跳過，但它是最關鍵的。</p>
+    <p><strong>做法一：讓 AI 分析留言內容</strong><br>
+    去這個 KOL 最近的貼文，複製 30-50 則留言，貼給 Claude：</p>
+    <p>💬「這些是一個 KOL 貼文的留言，請幫我分析：留言者大概是什麼年齡層？他們的主要興趣是什麼？有沒有消費能力的線索？這群人和『30-40 歲、有購買力、關注健康飲食的台灣女性』這個受眾描述吻合嗎？」</p>
+    <p><strong>做法二：讓 AI 評估內容與品牌的吻合度</strong><br>
+    把這個 KOL 最近十篇貼文的標題或主題，加上你的品牌描述，一起貼給 AI：</p>
+    <p>💬「這是一個 KOL 最近的內容主題，這是我們品牌的核心價值和目標受眾。請評估這個 KOL 的受眾和內容風格，與我們品牌的契合度是高、中、還是低？理由是什麼？」</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>用 AI 設計 60 秒業配的創意方向</div>
+  <div class="step-body">
+    <p>這是最多業主和網紅都做錯的地方。</p>
+    <p>60 秒業配最常見的失敗模式：網紅說自己的事 45 秒，最後 15 秒念稿介紹品牌。觀眾早就不在了，品牌訊息完全沒有進入。</p>
+    <p><strong>用 AI 設計真正融合的業配創意：</strong></p>
+    <p>💬「這個 KOL 的內容風格是 XX（例如：日常生活分享、幽默情境劇、知識型解說）。我的品牌是 XX，核心訊息是 XX，目標受眾是 XX。請幫我設計三個 60 秒業配的創意方向，要求品牌訊息自然融入內容，不能有明顯的廣告感。」</p>
+    <p>然後把 AI 給你的創意方向，帶到和網紅的溝通會議裡討論。這樣你有了具體的方向，網紅也有了可以發揮的空間，不再是各說各話。</p>
+    <p><strong>跨領域行銷的關鍵：</strong>找到品牌和網紅內容之間的「共同價值」。不是強迫網紅說你要說的話，而是找到他的粉絲也在意、同時也能呈現你品牌價值的那個交叉點。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>用 AI 建立你的 KOL 篩選清單</div>
+  <div class="step-body">
+    <p>把以下這個 prompt 存起來，每次評估新的 KOL 合作就用它：</p>
+    <p style="background:#1b2b46; border-radius:8px; padding:1rem 1.2rem; color:#9dcfee; font-size:0.85rem; font-family:monospace; line-height:1.8;">
+    我正在評估一個 KOL 合作，以下是相關資料：<br><br>
+    【KOL 基本資料】<br>
+    - 平台：<br>
+    - 粉絲數：<br>
+    - 主要內容類型：<br>
+    - 最近 10 篇平均按讚：<br>
+    - 最近 10 篇平均留言：<br>
+    - 報價：<br><br>
+    【品牌資料】<br>
+    - 品牌名稱和產品：<br>
+    - 目標受眾：<br>
+    - 核心訊息：<br>
+    - 預算：<br><br>
+    請幫我：1) 計算互動率和 CPE 2) 評估受眾契合度 3) 判斷報價是否合理 4) 給出合作建議（強烈推薦／可以談談／不建議）及理由
+    </p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>廣告人的真心建議</div>
+  <div class="step-body">
+    <p>很多業主說「廣告就是要有轉換」——這沒有錯，但轉換是結果，不是起點。</p>
+    <p>在轉換之前，你需要：對的人、對的訊息、對的時機。</p>
+    <p>KOL 合作最大的價值不是「賣東西」，而是「讓對的人認識你的品牌」。如果你選了一個受眾完全不對的網紅，再好的創意、再高的預算，轉換都不會好。</p>
+    <p>用 AI 把這些基本功做好，不是要取代你的直覺和經驗——而是讓你的直覺和經驗有數據支撐。</p>
+    <p>付錢之前，先把帳算清楚。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：KOL 合作的互動率多少才算健康？</strong></p>
+    <p>A：一般參考標準是 Instagram 1-3%、YouTube 2-5%、TikTok 5-10%。低於 0.5% 要特別謹慎，可能有買粉買讚的情況。但互動率只是指標之一，受眾的質量和品牌契合度同樣重要。</p>
+    <p><strong>Q：如何判斷 KOL 的粉絲是否為真實受眾？</strong></p>
+    <p>A：除了看互動率，可以觀察留言內容的質量——真實互動的留言通常有具體內容，假留言多半是表情符號或制式短句。也可以把留言貼給 AI 分析，讓它判斷留言模式是否自然。</p>
+    <p><strong>Q：60 秒業配如何讓品牌訊息自然融入？</strong></p>
+    <p>A：關鍵是找到品牌和網紅內容的「共同價值」。不是讓網紅念廣告稿，而是找到他的粉絲也在意、同時能呈現品牌價值的交叉點。用 AI 幫你設計創意方向，再和網紅一起討論，效果遠比直接給稿好。</p>
+    <p><strong>Q：CPE 和 CPM 分別是什麼？</strong></p>
+    <p>A：CPE（Cost Per Engagement）是每次互動成本，計算方式是報價除以總互動數（按讚+留言+分享）；CPM（Cost Per Mille）是每千次觸及成本，計算方式是報價除以觸及人數再乘以 1000。這兩個數字可以幫你客觀比較不同 KOL 的報價合理性。</p>
+  </div>
+</div>`,
+      },
+      {
         id: 'note-8',
         date: '2026-06-08',
         tags: ['ai-tools', 'beginner'],
