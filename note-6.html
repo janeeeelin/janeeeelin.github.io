@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用 AI 寫 IG 文案會被看出來嗎？我測試了五種方法 - Jane's Lens</title>
+  <meta name="description" content="用 AI 寫 IG 文案會被看出來嗎？測試五種方法後的真實結論：高手看得出來，但一般人不在乎。問題不是被不被看出來，而是你有沒有把靈魂放進去。">
+  <meta property="og:title" content="用 AI 寫 IG 文案會被看出來嗎？我測試了五種方法 - Jane's Lens">
+  <meta property="og:description" content="測試五種 AI 寫 IG 文案的方法，找出最自然、最有溫度的使用方式。AI 是起點，不是終點。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-6.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.ai-tools { background: #fef9c3; color: #854d0e; }
+    .note-tag.ig { background: #fce7f3; color: #be185d; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #eef4ff 0%, #e8f0fe 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+    .author-opinion { margin: 1rem 0; padding: 1rem 1.2rem; background: linear-gradient(135deg, #eef4ff 0%, #e8f0fe 100%); border-left: 4px solid #0d3b8e; border-radius: 0 10px 10px 0; }
+    .author-opinion-inner { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .author-opinion-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #c5d9f5; flex-shrink: 0; }
+    .author-opinion-label { font-size: 0.75rem; font-weight: 700; color: #1a5cbe; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+    .author-opinion-text { font-size: 0.93rem; color: #1a3a6a; font-style: italic; line-height: 1.75; margin: 0; }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html#about">關於我</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="about.html">關於平台</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-06-08</span>
+        <span class="note-tag ai-tools">AI 工具</span>
+        <span class="note-tag ig">IG 經營</span>
+      </div>
+      <h1 class="note-page-title">用 AI 寫 IG 文案會被看出來嗎？我測試了五種方法</h1>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv6bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1a0820"/>
+              <stop offset="100%" stop-color="#200a2a"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv6bg)" rx="12"/>
+          <!-- Phone outline -->
+          <rect x="170" y="18" width="140" height="128" rx="14" fill="#2a1a35" stroke="#7c3aed" stroke-width="1.5"/>
+          <rect x="178" y="28" width="124" height="108" rx="8" fill="#1a0e28"/>
+          <!-- IG grid mock -->
+          <rect x="182" y="32" width="37" height="37" rx="4" fill="#3d1a4a" opacity="0.9"/>
+          <rect x="223" y="32" width="37" height="37" rx="4" fill="#4a1a3a" opacity="0.9"/>
+          <rect x="264" y="32" width="37" height="37" rx="4" fill="#3a1a4a" opacity="0.9"/>
+          <rect x="182" y="73" width="37" height="37" rx="4" fill="#4a1a3a" opacity="0.9"/>
+          <rect x="223" y="73" width="37" height="37" rx="4" fill="#3d1a4a" opacity="0.9"/>
+          <rect x="264" y="73" width="37" height="37" rx="4" fill="#4a1a3a" opacity="0.9"/>
+          <!-- AI sparkle on top right cell -->
+          <text x="282" y="55" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#f5c542">✦</text>
+          <!-- Label -->
+          <text x="240" y="128" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#be185d" opacity="0.8">IG 文案</text>
+          <!-- Left: person writing -->
+          <circle cx="90" cy="62" r="18" fill="none" stroke="#7c3aed" stroke-width="1.5" opacity="0.7"/>
+          <text x="90" y="68" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#c084fc">✍</text>
+          <text x="90" y="96" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#c084fc" opacity="0.7">真實的你</text>
+          <!-- Arrow -->
+          <line x1="114" y1="62" x2="162" y2="62" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+          <polyline points="158,57 166,62 158,67" fill="none" stroke="#7c3aed" stroke-width="1.5" opacity="0.6"/>
+          <!-- Right: AI -->
+          <circle cx="390" cy="62" r="18" fill="none" stroke="#be185d" stroke-width="1.5" opacity="0.7"/>
+          <text x="390" y="68" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#f9a8d4">AI</text>
+          <text x="390" y="96" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f9a8d4" opacity="0.7">輔助整理</text>
+          <line x1="318" y1="62" x2="366" y2="62" stroke="#be185d" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
+          <polyline points="362,57 370,62 362,67" fill="none" stroke="#be185d" stroke-width="1.5" opacity="0.6"/>
+          <text x="240" y="148" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#666">五種方法測試 · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">先說結論：AI 寫的文案，高手一眼就知道。但大多數人根本不在意——他們在意的是內容有沒有打中他們。問題不是「會不會被看出來」，而是「你有沒有把 AI 寫的東西，變成真正屬於你的東西」。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 核心觀點：AI 是起點，不是終點。直接貼上 AI 的輸出，才是被看穿的真正原因。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>方法一：直接貼上 AI 的原始輸出</div>
+  <div class="step-body">
+    <p><strong>怎麼做：</strong>叫 AI 寫一段 IG 文案，直接複製貼上，一個字不改。</p>
+    <p><strong>結果：</strong>最容易被看出來。</p>
+    <p>AI 原始輸出有幾個特徵——句子結構太工整、每段長度差不多、用詞「積極正面」得有點假。最明顯的是：它沒有你說話的節奏，沒有你會用的那個詞，沒有那個只有你才會有的小細節。</p>
+    <p>高手看到這種文案，三秒內就知道。因為它太「完整」了——真實的人寫東西，不會每句話都剛好收得那麼好。</p>
+    <p>⚠️ <strong>結論：不要這樣做。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>方法二：AI 起草，自己改語氣</div>
+  <div class="step-body">
+    <p><strong>怎麼做：</strong>讓 AI 寫草稿，然後把你不會說的詞換掉，加入你的說話習慣。</p>
+    <p><strong>結果：</strong>好很多，但還是有痕跡。</p>
+    <p>這是大多數人用 AI 寫文案的方式。問題是——很多人「改語氣」改了表面，沒改骨架。AI 的句子邏輯還在，只是換了幾個詞。</p>
+    <p>真正有效的改法是：把 AI 的文案當成「素材」，拆散它，用自己的方式重新組裝。不是改詞，是改結構。</p>
+    <p>✅ <strong>結論：可以用，但要改得夠徹底。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>方法三：給 AI 你的真實故事，讓它幫你整理</div>
+  <div class="step-body">
+    <p><strong>怎麼做：</strong>先自己寫一段流水帳——今天發生了什麼、你的感受、你想說什麼，不管文筆好不好。然後把這段話餵給 AI，叫它幫你整理成 IG 文案，但保留你的語氣。</p>
+    <p><strong>結果：</strong>這是五種方法裡最自然的。</p>
+    <p>為什麼？因為素材是你的。AI 只是幫你「排版」，核心的故事、細節、情緒都是你的。讀者感受到的溫度，來自那些真實的細節——AI 編不出來，因為它不在現場。</p>
+    <p>這個方法有個額外的好處：你不需要有好文筆。你只需要有真實的經歷。</p>
+    <p>✅ <strong>結論：最推薦。靈魂在你身上，AI 只是幫你說清楚。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>方法四：叫 AI 模仿你的寫作風格</div>
+  <div class="step-body">
+    <p><strong>怎麼做：</strong>把你過去寫得最好的 3-5 篇 IG 貼文貼給 AI，說「這是我的風格，請用這個風格幫我寫關於 XX 的文案」。</p>
+    <p><strong>結果：</strong>有趣，但有上限。</p>
+    <p>AI 可以學你的句子長短、標點習慣、常用詞。但它學不到你的「為什麼」——你為什麼在這個時間點說這件事、你在意這件事的哪個部分、你說話時的那個情緒。</p>
+    <p>輸出的文案看起來像你，但少了一點什麼。就像有人模仿你的字跡，遠看很像，近看就差了。</p>
+    <p>✅ <strong>結論：可以用來快速產出，但重要的貼文不要完全依賴。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>方法五：故意保留「不完美」</div>
+  <div class="step-body">
+    <p><strong>怎麼做：</strong>讓 AI 寫完之後，故意加入一個「人味」的元素——一個口語化的詞、一句沒收好的話、一個你真實的困惑或猶豫。</p>
+    <p><strong>結果：</strong>反而最有溫度。</p>
+    <p>這聽起來很反直覺——為什麼要故意讓文案「不完美」？</p>
+    <p>因為完美是疏離的。人們連結的不是完美的表達，而是那個讓他們說「對，我也是這樣」的瞬間。那個瞬間，往往藏在一個猶豫、一個沒說完的話、一個你以為不夠好的細節裡。</p>
+    <p>AI 寫不出你的猶豫。那是你最值錢的東西。</p>
+    <p>✅ <strong>結論：最高段的 AI 文案使用方式。用 AI 的骨架，放你的靈魂進去。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>真正的結論</div>
+  <div class="step-body">
+    <p>被看出來不是問題。問題是——你的文案有沒有讓人停下來？</p>
+    <p>AI 是一個工具，不是一個替代品。它可以幫你說得更清楚，但說不了你的故事。</p>
+    <p>最好的 IG 文案，不是 AI 寫的，也不是你自己憋出來的——而是你把真實的自己，透過 AI 的幫助，說得更好的那個版本。</p>
+    <p>那個版本，高手看得出來有 AI 的影子。但他們也看得出來，裡面有一個真實的人。</p>
+    <p>那才是值得被追蹤的理由。</p>
+  </div>
+</div>
+
+<div class="author-opinion">
+  <div class="author-opinion-inner">
+    <img src="avatar.jpg" alt="Jane" class="author-opinion-avatar">
+    <div class="author-opinion-body">
+      <p class="author-opinion-label">Jane 的觀點</p>
+      <p class="author-opinion-text">「AI 是起點，不是終點。你的故事、你的猶豫、你那個只有你才有的細節——那才是任何 AI 都複製不了的東西。」</p>
+    </div>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：用 AI 寫 IG 文案會被演算法懲罰嗎？</strong></p>
+    <p>A：目前沒有證據顯示 Instagram 演算法會懲罰 AI 生成的文字內容。演算法更在意的是互動率——按讚、留言、分享、存檔。只要你的內容能引發真實互動，AI 輔助寫作不會影響觸及率。</p>
+    <p><strong>Q：怎麼讓 AI 寫出更像自己風格的文案？</strong></p>
+    <p>A：把你過去最滿意的 3-5 篇貼文貼給 AI，說明你的受眾是誰、你想傳達什麼情緒，然後讓它模仿你的風格起草。重點是：把你真實的故事或細節餵給它，AI 負責整理，你負責提供靈魂。</p>
+    <p><strong>Q：哪種 AI 文案最容易被看出來？</strong></p>
+    <p>A：直接貼上 AI 原始輸出、沒有做任何修改的文案最容易被識破。特徵包括：句子結構過於工整、用詞正面但空洞、缺少個人細節和真實情緒、每段長度過於均勻。</p>
+    <p><strong>Q：完全不用 AI 寫文案比較好嗎？</strong></p>
+    <p>A：不一定。關鍵不是用不用 AI，而是你有沒有把 AI 的輸出變成真正屬於你的內容。用 AI 幫你整理思路、優化表達完全沒問題——前提是素材和靈魂來自你自己。</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-6')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-6')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-6" onclick="shareNote('copy','note-6')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-6">0</span>)</p>
+        <div data-comments-list="note-6" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-6" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-6')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-6');
+    document.querySelector('[data-comment-input="note-6"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-6'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
