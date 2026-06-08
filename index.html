@@ -880,6 +880,66 @@
       .note-ig-btn { width: 100%; justify-content: center; }
     }
 
+    /* ── Article Number ───────────────────────────────────────────────────── */
+    .note-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; color: #1a6bb5;
+      background: #eef4ff; border: 1.5px solid #c8d8f0; border-radius: 5px;
+      padding: 0 0.38rem; height: 19px; margin-right: 0.45rem; flex-shrink: 0;
+      letter-spacing: 0.02em; vertical-align: middle;
+    }
+
+    /* ── Load More Button ─────────────────────────────────────────────────── */
+    #load-more-wrap { text-align: center; margin-top: 0.9rem; padding-top: 0.6rem; }
+    #load-more-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.55rem 1.8rem; border-radius: 24px;
+      background: linear-gradient(135deg, #eef4ff, #e0edff);
+      border: 1.5px solid #c8d8f0; color: #1a6bb5; font-size: 0.9rem;
+      font-family: 'Noto Sans TC', sans-serif; cursor: pointer;
+      transition: all 0.2s; font-weight: 500;
+    }
+    #load-more-btn:hover { background: #1a6bb5; color: white; border-color: #1a6bb5; }
+    #all-loaded { font-size: 0.83rem; color: #aaa; letter-spacing: 0.04em; margin: 0; padding: 0.35rem 0; }
+
+    /* ── Search Count ─────────────────────────────────────────────────────── */
+    #search-count { font-size: 0.83rem; color: #1a6bb5; margin: 0.3rem 0 0.5rem; font-weight: 500; display: none; }
+
+    /* ── Sidebar Category List ────────────────────────────────────────────── */
+    .scat { margin-bottom: 1rem; }
+    .scat:last-child { margin-bottom: 0; }
+    .scat-header { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.35rem; }
+    .scat-label { font-size: 0.8rem; font-weight: 700; color: #1a3a6a; }
+    .scat-count { font-size: 0.7rem; background: #eef4ff; color: #5588cc; border-radius: 10px; padding: 0.05rem 0.45rem; }
+    .scat-list { list-style: none; display: flex; flex-direction: column; gap: 0.1rem; }
+    .scat-list li a {
+      display: block; font-size: 0.79rem; color: #444; text-decoration: none;
+      padding: 0.28rem 0.5rem; border-radius: 5px;
+      transition: background 0.15s, color 0.15s; line-height: 1.45;
+    }
+    .scat-list li a:hover { background: #e8f0fe; color: #1a6bb5; }
+    .scat-list li a::before { content: '›'; margin-right: 0.35rem; color: #1a6bb5; font-weight: 700; }
+    .scat-toggle {
+      margin-top: 0.3rem; font-size: 0.75rem; color: #1a6bb5;
+      background: none; border: none; cursor: pointer;
+      padding: 0.1rem 0.5rem; border-radius: 4px;
+      transition: background 0.15s; font-family: 'Noto Sans TC', sans-serif;
+    }
+    .scat-toggle:hover { background: #eef4ff; }
+
+    /* ── Sidebar Timeline ─────────────────────────────────────────────────── */
+    .sidebar .timeline::before { left: 16px; }
+    .sidebar .timeline-item {
+      flex-direction: column !important;
+      padding: 0 0 0 3.2rem !important;
+      justify-content: flex-start !important;
+      margin-bottom: 1.2rem;
+    }
+    .sidebar .timeline-dot { left: 16px; width: 32px; height: 32px; font-size: 0.95rem; }
+    .sidebar .timeline-card { max-width: 100%; }
+    .sidebar .timeline-card h4 { font-size: 0.88rem; }
+    .sidebar .timeline-card p { font-size: 0.8rem; }
+
     /* ── Sidebar Cards (CSS ready for step 2 HTML) ───────────────────────── */
     .sidebar-card {
       background: white;
@@ -965,7 +1025,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a class="nav-link" href="#about">關於我</a></li>
         <li><a class="nav-link" href="#notes">學習筆記</a></li>
-        <li><a class="nav-link" href="#timeline">時間軸</a></li>
+        <li><a class="nav-link" href="#timeline" onclick="document.getElementById('timeline').scrollIntoView({behavior:'smooth'});return false;">時間軸</a></li>
         <li><a class="nav-link" href="about.html">關於平台</a></li>
       </ul>
     </div>
@@ -1269,8 +1329,13 @@
         </div>
 
         <!-- 筆記列表 -->
+        <div id="search-count"></div>
         <div id="notes-container"></div>
-        <div id="no-results">😶 找不到符合的筆記</div>
+        <div id="no-results" style="display:none; text-align:center; padding:2rem; color:#aaa; font-size:0.95rem;"></div>
+        <div id="load-more-wrap">
+          <button id="load-more-btn" onclick="loadMoreNotes()">載入更多文章 ↓</button>
+          <p id="all-loaded" style="display:none;">已顯示全部文章</p>
+        </div>
       </div>
     </section>
 
@@ -1314,15 +1379,6 @@
       </div>
     </section>
 
-    <!-- 學習時間軸 -->
-    <section id="timeline">
-      <div class="card">
-        <span class="section-label">🗓 Timeline</span>
-        <h2>學習時間軸</h2>
-        <div class="timeline" id="timeline-container"></div>
-      </div>
-    </section>
-
       </main><!-- end .main-col -->
 
       <!-- ── Sidebar ─────────────────────────────────────────────────────── -->
@@ -1343,15 +1399,10 @@
           </a>
         </div>
 
-        <!-- 熱門文章 -->
+        <!-- 文章列表（分類） -->
         <div class="sidebar-card">
-          <h3>熱門文章</h3>
-          <ul class="popular-list">
-            <li><a href="note-4.html">SEO 與 AIO 的差異：業主必懂的內容轉型五大心法</a></li>
-            <li><a href="note-1.html">如何在 Mac 磁碟空間不足時安裝 Claude Code</a></li>
-            <li><a href="note-2.html">工程小白如何用 Claude Code 建立個人網站</a></li>
-            <li><a href="note-3.html">Claude in Chrome 如何分析 Instagram 帳號經營策略</a></li>
-          </ul>
+          <h3>文章列表</h3>
+          <div id="sidebar-article-list"></div>
         </div>
 
         <!-- 文章分類 -->
@@ -1364,20 +1415,21 @@
             <button class="tag-cloud-btn" data-stag="claude-ai" onclick="filterFromSidebar('claude-ai')">Claude AI</button>
             <button class="tag-cloud-btn" data-stag="ig" onclick="filterFromSidebar('ig')">IG 經營</button>
             <button class="tag-cloud-btn" data-stag="seo-aio" onclick="filterFromSidebar('seo-aio')">SEO／AIO</button>
+            <button class="tag-cloud-btn" data-stag="ai-tools" onclick="filterFromSidebar('ai-tools')">AI 工具</button>
           </div>
-        </div>
-
-        <!-- 最新電子報 -->
-        <div class="sidebar-card">
-          <h3>最新電子報</h3>
-          <p style="font-size:0.84rem;color:#666;line-height:1.6;margin:0.5rem 0 0.9rem;">每週一篇，關於 AI 趨勢與內容策略的第一手觀察。</p>
-          <a href="https://janeeeelin.substack.com" target="_blank" rel="noopener" class="sidebar-subscribe-btn">前往訂閱 →</a>
         </div>
 
         <!-- 訂閱電子報 -->
         <div class="sidebar-card">
           <h3>訂閱電子報</h3>
-          <iframe src="https://janeeeelin.substack.com/embed" width="100%" height="120" style="border:none;background:transparent;display:block;margin-top:0.4rem;" frameborder="0" scrolling="no"></iframe>
+          <p style="font-size:0.82rem;color:#666;line-height:1.6;margin:0.4rem 0 0.8rem;">每週一篇，AI 趨勢與內容策略的第一手觀察。</p>
+          <iframe src="https://janeeeelin.substack.com/embed" width="100%" height="120" style="border:none;background:transparent;display:block;" frameborder="0" scrolling="no"></iframe>
+        </div>
+
+        <!-- 學習時間軸 -->
+        <div class="sidebar-card" id="timeline">
+          <h3>學習時間軸</h3>
+          <div class="timeline" id="timeline-container"></div>
         </div>
 
         <!-- 工具推薦 -->
@@ -2401,6 +2453,7 @@ git push -u origin main</code></pre>
     // ── State ─────────────────────────────────────────────────────────────────
     let activeTag = null;
     let searchQuery = '';
+    let visibleCount = 4;
 
     // ── Helpers ───────────────────────────────────────────────────────────────
     function escapeHtml(str) {
@@ -2639,7 +2692,7 @@ git push -u origin main</code></pre>
         '</div>' +
         '<div class="note-toggle" onclick="toggleNote(\'' + note.id + '\')">' +
           '<div style="flex:1;">' +
-            '<h3 style="margin:0;"><a href="' + note.id + '.html" onclick="event.stopPropagation()" style="color:inherit;text-decoration:none;">' + escapeHtml(note.title) + '</a></h3>' +
+            '<h3 style="margin:0;"><span class="note-num">#' + String(parseInt(note.id.replace('note-', ''))).padStart(2, '0') + '</span><a href="' + note.id + '.html" onclick="event.stopPropagation()" style="color:inherit;text-decoration:none;">' + escapeHtml(note.title) + '</a></h3>' +
             (note.subtitle ? '<p class="note-subtitle">' + escapeHtml(note.subtitle) + '</p>' : '') +
           '</div>' +
           CHEVRON +
@@ -2699,6 +2752,12 @@ git push -u origin main</code></pre>
       const container = document.getElementById('notes-container');
       container.innerHTML = NOTES.map(noteHTML).join('');
       NOTES.forEach(n => { initLike(n.id); renderComments(n.id); });
+      applyFilter();
+    }
+
+    function loadMoreNotes() {
+      visibleCount = Math.min(visibleCount + 4, NOTES.length);
+      applyFilter();
     }
 
     // ── Filter & Search ───────────────────────────────────────────────────────
@@ -2721,16 +2780,49 @@ git push -u origin main</code></pre>
 
     function applyFilter() {
       const q = searchQuery.toLowerCase();
-      let visible = 0;
-      NOTES.forEach(note => {
+      const isFiltering = q !== '' || activeTag !== null;
+      let matchCount = 0;
+
+      NOTES.forEach((note, idx) => {
         const el = document.getElementById(note.id);
         if (!el) return;
         const tagOk    = !activeTag || note.tags.includes(activeTag);
         const searchOk = !q || note.title.toLowerCase().includes(q) || stripHtml(note.content).toLowerCase().includes(q);
-        el.style.display = tagOk && searchOk ? '' : 'none';
-        if (tagOk && searchOk) visible++;
+        const matches  = tagOk && searchOk;
+        const withinLimit = isFiltering || idx < visibleCount;
+        el.style.display = matches && withinLimit ? '' : 'none';
+        if (matches) matchCount++;
       });
-      document.getElementById('no-results').style.display = visible === 0 ? '' : 'none';
+
+      const noResults  = document.getElementById('no-results');
+      const countEl    = document.getElementById('search-count');
+      const loadWrap   = document.getElementById('load-more-wrap');
+      const loadBtn    = document.getElementById('load-more-btn');
+      const allLoaded  = document.getElementById('all-loaded');
+
+      if (isFiltering) {
+        loadWrap.style.display = 'none';
+        if (matchCount === 0) {
+          noResults.style.display = '';
+          noResults.textContent = '😶 找不到符合的文章，試試其他關鍵字';
+          countEl.style.display = 'none';
+        } else {
+          noResults.style.display = 'none';
+          countEl.style.display = '';
+          countEl.textContent = '找到 ' + matchCount + ' 篇相關文章';
+        }
+      } else {
+        countEl.style.display = 'none';
+        noResults.style.display = 'none';
+        loadWrap.style.display = '';
+        if (visibleCount >= NOTES.length) {
+          loadBtn.style.display = 'none';
+          allLoaded.style.display = '';
+        } else {
+          loadBtn.style.display = '';
+          allLoaded.style.display = 'none';
+        }
+      }
     }
 
     function filterByTagChip(tag) {
@@ -2738,6 +2830,57 @@ git push -u origin main</code></pre>
       updateTagFilterUI();
       applyFilter();
       document.getElementById('notes').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ── Sidebar Categories ────────────────────────────────────────────────────
+    const SIDEBAR_CATS = [
+      { label: 'AI 工具',   tag: 'ai-tools' },
+      { label: 'IG 經營',   tag: 'ig'       },
+      { label: 'SEO／AIO', tag: 'seo-aio'  },
+      { label: '新手教學',  tag: 'beginner' }
+    ];
+
+    function renderSidebarCategories() {
+      const el = document.getElementById('sidebar-article-list');
+      if (!el) return;
+      el.innerHTML = SIDEBAR_CATS.map(cat => {
+        const notes = NOTES.filter(n => n.tags.includes(cat.tag));
+        const catId = 'scat-' + cat.tag;
+        return '<div class="scat">' +
+          '<div class="scat-header">' +
+            '<span class="scat-label">' + cat.label + '</span>' +
+            '<span class="scat-count">' + notes.length + '</span>' +
+          '</div>' +
+          '<ul class="scat-list">' +
+            notes.map((n, idx) => {
+              const num = '#' + String(parseInt(n.id.replace('note-', ''))).padStart(2, '0');
+              return '<li' + (idx >= 3 ? ' class="scat-extra" style="display:none;"' : '') + '>' +
+                '<a href="' + n.id + '.html">' + num + ' ' + escapeHtml(n.title) + '</a>' +
+              '</li>';
+            }).join('') +
+          '</ul>' +
+          (notes.length > 3 ?
+            '<button class="scat-toggle" id="' + catId + '-btn" onclick="toggleScat(\'' + catId + '\')">' +
+              '查看全部 (' + (notes.length - 3) + ' 篇) ↓' +
+            '</button>' : '') +
+        '</div>';
+      }).join('');
+    }
+
+    function toggleScat(catId) {
+      const btn = document.getElementById(catId + '-btn');
+      if (!btn) return;
+      const scat = btn.closest('.scat');
+      const extras = scat.querySelectorAll('.scat-extra');
+      const expanded = btn.dataset.expanded === '1';
+      extras.forEach(li => li.style.display = expanded ? 'none' : '');
+      btn.dataset.expanded = expanded ? '0' : '1';
+      const tag = catId.replace('scat-', '');
+      const cat = SIDEBAR_CATS.find(c => c.tag === tag);
+      const hiddenCount = NOTES.filter(n => n.tags.includes(tag)).length - 3;
+      btn.textContent = expanded
+        ? '查看全部 (' + hiddenCount + ' 篇) ↓'
+        : '收起 ↑';
     }
 
     // ── Timeline ──────────────────────────────────────────────────────────────
@@ -2858,6 +3001,7 @@ git push -u origin main</code></pre>
       renderNotes();
       renderTimeline();
       renderTools();
+      renderSidebarCategories();
       initProgressBar();
       initNavScroll();
       initBackToTop();
