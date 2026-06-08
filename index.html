@@ -312,6 +312,15 @@
       color: #1a2a4a;
       transition: color 0.18s;
       flex: 1;
+      margin-bottom: 0;
+    }
+    .note-subtitle {
+      font-size: 0.88rem;
+      color: #888;
+      font-style: italic;
+      margin-top: 4px;
+      line-height: 1.4;
+      font-weight: normal;
     }
     .chevron {
       width: 18px; height: 18px;
@@ -1309,10 +1318,10 @@
         <div class="sidebar-card">
           <h3>熱門文章</h3>
           <ul class="popular-list">
-            <li><a href="note-4.html">你的文章 Google 找得到，但 ChatGPT 不知道你存在</a></li>
-            <li><a href="note-1.html">Mac 只剩 4GB，我還是裝上了 Claude Code</a></li>
-            <li><a href="note-2.html">我不懂程式，但我做出了這個網站</a></li>
-            <li><a href="note-3.html">AI 看了我的 IG，說了一句讓我愣住的話</a></li>
+            <li><a href="note-4.html">SEO 與 AIO 的差異：業主必懂的內容轉型五大心法</a></li>
+            <li><a href="note-1.html">如何在 Mac 磁碟空間不足時安裝 Claude Code</a></li>
+            <li><a href="note-2.html">工程小白如何用 Claude Code 建立個人網站</a></li>
+            <li><a href="note-3.html">Claude in Chrome 如何分析 Instagram 帳號經營策略</a></li>
           </ul>
         </div>
 
@@ -1360,7 +1369,8 @@
         date: '2026-05-29',
         tags: ['seo-aio', 'beginner'],
         tagLabels: { 'seo-aio': 'SEO／AIO', 'beginner': '新手教學' },
-        title: '你的文章 Google 找得到，但 ChatGPT 不知道你存在',
+        title: 'SEO 與 AIO 的差異：業主必懂的內容轉型五大心法',
+        subtitle: '你的文章 Google 找得到，但 ChatGPT 不知道你存在',
         quote: '真正稀缺的，從來不是資訊，而是那個能夠分辨、選擇的眼光。',
         content: `<p style="margin-bottom:0.9rem">你的文章在 Google 排名還不錯，但最近流量開始掉？原因很可能不是你寫得不好——而是搜尋行為正在改變。這篇寫給想把內容升級的業主，不需要懂技術，只需要懂邏輯。</p>
 
@@ -1459,7 +1469,8 @@
         date: '2026-05-14',
         tags: ['claude-code', 'mac'],
         tagLabels: { 'claude-code': 'Claude Code', 'mac': 'Mac 教學' },
-        title: 'Mac 只剩 4GB，我還是裝上了 Claude Code',
+        title: '如何在 Mac 磁碟空間不足時安裝 Claude Code',
+        subtitle: 'Mac 只剩 4GB，我還是裝上了',
         quote: '清完快取，不只是清空間，是為自己清出一條路。',
         content: `<p style="margin-bottom:0.9rem">今天一早想安裝 Claude Code，結果被一個錯誤訊息擋下來了——Mac 磁碟空間不足。這是我踏入工程世界的第一個障礙，記錄下來給有同樣困擾的朋友參考。</p>
 
@@ -1549,7 +1560,8 @@ claude</code></pre>
         date: '2026-05-14',
         tags: ['beginner', 'claude-code'],
         tagLabels: { 'beginner': '新手教學', 'claude-code': 'Claude Code' },
-        title: '我不懂程式，但我做出了這個網站',
+        title: '工程小白如何用 Claude Code 建立個人網站',
+        subtitle: '我不懂程式，但我做出了這個網站',
         quote: '不懂沒關係，把看不懂的東西丟給 Claude Code 問，它不會嫌你問題蠢。',
         content: `<p style="margin-bottom:0.9rem">這篇是專門寫給和我一樣的工程小白看的！我自己就是完全不懂程式，但照著這些步驟，真的做出了一個網站。你也可以的 💪</p>
 
@@ -1669,7 +1681,8 @@ git push -u origin main</code></pre>
         date: '2026-05-29',
         tags: ['claude-ai', 'ig'],
         tagLabels: { 'claude-ai': 'Claude AI', 'ig': 'IG 經營' },
-        title: 'AI 看了我的 IG，說了一句讓我愣住的話',
+        title: 'Claude in Chrome 如何分析 Instagram 帳號經營策略',
+        subtitle: 'AI 看了我的 IG，說了一句讓我愣住的話',
         quote: '你把最值錢的東西放在會消失的地方。',
         content: `<p style="margin-bottom:0.9rem">我也是最近才發現這件事——原來 Claude 不只能聊天寫程式，它還可以直接「看到」你的 Instagram，幫你分析帳號、給你方向建議。這篇記錄我親身試用的過程。</p><div class="note-step"><div class="step-header"><span class="step-num">！</span>先說結論</div><div class="step-body"><p>透過 <strong>Claude in Chrome</strong> 這個瀏覽器擴充功能，Claude 可以連進你正在瀏覽的網頁，包括你的 IG 主頁。它能看到你的頭貼、bio、精選限時動態、貼文九宮格——然後直接幫你分析、給建議。不需要把截圖一張一張傳給它。它就在你的瀏覽器旁邊，陪你一起看。</p></div></div><svg style="display:block;width:100%;max-width:460px;margin:1rem auto 0;border-radius:10px" viewBox="0 0 460 155" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="n3ill" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0d1014"/><stop offset="100%" stop-color="#0d1a24"/></linearGradient></defs><rect width="460" height="155" fill="url(#n3ill)" rx="10"/><rect x="15" y="15" width="248" height="128" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/><rect x="15" y="15" width="248" height="26" rx="8" fill="#1c2128"/><rect x="15" y="32" width="248" height="9" fill="#1c2128"/><circle cx="30" cy="28" r="4" fill="#ff5f57" opacity="0.8"/><circle cx="44" cy="28" r="4" fill="#febc2e" opacity="0.8"/><circle cx="58" cy="28" r="4" fill="#28c840" opacity="0.8"/><rect x="75" y="21" width="160" height="14" rx="7" fill="#0d1117" stroke="#30363d" stroke-width="1"/><text x="155" y="32" text-anchor="middle" font-family="monospace" font-size="8" fill="#56ccf2">instagram.com/@you</text><circle cx="55" cy="70" r="17" fill="none" stroke="#f7c948" stroke-width="1.5" opacity="0.8"/><circle cx="55" cy="70" r="10" fill="#f7c948" opacity="0.2"/><text x="90" y="66" font-family="sans-serif" font-size="9" fill="#e2e8f0" font-weight="bold">@username</text><rect x="90" y="71" width="80" height="3" rx="1.5" fill="#4b5563"/><rect x="90" y="78" width="55" height="3" rx="1.5" fill="#4b5563"/><rect x="20" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="60" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="100" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="140" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="180" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="220" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="20" y="97" width="36" height="36" rx="2" fill="#f7c948" opacity="0.08"/><rect x="60" y="97" width="36" height="36" rx="2" fill="#56ccf2" opacity="0.06"/><line x1="266" y1="77" x2="294" y2="77" stroke="#6fcf97" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round"/><polyline points="290,71 298,77 290,83" fill="none" stroke="#6fcf97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="280" y="70" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#6fcf97">分析</text><rect x="305" y="15" width="140" height="128" rx="8" fill="#1a2040" stroke="#56ccf2" stroke-width="1.5"/><rect x="305" y="15" width="140" height="28" rx="8" fill="#1e2d50"/><rect x="305" y="34" width="140" height="9" fill="#1e2d50"/><circle cx="323" cy="29" r="7" fill="#56ccf2" opacity="0.25"/><text x="323" y="33" text-anchor="middle" font-family="monospace" font-size="10" fill="#56ccf2" font-weight="bold">C</text><text x="350" y="33" font-family="sans-serif" font-size="8.5" fill="#e2e8f0">Claude in Chrome</text><rect x="345" y="54" width="90" height="26" rx="6" fill="#2d4060"/><text x="390" y="66" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#e2e8f0">分析我的 IG，</text><text x="390" y="76" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#e2e8f0">給我建議</text><rect x="310" y="90" width="128" height="45" rx="6" fill="#243350"/><text x="374" y="104" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#6fcf97">* 正在分析...</text><rect x="318" y="110" width="100" height="3" rx="1.5" fill="#56ccf2" opacity="0.6"/><rect x="318" y="117" width="78" height="3" rx="1.5" fill="#56ccf2" opacity="0.4"/><rect x="318" y="124" width="90" height="3" rx="1.5" fill="#56ccf2" opacity="0.5"/><rect x="318" y="133" width="5" height="8" rx="1" fill="#f7c948" opacity="0.9"/></svg><div class="note-step"><div class="step-header"><span class="step-num">01</span>怎麼讓 Claude 連進你的瀏覽器</div><div class="step-body"><p>這個功能叫做 <strong>Claude in Chrome</strong>，需要先安裝一個 Chrome 擴充功能：</p><p>① 確認你有 <strong>Claude 付費方案</strong>（Pro、Max、Team 或 Enterprise）<br>② 在 Claude.ai 左下角點名字縮寫 → Settings<br>③ 找到 Claude in Chrome，打開它<br>④ 去 Chrome Web Store 搜尋「Claude」，點「Add to Chrome」<br>⑤ 裝好後把 Claude 釘選在工具列</p><p>⚠️ 目前只支援 Google Chrome。</p></div></div><div class="note-step"><div class="step-header"><span class="step-num">02</span>打開你的 IG，叫 Claude 幫你看</div><div class="step-body"><p>安裝好後直接打開 IG 主頁，在 Claude 側邊欄輸入：「幫我分析我的 IG 帳號，給我經營建議」。Claude 會截圖你的頁面，然後開始分析——大頭貼、bio、精選動態、貼文九宮格全部都看。</p><p>它第一眼看到我的帳號就說：<strong>「你的精選動態全是旅遊地名，這是生活型帳號的語言，不是思想型帳號的語言。」</strong></p></div></div><div class="note-step"><div class="step-header"><span class="step-num">03</span>它說中了我</div><div class="step-body"><p>我說我把深入的觀點都放限時動態。它說：<strong>「你把最值錢的東西放在會消失的地方。」</strong></p><p>限時動態 24 小時後消失、只有追蹤者看得到、演算法不推給陌生人。我以為那樣是保護自己，結果是在限制自己的影響力。</p><p>它給我一個最簡單的建議：「下次想在限時動態打觀點之前，先把它做成貼文，再分享到限時動態。同樣的時間，影響力差十倍。」</p></div></div><div class="note-step"><div class="step-header"><span class="step-num">💛</span>這個功能適合你嗎？</div><div class="step-body"><p>如果你也有 IG 帳號但搞不清楚方向，這個方式值得試試。不需要找社群顧問，就是打開你的 IG，叫 Claude 陪你一起看。</p><p>👉 <strong>它會讓你看到自己沒注意到的盲點</strong><br>👉 <strong>它不給制式建議，它問你問題</strong><br>👉 <strong>最後你得到的，是你自己想清楚的答案</strong></p><p>這大概是我目前用 AI 最有收穫的一次對話。</p></div></div><div class="note-step"><div class="step-header"><span class="step-num">FAQ</span>常見問題</div><div class="step-body"><p><strong>Q：Claude in Chrome 是什麼？</strong></p><p>A：Claude in Chrome 是 Anthropic 推出的 Chrome 瀏覽器擴充功能，讓 Claude AI 可以直接看到你正在瀏覽的網頁並提供協助，包括分析 Instagram 帳號、優化內容策略等。需要 Claude 付費方案才能使用。</p><p><strong>Q：Claude 可以幫我分析 Instagram 帳號嗎？</strong></p><p>A：可以。透過 Claude in Chrome，Claude 能直接讀取你的 IG 主頁，分析帳號定位、受眾方向、內容策略，並給出具體建議。</p></div></div>`
       }
@@ -1947,7 +1960,10 @@ git push -u origin main</code></pre>
           '</button>' +
         '</div>' +
         '<div class="note-toggle" onclick="toggleNote(\'' + note.id + '\')">' +
-          '<h3><a href="' + note.id + '.html" onclick="event.stopPropagation()" style="color:inherit;text-decoration:none;">' + escapeHtml(note.title) + '</a></h3>' +
+          '<div style="flex:1;">' +
+            '<h3 style="margin:0;"><a href="' + note.id + '.html" onclick="event.stopPropagation()" style="color:inherit;text-decoration:none;">' + escapeHtml(note.title) + '</a></h3>' +
+            (note.subtitle ? '<p class="note-subtitle">' + escapeHtml(note.subtitle) + '</p>' : '') +
+          '</div>' +
           CHEVRON +
         '</div>' +
         '<div class="note-body" id="body-' + note.id + '">' +
