@@ -896,6 +896,17 @@
       padding-bottom: 0.5rem;
       border-bottom: 1px solid #e8edf5;
     }
+    .sidebar-subscribe-btn {
+      display: inline-block;
+      padding: 0.45rem 1.1rem;
+      background: #1a6bb5;
+      color: white;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .sidebar-subscribe-btn:hover { background: #155a9a; }
     .author-card { text-align: center; }
     .author-avatar {
       width: 80px; height: 80px; border-radius: 50%;
@@ -953,6 +964,7 @@
         <li><a class="nav-link" href="#about">關於我</a></li>
         <li><a class="nav-link" href="#notes">學習筆記</a></li>
         <li><a class="nav-link" href="#timeline">時間軸</a></li>
+        <li><a class="nav-link" href="about.html">關於平台</a></li>
       </ul>
     </div>
     <div id="reading-progress"></div>
@@ -1350,6 +1362,13 @@
             <button class="tag-cloud-btn" data-stag="ig" onclick="filterFromSidebar('ig')">IG 經營</button>
             <button class="tag-cloud-btn" data-stag="seo-aio" onclick="filterFromSidebar('seo-aio')">SEO／AIO</button>
           </div>
+        </div>
+
+        <!-- 最新電子報 -->
+        <div class="sidebar-card">
+          <h3>最新電子報</h3>
+          <p style="font-size:0.84rem;color:#666;line-height:1.6;margin:0.5rem 0 0.9rem;">每週一篇，關於 AI 趨勢與內容策略的第一手觀察。</p>
+          <a href="https://janeeeelin.substack.com" target="_blank" rel="noopener" class="sidebar-subscribe-btn">前往訂閱 →</a>
         </div>
 
         <!-- 訂閱電子報 -->

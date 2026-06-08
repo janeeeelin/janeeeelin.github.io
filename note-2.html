@@ -80,6 +80,11 @@
     #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     #back-to-top svg { width: 20px; height: 20px; stroke: white; }
     @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } }
+    .author-opinion { margin: 1rem 0; padding: 1rem 1.2rem; background: linear-gradient(135deg, #eef4ff 0%, #e8f0fe 100%); border-left: 4px solid #0d3b8e; border-radius: 0 10px 10px 0; }
+    .author-opinion-inner { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .author-opinion-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #c5d9f5; flex-shrink: 0; }
+    .author-opinion-label { font-size: 0.75rem; font-weight: 700; color: #1a5cbe; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+    .author-opinion-text { font-size: 0.93rem; color: #1a3a6a; font-style: italic; line-height: 1.75; margin: 0; }
   </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
@@ -99,6 +104,7 @@
         <li><a class="nav-link" href="index.html#about">關於我</a></li>
         <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
         <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="about.html">關於平台</a></li>
       </ul>
     </div>
   </nav>
@@ -228,6 +234,16 @@ git push -u origin main</code></pre>
     👉 <strong>錯了可以重來</strong>，程式不會爆炸，最多就是重新做一次<br>
     👉 <strong>每個工程師都是從小白開始的</strong>，你只是剛好比他們晚一點開始而已</p>
     <p>現在你正在看的這個網站，就是我用 Claude Code 一句一句說出來做的。如果我可以，你也可以 🌱</p>
+  </div>
+</div>
+
+<div class="author-opinion">
+  <div class="author-opinion-inner">
+    <img src="avatar.jpg" alt="Jane" class="author-opinion-avatar">
+    <div class="author-opinion-body">
+      <p class="author-opinion-label">Jane 的觀點</p>
+      <p class="author-opinion-text">「門檻從來不是技術，是你願不願意開始。工具已經準備好了，缺的只是那第一步。」</p>
+    </div>
   </div>
 </div>
 

@@ -100,6 +100,11 @@
     #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     #back-to-top svg { width: 20px; height: 20px; stroke: white; }
     @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+    .author-opinion { margin: 1rem 0; padding: 1rem 1.2rem; background: linear-gradient(135deg, #eef4ff 0%, #e8f0fe 100%); border-left: 4px solid #0d3b8e; border-radius: 0 10px 10px 0; }
+    .author-opinion-inner { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .author-opinion-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #c5d9f5; flex-shrink: 0; }
+    .author-opinion-label { font-size: 0.75rem; font-weight: 700; color: #1a5cbe; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+    .author-opinion-text { font-size: 0.93rem; color: #1a3a6a; font-style: italic; line-height: 1.75; margin: 0; }
   </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
@@ -120,6 +125,7 @@
         <li><a class="nav-link" href="index.html#about">關於我</a></li>
         <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
         <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="about.html">關於平台</a></li>
       </ul>
     </div>
   </nav>
@@ -234,6 +240,16 @@ npm --version</code></pre>
 cd ~/Desktop/claude-test
 claude</code></pre>
     <p>看到 Claude Code 的提示符號出現，成功了！對工程小白的我來說，這一刻真的超有成就感 🌱</p>
+  </div>
+</div>
+
+<div class="author-opinion">
+  <div class="author-opinion-inner">
+    <img src="avatar.jpg" alt="Jane" class="author-opinion-avatar">
+    <div class="author-opinion-body">
+      <p class="author-opinion-label">Jane 的觀點</p>
+      <p class="author-opinion-text">「很多時候擋住我們的不是能力，是空間——磁碟的空間，也是心裡的空間。清掉不需要的，才能裝進新的。」</p>
+    </div>
   </div>
 </div>
 

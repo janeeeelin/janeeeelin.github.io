@@ -75,6 +75,11 @@
     #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     #back-to-top svg { width: 20px; height: 20px; stroke: white; }
     @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } }
+    .author-opinion { margin: 1rem 0; padding: 1rem 1.2rem; background: linear-gradient(135deg, #eef4ff 0%, #e8f0fe 100%); border-left: 4px solid #0d3b8e; border-radius: 0 10px 10px 0; }
+    .author-opinion-inner { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .author-opinion-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #c5d9f5; flex-shrink: 0; }
+    .author-opinion-label { font-size: 0.75rem; font-weight: 700; color: #1a5cbe; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+    .author-opinion-text { font-size: 0.93rem; color: #1a3a6a; font-style: italic; line-height: 1.75; margin: 0; }
   </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
@@ -94,6 +99,7 @@
         <li><a class="nav-link" href="index.html#about">關於我</a></li>
         <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
         <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="about.html">關於平台</a></li>
       </ul>
     </div>
   </nav>
@@ -150,6 +156,16 @@
     <p>如果你也有 IG 帳號但搞不清楚方向，這個方式值得試試。不需要找社群顧問，就是打開你的 IG，叫 Claude 陪你一起看。</p>
     <p>👉 <strong>它會讓你看到自己沒注意到的盲點</strong><br>👉 <strong>它不給制式建議，它問你問題</strong><br>👉 <strong>最後你得到的，是你自己想清楚的答案</strong></p>
     <p>這大概是我目前用 AI 最有收穫的一次對話。</p>
+  </div>
+</div>
+
+<div class="author-opinion">
+  <div class="author-opinion-inner">
+    <img src="avatar.jpg" alt="Jane" class="author-opinion-avatar">
+    <div class="author-opinion-body">
+      <p class="author-opinion-label">Jane 的觀點</p>
+      <p class="author-opinion-text">「被看見這件事，比我們想的更需要主動設計。把最好的東西藏在限時動態裡，不是謙虛，是浪費。」</p>
+    </div>
   </div>
 </div>
 

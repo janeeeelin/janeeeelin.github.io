@@ -75,6 +75,11 @@
     #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     #back-to-top svg { width: 20px; height: 20px; stroke: white; }
     @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } }
+    .author-opinion { margin: 1rem 0; padding: 1rem 1.2rem; background: linear-gradient(135deg, #eef4ff 0%, #e8f0fe 100%); border-left: 4px solid #0d3b8e; border-radius: 0 10px 10px 0; }
+    .author-opinion-inner { display: flex; gap: 0.9rem; align-items: flex-start; }
+    .author-opinion-avatar { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #c5d9f5; flex-shrink: 0; }
+    .author-opinion-label { font-size: 0.75rem; font-weight: 700; color: #1a5cbe; letter-spacing: 0.06em; margin-bottom: 0.35rem; }
+    .author-opinion-text { font-size: 0.93rem; color: #1a3a6a; font-style: italic; line-height: 1.75; margin: 0; }
   </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
@@ -94,6 +99,7 @@
         <li><a class="nav-link" href="index.html#about">關於我</a></li>
         <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
         <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="about.html">關於平台</a></li>
       </ul>
     </div>
   </nav>
@@ -188,6 +194,16 @@
     ✓ <strong>課程內容有沒有跟上 2025 年後的 AI 搜尋變化</strong>——2023 年以前的 SEO 課程很多已經過時<br>
     ✓ <strong>有沒有教你「寫什麼」而不只是「怎麼優化」</strong>——工具會變，內容思維才是核心</p>
     <p>最後一點最重要：<strong>任何課程都只是起點，你的產業知識和真實經驗，才是 AI 無法取代、也最值得被引用的內容。</strong></p>
+  </div>
+</div>
+
+<div class="author-opinion">
+  <div class="author-opinion-inner">
+    <img src="avatar.jpg" alt="Jane" class="author-opinion-avatar">
+    <div class="author-opinion-body">
+      <p class="author-opinion-label">Jane 的觀點</p>
+      <p class="author-opinion-text">「工具會一直在變，但內容思維才是護城河。不管 AI 搜尋怎麼演化，真正有觀點、有經驗、有人味的內容，永遠是最難被取代的。」</p>
+    </div>
   </div>
 </div>
 

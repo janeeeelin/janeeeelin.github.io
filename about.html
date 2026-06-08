@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>關於 Jane's Lens - 我們是誰，為誰存在</title>
+  <meta name="description" content="Jane's Lens 是一個觀察 AI 時代的第一手紀錄平台。有立場、有觀點、有真實歷程——記錄 AI 重寫世界的每一個足跡。">
+  <meta property="og:title" content="關於 Jane's Lens">
+  <meta property="og:description" content="觀察 AI 時代的第一手紀錄平台。有立場、有觀點、有真實歷程。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/about.html">
+  <meta property="og:type" content="website">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover, .nav-link.active { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .page-card {
+      background: white;
+      border: 1px solid #e8edf5;
+      border-left: 3px solid #1a6bb5;
+      border-radius: 16px;
+      padding: 2.4rem 2.6rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.6rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .page-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      color: #1a2a4a;
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
+    .page-subtitle {
+      font-size: 0.88rem;
+      color: #aaa;
+      letter-spacing: 0.08em;
+      margin-bottom: 2rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid #e8edf5;
+    }
+    .about-section { margin-bottom: 2rem; }
+    .about-section h2 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem;
+      color: #1a2a4a;
+      font-weight: 700;
+      margin-bottom: 0.9rem;
+      padding-left: 0.8rem;
+      border-left: 3px solid #1a6bb5;
+    }
+    .about-section p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.9;
+    }
+    .about-section p + p { margin-top: 0.7rem; }
+    .cta-row {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-top: 2.2rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid #e8edf5;
+    }
+    .cta-btn-ig {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.4rem; border-radius: 30px;
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: white; font-size: 0.88rem; font-weight: 600; text-decoration: none;
+      box-shadow: 0 4px 14px rgba(188,24,136,0.25); transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn-ig:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.35); }
+    .cta-btn-ig svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .cta-btn-sub {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1.4rem; border-radius: 30px;
+      background: #1a6bb5; color: white; font-size: 0.88rem; font-weight: 600;
+      text-decoration: none; transition: background 0.2s, transform 0.2s;
+    }
+    .cta-btn-sub:hover { background: #155a9a; transform: translateY(-2px); }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) {
+      .page-card { padding: 1.5rem 1.2rem; }
+      .cta-row { flex-direction: column; }
+      .cta-btn-ig, .cta-btn-sub { justify-content: center; }
+    }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html#about">關於我</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link active" href="about.html">關於平台</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="page-card">
+      <a href="index.html" class="back-link">← 回到首頁</a>
+      <h1 class="page-title">關於 Jane's Lens</h1>
+      <p class="page-subtitle">ABOUT THIS PLATFORM</p>
+
+      <div class="about-section">
+        <h2>這個平台是什麼</h2>
+        <p>Jane's Lens 是一個觀察 AI 時代的第一手紀錄平台。不是教學網站，不是工具清單，而是一個有立場、有觀點、有真實歷程的地方。</p>
+        <p>我們共同見證 AI 正在重寫世界的規則——這裡記錄的，是這場革命裡值得被看見的每一個足跡。</p>
+      </div>
+
+      <div class="about-section">
+        <h2>為誰而存在</h2>
+        <p>為那些不滿足於只知道「怎麼用」，還想知道「為什麼」和「接下來會怎樣」的人。</p>
+        <p>為在 AI 浪潮裡想找到自己位置的創作者、業主、和思考者。</p>
+        <p>為相信眼光比工具更重要的人。</p>
+      </div>
+
+      <div class="about-section">
+        <h2>關於 Jane</h2>
+        <p>我是林真，廣告人出身，AI 實踐者，也是一個持續觀察這個世界如何被重新定義的人。</p>
+        <p>從一個工程小白，用 Claude Code 從零建起這個平台——不是因為我懂技術，而是因為我相信，任何人都可以在 AI 時代找到自己的表達方式。</p>
+        <p>Jane's Lens 是我的鏡頭，也可以是你的。</p>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta-btn-ig" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          來 Instagram 找我
+        </a>
+        <a class="cta-btn-sub" href="https://janeeeelin.substack.com" target="_blank" rel="noopener">
+          ✉ 訂閱電子報
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+  </script>
+</body>
+</html>
