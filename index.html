@@ -1401,6 +1401,112 @@
 
     const NOTES = [
       {
+        id: 'note-8',
+        date: '2026-06-08',
+        tags: ['ai-tools', 'beginner'],
+        tagLabels: { 'ai-tools': 'AI 工具', 'beginner': '新手教學' },
+        title: '中小企業主的 AI 入門清單：按工作類型分類',
+        subtitle: '不用全部學會，先從你最痛的地方開始',
+        quote: '不要學 AI，要用 AI 解決你現在最花時間的問題。工具是手段，問題才是起點。',
+        content: `<p style="margin-bottom:0.9rem">很多業主知道 AI 很重要，但不知道從哪裡開始。這份清單不是要你把所有工具都學會——而是按照你的工作類型，告訴你最值得先學的那一個。從最痛的地方開始，其他的慢慢來。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 核心原則：不要學 AI，要用 AI 解決你現在最花時間的問題。工具是手段，問題才是起點。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">先學</span>所有業主都應該先學會的兩件事</div>
+  <div class="step-body">
+    <p>不管你是哪個產業，這兩個能力學會了，其他所有 AI 應用都會變得更容易：</p>
+    <p>📌 <strong>學會問問題（Prompt）</strong><br>
+    AI 的輸出品質，90% 取決於你怎麼問。「幫我寫文案」和「幫我寫一段針對 30-40 歲台灣媽媽、強調省時省力、語氣親切不誇張的產品介紹文案」，得到的結果差十倍。<br>
+    <em>今天就能做：把你最常問 AI 的三個問題，重新寫得更具體，比較輸出結果的差異。</em></p>
+    <p>📌 <strong>學會寫提案和企劃</strong><br>
+    不管是對客戶提案、跟供應商談判、還是內部報告，AI 可以幫你把想法整理成有說服力的文件。這是投資報酬率最高的 AI 應用之一。<br>
+    <em>今天就能做：把你下週要做的一個提案，先說給 Claude 聽，請它幫你整理成提案大綱。</em></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">行銷</span>行銷部門：從內容到影片全面升級</div>
+  <div class="step-body">
+    <p><strong>🎬 AI 拍影片——門檻最低、效果最驚人</strong></p>
+    <p>現在有幾個工具可以讓你不需要攝影師、不需要後製，直接產出行銷影片：</p>
+    <p>📌 <strong>HeyGen</strong>——上傳你的照片或影片，AI 幫你生成會說話的數位人，適合產品介紹、公司介紹影片<br>
+    📌 <strong>Runway</strong>——文字轉影片，輸入你想要的場景描述，AI 直接生成<br>
+    📌 <strong>CapCut AI</strong>——自動剪輯、加字幕、生成短影音，適合 IG Reels 和 TikTok</p>
+    <p><strong>📢 行銷活動曝光——讓 AI 幫你規劃和執行</strong></p>
+    <p>📌 <strong>活動企劃</strong>：告訴 Claude 你的產品、預算、目標受眾，請它幫你規劃完整的行銷活動方案，包含時程、渠道、文案方向<br>
+    📌 <strong>多平台內容</strong>：一篇核心內容，請 AI 幫你改寫成 IG 貼文、FB 文章、LINE 官方帳號訊息、電子報——同樣的資訊，觸及四個平台<br>
+    📌 <strong>廣告文案測試</strong>：請 AI 同時生成五個不同角度的廣告文案，你來選最好的，或全部測試看哪個轉換率最高</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">客服</span>客服部門：24 小時不下班的第一線</div>
+  <div class="step-body">
+    <p><strong>最值得先做的：建立 AI 客服知識庫</strong></p>
+    <p>把你最常被問的 20 個問題整理成文件，餵給 AI，設定成自動回覆。80% 的客服問題是重複的，AI 可以處理這 80%，讓你的人力專注在真正需要判斷的 20%。</p>
+    <p>📌 <strong>LINE 官方帳號接 AI</strong>——透過 Manychat 或 ManyBot，讓 LINE 官方帳號自動回覆常見問題<br>
+    📌 <strong>負評處理</strong>——遇到 Google 評論或社群負評，把評論內容貼給 Claude，請它幫你起草一個專業、有溫度、不卑不亢的回覆<br>
+    📌 <strong>客訴分析</strong>——每個月把客訴記錄貼給 AI 分析，找出最常出現的問題根源，比你自己看快十倍</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">財務</span>財務部門：把數字變成決策依據</div>
+  <div class="step-body">
+    <p><strong>注意：AI 不能替你做財務決策，但可以幫你理解數字在說什麼。</strong></p>
+    <p>📌 <strong>財務報告解讀</strong>——把你的損益表或現金流量表貼給 Claude，問它「這份報告有哪些值得注意的訊號？」，它會幫你找出異常和趨勢<br>
+    📌 <strong>預算企劃書</strong>——告訴 AI 你的業務目標和現有資源，請它幫你起草下季的預算分配建議<br>
+    📌 <strong>合約審閱</strong>——把合約條文貼給 Claude，請它標出需要注意的條款和潛在風險（正式簽約前還是要找律師確認）<br>
+    📌 <strong>日常定時作業</strong>——每週固定把銷售數據貼給 AI，請它生成一頁式週報，省去整理和撰寫的時間</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">營運</span>營運部門：讓重複的事情自動化</div>
+  <div class="step-body">
+    <p><strong>日常定時作業——這是業主最容易被 AI 解放的地方</strong></p>
+    <p>📌 <strong>會議記錄</strong>——用 Otter.ai 或 Notion AI 自動轉錄會議內容，生成摘要和待辦事項，再也不用有人專門記錄<br>
+    📌 <strong>週報月報</strong>——把各部門的數據丟給 AI，自動生成格式一致的報告<br>
+    📌 <strong>SOP 文件</strong>——把你腦子裡的作業流程說給 AI 聽，請它幫你整理成標準作業程序文件，新人培訓時間直接減半<br>
+    📌 <strong>供應商比價</strong>——把多家供應商的報價單貼給 AI，請它整理成比較表並分析優劣<br>
+    📌 <strong>人才招募</strong>——請 AI 幫你寫職缺描述、設計面試問題、或初步篩選履歷重點</p>
+    <p><strong>自動化工具推薦：</strong><br>
+    📌 <strong>Zapier + AI</strong>——連結你使用的各種工具（Email、Google Sheets、CRM），設定自動觸發的 AI 工作流程<br>
+    📌 <strong>Make（原 Integromat）</strong>——比 Zapier 更彈性的自動化工具，適合有特定需求的流程</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">清單</span>今天就能開始的五件事</div>
+  <div class="step-body">
+    <p>不需要等，今天就可以做：</p>
+    <p>① <strong>設定 Google Alerts</strong>——監控你的品牌名稱（免費，五分鐘搞定）<br>
+    ② <strong>問 AI 一個你最頭痛的業務問題</strong>——不管是文案、策略還是決策，先試試 AI 給你什麼答案<br>
+    ③ <strong>把下一份提案大綱交給 AI 起草</strong>——你說方向，它整理結構<br>
+    ④ <strong>用 CapCut AI 做一支 30 秒產品影片</strong>——不需要攝影師，手機拍素材就夠<br>
+    ⑤ <strong>把最常見的五個客服問題整理成文件</strong>——這是建立 AI 客服的第一步</p>
+    <p>不需要一次全部做完。這週做一件，下週再做一件。三個月後，你的工作方式會完全不一樣。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：中小企業導入 AI 工具，應該從哪裡開始？</strong></p>
+    <p>A：從你現在最花時間、最重複的工作開始。不要問「AI 能做什麼」，要問「我每週花最多時間在哪件事上，AI 可以幫我減少多少？」找到那個答案，就是你的起點。</p>
+    <p><strong>Q：不懂技術的業主可以用 AI 工具嗎？</strong></p>
+    <p>A：完全可以。現在大多數 AI 工具都是對話介面——你用中文說你想要什麼，它直接給你結果。不需要學程式，不需要懂技術，只需要學會把問題說清楚。</p>
+    <p><strong>Q：AI 會取代我的員工嗎？</strong></p>
+    <p>A：AI 更可能取代的是「重複性工作」，而不是「人」。導入 AI 的目的是讓你的員工從重複的事情裡解放出來，專注在真正需要判斷力和創造力的工作。善用 AI 的團隊，會比不用的競爭對手更有效率。</p>
+    <p><strong>Q：用 AI 做行銷影片需要什麼設備？</strong></p>
+    <p>A：最基本只需要一支手機。用手機拍攝產品或場景素材，再用 CapCut AI 自動剪輯、加字幕、生成短影音。進階一點可以用 HeyGen 生成 AI 數位人，完全不需要出鏡。</p>
+  </div>
+</div>`,
+      },
+      {
         id: 'note-7',
         date: '2026-06-08',
         tags: ['ai-tools', 'seo-aio'],
