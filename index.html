@@ -758,6 +758,7 @@
       .sidebar { position: static; }
     }
     @media (max-width: 600px) {
+      /* ── Navbar / hamburger ── */
       .hamburger { display: flex; }
       .nav-links {
         display: none;
@@ -775,15 +776,40 @@
       .nav-links.open { display: flex; }
       .nav-links li { width: 100%; text-align: center; }
       .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; color: #333; }
-      .card { padding: 1.5rem 1.2rem; }
+
+      /* ── Layout ── */
+      .page-outer { padding: 1.5rem 1rem; }
+
+      /* ── Hero ── */
+      .hero { padding: 1.8rem 1.2rem 1.6rem; }
+      .hero h1 { font-size: clamp(1.35rem, 7vw, 1.9rem); }
+      .hero-deco { letter-spacing: 0.2rem; font-size: 1.1rem; }
+      .hero-sub { font-size: 0.82rem; letter-spacing: 0.18em; }
+      .hero p { font-size: 0.95rem; }
+      .hero-flower { display: none; }
+
+      /* ── Cards / notes ── */
+      .card { padding: 1.4rem 1.1rem; }
+      .note-item { padding: 1rem 1.1rem; }
+      .note-cover { height: 120px; }
+      .share-bar { flex-wrap: wrap; }
+
+      /* ── Subscribe iframe ── */
+      iframe { max-width: 100%; }
+      .sidebar-card iframe { height: 100px; }
+
+      /* ── FAQ ── */
+      .faq-item dt { font-size: 0.9rem; padding: 0.5rem 0.9rem; }
+      .faq-item dd { font-size: 0.9rem; padding: 0.6rem 0.9rem; line-height: 1.78; }
+
+      /* ── Timeline ── */
       .timeline::before { left: 19px; }
       .timeline-item { flex-direction: column !important; padding: 0 0 0 3.8rem !important; justify-content: flex-start !important; }
       .timeline-dot { left: 19px; }
-      .note-cover { height: 120px; }
-      .share-bar { flex-wrap: wrap; }
+
+      /* ── Misc ── */
       #back-to-top { bottom: 1.2rem; right: 1.2rem; width: 40px; height: 40px; }
       .sf-deco { display: none; }
-      .hero-sub { font-size: 0.9rem; }
       p, .card p, .hero p, .note-content, .step-body p {
         line-height: 1.95;
         letter-spacing: 0.02em;
