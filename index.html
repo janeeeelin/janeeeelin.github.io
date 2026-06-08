@@ -819,21 +819,35 @@
       .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; color: #333; }
 
       /* ── Layout ── */
-      .page-outer { padding: 1.5rem 1rem; }
+      .page-outer { padding: 1.5rem 0.8rem; }
+      .wrapper { padding: 0 0.8rem; }
 
       /* ── Hero ── */
       .hero { padding: 1.8rem 1.2rem 1.6rem; }
-      .hero h1 { font-size: clamp(1.35rem, 7vw, 1.9rem); }
+      .hero h1 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
       .hero-deco { letter-spacing: 0.2rem; font-size: 1.1rem; }
-      .hero-sub { font-size: 0.82rem; letter-spacing: 0.18em; }
-      .hero p { font-size: 0.95rem; }
+      .hero-sub { font-size: 0.72rem; letter-spacing: 0.12em; }
+      .hero p { font-size: 0.9rem; }
       .hero-flower { display: none; }
 
       /* ── Cards / notes ── */
-      .card { padding: 1.4rem 1.1rem; }
-      .note-item { padding: 1rem 1.1rem; }
+      .card { padding: 1rem; }
+      .note-item { padding: 1rem; }
       .note-cover { height: 120px; }
       .share-bar { flex-wrap: wrap; }
+
+      /* ── Note header row ── */
+      .note-header-row { flex-wrap: nowrap; gap: 0.4rem; font-size: 0.75rem; }
+      .note-header-row .note-date,
+      .note-header-row .note-tag,
+      .note-header-row .read-time { font-size: 0.75rem; }
+      .like-btn { padding: 0.2rem 0.5rem; font-size: 0.75rem; }
+
+      /* ── About section ── */
+      .card p, .about-section p {
+        line-height: 1.7;
+        letter-spacing: 0;
+      }
 
       /* ── Subscribe iframe ── */
       iframe { max-width: 100%; }
@@ -851,7 +865,7 @@
       /* ── Misc ── */
       #back-to-top { bottom: 1.2rem; right: 1.2rem; width: 40px; height: 40px; }
       .sf-deco { display: none; }
-      p, .card p, .hero p, .note-content, .step-body p {
+      p, .hero p, .note-content, .step-body p {
         line-height: 1.95;
         letter-spacing: 0.02em;
         word-break: break-word;
