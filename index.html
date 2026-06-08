@@ -295,6 +295,8 @@
     .note-tag[data-tag="ig"]:hover { background: #be185d; color: white; }
     .note-tag[data-tag="seo-aio"] { background: #ccfbf1; color: #0f766e; }
     .note-tag[data-tag="seo-aio"]:hover { background: #0f766e; color: white; }
+    .note-tag[data-tag="ai-tools"] { background: #fef9c3; color: #854d0e; }
+    .note-tag[data-tag="ai-tools"]:hover { background: #854d0e; color: white; }
     .note-toggle {
       display: flex;
       align-items: center;
@@ -1263,6 +1265,7 @@
           <button class="tag-filter-btn" data-tag="claude-ai">Claude AI</button>
           <button class="tag-filter-btn" data-tag="ig">IG 經營</button>
           <button class="tag-filter-btn" data-tag="seo-aio">SEO／AIO</button>
+          <button class="tag-filter-btn" data-tag="ai-tools">AI 工具</button>
         </div>
 
         <!-- 筆記列表 -->
@@ -1397,6 +1400,92 @@
     // ── Data ──────────────────────────────────────────────────────────────────
 
     const NOTES = [
+      {
+        id: 'note-5',
+        date: '2026-06-08',
+        tags: ['ai-tools', 'claude-ai'],
+        tagLabels: { 'ai-tools': 'AI 工具', 'claude-ai': 'Claude AI' },
+        title: 'Claude vs ChatGPT：內容創作者該用哪個？',
+        subtitle: '我同時用了三個月，說說真實的感受',
+        quote: 'AI 工具不是競爭關係，它們是不同性格的工作夥伴。學會在對的時機找對的人，才是真正的 AI 時代競爭力。',
+        content: `<p style="margin-bottom:0.9rem">這篇不是規格比較表。網路上那種「Claude 在 X 項目得 ★★★★，ChatGPT 在 Y 項目得 ★★★」的文章已經夠多了。我想說的是：作為一個廣告人、內容創作者，我實際同時使用兩個 AI 三個月之後，真實的感受是什麼。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">前言</span>我現在的使用習慣</div>
+  <div class="step-body">
+    <p>我現在問問題，會同時問兩個 AI，然後看哪個答案更好。</p>
+    <p>不是因為我閒，而是因為這兩個工具的「個性」真的不一樣——同樣一個問題，它們給你的角度、深度、風格，往往差很多。</p>
+    <p>慢慢地，我開始知道什麼問題該問誰。這篇就是我摸索出來的那套邏輯。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>ChatGPT 比較像一個「聰明的朋友」</div>
+  <div class="step-body">
+    <p>ChatGPT 很擅長「跟人有關」的事情。</p>
+    <p>📌 <strong>聊天、腦力激盪</strong>——它會跟你來回對話，給你很多方向<br>
+    📌 <strong>分析人的行為和心理</strong>——問它受眾分析、消費者洞察，它給的角度很豐富<br>
+    📌 <strong>創意發散</strong>——需要很多不同方向的想法時，ChatGPT 的廣度很夠</p>
+    <p>它的感覺比較像在跟一個很博學的朋友聊天——輕鬆、有來有往、會給你意想不到的連結。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>Claude 比較像一個「可靠的執行夥伴」</div>
+  <div class="step-body">
+    <p>Claude 最讓我印象深刻的，是執行任務時的清晰和輕鬆。</p>
+    <p>📌 <strong>執行具體任務</strong>——給它一個明確的目標，它會把事情做完，不會繞圈子<br>
+    📌 <strong>電腦和工程問題</strong>——遇到技術問題，Claude 給的解法直接、可以照著做<br>
+    📌 <strong>長篇內容和結構性工作</strong>——需要有條理、有架構的輸出，Claude 更穩定</p>
+    <p>這個網站，就是我和 Claude 一起從零建起來的。從安裝環境、寫程式碼、到部署上線——我一行程式都不會，但 Claude 帶著我一步一步完成了。這件事讓我對它的信任，超過任何評測。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>寫程式這件事，其實兩個都可以</div>
+  <div class="step-body">
+    <p>很多人說「寫程式要用 Claude」，但我的經驗是：ChatGPT 寫程式也完全沒問題。</p>
+    <p>真正的差別不在能力，在<strong>溝通風格</strong>。</p>
+    <p>Claude 在執行工程任務時，比較不會「多話」——它不會給你五種可能的解法讓你選，它會直接給你最好的那個，然後解釋為什麼。對我這種想要「告訴我該怎麼做就好」的人，這種風格更順。</p>
+    <p>ChatGPT 比較傾向給你選項和背景知識，如果你想學習原理，它反而更適合。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>我的使用分工</div>
+  <div class="step-body">
+    <p>三個月下來，我自然形成了這套分工：</p>
+    <p>🔵 <strong>用 Claude 的時候：</strong><br>
+    需要執行一件具體的事、遇到技術問題、寫需要結構的長篇內容、建網站改程式</p>
+    <p>🟢 <strong>用 ChatGPT 的時候：</strong><br>
+    需要腦力激盪、分析人的行為和動機、想要多個不同角度、純粹想聊想法</p>
+    <p>🔄 <strong>兩個都問的時候：</strong><br>
+    重要的決策、不確定哪個答案更好、想看不同切入點</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>給內容創作者的建議</div>
+  <div class="step-body">
+    <p>如果你是內容創作者，我的建議是：<strong>兩個都用，但先搞清楚你要解決什麼問題。</strong></p>
+    <p>不要問「哪個比較好」，要問「我現在要做的這件事，哪個更適合」。</p>
+    <p>AI 工具不是競爭關係，它們是不同性格的工作夥伴。學會在對的時機找對的人，才是真正的 AI 時代競爭力。</p>
+    <p>而且說實話——同時用兩個，讓你永遠有第二個意見。在這個資訊爆炸的時代，有第二個意見，比什麼都珍貴。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：Claude 和 ChatGPT 哪個比較適合內容創作者？</strong></p>
+    <p>A：兩個各有優勢。ChatGPT 擅長創意發散和人物分析，Claude 擅長執行具體任務和結構性輸出。建議兩個都使用，根據任務性質選擇。</p>
+    <p><strong>Q：Claude 可以幫我建網站嗎？</strong></p>
+    <p>A：可以。透過 Claude Code，即使完全不懂程式也能建立個人網站。只需要用中文描述你想要什麼，Claude 會直接幫你寫好所有程式碼。</p>
+    <p><strong>Q：同時訂閱兩個 AI 工具值得嗎？</strong></p>
+    <p>A：如果你是內容創作者或業主，值得。兩個工具的月費加起來約台幣 600-900 元，但能節省的時間和提升的工作品質，遠超過這個成本。</p>
+  </div>
+</div>`,
+      },
       {
         id: 'note-4',
         date: '2026-05-29',
