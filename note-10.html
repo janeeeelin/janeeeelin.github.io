@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>線上課程行銷的背後：破解手法、工具箱、和那個沒人說的真相 - Jane's Lens</title>
+  <meta name="description" content="你買的不是課程，你買的是「焦慮消失」的那一刻。拆解五種線上課程行銷手法、背後技術工具箱，以及用 AI 做課程的完整流程。">
+  <meta property="og:title" content="線上課程行銷的背後：破解手法、工具箱、和那個沒人說的真相 - Jane's Lens">
+  <meta property="og:description" content="你買的不是課程，你買的是「焦慮消失」的那一刻。拆解痛點文案、見證人、倒數計時等五大手法，以及 AI 做課程的完整流程。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-10.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.ai-tools { background: #fef9c3; color: #854d0e; }
+    .note-tag.seo-aio { background: #ccfbf1; color: #0f766e; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #1a0a2e 0%, #0f1a2e 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html#about">關於我</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="about.html">關於平台</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-06-09</span>
+        <span class="note-tag ai-tools">AI 工具</span>
+        <span class="note-tag seo-aio">SEO／AIO</span>
+      </div>
+      <h1 class="note-page-title">線上課程行銷的背後：破解手法、工具箱、和那個沒人說的真相</h1>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv10bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1a0a2e"/>
+              <stop offset="100%" stop-color="#0f1a2e"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv10bg)" rx="12"/>
+          <!-- Funnel shape left -->
+          <polygon points="30,30 130,30 110,80 50,80" fill="rgba(99,102,241,0.18)" stroke="#818cf8" stroke-width="1.2" opacity="0.85"/>
+          <polygon points="50,80 110,80 95,110 65,110" fill="rgba(99,102,241,0.22)" stroke="#818cf8" stroke-width="1.2" opacity="0.85"/>
+          <polygon points="65,110 95,110 87,128 73,128" fill="rgba(99,102,241,0.28)" stroke="#818cf8" stroke-width="1.2" opacity="0.85"/>
+          <text x="80" y="54" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#c7d2fe" opacity="0.9">焦慮受眾</text>
+          <text x="80" y="98" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#a5b4fc" opacity="0.85">痛點文案</text>
+          <text x="80" y="122" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#818cf8" opacity="0.9">付款</text>
+          <!-- Arrow center -->
+          <line x1="140" y1="80" x2="175" y2="80" stroke="#666" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/>
+          <polygon points="175,76 183,80 175,84" fill="#666" opacity="0.5"/>
+          <!-- Countdown timer box center -->
+          <rect x="185" y="54" width="110" height="52" rx="9" fill="rgba(224,80,80,0.12)" stroke="#f87171" stroke-width="1.5" opacity="0.85"/>
+          <text x="240" y="71" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#fca5a5" font-weight="bold" opacity="0.95">⏱ 限時特價</text>
+          <text x="240" y="84" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f87171" font-weight="bold" font-family="monospace" opacity="0.95">47:23:15</text>
+          <text x="240" y="98" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#fca5a5" opacity="0.75">原價 9,800 → 特價 3,800</text>
+          <!-- Arrow right -->
+          <line x1="298" y1="80" x2="333" y2="80" stroke="#666" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.5"/>
+          <polygon points="333,76 341,80 333,84" fill="#666" opacity="0.5"/>
+          <!-- AI Tools box right -->
+          <rect x="343" y="40" width="90" height="80" rx="9" fill="rgba(26,107,181,0.12)" stroke="#5ba3f5" stroke-width="1.3" opacity="0.85"/>
+          <text x="388" y="58" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#93c5fd" font-weight="bold" opacity="0.9">AI 工具箱</text>
+          <text x="388" y="71" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#7dd3fc" opacity="0.8">Gamma · HeyGen</text>
+          <text x="388" y="82" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#7dd3fc" opacity="0.8">ConvertKit</text>
+          <text x="388" y="93" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#7dd3fc" opacity="0.8">Deadline Funnel</text>
+          <text x="388" y="104" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#7dd3fc" opacity="0.8">Kajabi · Hahow</text>
+          <!-- Bottom label -->
+          <text x="240" y="150" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#555">線上課程行銷解析 · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">先說一個沒人想承認的事實：大多數人買了線上課程之後，從來沒有認真上完過。不是因為課程不好，而是因為他們當初買的，根本不是「學習」——他們買的是「知識焦慮消失」的那一刻。</p>
+
+<p style="margin-bottom:0.9rem">線上課程產業深諳這一點，並且把它發展成了一套精密的行銷系統。這篇想做兩件事：拆解這套系統讓你看清楚，然後告訴你如果你是業主，怎麼用同樣的工具做出真正有價值的課程行銷。</p>
+
+<div style="background:#fff3f3; border-left:4px solid #e05050; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#5a1a1a; font-weight:500;">⚠️ 先說清楚立場：這篇不是要你用這些手法去販賣焦慮。而是讓你看懂背後的邏輯——消費者看懂了可以保護自己，業主看懂了可以選擇做得更有良心。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">真相</span>知識焦慮，是線上課程最大的銷售引擎</div>
+  <div class="step-body">
+    <p>線上課程產業賣的不是知識，賣的是三種感覺：</p>
+    <p>😰 <strong>「我落後了」</strong>——你不學 AI，你會被淘汰；你不學投資，你會窮一輩子；你不學這個技能，你的競爭對手已經在學了<br>
+    😤 <strong>「這次我要改變」</strong>——買課的那一刻，大腦釋放多巴胺，感覺自己已經在進步了<br>
+    😌 <strong>「焦慮暫時消失」</strong>——付完款，那個「我應該學這個」的念頭暫時得到了安撫</p>
+    <p>問題是：多巴胺消退之後，課程還在那裡，但學習的動力已經不見了。</p>
+    <p>這不是你的問題，這是人類大腦的運作方式。線上課程產業只是非常精準地利用了它。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">手法</span>五種最常見的線上課程行銷手法拆解</div>
+  <div class="step-body">
+    <p><strong>🔴 手法一：痛點文案</strong><br>
+    「你是不是每天加班卻存不到錢？」「你是不是看著別人升職，自己卻原地踏步？」<br>
+    原理：先讓你感覺到痛，再告訴你這門課是止痛藥。<br>
+    <em>看穿它：問自己「這個痛點是我真實的問題，還是看到文案才覺得自己有這個問題？」</em></p>
+
+    <p><strong>🔴 手法二：見證人影片和截圖</strong><br>
+    「上完這門課，我三個月賺了 XX 萬」「我從零開始，現在已經自由工作者了」<br>
+    原理：社會認同——別人做到了，我也可以。<br>
+    <em>看穿它：見證人是最好的那幾個，不是平均值。問：「100 個學員裡，有幾個達到這個結果？」</em></p>
+
+    <p><strong>🔴 手法三：限時優惠倒數計時</strong><br>
+    「原價 9,800，限時 48 小時特價 3,800，倒數計時 47:23:15」<br>
+    原理：製造稀缺感和緊迫感，讓你來不及思考。<br>
+    <em>看穿它：絕大多數限時優惠是假的，計時器歸零後換個日期繼續跑。</em></p>
+
+    <p><strong>🔴 手法四：Email 催促序列</strong><br>
+    你留了 email 之後，接下來七天會收到精心設計的信件序列：第一天分享免費價值、第三天說你的故事、第五天推薦課程、第六天提醒快截止、第七天最後機會。<br>
+    原理：重複接觸，每次接觸都在加深你的信任和購買意願。<br>
+    <em>看穿它：這是系統自動發的，不是有人真的在關心你。</em></p>
+
+    <p><strong>🔴 手法五：社群炒作和免費直播</strong><br>
+    免費的三天挑戰賽、免費直播課、免費社團——最後一天開賣。<br>
+    原理：先給你價值，建立互惠心理；群體氛圍讓你感覺「大家都在買」。<br>
+    <em>看穿它：免費的內容是設計好的鉤子，真正的系統在付費課程裡——但付費課程裡又有更高價的課程等著你。</em></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">工具</span>背後的技術工具箱</div>
+  <div class="step-body">
+    <p>這套行銷系統背後，有一套標準的技術架構：</p>
+    <p>📌 <strong>Landing Page 工具</strong>——Clickfunnels、Kartra、台灣常用的 Teachify 或 Pressplay，建立銷售頁面和課程平台<br>
+    📌 <strong>Email 行銷工具</strong>——Mailchimp、ConvertKit、ActiveCampaign，自動發送預設的 email 序列<br>
+    📌 <strong>倒數計時工具</strong>——Deadline Funnel，可以追蹤個別用戶，讓每個人看到的倒數計時不一樣<br>
+    📌 <strong>廣告像素追蹤</strong>——Facebook Pixel、Google Tag，追蹤你在網站上的每個行為，再精準投放廣告<br>
+    📌 <strong>社群直播工具</strong>——Zoom Webinar、StreamYard，做免費直播課程<br>
+    📌 <strong>會員平台</strong>——Kajabi、Teachable、台灣的 Hahow，存放和銷售課程內容</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">製作</span>用 AI 做線上課程的完整流程</div>
+  <div class="step-body">
+    <p>如果你是業主，想自己做線上課程，以下是 AI 可以幫你做的每一個環節：</p>
+    <p><strong>① 課程規劃（Claude / ChatGPT）</strong><br>
+    💬「我想教『XX』這個主題，目標學員是 XX，請幫我設計一個 8 週的課程大綱，每週的學習目標和主要內容是什麼？」</p>
+    <p><strong>② 課程內容製作（AI 輔助）</strong><br>
+    📌 簡報製作：Gamma.app——輸入大綱，AI 自動生成精美簡報<br>
+    📌 影片腳本：Claude 幫你把每堂課的重點整理成說話稿<br>
+    📌 AI 主播：HeyGen——不想出鏡，讓 AI 數位人幫你上課</p>
+    <p><strong>③ 銷售頁面文案（Claude / ChatGPT）</strong><br>
+    💬「請幫我寫一個線上課程的銷售頁面，課程名稱是 XX，目標受眾的痛點是 XX，課程能解決的問題是 XX，請包含：吸引人的標題、痛點描述、課程介紹、學員見證區塊（格式）、FAQ、和 CTA。」</p>
+    <p><strong>④ Email 序列（Claude）</strong><br>
+    💬「請幫我寫一個 7 天的 email 序列，目的是讓潛在學員了解課程並決定購買，每封信的主題和重點如下...」</p>
+    <p><strong>⑤ 社群內容（Claude / Canva AI）</strong><br>
+    用 AI 幫你產出課程上市前的預熱內容，包含 IG 貼文、限時動態、Facebook 社團發文</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>如果你要做課程，請做這一件事</div>
+  <div class="step-body">
+    <p>行銷手法可以學，技術工具可以用。但在你決定做線上課程之前，請先誠實問自己一個問題：</p>
+    <p><strong>「學完這門課之後，學員的生活或工作會有什麼具體改變？」</strong></p>
+    <p>如果你有清楚的答案，那你有資格做這門課。</p>
+    <p>如果你的答案是「他們會學到很多知識」——那還不夠。知識本身不改變任何事，改變生活的是學員把知識用出來的那個行動。</p>
+    <p>台灣的線上課程市場已經被過度販賣的焦慮填滿了。下一個有機會的，是那些真的讓人學完、真的改變了什麼的課程。</p>
+    <p>用 AI 把行銷做好，但先把課程做好。這才是真正的護城河。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：線上課程行銷最有效的方式是什麼？</strong></p>
+    <p>A：最有效也最永續的方式是真實的學員成果。行銷手法可以帶來第一批學員，但口碑才能帶來持續的銷售。把精力放在確保學員真的完課並獲得成果，比花更多錢在廣告上更值得。</p>
+    <p><strong>Q：沒有技術背景可以自己架設線上課程平台嗎？</strong></p>
+    <p>A：可以。Hahow（台灣）、Teachable、Kajabi 等平台提供完整的課程架設功能，不需要技術背景。如果預算有限，從 Hahow 投稿開始是最低門檻的選擇；如果想自有平台，Teachable 的基礎方案月費約 $39 美元。</p>
+    <p><strong>Q：如何判斷一門線上課程值不值得買？</strong></p>
+    <p>A：問三個問題：①這門課能解決我一個具體的問題，而不只是讓我「更了解某個主題」嗎？②我現在的狀態是真的需要這個技能，還是只是被焦慮推著走？③如果沒有限時優惠，我下個月還會買嗎？三個都是肯定的，再買。</p>
+    <p><strong>Q：用 AI 製作線上課程內容，學員會感覺得出來嗎？</strong></p>
+    <p>A：如果你的課程核心是你的真實經驗和觀點，AI 只是幫你整理和表達，學員感受到的價值不會打折。如果你讓 AI 從頭到尾生成內容，沒有注入你的真實洞見，學員遲早會感覺到那種「空洞感」。</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-10')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-10')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-10" onclick="shareNote('copy','note-10')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-10">0</span>)</p>
+        <div data-comments-list="note-10" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-10" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-10')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-10');
+    document.querySelector('[data-comment-input="note-10"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-10'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
