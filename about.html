@@ -104,6 +104,30 @@
     #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
     #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    .author-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 1px solid #e8edf5;
+    }
+    .author-hero-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #c8d8f0;
+      box-shadow: 0 4px 18px rgba(26,107,181,0.15);
+      margin-bottom: 0.9rem;
+    }
+    .author-hero-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a2a4a;
+      letter-spacing: 0.06em;
+    }
     @media (max-width: 600px) {
       .page-card { padding: 1.5rem 1.2rem; }
       .cta-row { flex-direction: column; }
@@ -137,6 +161,12 @@
   <div class="wrapper">
     <div class="page-card">
       <a href="index.html" class="back-link">← 回到首頁</a>
+
+      <div class="author-hero">
+        <img src="avatar.jpg" alt="Jane 林真" class="author-hero-avatar">
+        <p class="author-hero-name">Jane 林真</p>
+      </div>
+
       <h1 class="page-title">關於 Jane's Lens</h1>
       <p class="page-subtitle">ABOUT THIS PLATFORM</p>
 
