@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>諮詢服務 - Jane's Lens</title>
+  <meta name="description" content="Jane 的 AI 行銷諮詢服務：品牌策略、KOL 評估、AI 工作流程建立。幫台灣中小企業業主找到 AI 在行銷上的實際應用方向。">
+  <meta property="og:title" content="諮詢服務 - Jane's Lens">
+  <meta property="og:description" content="你不需要一個 AI 專家，你需要一個懂行銷的人告訴你 AI 怎麼用在你的生意上。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/services.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+
+    /* ── Navbar ── */
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); transition: box-shadow 0.3s; }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 1160px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; font-weight: 700; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover, .nav-link.active { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── Layout ── */
+    .page-outer { max-width: 1160px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem; }
+    .page-layout { display: grid; grid-template-columns: 1fr 300px; gap: 2rem; align-items: start; }
+    .main-col { display: flex; flex-direction: column; gap: 1.5rem; min-width: 0; }
+    .sidebar { position: sticky; top: 80px; display: flex; flex-direction: column; gap: 1.2rem; }
+
+    /* ── Cards ── */
+    .card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2rem 2.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .section-label { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: white; background: #0d3b8e; padding: 0.25rem 0.75rem; border-radius: 20px; margin-bottom: 0.8rem; }
+    .card h2 { font-family: 'Noto Serif TC', serif; font-size: 1.5rem; color: #1a2a4a; margin-bottom: 1rem; }
+
+    /* ── Hero quote ── */
+    .hero-quote { font-family: 'Noto Serif TC', serif; font-size: clamp(1rem, 2.5vw, 1.25rem); color: #1a2a4a; line-height: 1.85; border-left: 4px solid #1a6bb5; padding: 0.8rem 0 0.8rem 1.2rem; margin-top: 0.4rem; }
+
+    /* ── Service grid ── */
+    .service-grid { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1rem; }
+    .service-card { background: linear-gradient(135deg, #f8faff, #f0f6ff); border: 1px solid #dde8ff; border-radius: 12px; padding: 1.5rem 1.6rem; display: flex; flex-direction: column; gap: 0.65rem; transition: transform 0.18s, box-shadow 0.18s; }
+    .service-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,107,181,0.10); }
+    .service-icon { font-size: 2rem; line-height: 1.2; }
+    .service-title { font-family: 'Noto Serif TC', serif; font-size: 1.08rem; font-weight: 700; color: #1a2a4a; }
+    .service-desc { font-size: 0.93rem; color: #555; line-height: 1.82; }
+    .service-btn { align-self: flex-start; margin-top: 0.3rem; display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.45rem 1.15rem; border-radius: 20px; background: transparent; border: 1.5px solid #1a6bb5; color: #1a6bb5; font-size: 0.84rem; font-family: 'Noto Sans TC', sans-serif; text-decoration: none; transition: all 0.18s; }
+    .service-btn:hover { background: #1a6bb5; color: white; }
+
+    /* ── Contact section ── */
+    .contact-section { background: linear-gradient(135deg, #eef4ff 0%, #e8f0fe 100%); border: 1px solid #c8d8f0; border-radius: 14px; padding: 2rem 2.2rem; text-align: center; }
+    .contact-section h3 { font-family: 'Noto Serif TC', serif; font-size: 1.35rem; color: #1a2a4a; margin-bottom: 0.6rem; }
+    .contact-section > p { font-size: 0.95rem; color: #555; line-height: 1.75; margin-bottom: 1.5rem; }
+    .contact-btns { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
+    .btn-line { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.6rem; border-radius: 30px; background: #00B900; color: white; font-size: 0.92rem; font-weight: 600; text-decoration: none; transition: transform 0.18s, box-shadow 0.18s; }
+    .btn-line:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,185,0,0.28); }
+    .btn-email { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.6rem; border-radius: 30px; background: #1a6bb5; color: white; font-size: 0.92rem; font-weight: 600; text-decoration: none; transition: transform 0.18s, box-shadow 0.18s; }
+    .btn-email:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,107,181,0.28); }
+    .btn-line svg, .btn-email svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── Footer note ── */
+    .service-note { text-align: center; font-size: 0.84rem; color: #aaa; letter-spacing: 0.03em; padding: 0.2rem 0; }
+
+    /* ── Sidebar ── */
+    .sidebar-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; padding: 1.3rem 1.4rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .sidebar-card h3 { font-family: 'Noto Serif TC', serif; font-size: 0.92rem; color: #1a2a4a; font-weight: 700; margin-bottom: 0.9rem; padding-bottom: 0.5rem; border-bottom: 1px solid #e8edf5; }
+    .author-card { text-align: center; }
+    .author-avatar { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; display: block; margin: 0 auto 0.8rem; border: 3px solid #e8edf5; box-shadow: 0 2px 10px rgba(26,107,181,0.15); }
+    .author-name { font-family: 'Noto Serif TC', serif; font-size: 1rem; color: #1a2a4a; font-weight: 700; margin-bottom: 0.3rem; }
+    .author-tagline { font-size: 0.82rem; color: #777; line-height: 1.7; }
+    .sidebar-contact-btns { display: flex; flex-direction: column; gap: 0.7rem; }
+    .sidebar-btn-line { display: flex; align-items: center; justify-content: center; gap: 0.45rem; padding: 0.55rem 1rem; border-radius: 20px; background: #00B900; color: white; font-size: 0.84rem; font-weight: 600; text-decoration: none; transition: background 0.18s; }
+    .sidebar-btn-line:hover { background: #009900; }
+    .sidebar-btn-email { display: flex; align-items: center; justify-content: center; gap: 0.45rem; padding: 0.55rem 1rem; border-radius: 20px; background: #1a6bb5; color: white; font-size: 0.84rem; font-weight: 600; text-decoration: none; transition: background 0.18s; }
+    .sidebar-btn-email:hover { background: #155a9a; }
+    .sidebar-btn-line svg, .sidebar-btn-email svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .sidebar-more-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.84rem; color: #1a6bb5; text-decoration: none; font-weight: 500; transition: gap 0.15s; }
+    .sidebar-more-link:hover { gap: 0.5rem; }
+
+    /* ── Footer ── */
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; margin-top: 2rem; }
+
+    /* ── Back to top ── */
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .page-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+      .page-outer { padding: 1.5rem 0.8rem; }
+      .card { padding: 1.2rem 1rem; }
+      .contact-btns { flex-direction: column; align-items: center; }
+      .contact-section { padding: 1.5rem 1.2rem; }
+    }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">主頁</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link active" href="services.html">諮詢服務</a></li>
+        <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-outer">
+    <div class="page-layout">
+
+      <!-- ── Main Column ── -->
+      <main class="main-col">
+
+        <!-- Hero -->
+        <div class="card">
+          <span class="section-label">✦ SERVICES</span>
+          <h2>諮詢服務</h2>
+          <p class="hero-quote">你不需要一個 AI 專家，你需要一個懂行銷的人告訴你 AI 怎麼用在你的生意上。</p>
+        </div>
+
+        <!-- Services -->
+        <div class="card">
+          <span class="section-label">📋 我能幫你做什麼</span>
+          <h2>三種服務方向</h2>
+          <div class="service-grid">
+
+            <div class="service-card">
+              <div class="service-icon">🎯</div>
+              <div class="service-title">品牌 AI 行銷策略諮詢</div>
+              <div class="service-desc">幫中小企業業主梳理品牌定位、受眾策略、和 AI 行銷工具的導入方向。從你現在的狀況出發，給你一個可以執行的行動計劃。</div>
+              <a class="service-btn" href="https://line.me/ti/p/~fud8853z" target="_blank" rel="noopener">歡迎聯繫討論</a>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">📊</div>
+              <div class="service-title">KOL 合作評估與策略</div>
+              <div class="service-desc">用 AI 工具幫你評估 KOL 的真實 CP 值、受眾契合度、和合作創意方向。付錢之前，先把帳算清楚。</div>
+              <a class="service-btn" href="https://line.me/ti/p/~fud8853z" target="_blank" rel="noopener">歡迎聯繫討論</a>
+            </div>
+
+            <div class="service-card">
+              <div class="service-icon">⚙️</div>
+              <div class="service-title">AI 行銷工作流程建立</div>
+              <div class="service-desc">幫你的團隊建立一套用 AI 提升效率的行銷工作流程，從文案生成、社群管理、到數據分析，讓你的人力專注在真正需要判斷的事情上。</div>
+              <a class="service-btn" href="https://line.me/ti/p/~fud8853z" target="_blank" rel="noopener">歡迎聯繫討論</a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="contact-section">
+          <h3>準備好開始了嗎？</h3>
+          <p>每個業主的狀況不一樣，歡迎先聊聊你的需求。</p>
+          <div class="contact-btns">
+            <a class="btn-line" href="https://line.me/ti/p/~fud8853z" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+              加 LINE 聊聊
+            </a>
+            <a class="btn-email" href="mailto:jhencyue@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              寄信給我
+            </a>
+          </div>
+        </div>
+
+        <p class="service-note">目前服務對象：台灣中小企業業主｜依需求報價，歡迎聯繫討論</p>
+
+      </main>
+
+      <!-- ── Sidebar ── -->
+      <aside class="sidebar">
+
+        <div class="sidebar-card author-card">
+          <img class="author-avatar" src="avatar.jpg" alt="Jane">
+          <p class="author-name">Jane</p>
+          <p class="author-tagline">廣告人出身的 AI 行銷實踐者<br>幫你把 AI 用在真實的生意上</p>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>馬上聯繫</h3>
+          <div class="sidebar-contact-btns">
+            <a class="sidebar-btn-line" href="https://line.me/ti/p/~fud8853z" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+              加 LINE 聊聊
+            </a>
+            <a class="sidebar-btn-email" href="mailto:jhencyue@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              寄信給我
+            </a>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>了解更多</h3>
+          <p style="font-size:0.83rem; color:#666; line-height:1.65; margin-bottom:0.8rem;">想知道 Jane 的背景和這個平台的故事？</p>
+          <a class="sidebar-more-link" href="about.html">關於 Jane's Lens →</a>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+  </div>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+  </script>
+</body>
+</html>
