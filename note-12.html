@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 台灣社群媒體現況：哪個平台還值得經營？ - Jane's Lens</title>
+  <meta name="description" content="數據說話，廣告人的真實建議。LINE、YouTube、Facebook、IG、TikTok、Threads——2026 年哪個平台值得你投入？">
+  <meta property="og:title" content="2026 台灣社群媒體現況：哪個平台還值得經營？ - Jane's Lens">
+  <meta property="og:description" content="不是每個平台都值得你的時間。2026 年的台灣，選對比全部都做更重要。廣告人的第一線數據觀察。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-12.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.ai-tools { background: #fef9c3; color: #854d0e; }
+    .note-tag.ig { background: #fce7f3; color: #be185d; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #0a1628 0%, #0f2040 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">主頁</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-06-09</span>
+        <span class="note-tag ai-tools">AI 工具</span>
+        <span class="note-tag ig">IG 經營</span>
+      </div>
+      <h1 class="note-page-title">2026 台灣社群媒體現況：哪個平台還值得經營？</h1>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv12bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0a1628"/>
+              <stop offset="100%" stop-color="#0f2040"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv12bg)" rx="12"/>
+          <!-- Title -->
+          <text x="240" y="20" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#93c5fd" font-weight="bold">2026 台灣社群媒體使用率</text>
+          <!-- LINE -->
+          <rect x="18" y="38" width="66" height="74" rx="5" fill="#00B900" opacity="0.18"/>
+          <rect x="18" y="38" width="66" height="74" rx="5" fill="none" stroke="#22c55e" stroke-width="1.3" opacity="0.75"/>
+          <text x="51" y="56" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#4ade80" font-weight="bold">LINE</text>
+          <text x="51" y="70" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#86efac">2,200萬</text>
+          <text x="51" y="84" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#22c55e" font-weight="bold">86.5%</text>
+          <text x="51" y="123" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#4ade80">滲透率第一</text>
+          <!-- YouTube -->
+          <rect x="94" y="50" width="66" height="62" rx="5" fill="#ef4444" opacity="0.15"/>
+          <rect x="94" y="50" width="66" height="62" rx="5" fill="none" stroke="#ef4444" stroke-width="1.3" opacity="0.7"/>
+          <text x="127" y="67" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#f87171" font-weight="bold">YouTube</text>
+          <text x="127" y="80" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#fca5a5">1,840萬</text>
+          <text x="127" y="93" text-anchor="middle" font-family="sans-serif" font-size="10.5" fill="#ef4444" font-weight="bold">79.4%</text>
+          <text x="127" y="123" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#f87171">超越 FB 第二</text>
+          <!-- Facebook -->
+          <rect x="170" y="60" width="66" height="52" rx="5" fill="#3b82f6" opacity="0.15"/>
+          <rect x="170" y="60" width="66" height="52" rx="5" fill="none" stroke="#3b82f6" stroke-width="1.3" opacity="0.65"/>
+          <text x="203" y="76" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#93c5fd" font-weight="bold">Facebook</text>
+          <text x="203" y="89" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#bfdbfe">1,710萬</text>
+          <text x="203" y="100" text-anchor="middle" font-family="sans-serif" font-size="9.5" fill="#3b82f6" font-weight="bold">73.8%</text>
+          <text x="203" y="123" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#93c5fd">有機觸及↓1%</text>
+          <!-- Instagram -->
+          <rect x="246" y="70" width="66" height="42" rx="5" fill="rgba(219,39,119,0.15)"/>
+          <rect x="246" y="70" width="66" height="42" rx="5" fill="none" stroke="#ec4899" stroke-width="1.3" opacity="0.65"/>
+          <text x="279" y="86" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#f9a8d4" font-weight="bold">Instagram</text>
+          <text x="279" y="99" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#fbcfe8">1,130萬</text>
+          <text x="279" y="123" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#f9a8d4">Z世代搜尋首選</text>
+          <!-- TikTok -->
+          <rect x="322" y="80" width="66" height="32" rx="5" fill="rgba(20,184,166,0.15)"/>
+          <rect x="322" y="80" width="66" height="32" rx="5" fill="none" stroke="#2dd4bf" stroke-width="1.3" opacity="0.65"/>
+          <text x="355" y="94" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#5eead4" font-weight="bold">TikTok</text>
+          <text x="355" y="106" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#99f6e4">834萬 +47.7%🔥</text>
+          <text x="355" y="123" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#2dd4bf">成長最快</text>
+          <!-- Threads -->
+          <rect x="398" y="72" width="70" height="40" rx="5" fill="rgba(167,139,250,0.15)"/>
+          <rect x="398" y="72" width="70" height="40" rx="5" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="4,2" opacity="0.8"/>
+          <text x="433" y="88" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#c4b5fd" font-weight="bold">Threads ★</text>
+          <text x="433" y="100" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#ddd6fe">台灣全球佔22%</text>
+          <text x="433" y="123" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#a78bfa">現在卡位！</text>
+          <!-- Footer label -->
+          <text x="240" y="150" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#475569">廣告人的真實建議 · Jane's Lens 2026</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">「現在還要經營 Facebook 嗎？Threads 該不該開？TikTok 值得投入嗎？」這是我這兩年被問最多次的問題。這篇用真實數據回答，加上廣告人的第一線觀察。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 結論先說：不是每個平台都值得你的時間。2026 年的台灣，你應該認真經營的平台只有兩到三個——選對比全部都做更重要。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">數據</span>2026 台灣社群媒體現況</div>
+  <div class="step-body">
+    <p>根據 DataReportal《Digital 2025 Taiwan》報告和最新調查數據：</p>
+    <p>📌 <strong>LINE：2,200 萬月活躍用戶</strong>，使用率 86.5%，幾乎等於全台人口，穩坐第一<br>
+    📌 <strong>YouTube：1,840 萬用戶</strong>，廣告觸及率 79.4%，超越 Facebook 成為第二大平台<br>
+    📌 <strong>Facebook：1,710 萬用戶</strong>，廣告觸及率 73.8%，但有機觸及率剩 1-2%<br>
+    📌 <strong>Instagram：1,130 萬用戶</strong>，女性佔 53.7%，18-34 歲是主力<br>
+    📌 <strong>TikTok：834 萬用戶</strong>，年成長率 47.7%，是所有平台中成長最快的<br>
+    📌 <strong>Threads：</strong>全球流量台灣佔 22% 居冠，是黑馬平台</p>
+    <p>整體趨勢：台灣人每天平均上網 7 小時，影音內容使用率躍升為第一，和親友聯繫並列 67.3%。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>LINE：每個品牌都應該有，但要用對方式</div>
+  <div class="step-body">
+    <p><strong>現況：</strong>台灣滲透率最高，幾乎人人都用。但 LINE 官方帳號的開啟率和互動率正在下滑——因為大家的 LINE 都已經被太多品牌塞滿了。</p>
+    <p><strong>值得經營嗎？</strong>值得，但重點是質量不是頻率。</p>
+    <p>✅ 適合：會員管理、促銷通知、客服、忠實顧客維繫<br>
+    ❌ 不適合：想靠 LINE 帶來新客，那個時代已經過了</p>
+    <p><strong>廣告人觀察：</strong>現在 LINE 最有效的用法是「已經認識你的人的維繫工具」，不是獲取新客的管道。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>Facebook：還沒死，但有機觸及已經死了</div>
+  <div class="step-body">
+    <p><strong>現況：</strong>用戶數還是龐大，但 Facebook 粉專的有機觸及率已經跌到 1-2%。你有 1 萬個粉絲，發一篇文，大約只有 100-200 人看到。</p>
+    <p><strong>值得經營嗎？</strong>要看你的目標。</p>
+    <p>✅ 適合：45 歲以上受眾、下廣告投放（付費觸及還是有效）、社團經營<br>
+    ❌ 不適合：想靠有機觸及增加曝光、35 歲以下年輕受眾</p>
+    <p><strong>廣告人觀察：</strong>Facebook 粉專現在的價值在於「廣告投放的基礎設施」——你需要它來跑廣告、裝 Pixel、做再行銷。但如果你只想靠發文帶流量，那投資報酬率非常低。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>Instagram：知識型品牌的主戰場</div>
+  <div class="step-body">
+    <p><strong>現況：</strong>1,130 萬用戶，18-34 歲是主力，女性略多。對 Z 世代來說，IG 已經是搜尋工具——他們找餐廳、看穿搭、搜品牌，第一站是 IG 不是 Google。</p>
+    <p><strong>值得經營嗎？</strong>如果你的受眾是 35 歲以下，或者你的內容有視覺性——絕對值得。</p>
+    <p>✅ 適合：個人品牌、知識型創作者、視覺感強的品牌、美妝餐飲服飾<br>
+    ❌ 不適合：B2B 品牌、45 歲以上受眾、沒有視覺內容的服務業</p>
+    <p><strong>廣告人觀察：</strong>Reels 現在是 IG 觸及率最高的格式，演算法主動推給非追蹤者。如果你只能在 IG 做一件事，就是做 Reels。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>TikTok：成長最快，但要想清楚再進</div>
+  <div class="step-body">
+    <p><strong>現況：</strong>年成長 47.7%，834 萬用戶，是所有平台中動能最強的。演算法對新帳號友善，就算零粉絲也可能爆紅。</p>
+    <p><strong>值得經營嗎？</strong>要評估你的受眾和你的內容生產能力。</p>
+    <p>✅ 適合：25 歲以下受眾、娛樂性強的品牌、願意持續產出短影音<br>
+    ❌ 不適合：受眾是 40 歲以上、內容無法影音化、沒有時間持續產出</p>
+    <p><strong>廣告人觀察：</strong>TikTok 要做就要做好——它需要高頻率的內容輸出，隨便做反而傷品牌形象。進場前先問：你的團隊每週能產出幾支影片？答案少於三支，先等等。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>Threads：2026 最值得卡位的黑馬</div>
+  <div class="step-body">
+    <p><strong>現況：</strong>台灣用戶在 Threads 全球流量佔比 22% 居冠——台灣人對這個平台的接受度出乎意料地高。目前還在成長期，演算法對新創作者友善。</p>
+    <p><strong>值得經營嗎？</strong>現在進場成本最低，回報可能最高。</p>
+    <p>✅ 適合：文字型創作者、個人品牌、想建立思想領袖形象的人<br>
+    ❌ 不適合：需要立即轉換的品牌、沒有文字內容的產品型業主</p>
+    <p><strong>廣告人觀察：</strong>Threads 現在的氛圍像早期的 Twitter——觀點型內容很吃香，廣告還沒進來，有機觸及很好。這是現在進場成本最低的時機，等廣告進來之後就晚了。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">選擇</span>不同目標應該選哪個平台？</div>
+  <div class="step-body">
+    <p><strong>如果你是個人品牌／知識型創作者：</strong><br>
+    主戰場：IG + Threads<br>
+    IG 做視覺內容和 Reels，Threads 做觀點文字，兩個互相導流。</p>
+    <p><strong>如果你是中小企業業主：</strong><br>
+    主戰場：LINE + Facebook 廣告<br>
+    LINE 維繫現有客戶，Facebook 用付費廣告獲取新客。IG 視你的受眾年齡決定要不要加。</p>
+    <p><strong>如果你想快速爆紅：</strong><br>
+    主戰場：TikTok + IG Reels<br>
+    短影音是現在觸及率最高的格式，但需要持續高頻率輸出。</p>
+    <p><strong>廣告人最後的建議：</strong><br>
+    不要因為別人都在某個平台，你就跟著去。先問：我的目標受眾在哪裡？我能持續產出什麼格式的內容？答案決定平台，不是反過來。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：2026 年台灣還值得經營 Facebook 粉絲專頁嗎？</strong></p>
+    <p>A：值得保留但不值得投入大量心力。Facebook 粉專現在的主要價值是廣告投放基礎設施和觸及 45 歲以上受眾，有機觸及率已跌至 1-2%。建議維持基本更新，主要預算放在付費廣告或其他平台。</p>
+    <p><strong>Q：台灣 TikTok 用戶成長這麼快，現在應該開始經營嗎？</strong></p>
+    <p>A：要評估兩件事：你的目標受眾是否在 TikTok（主要是 35 歲以下），以及你能否持續每週產出至少 3 支短影音。兩個都是肯定的，現在進場時機很好；如果內容生產能力不足，建議先不要進場，隨便做反而傷品牌。</p>
+    <p><strong>Q：Threads 值得花時間經營嗎？</strong></p>
+    <p>A：目前是進場成本最低、回報潛力最高的時機。台灣用戶在 Threads 全球流量佔比 22% 居冠，平台還在成長期，演算法對新創作者友善。特別適合文字型個人品牌和知識型創作者，趁廣告還沒大規模進來之前卡位。</p>
+    <p><strong>Q：個人品牌應該同時經營幾個社群平台？</strong></p>
+    <p>A：建議最多兩到三個，而且要有明確分工。同時經營太多平台，每個都做得普通，不如集中火力在一兩個做得出色。先把一個平台做到穩定產出，再考慮擴展到其他平台。</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-12')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-12')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-12" onclick="shareNote('copy','note-12')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-12">0</span>)</p>
+        <div data-comments-list="note-12" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-12" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-12')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-12');
+    document.querySelector('[data-comment-input="note-12"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-12'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
