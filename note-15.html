@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 AI眼鏡完全指南：趨勢、翻譯實力與個資風險全解析 - Jane's Lens</title>
+  <meta name="description" content="無螢幕才是王道？入手前，這五件事一定要搞懂——2026年AI眼鏡三大趨勢、價格總表、翻譯實力比較，以及最該正視的個資與隱私爭議。">
+  <meta property="og:title" content="2026 AI眼鏡完全指南：趨勢、翻譯實力與個資風險全解析 - Jane's Lens">
+  <meta property="og:description" content="無螢幕才是王道？入手前，這五件事一定要搞懂。趨勢、價格、翻譯實力，到你最該擔心的個資問題，一次講清楚。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-15.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.tech-trend { background: #f6e2cc; color: #8a5423; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 0.6rem; }
+    .note-page-subtitle { font-size: 0.95rem; color: #888; line-height: 1.6; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #1a1208 0%, #2a1c0a 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">主頁</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="services.html">諮詢服務</a></li>
+        <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-08-05</span>
+        <span class="note-tag tech-trend">科技趨勢分析</span>
+      </div>
+      <h1 class="note-page-title">2026 AI眼鏡完全指南：趨勢、翻譯實力與個資風險全解析</h1>
+      <p class="note-page-subtitle">無螢幕才是王道？入手前，這五件事一定要搞懂</p>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv15bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1a1208"/>
+              <stop offset="100%" stop-color="#2a1c0a"/>
+            </linearGradient>
+            <linearGradient id="cv15accent" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#c97b3d"/>
+              <stop offset="100%" stop-color="#f0b878"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv15bg)" rx="12"/>
+          <ellipse cx="240" cy="80" rx="220" ry="90" fill="rgba(201,123,61,0.06)"/>
+          <!-- glasses -->
+          <g opacity="0.9">
+            <circle cx="185" cy="62" r="30" fill="none" stroke="url(#cv15accent)" stroke-width="3"/>
+            <circle cx="285" cy="62" r="30" fill="none" stroke="url(#cv15accent)" stroke-width="3"/>
+            <path d="M215 60 Q235 48 255 60" fill="none" stroke="url(#cv15accent)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M155 55 L128 45" fill="none" stroke="url(#cv15accent)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M315 55 L342 45" fill="none" stroke="url(#cv15accent)" stroke-width="3" stroke-linecap="round"/>
+            <!-- lens glow / HUD hint -->
+            <circle cx="185" cy="62" r="30" fill="#f0b878" opacity="0.08"/>
+            <circle cx="285" cy="62" r="30" fill="#f0b878" opacity="0.08"/>
+            <rect x="270" y="52" width="30" height="4" rx="2" fill="#f0b878" opacity="0.55"/>
+            <rect x="270" y="60" width="20" height="3" rx="1.5" fill="#f0b878" opacity="0.4"/>
+          </g>
+          <!-- decorative dots -->
+          <circle cx="90" cy="35" r="3" fill="#f0b878" opacity="0.4"/>
+          <circle cx="410" cy="105" r="4" fill="#c97b3d" opacity="0.3"/>
+          <circle cx="430" cy="40" r="2.5" fill="#f0b878" opacity="0.35"/>
+          <!-- Title -->
+          <text x="240" y="118" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="14" fill="#f2d9bd" letter-spacing="2" opacity="0.92">2026 AI眼鏡完全指南</text>
+          <!-- Subtitle -->
+          <text x="240" y="136" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#c9a888" opacity="0.75">趨勢 · 翻譯實力 · 個資風險 · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">AI眼鏡這兩年最大的轉折，不是螢幕變得更清晰，而是「捨棄螢幕」反而成了主流路線。當你搞懂這個邏輯，選購時就不會再被規格表迷惑——更重要的是，2026年這個品類正式從「科技玩具」變成「隱私爭議焦點」，這篇會把趨勢、價格、翻譯實力，到你最該擔心的個資問題，一次講清楚。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>2026年AI眼鏡三大發展趨勢</div>
+  <div class="step-body">
+    <p><strong>1｜「無螢幕」與極致輕量化成主流</strong><br>
+    Rokid在CES 2026發表的「Style」款大膽捨棄螢幕，重量壓在38.5公克，透過雙晶片架構（NXP RT600負責低功耗待命、Qualcomm AR1負責AI運算），一般使用情境下可達12小時電池續航。這代表產業判斷：多數人要的不是「戴著螢幕」，而是「戴著一個聰明的助理」。</p>
+    <p><strong>2｜多模態AI與智慧助理深度整合</strong><br>
+    動口喚醒Gemini、Meta AI等助理，眼鏡就能「看見」你眼前的事物——辨識招牌、翻譯外文、即時問答、規劃導航。以Rokid Glasses為例，支援89種語言即時語音翻譯、6種離線翻譯，還能在會議或演講模式下自動轉寫語音並生成摘要。</p>
+    <p><strong>3｜巨頭全面入局，市場熱度衝高</strong><br>
+    IDC數據顯示，無顯示器智慧眼鏡在2026年第一季出貨量約225萬副，年增167%，Ray-Ban系列就占了整體出貨量的69%。Google在MWC 2026展示AI智慧眼鏡，業界解讀是受Meta刺激，同時也向蘋果發出警訊——三強角力，代表這個品類已正式進入主戰場。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>三大產品類型與代表品牌</div>
+  <div class="step-body">
+    <p><strong>拍攝／語音型：</strong>Ray-Ban Meta、Meta Glasses、小米AI眼鏡——主打生活記錄與AI助理整合，出貨量最大。</p>
+    <p><strong>輕量音訊／翻譯入門型：</strong>多數平價款——主打藍牙通話、聽音樂、基礎翻譯，價格親民，但要留意「不是真AR裝置」。</p>
+    <p><strong>沉浸式／專業AR顯示型：</strong>Xreal系列——鏡片具光學投影技術，主打「行動巨幕」，適合追劇、遊戲，但需接線使用。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>價格總表（2026年8月，新台幣估算）</div>
+  <div class="step-body">
+    <div style="overflow-x:auto; margin:0.3rem 0 1rem;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.85rem; min-width:560px;">
+        <thead>
+          <tr style="background:#f2f6ff;">
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">產品</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">類型</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">參考價格</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">重量</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a;">核心特色</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Meta Glasses（Adventurer／Fury）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$9,500起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Meta自有品牌，最親民入門款</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Rokid Style</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">無螢幕輕量型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$9,750</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">38.5g</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">雙晶片、續航12小時、支援4K錄影</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">小米AI眼鏡</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$12,999</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">可搭載GPT／Gemini等AI模型</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Xreal 1S</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">AR沉浸顯示型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$14,500</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">89g</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">投射最大171吋（可達500吋）螢幕</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Ray-Ban Meta（標準款）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$12,000〜18,990</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">雷朋經典造型，AI拍攝主力機種</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Ray-Ban Meta（新款客製化）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$16,000起（未含處方鏡片）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">支援漸進多焦，加鏡片再加200〜300美元</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Rokid Glasses</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">AR顯示＋翻譯型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$19,999</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">49g</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">台灣寶島眼鏡代理，光波導成像、懸浮字幕</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem;">Xreal One Pro</td>
+            <td style="padding:0.55rem 0.7rem;">AR沉浸顯示型</td>
+            <td style="padding:0.55rem 0.7rem; white-space:nowrap;">NT$25,900</td>
+            <td style="padding:0.55rem 0.7rem;">87g</td>
+            <td style="padding:0.55rem 0.7rem;">支援SteamDeck／ROG，3ms超低延遲</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.85rem; color:#999;">＊Ray-Ban Meta台灣尚無官方通路，代購價會依匯率、關稅與活動折扣浮動。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>AI翻譯的敏捷度與多國語言適用性</div>
+  <div class="step-body">
+    <p>語言覆蓋範圍差異很大：Meta Glasses新增14種翻譯語言（含中日韓），Rokid Glasses主打89種語言即時翻譯加6種離線翻譯；市面平價款雖標榜130〜160種語言，但多仰賴通用翻譯引擎，冷門語言的準確度落差明顯。</p>
+    <p>離線與連網翻譯的延遲表現也差很多——離線模式省去雲端來回時間，回應通常更快，但語言包較小、品質會打折。整體而言，中高階款翻譯準確率高、幾乎無延遲，特別適合出國溝通，但重要商務談判仍建議搭配真人溝通，翻譯終究難以完全傳達語氣與文化脈絡。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>個資與隱私爭議：2026年最該正視的問題</div>
+  <div class="step-body">
+    <div style="background:#fff3f3; border-left:4px solid #e05050; border-radius:8px; padding:1rem 1.2rem; margin:0 0 1rem;">
+      <p style="margin:0; font-size:0.95rem; color:#5a1a1a; font-weight:500;">⚠️ 這不是危言聳聽，而是這幾個月正在發生的真實事件：</p>
+    </div>
+    <p>2026年3月，兩名原告對Meta及Luxottica提起聯邦集體訴訟，指控Ray-Ban智慧眼鏡的錄影片段被送往肯亞人工標記員審閱，包含浴室畫面、裸露內容及個人財務資訊，許多使用者根本不知道攝影機正在運作。</p>
+    <p>坊間出現「隱身模式」改裝服務，破壞錄影提示LED讓旁人無從察覺被拍，Meta已宣布強制韌體更新，偵測到破壞行為會在硬體層級直接禁用攝影功能。</p>
+    <p>哈佛大學實驗證實，將AI眼鏡與公開AI工具串接，就能即時辨識陌生人姓名、家庭成員、工作單位甚至住家地址。</p>
+    <p>紐約州法院系統已於7月20日起禁止錄影功能眼鏡進入全州1,240間法庭，延續費城、夏威夷、威斯康辛等地的類似規定。</p>
+    <p>Meta內部正討論新一代「超感知」眼鏡是否取消自動亮起的錄影提示燈，若成真，旁人恐在不知情下入鏡。</p>
+    <p style="margin-top:0.9rem"><strong>給讀者的實用建議：</strong><br>
+    看到鏡框角落有白光LED常亮，代表對方正在錄影；<br>
+    選購前確認品牌是否承諾「原始資料不上傳雲端」或「不用於AI模型訓練」；<br>
+    若職業涉及客戶隱私（財務、醫療、法律），會議中建議避免配戴具攝錄功能的AI眼鏡；<br>
+    台灣目前尚無明確法規規範AI眼鏡的錄影提示義務。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">06</span>選購避雷：三個最容易踩坑的地方</div>
+  <div class="step-body">
+    <p><strong>① 先確認「有沒有螢幕」與顯示方式</strong><br>
+    很多平價款標榜「AI翻譯」，實際是藍牙耳機唸給你聽，並非鏡片顯示字幕。</p>
+    <p><strong>② 重量與配戴舒適度</strong><br>
+    超過50〜60克長時間配戴容易壓迫鼻樑，建議選40克左右、重心分佈良好的款式。</p>
+    <p><strong>③ 漏音與隱私</strong><br>
+    平價開放式揚聲器常有漏音問題，大品牌通常用定向音訊技術改善。</p>
+    <p><strong>④ 語言與生態系支援</strong><br>
+    優先選擇有台灣官方代理（如Rokid Glasses的寶島眼鏡）的款式，售後與試戴服務更有保障。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>現階段選AI眼鏡，關鍵不是「哪個規格最強」，而是先問自己：你要解決的是日常小卡點，還是想搶先體驗沉浸式AR顯示？</p>
+    <p>但更重要的是——在按下購買鍵之前，先確認自己能接受這副眼鏡背後的資料流向。科技便利與隱私邊界，這會是接下來幾年AI眼鏡市場最核心的拉鋸戰。</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-15')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-15')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-15" onclick="shareNote('copy','note-15')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-15">0</span>)</p>
+        <div data-comments-list="note-15" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-15" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-15')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-15');
+    document.querySelector('[data-comment-input="note-15"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-15'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+</body>
+</html>

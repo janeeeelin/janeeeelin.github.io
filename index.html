@@ -297,6 +297,8 @@
     .note-tag[data-tag="seo-aio"]:hover { background: #0f766e; color: white; }
     .note-tag[data-tag="ai-tools"] { background: #fef9c3; color: #854d0e; }
     .note-tag[data-tag="ai-tools"]:hover { background: #854d0e; color: white; }
+    .note-tag[data-tag="tech-trend"] { background: #f6e2cc; color: #8a5423; }
+    .note-tag[data-tag="tech-trend"]:hover { background: #8a5423; color: white; }
     .note-toggle {
       display: flex;
       align-items: center;
@@ -1414,6 +1416,7 @@
           <button class="tag-filter-btn" data-tag="ig">IG 經營</button>
           <button class="tag-filter-btn" data-tag="seo-aio">SEO／AIO</button>
           <button class="tag-filter-btn" data-tag="ai-tools">AI 工具</button>
+          <button class="tag-filter-btn" data-tag="tech-trend">科技趨勢分析</button>
         </div>
 
         <!-- 筆記列表 -->
@@ -1495,6 +1498,7 @@
             <button class="tag-cloud-btn" data-stag="ig" onclick="filterFromSidebar('ig')">IG 經營</button>
             <button class="tag-cloud-btn" data-stag="seo-aio" onclick="filterFromSidebar('seo-aio')">SEO／AIO</button>
             <button class="tag-cloud-btn" data-stag="ai-tools" onclick="filterFromSidebar('ai-tools')">AI 工具</button>
+            <button class="tag-cloud-btn" data-stag="tech-trend" onclick="filterFromSidebar('tech-trend')">科技趨勢分析</button>
           </div>
         </div>
 
@@ -1537,6 +1541,164 @@
     // ── Data ──────────────────────────────────────────────────────────────────
 
     const NOTES = [
+      {
+        id: 'note-15',
+        date: '2026-08-05',
+        tags: ['tech-trend'],
+        tagLabels: { 'tech-trend': '科技趨勢分析' },
+        title: '2026 AI眼鏡完全指南：趨勢、翻譯實力與個資風險全解析',
+        subtitle: '無螢幕才是王道？入手前，這五件事一定要搞懂',
+        quote: '在按下購買鍵之前，先確認自己能接受這副眼鏡背後的資料流向。',
+        content: `<p style="margin-bottom:0.9rem">AI眼鏡這兩年最大的轉折，不是螢幕變得更清晰，而是「捨棄螢幕」反而成了主流路線。當你搞懂這個邏輯，選購時就不會再被規格表迷惑——更重要的是，2026年這個品類正式從「科技玩具」變成「隱私爭議焦點」，這篇會把趨勢、價格、翻譯實力，到你最該擔心的個資問題，一次講清楚。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>2026年AI眼鏡三大發展趨勢</div>
+  <div class="step-body">
+    <p><strong>1｜「無螢幕」與極致輕量化成主流</strong><br>
+    Rokid在CES 2026發表的「Style」款大膽捨棄螢幕，重量壓在38.5公克，透過雙晶片架構（NXP RT600負責低功耗待命、Qualcomm AR1負責AI運算），一般使用情境下可達12小時電池續航。這代表產業判斷：多數人要的不是「戴著螢幕」，而是「戴著一個聰明的助理」。</p>
+    <p><strong>2｜多模態AI與智慧助理深度整合</strong><br>
+    動口喚醒Gemini、Meta AI等助理，眼鏡就能「看見」你眼前的事物——辨識招牌、翻譯外文、即時問答、規劃導航。以Rokid Glasses為例，支援89種語言即時語音翻譯、6種離線翻譯，還能在會議或演講模式下自動轉寫語音並生成摘要。</p>
+    <p><strong>3｜巨頭全面入局，市場熱度衝高</strong><br>
+    IDC數據顯示，無顯示器智慧眼鏡在2026年第一季出貨量約225萬副，年增167%，Ray-Ban系列就占了整體出貨量的69%。Google在MWC 2026展示AI智慧眼鏡，業界解讀是受Meta刺激，同時也向蘋果發出警訊——三強角力，代表這個品類已正式進入主戰場。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>三大產品類型與代表品牌</div>
+  <div class="step-body">
+    <p><strong>拍攝／語音型：</strong>Ray-Ban Meta、Meta Glasses、小米AI眼鏡——主打生活記錄與AI助理整合，出貨量最大。</p>
+    <p><strong>輕量音訊／翻譯入門型：</strong>多數平價款——主打藍牙通話、聽音樂、基礎翻譯，價格親民，但要留意「不是真AR裝置」。</p>
+    <p><strong>沉浸式／專業AR顯示型：</strong>Xreal系列——鏡片具光學投影技術，主打「行動巨幕」，適合追劇、遊戲，但需接線使用。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>價格總表（2026年8月，新台幣估算）</div>
+  <div class="step-body">
+    <div style="overflow-x:auto; margin:0.3rem 0 1rem;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.85rem; min-width:560px;">
+        <thead>
+          <tr style="background:#f2f6ff;">
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">產品</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">類型</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">參考價格</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">重量</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a;">核心特色</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Meta Glasses（Adventurer／Fury）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$9,500起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Meta自有品牌，最親民入門款</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Rokid Style</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">無螢幕輕量型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$9,750</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">38.5g</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">雙晶片、續航12小時、支援4K錄影</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">小米AI眼鏡</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$12,999</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">可搭載GPT／Gemini等AI模型</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Xreal 1S</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">AR沉浸顯示型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$14,500</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">89g</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">投射最大171吋（可達500吋）螢幕</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Ray-Ban Meta（標準款）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$12,000〜18,990</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">雷朋經典造型，AI拍攝主力機種</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Ray-Ban Meta（新款客製化）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$16,000起（未含處方鏡片）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">支援漸進多焦，加鏡片再加200〜300美元</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Rokid Glasses</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">AR顯示＋翻譯型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$19,999</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">49g</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">台灣寶島眼鏡代理，光波導成像、懸浮字幕</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem;">Xreal One Pro</td>
+            <td style="padding:0.55rem 0.7rem;">AR沉浸顯示型</td>
+            <td style="padding:0.55rem 0.7rem; white-space:nowrap;">NT$25,900</td>
+            <td style="padding:0.55rem 0.7rem;">87g</td>
+            <td style="padding:0.55rem 0.7rem;">支援SteamDeck／ROG，3ms超低延遲</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.85rem; color:#999;">＊Ray-Ban Meta台灣尚無官方通路，代購價會依匯率、關稅與活動折扣浮動。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>AI翻譯的敏捷度與多國語言適用性</div>
+  <div class="step-body">
+    <p>語言覆蓋範圍差異很大：Meta Glasses新增14種翻譯語言（含中日韓），Rokid Glasses主打89種語言即時翻譯加6種離線翻譯；市面平價款雖標榜130〜160種語言，但多仰賴通用翻譯引擎，冷門語言的準確度落差明顯。</p>
+    <p>離線與連網翻譯的延遲表現也差很多——離線模式省去雲端來回時間，回應通常更快，但語言包較小、品質會打折。整體而言，中高階款翻譯準確率高、幾乎無延遲，特別適合出國溝通，但重要商務談判仍建議搭配真人溝通，翻譯終究難以完全傳達語氣與文化脈絡。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>個資與隱私爭議：2026年最該正視的問題</div>
+  <div class="step-body">
+    <div style="background:#fff3f3; border-left:4px solid #e05050; border-radius:8px; padding:1rem 1.2rem; margin:0 0 1rem;">
+      <p style="margin:0; font-size:0.95rem; color:#5a1a1a; font-weight:500;">⚠️ 這不是危言聳聽，而是這幾個月正在發生的真實事件：</p>
+    </div>
+    <p>2026年3月，兩名原告對Meta及Luxottica提起聯邦集體訴訟，指控Ray-Ban智慧眼鏡的錄影片段被送往肯亞人工標記員審閱，包含浴室畫面、裸露內容及個人財務資訊，許多使用者根本不知道攝影機正在運作。</p>
+    <p>坊間出現「隱身模式」改裝服務，破壞錄影提示LED讓旁人無從察覺被拍，Meta已宣布強制韌體更新，偵測到破壞行為會在硬體層級直接禁用攝影功能。</p>
+    <p>哈佛大學實驗證實，將AI眼鏡與公開AI工具串接，就能即時辨識陌生人姓名、家庭成員、工作單位甚至住家地址。</p>
+    <p>紐約州法院系統已於7月20日起禁止錄影功能眼鏡進入全州1,240間法庭，延續費城、夏威夷、威斯康辛等地的類似規定。</p>
+    <p>Meta內部正討論新一代「超感知」眼鏡是否取消自動亮起的錄影提示燈，若成真，旁人恐在不知情下入鏡。</p>
+    <p style="margin-top:0.9rem"><strong>給讀者的實用建議：</strong><br>
+    看到鏡框角落有白光LED常亮，代表對方正在錄影；<br>
+    選購前確認品牌是否承諾「原始資料不上傳雲端」或「不用於AI模型訓練」；<br>
+    若職業涉及客戶隱私（財務、醫療、法律），會議中建議避免配戴具攝錄功能的AI眼鏡；<br>
+    台灣目前尚無明確法規規範AI眼鏡的錄影提示義務。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">06</span>選購避雷：三個最容易踩坑的地方</div>
+  <div class="step-body">
+    <p><strong>① 先確認「有沒有螢幕」與顯示方式</strong><br>
+    很多平價款標榜「AI翻譯」，實際是藍牙耳機唸給你聽，並非鏡片顯示字幕。</p>
+    <p><strong>② 重量與配戴舒適度</strong><br>
+    超過50〜60克長時間配戴容易壓迫鼻樑，建議選40克左右、重心分佈良好的款式。</p>
+    <p><strong>③ 漏音與隱私</strong><br>
+    平價開放式揚聲器常有漏音問題，大品牌通常用定向音訊技術改善。</p>
+    <p><strong>④ 語言與生態系支援</strong><br>
+    優先選擇有台灣官方代理（如Rokid Glasses的寶島眼鏡）的款式，售後與試戴服務更有保障。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>現階段選AI眼鏡，關鍵不是「哪個規格最強」，而是先問自己：你要解決的是日常小卡點，還是想搶先體驗沉浸式AR顯示？</p>
+    <p>但更重要的是——在按下購買鍵之前，先確認自己能接受這副眼鏡背後的資料流向。科技便利與隱私邊界，這會是接下來幾年AI眼鏡市場最核心的拉鋸戰。</p>
+  </div>
+</div>`,
+      },
       {
         id: 'note-14',
         date: '2026-06-23',
@@ -3335,7 +3497,8 @@ git push -u origin main</code></pre>
       { label: 'AI 工具',   tag: 'ai-tools' },
       { label: 'IG 經營',   tag: 'ig'       },
       { label: 'SEO／AIO', tag: 'seo-aio'  },
-      { label: '新手教學',  tag: 'beginner' }
+      { label: '新手教學',  tag: 'beginner' },
+      { label: '科技趨勢分析', tag: 'tech-trend' }
     ];
 
     function renderSidebarCategories() {
