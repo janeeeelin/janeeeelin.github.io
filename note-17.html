@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI裁員的真相：企業省下的人力，到底去哪了？ - Jane's Lens</title>
+  <meta name="description" content="算力比人力貴，這波轉型不是取代，是重新分配——但沒人告訴你摩擦有多大。拆解AI裁員背後的資本重分配邏輯，以及被裁掉的人到底去了哪裡。">
+  <meta property="og:title" content="AI裁員的真相：企業省下的人力，到底去哪了？ - Jane's Lens">
+  <meta property="og:description" content="算力比人力貴，這波轉型不是取代，是重新分配——但沒人告訴你摩擦有多大。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-17.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.ai-observation { background: #dde2e7; color: #4a5a6a; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 0.6rem; }
+    .note-page-subtitle { font-size: 0.95rem; color: #888; line-height: 1.6; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #1c2128 0%, #262c36 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">主頁</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="services.html">諮詢服務</a></li>
+        <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-08-06</span>
+        <span class="note-tag ai-observation">AI觀察</span>
+      </div>
+      <h1 class="note-page-title">AI裁員的真相：企業省下的人力，到底去哪了？</h1>
+      <p class="note-page-subtitle">算力比人力貴，這波轉型不是取代，是重新分配——但沒人告訴你摩擦有多大</p>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv17bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1c2128"/>
+              <stop offset="100%" stop-color="#262c36"/>
+            </linearGradient>
+            <linearGradient id="cv17accent" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4a5a6a"/>
+              <stop offset="100%" stop-color="#8fa3b8"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv17bg)" rx="12"/>
+          <ellipse cx="240" cy="78" rx="220" ry="90" fill="rgba(74,90,106,0.08)"/>
+          <!-- two scales: money flowing from people-side to compute-side -->
+          <line x1="240" y1="40" x2="240" y2="100" stroke="url(#cv17accent)" stroke-width="2" opacity="0.7"/>
+          <line x1="160" y1="52" x2="320" y2="52" stroke="url(#cv17accent)" stroke-width="2" opacity="0.7"/>
+          <!-- left pan: people (down, lighter) -->
+          <path d="M160 52 L142 92 L178 92 Z" fill="none" stroke="#8fa3b8" stroke-width="1.6" opacity="0.55"/>
+          <circle cx="152" cy="80" r="4" fill="#8fa3b8" opacity="0.5"/>
+          <circle cx="168" cy="80" r="4" fill="#8fa3b8" opacity="0.4"/>
+          <!-- right pan: compute (down further, heavier) -->
+          <path d="M320 52 L300 100 L340 100 Z" fill="none" stroke="#8fa3b8" stroke-width="1.6" opacity="0.85"/>
+          <rect x="308" y="82" width="9" height="12" rx="1.5" fill="#8fa3b8" opacity="0.7"/>
+          <rect x="320" y="82" width="9" height="12" rx="1.5" fill="#8fa3b8" opacity="0.7"/>
+          <!-- fulcrum -->
+          <path d="M228 100 L240 40 L252 100 Z" fill="none" stroke="url(#cv17accent)" stroke-width="2" opacity="0.7"/>
+          <circle cx="240" cy="40" r="4" fill="#8fa3b8" opacity="0.8"/>
+          <!-- drifting coins toward compute side -->
+          <circle cx="255" cy="45" r="2" fill="#8fa3b8" opacity="0.4"/>
+          <circle cx="272" cy="50" r="1.6" fill="#8fa3b8" opacity="0.3"/>
+          <circle cx="288" cy="47" r="1.3" fill="#8fa3b8" opacity="0.22"/>
+          <!-- Title -->
+          <text x="240" y="128" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="13.5" fill="#c3cdd7" letter-spacing="1.5" opacity="0.92">AI裁員的真相</text>
+          <!-- Subtitle -->
+          <text x="240" y="144" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#8b96a3" opacity="0.75">省下的人力去哪了 · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">新聞標題總是很聳動：「科技業裁員12萬人」、「AI取代白領」。但把數字拆開來看，會發現一個更有意思的問題：企業真的是因為AI「做得更好」才裁員嗎？還是因為AI「太貴」才不得不砍別的預算？而那些離開大企業的人，真的都靠接案、遊牧重新站穩腳步了嗎？</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>先破解一個迷思：多數裁員不是「AI取代」，是「資本重分配」</div>
+  <div class="step-body">
+    <p>2026年第一季科技業裁員統計達78,557人，但美國聯邦準備銀行3月發布的研究報告指出，針對紐約聯邦儲備銀行地區調查的詳細分析顯示，很少有企業在前一年報告了AI引發的裁員；報告使用的措辭是「部分非AI職位招聘減少」與「高度暴露職業的入門層面疲軟」，並未認定存在AI大規模取代員工的現象。Deutsche Bank分析師更直接指出，「AI冗餘洗白」是2026年的顯著特徵——企業藉AI之名美化的，其實是後疫情過度招聘修正、季度財務壓力等其他原因導致的裁員決策。</p>
+    <p>真正的財務邏輯是資本重分配：公司不是因為AI「做到了什麼」而裁員，而是因為AI基礎設施建設「需要錢」而裁員——把資金從人力成本抽出來，注入GPU機架、資料中心和AI研發。這個模式在Oracle身上體現得最明顯：季度雲端營收暴增84%，卻同步裁員上萬人；Meta將AI資本支出翻倍至1,350億美元，卻同步削減數千個職位。這波裁員潮的真正主角不是「AI比人厲害」，是「AI比人貴，貴到得從別的地方擠錢出來養」。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>算力成本正在反噬「用AI省錢」的算盤</div>
+  <div class="step-body">
+    <p>根據《The Information》最新分析與科技大廠第一季財報，「用算力換人力」的如意算盤並不如預期。飆升的AI晶片投資與難以預測的Token消耗，正成為企業毛利率的新威脅。AI雖然能提升效率並精簡人力，但運行的「隱形成本」——晶片採購、能源消耗與雲端服務費——都極其高昂且具備高度不確定性。對企業而言，AI不再是單純的「省錢工具」，而是一場高投入、高風險的長期資本博弈。</p>
+    <p>這個成本壓力已經開始逆轉部分決策：計算成本不斷上漲、運營出現難題以及結果的不穩定性，促使一些公司改變策略、重新僱用人類員工。針對600名過去12個月內執行過裁員的人資專業人士調查顯示，十家公司裡有九家表示會重新考慮之前與AI相關的裁員決定——業內人士普遍認為，需要良好判斷力、創造力、客戶互動與品質控制的職位，仍應由人主導。算力和成本本身就是天花板，企業不可能無限制地把人力全部換成AI，這條路線很快就會撞到毛利率的牆。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>那麼，被裁掉的人到底去哪了？</div>
+  <div class="step-body">
+    <p>這是最關鍵、也最少被認真回答的問題。答案分成兩層：</p>
+    <p><strong>①官方統計上，「淨增長」是存在的，但分布極不均勻</strong><br>
+    世界經濟論壇《未來工作報告2025》調查全球55個經濟體、22種產業群的1000個領先企業雇主，預期到2030年，結構性勞動力市場轉型將影響當前職位總量的22%：14%的新職位被創造、8%的職位被取代，最終實現7%淨增長（約7,800萬個職位）。增長最快的職業由技術需求驅動，包括大數據專家、金融科技工程師、AI與機器學習專家；但數量增長最大的職業，其實是送貨司機、建築工人與食品加工工人，醫護、社工與教師等照護與教育職位也顯著增長。</p>
+    <p>換句話說，官方數字看起來是「淨增長」，但增長的職缺跟被裁掉的職缺，根本不是同一群人能無縫轉換的——一個被裁的中階行銷主管，不會因為「送貨司機職缺變多」就順利接住這份工作。這正是結構性轉型最殘酷的地方：總量對得起來，個體卻對不上。</p>
+    <p><strong>②個人接案／數位遊牧確實在成長，但這不是一張安全網，是一場高風險自僱</strong><br>
+    台灣104人力銀行調查顯示，超過55%的上班族有意在正職外發展斜槓收入；全球數位遊牧人口已達3,500萬人，年增率超過10%。中國「數字游民」規模已突破800萬人（另一份報告估算廣義規模達4,200萬），90後與00後占比超過七成，35歲以上轉型者也接近四成。</p>
+    <p>但這條路遠不像社群媒體上呈現的那麼光鮮：2026年的自由職業市場更成熟、也更擁擠：低技能副業已被AI大量替代、海外平台門檻提升、社保稅務必須合規、收入波動風險加劇。超過四成的數字游民在過去一年經歷過收入波動超過30%的情況——項目制結款周期長、甲方臨時砍單、平台規則變化，都可能導致現金流緊張；更棘手的是，由於沒有固定雇傭單位，許多人的社保繳納存在斷檔風險，選擇第三方代繳的話，個人與企業部分全部自付，每月支出還會增加近四成。</p>
+    <p>台灣的免費接案平台雖然案件量大，但競爭同樣激烈——案主常同時收到十幾份提案，若不能第一時間寫出吸睛的自我介紹與作品包裝，很容易被埋沒。這解釋了為什麼「自由接案」對很多人來說只是過渡期，而非長期解方：它承接了一部分被擠出大企業的人力，但同時把原本由雇主承擔的風險（社保、現金流、案源穩定性）全部轉嫁回個人身上。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>真正該問的問題：不是「AI取代了誰」，是「摩擦成本誰在承擔」</div>
+  <div class="step-body">
+    <p>把三段資訊放在一起看，會得出一個跟主流敘事不太一樣的結論：</p>
+    <ul style="margin:0.2rem 0 0.9rem 1.2rem; padding:0; color:#555; font-size:0.93rem; line-height:1.82;">
+      <li style="margin-bottom:0.5rem;">企業裁員，很大一部分是為了把錢挪去養算力，不是因為AI真的做得比人好。</li>
+      <li style="margin-bottom:0.5rem;">算力成本本身有天花板，已經開始有企業因為成本與品質問題重新僱人。</li>
+      <li style="margin-bottom:0.5rem;">官方統計的「職缺淨增長」是真的，但增長的職缺類型（藍領、照護服務）跟被裁掉的職缺類型（白領、中階管理）高度不對稱。</li>
+      <li>個人接案與數位遊牧接住了一部分人，但這是把「穩定性風險」從企業轉嫁給個人，不是憑空生出新的長期保障。</li>
+    </ul>
+    <p>這也是為什麼會有「大量使用AI也是算力和成本問題」的直覺——因為這確實是事實，只是媒體更愛講「AI取代人」這個比較聳動的版本。真正該關注的，或許不是這波裁員潮會不會持續（它大機率會持續，只是速度受算力成本制約），而是：當結構性轉型的摩擦成本主要由被裁員的個人承擔時，社會安全網（社保、職業媒合、技能轉型補貼）有沒有跟上這個速度。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>AI裁員的真相，比「機器取代人」複雜得多，也比它殘酷得多——不是因為AI太強，而是因為資本正在被重新分配，而承接這場重分配摩擦成本的，往往是最沒有議價能力的那群人。</p>
+    <p>個人接案與數位遊牧確實提供了緩衝，但它是止血帶，不是治本的解方。</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-17')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-17')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-17" onclick="shareNote('copy','note-17')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-17">0</span>)</p>
+        <div data-comments-list="note-17" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-17" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-17')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-17');
+    document.querySelector('[data-comment-input="note-17"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-17'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
