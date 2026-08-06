@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>台灣缺工實錄：AI裁員的同時，這5大產業正在搶人搶到祭出百萬年薪 - Jane's Lens</title>
+  <meta name="description" content="一邊裁員一邊缺工不是矛盾，是同一場轉型的兩個面向。用台灣本地最新數據，拆解五大缺工產業、半導體磁吸效應，以及被裁的人跟被缺的職缺到底對不對得上。">
+  <meta property="og:title" content="台灣缺工實錄：AI裁員的同時，這5大產業正在搶人搶到祭出百萬年薪 - Jane's Lens">
+  <meta property="og:description" content="一邊裁員一邊缺工不是矛盾，是同一場轉型的兩個面向。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-18.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.ai-observation { background: #dde2e7; color: #4a5a6a; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 0.6rem; }
+    .note-page-subtitle { font-size: 0.95rem; color: #888; line-height: 1.6; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #1c2128 0%, #262c36 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">主頁</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="services.html">諮詢服務</a></li>
+        <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-08-06</span>
+        <span class="note-tag ai-observation">AI觀察</span>
+      </div>
+      <h1 class="note-page-title">台灣缺工實錄：AI裁員的同時，這5大產業正在搶人搶到祭出百萬年薪</h1>
+      <p class="note-page-subtitle">一邊裁員一邊缺工不是矛盾，是同一場轉型的兩個面向</p>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv18bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1c2128"/>
+              <stop offset="100%" stop-color="#262c36"/>
+            </linearGradient>
+            <linearGradient id="cv18accent" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#4a5a6a"/>
+              <stop offset="100%" stop-color="#8fa3b8"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv18bg)" rx="12"/>
+          <ellipse cx="240" cy="78" rx="220" ry="90" fill="rgba(74,90,106,0.08)"/>
+          <!-- descending line: layoffs -->
+          <polyline points="120,45 175,58 230,68 285,80" fill="none" stroke="#8fa3b8" stroke-width="2" opacity="0.55" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="120" cy="45" r="2.5" fill="#8fa3b8" opacity="0.6"/>
+          <circle cx="175" cy="58" r="2.5" fill="#8fa3b8" opacity="0.55"/>
+          <circle cx="230" cy="68" r="2.5" fill="#8fa3b8" opacity="0.5"/>
+          <circle cx="285" cy="80" r="2.5" fill="#8fa3b8" opacity="0.45"/>
+          <!-- ascending bars: hiring demand -->
+          <rect x="300" y="88" width="14" height="20" rx="2" fill="url(#cv18accent)" opacity="0.55"/>
+          <rect x="322" y="74" width="14" height="34" rx="2" fill="url(#cv18accent)" opacity="0.65"/>
+          <rect x="344" y="58" width="14" height="50" rx="2" fill="url(#cv18accent)" opacity="0.75"/>
+          <rect x="366" y="40" width="14" height="68" rx="2" fill="url(#cv18accent)" opacity="0.9"/>
+          <!-- baseline -->
+          <line x1="110" y1="108" x2="390" y2="108" stroke="#8fa3b8" stroke-width="1" opacity="0.2"/>
+          <!-- Title -->
+          <text x="240" y="130" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="13.5" fill="#c3cdd7" letter-spacing="1.5" opacity="0.92">台灣缺工實錄</text>
+          <!-- Subtitle -->
+          <text x="240" y="146" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#8b96a3" opacity="0.75">裁員與缺工的兩個面向 · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">前一篇談到AI裁員的真相，很多人心裡會冒出一個疑問：「如果AI真的取代了這麼多人，為什麼新聞又常常說缺工缺很兇？」答案是——這兩件事根本不衝突，它們是同一場結構性轉型的兩個面向。裁掉的人跟缺的人，往往不是同一群人、也不是同一種技能。這篇用台灣本地最新數據，把「誰在裁、誰在缺」講清楚。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>先看整體圖像：台灣正走進「兩個世界」</div>
+  <div class="step-body">
+    <p>2025年台灣憑藉AI浪潮交出15年來最亮眼的經濟成績單，成長率高達7.37%。但在輝煌數字背後，台灣正步入「兩個世界」的極端分野：一面是AI帶動的科技榮景，另一邊是傳統產業在關稅壓力與缺工壓力下的苦戰。《天下雜誌》針對兩千大企業CEO的景氣預測調查發現，62.3%的科技製造業認為台灣產業前景偏好，但只有52.9%的傳統製造業這麼認為，落差超過9個百分點。</p>
+    <p>這句話講白一點就是：如果你在AI／半導體供應鏈裡，現在是好時代；如果你在傳統製造或服務業，正在同時面對缺工跟成本壓力的雙重夾擊。這就是為什麼「裁員」跟「缺工」的新聞會同時出現在你的動態牆上——它們發生在不同的產業，甚至同一個產業的不同職位層級上。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>五大缺工產業，數字比你想的更誇張</div>
+  <div class="step-body">
+    <p>根據1111人力銀行2026年第一季調查，就業市場的求才需求最炙熱的五大產業是：科技業、建築營造／不動產、餐飲／住宿業、醫療／照護／環境衛生、傳產製造業。企業最急迫要補的兩塊缺口，是基層執行人力（46%）跟專業技術人才（32.5%）——這反映出企業在數位轉型、自動化導入，跟維持基本服務量能之間，對人力的依賴其實並沒有真的減輕。</p>
+    <p>其中最誇張的是民生服務業：104人力銀行《2026民生服務業人才白皮書》指出，2026年每月人才缺口高達67.3萬人，平均每個職缺只有0.28人應徵——換句話說，一個職缺放出去，連一個人來投履歷都湊不齊。另一份統計抓出人才缺口達53萬人，業者為了搶到人，甚至祭出百萬年薪搶店長、主廚。</p>
+    <p>這代表什麼？很多人對「服務業缺工」的想像還停留在「低薪、進入門檻低」，但2026年的實際狀況是：這些職位已經在用高薪搶人，而且還搶不到。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>AI人才需求正在往「應用端」擴散，不是只有科技業在搶人</div>
+  <div class="step-body">
+    <p>一般人以為AI人才需求集中在科技業，但數據顯示完全不是這樣：</p>
+    <p>民生服務業每月平均招募的AI人才，從2022年的6,000人，成長到2026年的1.7萬人，5年成長近3倍。批發／零售／傳直銷業的AI工作機會最多，2026年每月平均招募9,007名AI人才，顯示這個產業正積極把AI導入精準行銷、商品推薦、客服營運與內部管理等場景。成長幅度最誇張的是旅遊／休閒／運動業，AI工作機會從2022年的151個，暴增到2026年的939個，增幅超過6倍——這是因為這個產業的低基期，加上業務擴展到數位行銷、旅遊規劃與會員經營等新場景，才推升了這麼大的人才需求。</p>
+    <p>觀察民生服務業導入AI的狀況：不動產業的AI職務占比6.1%最高，5年成長3.8個百分點，用在行銷推廣、客戶經營、市場分析與營運管理；批發零售業AI職缺占比5.3%排第二，反映持續推動數位轉型與智慧零售；運輸物流及倉儲業3.1%排第三，是智慧物流提升作業效率所帶動的需求。</p>
+    <p>白話翻譯：如果你的專長是「行銷＋AI工具應用」，機會其實不在科技業，而是在傳統的零售、旅遊、不動產這些正在數位轉型的產業裡——這些產業比科技業更需要「懂產業、也懂AI」的人，而不是純技術背景的工程師。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>半導體磁吸效應：不是沒人，是人都被吸過去了</div>
+  <div class="step-body">
+    <p>57.4%的台灣雇主直言，招募最核心的痛點在於「整體勞動力市場的專業人才短缺」，這是本次調查中比重最高、影響力最大的單一因素，遠遠超過薪酬結構或品牌知名度不足等問題。多位不同產業的受訪者直接點名，新竹科學園區就像一個無比巨大的「人才磁鐵」，源源不絕地把工程、技術型人才從傳統製造業吸納過去。</p>
+    <p>高科技如半導體、電動車大舉擴廠，起薪高出1到2萬、履歷價值又高，磁吸年輕勞力掏空傳統產業。科技業職缺高達16.9萬個，傳統製造業雖然有穩定福利，卻因為薪資天花板低，競爭不過。</p>
+    <p>這代表「缺工」不完全是「人口不夠」的問題，更精確地說是「人才分配失衡」——同一批具備技術能力的人，被少數高薪產業集中吸走，留給傳統產業的選擇越來越少。加上少子化的結構性壓力：從2012年到2023年，台灣新生兒數量從23萬跌到13.5萬，未來4年每年進入職場的人數還會再少1萬人。傳統製造業不只搶不到新血，還得面對老員工陸續退休的斷層危機。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>企業徵才動機正在轉變：不只是補人，是真的在擴張</div>
+  <div class="step-body">
+    <p>2026年台灣企業因應「業務增長與擴張」而延伸出的招募比例，從2025年的24%顯著爬升到32.8%——這代表企業增人擴編的實質需求正在大幅增加，不再只是單純填補離職空缺（這個比重反而從2025年的54.1%下降到41%）。</p>
+    <p>這個轉變很關鍵：如果企業徵才只是為了「補人補到跟去年一樣多」，代表產業沒有真的在成長；但當「因為業務擴張而徵才」的比例明顯上升，代表這些產業是真的有新的業務量、新的機會在長出來，不是原地踏步。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">06</span>被裁的人跟被缺的職缺，到底對不對得上？</div>
+  <div class="step-body">
+    <p>把前面幾段放在一起看，答案其實很清楚：大部分對不上。</p>
+    <p><strong>被裁掉的，多半是這些：</strong><br>
+    白領辦公室工作——中階行銷、初階法律分析、會計查帳、程式撰寫、一般行政。</p>
+    <p><strong>現在缺最兇的，是這些：</strong><br>
+    基層執行人力（服務業店長、餐飲、照護）跟專業技術人才（半導體、建築技術工），還有需要「懂產業＋懂AI應用」的複合型行銷／營運人才。</p>
+    <p>一個被裁的行銷企劃，理論上比較容易轉去零售業、旅遊業做「AI行銷應用」相關職位——因為這正是需求成長最快、也最缺人的方向；但如果他想轉去半導體產業做技術職，門檻就高很多；如果想轉去傳統服務業做基層店長，雖然職缺多、薪水也在上升，但工作內容跟原本的白領辦公室經驗差異很大，需要重新適應。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>AI裁員跟缺工同時發生，不是矛盾，而是同一場轉型正在重新洗牌：資本往AI基礎設施跟半導體集中，人才需求也跟著往這個方向磁吸；同時，服務業與傳統製造業因為少子化跟磁吸效應，缺口越來越大，只能用加薪搶人。</p>
+    <p>這對正在轉職或思考職涯方向的人來說，其實是個訊號：與其問「AI會不會取代我的工作」，不如問「我的技能，能不能移動到現在正在成長、正在缺人的地方」——尤其是「懂產業本身，又懂得怎麼把AI工具用在這個產業裡」的複合型人才，正是目前市場上最缺、也最搶手的一群人。</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-18')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-18')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-18" onclick="shareNote('copy','note-18')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-18">0</span>)</p>
+        <div data-comments-list="note-18" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-18" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-18')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-18');
+    document.querySelector('[data-comment-input="note-18"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-18'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
