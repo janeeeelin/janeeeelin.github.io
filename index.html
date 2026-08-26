@@ -198,106 +198,6 @@
     .card p { color: #555; font-size: 1.05rem; line-height: 1.9; }
     .card p + p { margin-top: 0.6rem; }
 
-    /* ── Teaser Promo Banner（企業行銷診斷 導流橫幅）───────────────────────── */
-    .teaser-promo {
-      --tp-navy: #1a2a4a;
-      --tp-blue: #1a6bb5;
-      --tp-card-bg: #ffffff;
-      --tp-ink: #1a2540;
-      --tp-ink-muted: #64748b;
-      --tp-purple-bg: #ede9fe; --tp-purple-ink: #6d28d9;
-      --tp-pink-bg: #fce7f3;   --tp-pink-ink: #be185d;
-      --tp-teal-bg: #ccfbf1;   --tp-teal-ink: #0f766e;
-      --tp-amber-bg: #fef3c7;  --tp-amber-ink: #b45309;
-      font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-      color: var(--tp-ink);
-    }
-    .teaser-promo .wrap { position: relative; width: 100%; max-width: 1100px; margin: 0 auto; }
-    .teaser-promo .bar {
-      position: absolute; left: -10px; top: 22px; bottom: 22px; width: 16px;
-      background: var(--tp-navy); border-radius: 999px;
-    }
-    .teaser-promo .card {
-      position: relative; display: block; text-decoration: none; color: inherit;
-      background: var(--tp-card-bg); border-radius: 28px;
-      box-shadow: 0 18px 40px -20px rgba(26,42,74,0.28), 0 2px 10px rgba(26,42,74,0.06);
-      padding: 44px 48px;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
-    .teaser-promo .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 24px 48px -18px rgba(26,42,74,0.34), 0 4px 14px rgba(26,42,74,0.08);
-    }
-    .teaser-promo .row { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
-    .teaser-promo .main { flex: 1; min-width: 0; }
-    .teaser-promo .badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: var(--tp-navy); color: #fff; font-weight: 700; font-size: 13px;
-      letter-spacing: 0.06em; padding: 8px 18px; border-radius: 999px;
-    }
-    .teaser-promo h1 {
-      margin-top: 20px; font-size: 30px; font-weight: 900; line-height: 1.42;
-      color: var(--tp-navy); letter-spacing: 0.01em; font-family: inherit;
-    }
-    .teaser-promo h1 span { color: var(--tp-blue); }
-    .teaser-promo .sub { margin-top: 14px; max-width: 56ch; font-size: 16px; line-height: 1.75; color: var(--tp-ink-muted); }
-    .teaser-promo .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-    .teaser-promo .tag { font-size: 13px; font-weight: 700; padding: 7px 15px; border-radius: 999px; }
-    .teaser-promo .tag.purple { background: var(--tp-purple-bg); color: var(--tp-purple-ink); }
-    .teaser-promo .tag.pink   { background: var(--tp-pink-bg);   color: var(--tp-pink-ink); }
-    .teaser-promo .tag.teal   { background: var(--tp-teal-bg);   color: var(--tp-teal-ink); }
-    .teaser-promo .tag.amber  { background: var(--tp-amber-bg);  color: var(--tp-amber-ink); }
-    .teaser-promo .cta {
-      margin-top: 28px; display: inline-flex; align-items: center; gap: 10px;
-      background: var(--tp-navy); color: #fff; font-weight: 700; font-size: 15.5px;
-      padding: 14px 26px; border-radius: 999px; white-space: nowrap;
-    }
-    .teaser-promo .cta .arrow { display: inline-block; }
-    .teaser-promo .visual {
-      flex-shrink: 0; width: 168px; height: 168px; border-radius: 24px;
-      background: linear-gradient(160deg, #eef2ff, #f5f3ff 55%, #eef9f6);
-      display: flex; align-items: center; justify-content: center; position: relative;
-    }
-    .teaser-promo .visual .bubble {
-      position: absolute; width: 84px; height: 60px; background: var(--tp-navy);
-      border-radius: 14px 14px 14px 4px; top: 32px; left: 24px;
-    }
-    .teaser-promo .visual .bubble::before,
-    .teaser-promo .visual .bubble::after {
-      content: ""; position: absolute; left: 14px; height: 5px; border-radius: 3px;
-      background: rgba(255,255,255,0.55);
-    }
-    .teaser-promo .visual .bubble::before { top: 16px; width: 56px; }
-    .teaser-promo .visual .bubble::after  { top: 30px; width: 38px; }
-    .teaser-promo .visual .report {
-      position: absolute; width: 62px; height: 78px; background: #ffffff;
-      border: 2px solid var(--tp-blue); border-radius: 8px; right: 26px; bottom: 26px;
-      box-shadow: 0 8px 16px -6px rgba(26,107,181,0.35);
-    }
-    .teaser-promo .visual .report .l { position: absolute; left: 10px; height: 5px; border-radius: 3px; background: #cbd5f5; }
-    .teaser-promo .visual .report .l1 { top: 14px; width: 42px; background: var(--tp-blue); }
-    .teaser-promo .visual .report .l2 { top: 26px; width: 30px; }
-    .teaser-promo .visual .report .l3 { top: 36px; width: 34px; }
-    .teaser-promo .visual .report .l4 { top: 46px; width: 24px; }
-    .teaser-promo .visual .report .bar1,
-    .teaser-promo .visual .report .bar2,
-    .teaser-promo .visual .report .bar3 {
-      position: absolute; bottom: 10px; width: 6px; border-radius: 2px; background: var(--tp-teal-ink);
-    }
-    .teaser-promo .visual .report .bar1 { left: 12px; height: 14px; }
-    .teaser-promo .visual .report .bar2 { left: 24px; height: 20px; background: var(--tp-blue); }
-    .teaser-promo .visual .report .bar3 { left: 36px; height: 10px; background: var(--tp-amber-ink); }
-    @media (max-width: 720px) {
-      .teaser-promo .row { flex-direction: column; align-items: flex-start; }
-      .teaser-promo .visual { display: none; }
-      .teaser-promo h1 { font-size: 24px; }
-    }
-    @media (max-width: 600px) {
-      .teaser-promo .card { padding: 1.7rem 1.3rem; }
-      .teaser-promo .bar { left: -8px; width: 10px; }
-      .teaser-promo .sub { font-size: 0.92rem; }
-    }
-
     /* ── Search ──────────────────────────────────────────────────────────── */
     .search-wrapper {
       position: relative;
@@ -588,32 +488,6 @@
     .timeline-date { font-size: 0.75rem; color: #1a6bb5; font-weight: 500; display: block; margin-bottom: 0.25rem; }
     .timeline-card h4 { font-family: 'Noto Serif TC', serif; font-size: 0.98rem; color: #1a2a4a; margin-bottom: 0.3rem; }
     .timeline-card p { font-size: 0.87rem; color: #666; line-height: 1.7; }
-
-    /* ── Tools ───────────────────────────────────────────────────────────── */
-    .tools-grid { display: flex; flex-direction: column; gap: 0.85rem; }
-    .tool-card {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      background: linear-gradient(135deg, #f8faff, #eef3ff);
-      border: 1px solid #dde8ff;
-      border-radius: 10px;
-      padding: 0.9rem 1.1rem;
-      transition: transform 0.18s, box-shadow 0.18s;
-    }
-    .tool-card:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(26,107,181,0.12); }
-    .tool-emoji { font-size: 1.7rem; flex-shrink: 0; line-height: 1.2; }
-    .tool-info { flex: 1; }
-    .tool-header { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.3rem; }
-    .tool-header h4 { font-family: 'Noto Serif TC', serif; font-size: 1rem; color: #1a2a4a; }
-    .tool-badge {
-      font-size: 0.7rem;
-      background: #d4e4fa;
-      color: #1a5cbe;
-      padding: 0.1rem 0.5rem;
-      border-radius: 12px;
-    }
-    .tool-info p { font-size: 0.87rem; color: #666; line-height: 1.65; }
 
     /* ── Social links ────────────────────────────────────────────────────── */
     .social-links {
@@ -1454,46 +1328,6 @@
       </div>
     </section>
 
-    <!-- 企業行銷診斷 導流橫幅 -->
-    <section id="teaser-promo" aria-label="企業行銷診斷工具">
-      <div class="teaser-promo">
-        <div class="wrap">
-          <div class="bar"></div>
-          <a class="card" href="https://line.me/ti/p/~@fud8853z" target="_blank" rel="noopener">
-            <div class="row">
-              <div class="main">
-                <span class="badge">✦ 新工具上線</span>
-                <h1>7 分鐘，釐清企業當前行銷瓶頸<br />與<span>最佳預算配置</span></h1>
-                <p class="sub">
-                  不是制式問卷，是一場用 Claude 做的動態 AI 顧問訪談——先問生意現況、再問卡點與渠道依賴，
-                  結束後給你一份分項評分、核心洞察與預算建議的健檢報告。
-                </p>
-                <div class="tags">
-                  <span class="tag purple">AI 顧問訪談</span>
-                  <span class="tag pink">6–8 題</span>
-                  <span class="tag teal">~7 分鐘</span>
-                  <span class="tag amber">免費健檢報告</span>
-                </div>
-                <span class="cta"><span>開始企業行銷診斷</span><span class="arrow">→</span></span>
-              </div>
-              <div class="visual">
-                <div class="bubble"></div>
-                <div class="report">
-                  <div class="l l1"></div>
-                  <div class="l l2"></div>
-                  <div class="l l3"></div>
-                  <div class="l l4"></div>
-                  <div class="bar1"></div>
-                  <div class="bar2"></div>
-                  <div class="bar3"></div>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
     <!-- 精選入門 -->
     <section id="about">
       <div class="card">
@@ -1624,6 +1458,13 @@
           </a>
         </div>
 
+        <!-- 企業行銷診斷 -->
+        <div class="sidebar-card">
+          <h3>企業行銷診斷</h3>
+          <p style="font-size:0.82rem;color:#666;line-height:1.6;margin:0.4rem 0 0.8rem;">7 分鐘 AI 顧問訪談，找出行銷瓶頸與預算配置建議。</p>
+          <a class="sidebar-subscribe-btn" href="https://line.me/ti/p/~@fud8853z" target="_blank" rel="noopener">加 LINE 諮詢 →</a>
+        </div>
+
         <!-- 文章列表（分類） -->
         <div class="sidebar-card">
           <h3>文章列表</h3>
@@ -1657,12 +1498,6 @@
         <div class="sidebar-card" id="timeline">
           <h3>學習時間軸</h3>
           <div class="timeline" id="timeline-container"></div>
-        </div>
-
-        <!-- 工具推薦 -->
-        <div class="sidebar-card">
-          <h3>工具推薦</h3>
-          <div class="tools-grid" id="tools-container"></div>
         </div>
 
       </aside><!-- end .sidebar -->
@@ -3614,13 +3449,6 @@ git push -u origin main</code></pre>
       }
     ];
 
-    const TOOLS = [
-      { name: 'Claude Code', emoji: '🤖', desc: 'Anthropic 推出的 AI 程式助手，用對話就能寫程式，初學者超友善。', badge: '必裝' },
-      { name: 'Claude.ai',   emoji: '💬', desc: '網頁版 Claude，隨時可以問問題、解釋程式碼、學習新知識。', badge: '免費' },
-      { name: 'VS Code',     emoji: '🖊️', desc: '輕量且強大的程式編輯器，擴充套件豐富，是工程師的標配。', badge: '免費' },
-      { name: 'Notion',      emoji: '📓', desc: '筆記與知識管理工具，很適合整理 AI 學習的碎片資料。', badge: '推薦' }
-    ];
-
     // ── State ─────────────────────────────────────────────────────────────────
     let activeTag = null;
     let searchQuery = '';
@@ -4071,23 +3899,6 @@ git push -u origin main</code></pre>
       ).join('');
     }
 
-    // ── Tools ─────────────────────────────────────────────────────────────────
-    function renderTools() {
-      const el = document.getElementById('tools-container');
-      el.innerHTML = TOOLS.map(t =>
-        '<div class="tool-card">' +
-          '<span class="tool-emoji">' + t.emoji + '</span>' +
-          '<div class="tool-info">' +
-            '<div class="tool-header">' +
-              '<h4>' + escapeHtml(t.name) + '</h4>' +
-              '<span class="tool-badge">' + escapeHtml(t.badge) + '</span>' +
-            '</div>' +
-            '<p>' + escapeHtml(t.desc) + '</p>' +
-          '</div>' +
-        '</div>'
-      ).join('');
-    }
-
     // ── Share ─────────────────────────────────────────────────────────────────
     function shareNote(platform, noteId) {
       const url = window.location.href.split('#')[0] + '#' + noteId;
@@ -4173,7 +3984,6 @@ git push -u origin main</code></pre>
     document.addEventListener('DOMContentLoaded', () => {
       renderNotes();
       renderTimeline();
-      renderTools();
       renderSidebarCategories();
       initProgressBar();
       initNavScroll();
