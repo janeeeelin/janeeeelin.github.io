@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supabase 連線測試 - Jane's Lens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #f8f9fc;
+      color: #1a1a2a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+    .panel {
+      width: 100%;
+      max-width: 560px;
+      background: white;
+      border: 1px solid #e8edf5;
+      border-left: 3px solid #1a6bb5;
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    h1 { font-size: 1.3rem; color: #1a2a4a; margin-bottom: 0.4rem; }
+    .sub { font-size: 0.88rem; color: #888; margin-bottom: 1.5rem; }
+    .row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid #f0f2f8; font-size: 0.9rem; }
+    .row:last-of-type { border-bottom: none; }
+    .row-label { color: #777; }
+    .row-value { color: #333; font-family: monospace; font-size: 0.85rem; word-break: break-all; text-align: right; }
+    .status {
+      margin-top: 1.5rem;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+    .status.loading { background: #f0f4fa; color: #667; }
+    .status.ok { background: #eafaf0; color: #157347; border: 1px solid #b6ecc8; }
+    .status.err { background: #fdf0f0; color: #b3261e; border: 1px solid #f3c6c4; }
+    .status strong { display: block; margin-bottom: 0.3rem; font-size: 0.98rem; }
+    .status pre {
+      margin-top: 0.6rem;
+      background: rgba(0,0,0,0.04);
+      padding: 0.6rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .hint { margin-top: 1rem; font-size: 0.8rem; color: #999; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <div class="panel">
+    <h1>Supabase 連線測試</h1>
+    <p class="sub">確認 Jane's Lens 網站能連上 Supabase，並讀取 articles 表</p>
+
+    <div class="row"><span class="row-label">Project URL</span><span class="row-value" id="url-display">—</span></div>
+    <div class="row"><span class="row-label">Key 類型</span><span class="row-value">anon / publishable</span></div>
+
+    <div class="status loading" id="status">
+      <strong>⏳ 連線中…</strong>
+      正在向 Supabase 查詢 articles 表
+    </div>
+
+    <p class="hint" id="hint"></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script>
+    document.getElementById('url-display').textContent = SUPABASE_URL;
+
+    const statusEl = document.getElementById('hint');
+
+    supabaseClient
+      .from('articles')
+      .select('*')
+      .then(({ data, error }) => {
+        const box = document.getElementById('status');
+        if (error) {
+          box.className = 'status err';
+          box.innerHTML =
+            '<strong>❌ 連線有問題</strong>' +
+            escapeHtml(error.message || String(error)) +
+            '<pre>' + escapeHtml(JSON.stringify(error, null, 2)) + '</pre>';
+          if (error.code === 'PGRST205' || /schema cache/i.test(error.message || '')) {
+            document.getElementById('hint').textContent =
+              '這個錯誤代表 Supabase 專案本身連得上，但 articles 資料表還沒建立——請先在 Supabase 的 SQL Editor 執行 supabase-schema.sql 裡的建表語法。';
+          }
+        } else {
+          box.className = 'status ok';
+          box.innerHTML =
+            '<strong>✅ 連線成功</strong>' +
+            'articles 表目前有 ' + data.length + ' 筆資料' + (data.length === 0 ? '（空表也算連線成功）' : '');
+        }
+      })
+      .catch(err => {
+        const box = document.getElementById('status');
+        box.className = 'status err';
+        box.innerHTML =
+          '<strong>❌ 連線失敗</strong>' +
+          escapeHtml(err.message || String(err));
+      });
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+  </script>
+</body>
+</html>
