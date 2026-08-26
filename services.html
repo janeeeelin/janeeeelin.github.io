@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://janeeeelin.github.io/services.html">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -41,6 +41,106 @@
     .card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2rem 2.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
     .section-label { display: inline-block; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: white; background: #0d3b8e; padding: 0.25rem 0.75rem; border-radius: 20px; margin-bottom: 0.8rem; }
     .card h2 { font-family: 'Noto Serif TC', serif; font-size: 1.5rem; color: #1a2a4a; margin-bottom: 1rem; }
+
+    /* ── Teaser Promo Banner（企業行銷診斷 導流橫幅）───────────────────────── */
+    .teaser-promo {
+      --tp-navy: #1a2a4a;
+      --tp-blue: #1a6bb5;
+      --tp-card-bg: #ffffff;
+      --tp-ink: #1a2540;
+      --tp-ink-muted: #64748b;
+      --tp-purple-bg: #ede9fe; --tp-purple-ink: #6d28d9;
+      --tp-pink-bg: #fce7f3;   --tp-pink-ink: #be185d;
+      --tp-teal-bg: #ccfbf1;   --tp-teal-ink: #0f766e;
+      --tp-amber-bg: #fef3c7;  --tp-amber-ink: #b45309;
+      font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      color: var(--tp-ink);
+    }
+    .teaser-promo .wrap { position: relative; width: 100%; max-width: 1100px; margin: 0 auto; }
+    .teaser-promo .bar {
+      position: absolute; left: -10px; top: 22px; bottom: 22px; width: 16px;
+      background: var(--tp-navy); border-radius: 999px;
+    }
+    .teaser-promo .card {
+      position: relative; display: block; text-decoration: none; color: inherit;
+      background: var(--tp-card-bg); border-radius: 28px;
+      box-shadow: 0 18px 40px -20px rgba(26,42,74,0.28), 0 2px 10px rgba(26,42,74,0.06);
+      padding: 44px 48px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .teaser-promo .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 48px -18px rgba(26,42,74,0.34), 0 4px 14px rgba(26,42,74,0.08);
+    }
+    .teaser-promo .row { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .teaser-promo .main { flex: 1; min-width: 0; }
+    .teaser-promo .badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--tp-navy); color: #fff; font-weight: 700; font-size: 13px;
+      letter-spacing: 0.06em; padding: 8px 18px; border-radius: 999px;
+    }
+    .teaser-promo h1 {
+      margin-top: 20px; font-size: 30px; font-weight: 900; line-height: 1.42;
+      color: var(--tp-navy); letter-spacing: 0.01em; font-family: inherit;
+    }
+    .teaser-promo h1 span { color: var(--tp-blue); }
+    .teaser-promo .sub { margin-top: 14px; max-width: 56ch; font-size: 16px; line-height: 1.75; color: var(--tp-ink-muted); }
+    .teaser-promo .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .teaser-promo .tag { font-size: 13px; font-weight: 700; padding: 7px 15px; border-radius: 999px; }
+    .teaser-promo .tag.purple { background: var(--tp-purple-bg); color: var(--tp-purple-ink); }
+    .teaser-promo .tag.pink   { background: var(--tp-pink-bg);   color: var(--tp-pink-ink); }
+    .teaser-promo .tag.teal   { background: var(--tp-teal-bg);   color: var(--tp-teal-ink); }
+    .teaser-promo .tag.amber  { background: var(--tp-amber-bg);  color: var(--tp-amber-ink); }
+    .teaser-promo .cta {
+      margin-top: 28px; display: inline-flex; align-items: center; gap: 10px;
+      background: var(--tp-navy); color: #fff; font-weight: 700; font-size: 15.5px;
+      padding: 14px 26px; border-radius: 999px; white-space: nowrap;
+    }
+    .teaser-promo .cta .arrow { display: inline-block; }
+    .teaser-promo .visual {
+      flex-shrink: 0; width: 168px; height: 168px; border-radius: 24px;
+      background: linear-gradient(160deg, #eef2ff, #f5f3ff 55%, #eef9f6);
+      display: flex; align-items: center; justify-content: center; position: relative;
+    }
+    .teaser-promo .visual .bubble {
+      position: absolute; width: 84px; height: 60px; background: var(--tp-navy);
+      border-radius: 14px 14px 14px 4px; top: 32px; left: 24px;
+    }
+    .teaser-promo .visual .bubble::before,
+    .teaser-promo .visual .bubble::after {
+      content: ""; position: absolute; left: 14px; height: 5px; border-radius: 3px;
+      background: rgba(255,255,255,0.55);
+    }
+    .teaser-promo .visual .bubble::before { top: 16px; width: 56px; }
+    .teaser-promo .visual .bubble::after  { top: 30px; width: 38px; }
+    .teaser-promo .visual .report {
+      position: absolute; width: 62px; height: 78px; background: #ffffff;
+      border: 2px solid var(--tp-blue); border-radius: 8px; right: 26px; bottom: 26px;
+      box-shadow: 0 8px 16px -6px rgba(26,107,181,0.35);
+    }
+    .teaser-promo .visual .report .l { position: absolute; left: 10px; height: 5px; border-radius: 3px; background: #cbd5f5; }
+    .teaser-promo .visual .report .l1 { top: 14px; width: 42px; background: var(--tp-blue); }
+    .teaser-promo .visual .report .l2 { top: 26px; width: 30px; }
+    .teaser-promo .visual .report .l3 { top: 36px; width: 34px; }
+    .teaser-promo .visual .report .l4 { top: 46px; width: 24px; }
+    .teaser-promo .visual .report .bar1,
+    .teaser-promo .visual .report .bar2,
+    .teaser-promo .visual .report .bar3 {
+      position: absolute; bottom: 10px; width: 6px; border-radius: 2px; background: var(--tp-teal-ink);
+    }
+    .teaser-promo .visual .report .bar1 { left: 12px; height: 14px; }
+    .teaser-promo .visual .report .bar2 { left: 24px; height: 20px; background: var(--tp-blue); }
+    .teaser-promo .visual .report .bar3 { left: 36px; height: 10px; background: var(--tp-amber-ink); }
+    @media (max-width: 720px) {
+      .teaser-promo .row { flex-direction: column; align-items: flex-start; }
+      .teaser-promo .visual { display: none; }
+      .teaser-promo h1 { font-size: 24px; }
+    }
+    @media (max-width: 600px) {
+      .teaser-promo .card { padding: 1.7rem 1.3rem; }
+      .teaser-promo .bar { left: -8px; width: 10px; }
+      .teaser-promo .sub { font-size: 0.92rem; }
+    }
 
     /* ── Hero quote ── */
     .hero-quote { font-family: 'Noto Serif TC', serif; font-size: clamp(1rem, 2.5vw, 1.25rem); color: #1a2a4a; line-height: 1.85; border-left: 4px solid #1a6bb5; padding: 0.8rem 0 0.8rem 1.2rem; margin-top: 0.4rem; }
@@ -141,63 +241,43 @@
       <!-- ── Main Column ── -->
       <main class="main-col">
 
-        <!-- Hero -->
-        <div class="card">
-          <span class="section-label">✦ SERVICES</span>
-          <h2>直效行銷 × AI 導入顧問</h2>
-          <p style="font-size:0.88rem; color:#7a9cc8; letter-spacing:0.12em; margin:0.3rem 0 1.1rem;">不是教你用工具，是幫你解決生意問題</p>
-          <p class="hero-quote">你的業務遇到瓶頸，不是因為你不夠努力——是因為你還沒找到正確的工具和方法。</p>
-          <p style="font-size:0.95rem; color:#555; line-height:1.85; margin-top:0.9rem;">我是 Jane，廣告人出身，這幾年把 AI 工具實際用在行銷策略和業務執行上。我懂你面對的問題，也知道 AI 可以幫你解決哪些、解決不了哪些。</p>
-          <p style="font-size:0.95rem; color:#1a6bb5; line-height:1.85; margin-top:0.7rem; font-weight:500;">我們的對話從你的問題開始，不是從工具開始。</p>
-        </div>
-
-        <!-- Services -->
-        <div class="card">
-          <span class="section-label">📋 我能幫你做什麼</span>
-          <h2>三種服務方向</h2>
-          <div class="service-grid">
-
-            <div class="service-card">
-              <div class="service-icon">🎯</div>
-              <div class="service-title">品牌行銷策略 × AI 導入</div>
-              <div class="service-desc">你的品牌該怎麼定位？受眾在哪裡？AI 工具要怎麼用在你的行銷上？從你現在的狀況出發，給你一個聽完就能執行的方向，不是一份厚厚的報告。</div>
-              <a class="service-btn" href="https://line.me/ti/p/~@fud8853z" target="_blank" rel="noopener">歡迎聯繫討論</a>
-            </div>
-
-            <div class="service-card">
-              <div class="service-icon">📊</div>
-              <div class="service-title">KOL 合作 × CP 值評估</div>
-              <div class="service-desc">花錢找網紅之前，先讓我幫你把帳算清楚。用 AI 分析真實互動率、受眾契合度、合作創意方向，讓每一分預算花在刀口上。</div>
-              <a class="service-btn" href="https://line.me/ti/p/~@fud8853z" target="_blank" rel="noopener">歡迎聯繫討論</a>
-            </div>
-
-            <div class="service-card">
-              <div class="service-icon">⚙️</div>
-              <div class="service-title">AI 行銷工作流程 × 團隊導入</div>
-              <div class="service-desc">你的團隊每天花最多時間在哪件事上？我幫你找出那個地方，建立一套用 AI 提升效率的工作流程，讓你的人力專注在真正需要判斷的事。</div>
-              <a class="service-btn" href="https://line.me/ti/p/~@fud8853z" target="_blank" rel="noopener">歡迎聯繫討論</a>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Contact -->
-        <div class="contact-section">
-          <h3>先聊聊你的狀況</h3>
-          <p>不用準備什麼，把你現在最頭痛的行銷問題說給我聽就好。</p>
-          <div class="contact-btns">
-            <a class="btn-line" href="https://line.me/ti/p/~@fud8853z" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-              加 LINE 聊聊
-            </a>
-            <a class="btn-email" href="mailto:jhencyue@gmail.com">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-              寄信給我
+        <!-- 企業行銷診斷 導流橫幅 -->
+        <div class="teaser-promo">
+          <div class="wrap">
+            <div class="bar"></div>
+            <a class="card" href="https://line.me/ti/p/~@fud8853z" target="_blank" rel="noopener">
+              <div class="row">
+                <div class="main">
+                  <span class="badge">✦ 新工具上線</span>
+                  <h1>7 分鐘，釐清企業當前行銷瓶頸<br />與<span>最佳預算配置</span></h1>
+                  <p class="sub">
+                    不是制式問卷，是一場用 Claude 做的動態 AI 顧問訪談——先問生意現況、再問卡點與渠道依賴，
+                    結束後給你一份分項評分、核心洞察與預算建議的健檢報告。
+                  </p>
+                  <div class="tags">
+                    <span class="tag purple">AI 顧問訪談</span>
+                    <span class="tag pink">6–8 題</span>
+                    <span class="tag teal">~7 分鐘</span>
+                    <span class="tag amber">免費健檢報告</span>
+                  </div>
+                  <span class="cta"><span>開始企業行銷診斷</span><span class="arrow">→</span></span>
+                </div>
+                <div class="visual">
+                  <div class="bubble"></div>
+                  <div class="report">
+                    <div class="l l1"></div>
+                    <div class="l l2"></div>
+                    <div class="l l3"></div>
+                    <div class="l l4"></div>
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                  </div>
+                </div>
+              </div>
             </a>
           </div>
         </div>
-
-        <p class="service-note">目前服務對象：台灣中小企業業主｜依需求報價，歡迎聯繫討論</p>
 
       </main>
 
