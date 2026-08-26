@@ -1,0 +1,1870 @@
+-- Jane's Lens — 既有 19 篇文章搬進 articles 表
+-- 用法：貼到 Supabase SQL Editor 執行一次即可。member_only 先全部設 false（目前都是公開文章）。
+
+insert into public.articles (title, subtitle, content, category, published_date, member_only)
+values
+(
+  '如何在 Mac 磁碟空間不足時安裝 Claude Code',
+  'Mac 只剩 4GB，我還是裝上了',
+  '<p style="margin-bottom:0.9rem">今天一早想安裝 Claude Code，結果被一個錯誤訊息擋下來了——Mac 磁碟空間不足。這是我踏入工程世界的第一個障礙，記錄下來給有同樣困擾的朋友參考。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>發現問題：需要 10.57 GB</div>
+  <div class="step-body">
+    <p>安裝程式提示至少需要 <strong>10.57 GB</strong> 的可用空間，但 Mac 只剩不到 5 GB。這比我預期的麻煩多了。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>用終端機找出佔空間的元兇</div>
+  <div class="step-body">
+    <p>打開<strong>終端機（Terminal）</strong>，掃描哪些資料夾最佔空間：</p>
+    <pre><code>du -sh ~/* 2>/dev/null | sort -rh | head -20</code></pre>
+    <p>發現 Library 最大，繼續往 Caches 裡挖：</p>
+    <pre><code>du -sh ~/Library/Caches/* 2>/dev/null | sort -rh | head -10</code></pre>
+    <svg style="display:block;width:100%;max-width:460px;margin:1rem auto 0;border-radius:10px" viewBox="0 0 460 125" xmlns="http://www.w3.org/2000/svg"><rect width="460" height="125" fill="#0d1117" rx="10"/><rect width="460" height="26" fill="#161b22" rx="10"/><rect y="17" width="460" height="9" fill="#161b22"/><circle cx="16" cy="13" r="4.5" fill="#ff5f57"/><circle cx="33" cy="13" r="4.5" fill="#febc2e"/><circle cx="50" cy="13" r="4.5" fill="#28c840"/><text x="20" y="50" font-family="monospace" font-size="11" fill="#6fcf97">$ du -sh ~/Library/Caches/* | sort -rh</text><text x="20" y="67" font-family="monospace" font-size="12" fill="#f7c948" font-weight="bold">13.2G   Claude</text><text x="20" y="83" font-family="monospace" font-size="11" fill="#56ccf2"> 4.8G   com.tinyspeck.slackmacgap</text><text x="20" y="98" font-family="monospace" font-size="11" fill="#56ccf2"> 2.3G   Cisco WebEx LLC</text><text x="20" y="113" font-family="monospace" font-size="11" fill="#8b949e"> 0.9G   com.apple.Safari</text></svg>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>發現 Claude App 快取佔了 13 GB！</div>
+  <div class="step-body">
+    <p>掃描結果讓我嚇一跳——之前裝的 Claude 桌面版快取竟佔了將近 <strong>13 GB</strong>。另外 Slack、WebEx 也各自佔了數 GB，三個加起來超過 16 GB。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>清除快取，成功釋出 10 GB</div>
+  <div class="step-body">
+    <p>清除 Claude App 快取（先確認 Claude 桌面版已關閉）：</p>
+    <pre><code>rm -rf ~/Library/Caches/Claude</code></pre>
+    <p>清除 Slack 快取：</p>
+    <pre><code>rm -rf ~/Library/Caches/com.tinyspeck.slackmacgap</code></pre>
+    <p>清除 WebEx 快取：</p>
+    <pre><code>rm -rf ~/Library/Caches/Cisco WebEx LLC</code></pre>
+    <p>清完後總共釋出超過 <strong>10 GB</strong>，終於有足夠空間了！</p>
+    <svg style="display:block;width:100%;max-width:460px;margin:1rem auto 0;border-radius:10px" viewBox="0 0 460 105" xmlns="http://www.w3.org/2000/svg"><rect width="460" height="105" fill="#0d1a14" rx="10"/><rect x="15" y="17" width="115" height="70" rx="8" fill="none" stroke="#f7c948" stroke-width="1.5"/><text x="72" y="45" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f7c948">Claude Cache</text><text x="72" y="63" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#f7c948" font-weight="bold">13 GB</text><text x="72" y="79" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f7c948" opacity="0.7">佔用中</text><line x1="132" y1="52" x2="162" y2="52" stroke="#56ccf2" stroke-width="2" stroke-linecap="round"/><polyline points="158,46 166,52 158,58" fill="none" stroke="#56ccf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="148" y="44" text-anchor="middle" font-family="monospace" font-size="8" fill="#56ccf2">rm -rf</text><rect x="170" y="17" width="115" height="70" rx="8" fill="none" stroke="#56ccf2" stroke-width="1.5"/><line x1="205" y1="38" x2="250" y2="68" stroke="#56ccf2" stroke-width="2" stroke-linecap="round"/><line x1="250" y1="38" x2="205" y2="68" stroke="#56ccf2" stroke-width="2" stroke-linecap="round"/><text x="227" y="85" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#56ccf2">快取清除</text><line x1="288" y1="52" x2="318" y2="52" stroke="#6fcf97" stroke-width="2" stroke-linecap="round"/><polyline points="314,46 322,52 314,58" fill="none" stroke="#6fcf97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="326" y="17" width="120" height="70" rx="8" fill="none" stroke="#6fcf97" stroke-width="1.5"/><text x="386" y="45" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#6fcf97">空間釋出</text><text x="386" y="65" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#6fcf97" font-weight="bold">+10 GB</text><text x="386" y="82" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#6fcf97">&#10003;</text></svg>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>安裝 Homebrew（Mac 套件管理工具）</div>
+  <div class="step-body">
+    <p>Claude Code 需要 Node.js 環境，先透過 Homebrew 來安裝。在終端機貼上：</p>
+    <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+    <p>安裝完成後確認：</p>
+    <pre><code>brew --version</code></pre>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">06</span>安裝 Node.js</div>
+  <div class="step-body">
+    <p>透過 Homebrew 安裝 Node.js：</p>
+    <pre><code>brew install node</code></pre>
+    <p>確認安裝成功：</p>
+    <pre><code>node --version
+npm --version</code></pre>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">07</span>安裝 Claude Code，大功告成 🎉</div>
+  <div class="step-body">
+    <p>環境準備好之後，用 npm 全域安裝 Claude Code：</p>
+    <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+    <p>建立測試資料夾並啟動：</p>
+    <pre><code>mkdir ~/Desktop/claude-test
+cd ~/Desktop/claude-test
+claude</code></pre>
+    <p>看到 Claude Code 的提示符號出現，成功了！對工程小白的我來說，這一刻真的超有成就感 🌱</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：如何在 Mac 磁碟空間不足的情況下安裝 Claude Code？</strong></p>
+    <p>A：先用終端機指令掃描佔空間的快取資料夾，清除 Claude App、Slack、WebEx 等應用程式的快取，通常可以釋出 10GB 以上的空間，再進行安裝。</p>
+  </div>
+</div>',
+  'Claude Code、Mac 教學',
+  '2026-05-14',
+  false
+),
+(
+  '工程小白如何用 Claude Code 建立個人網站',
+  '我不懂程式，但我做出了這個網站',
+  '<p style="margin-bottom:0.9rem">這篇是專門寫給和我一樣的工程小白看的！我自己就是完全不懂程式，但照著這些步驟，真的做出了一個網站。你也可以的 💪</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">✓</span>你需要準備什麼</div>
+  <div class="step-body">
+    <p>其實沒有你想的那麼多：</p>
+    <p>🖥️ <strong>一台電腦</strong>（Mac 或 Windows 都可以）<br>
+    🤖 <strong>Claude Code</strong>（免費，接下來會教你裝）<br>
+    ⏳ <strong>耐心</strong>（這個最重要，遇到錯誤不要慌）</p>
+    <p>就這樣，真的不需要學過任何程式語言！</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>安裝環境（只需要做一次）</div>
+  <div class="step-body">
+    <p>打開<strong>終端機（Terminal）</strong>，按順序貼上這三段指令，每段按 Enter 等跑完再貼下一段：</p>
+    <p><strong>① 裝 Homebrew</strong>（Mac 的工具管理員）：</p>
+    <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+    <p><strong>② 裝 Node.js</strong>（Claude Code 需要它才能跑）：</p>
+    <pre><code>brew install node</code></pre>
+    <p><strong>③ 裝 Claude Code</strong>：</p>
+    <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+    <p>跑完沒有紅色錯誤訊息就是成功了 🎉 如果空間不足，可以先參考第一篇筆記清快取。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>建立資料夾，啟動 Claude Code</div>
+  <div class="step-body">
+    <p>建一個放網站的資料夾，再進去啟動 Claude Code：</p>
+    <pre><code>mkdir ~/Desktop/my-website
+cd ~/Desktop/my-website
+claude</code></pre>
+    <p>看到 Claude Code 的提示符號出現，就代表啟動成功，可以開始和它說話了！</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>用說話的方式告訴 Claude 你要什麼</div>
+  <div class="step-body">
+    <p>這是我最喜歡的部分——直接打<strong>中文</strong>就好，把 Claude Code 當成一個超厲害的朋友：</p>
+    <p>💬「<strong>幫我建一個簡單的個人網頁，背景要藍色，標題是我的名字</strong>」<br>
+    💬「<strong>幫我在網頁上加一段自我介紹</strong>」<br>
+    💬「<strong>把字體改大一點，顏色改成深藍色</strong>」</p>
+    <p>Claude 會直接幫你寫好所有程式碼，你只需要說你想要什麼就好。不用懂任何語法，說人話就行！</p>
+    <svg style="display:block;width:100%;max-width:460px;margin:1rem auto 0;border-radius:10px" viewBox="0 0 460 110" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="n2flow" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0d1a1a"/><stop offset="100%" stop-color="#1a1a2a"/></linearGradient></defs><rect width="460" height="110" fill="url(#n2flow)" rx="10"/><rect x="10" y="18" width="90" height="73" rx="8" fill="none" stroke="#f7c948" stroke-width="1.5"/><rect x="26" y="28" width="58" height="32" rx="6" fill="none" stroke="#f7c948" stroke-width="1.3"/><polygon points="36,60 28,72 52,60" fill="none" stroke="#f7c948" stroke-width="1.3" stroke-linejoin="round"/><rect x="33" y="36" width="34" height="3" rx="1.5" fill="#f7c948" opacity="0.6"/><rect x="33" y="44" width="24" height="3" rx="1.5" fill="#f7c948" opacity="0.6"/><text x="55" y="95" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f7c948">你說話</text><line x1="103" y1="55" x2="128" y2="55" stroke="#56ccf2" stroke-width="2" stroke-linecap="round"/><polyline points="124,49 132,55 124,61" fill="none" stroke="#56ccf2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="135" y="18" width="90" height="73" rx="8" fill="none" stroke="#56ccf2" stroke-width="1.5"/><circle cx="180" cy="52" r="16" fill="none" stroke="#56ccf2" stroke-width="1.5"/><text x="180" y="57" text-anchor="middle" font-family="monospace" font-size="13" fill="#56ccf2" font-weight="bold">C</text><text x="180" y="95" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#56ccf2">Claude Code</text><line x1="228" y1="55" x2="253" y2="55" stroke="#6fcf97" stroke-width="2" stroke-linecap="round"/><polyline points="249,49 257,55 249,61" fill="none" stroke="#6fcf97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="260" y="18" width="90" height="73" rx="8" fill="none" stroke="#6fcf97" stroke-width="1.5"/><text x="305" y="50" text-anchor="middle" font-family="monospace" font-size="11" fill="#6fcf97">&lt;html&gt;</text><text x="305" y="65" text-anchor="middle" font-family="monospace" font-size="9" fill="#6fcf97" opacity="0.7">index.html</text><text x="305" y="95" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#6fcf97">程式生成</text><line x1="353" y1="55" x2="375" y2="55" stroke="#f7c948" stroke-width="2" stroke-linecap="round"/><polyline points="371,49 379,55 371,61" fill="none" stroke="#f7c948" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="382" y="18" width="70" height="73" rx="8" fill="none" stroke="#f7c948" stroke-width="1.5"/><circle cx="417" cy="50" r="14" fill="none" stroke="#f7c948" stroke-width="1.5"/><line x1="417" y1="36" x2="417" y2="64" stroke="#f7c948" stroke-width="1" opacity="0.6"/><line x1="403" y1="50" x2="431" y2="50" stroke="#f7c948" stroke-width="1" opacity="0.6"/><path d="M411 37 Q404 50 411 63" fill="none" stroke="#f7c948" stroke-width="1" opacity="0.6"/><path d="M423 37 Q430 50 423 63" fill="none" stroke="#f7c948" stroke-width="1" opacity="0.6"/><text x="417" y="95" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f7c948">網站上線</text></svg>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>一步一步修改，每次只改一件事</div>
+  <div class="step-body">
+    <p>新手最容易犯的錯是一次要改太多，結果不知道哪裡出問題。我的建議是：</p>
+    <p>✅ <strong>改完一件事就去瀏覽器看效果</strong>（雙擊 index.html 就能預覽）<br>
+    ✅ <strong>滿意了再繼續改下一件</strong><br>
+    ✅ <strong>不喜歡就直接說</strong>「我不喜歡這個樣子，改回去」</p>
+    <p>沒有什麼是改不回去的，放心大膽試試看 😄</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>上傳到 GitHub Pages，讓全世界都看到</div>
+  <div class="step-body">
+    <p>先去 <strong>github.com</strong> 申請免費帳號。帳號名稱想好，因為你的網址會是 <code>帳號名稱.github.io</code>。</p>
+    <p>接著安裝 GitHub CLI 並登入：</p>
+    <pre><code>brew install gh
+gh auth login</code></pre>
+    <p>然後建立 repo 並上傳（把下面的 <code>你的帳號</code> 換成你實際的帳號名稱）：</p>
+    <pre><code>git init
+git add index.html
+git commit -m "my first website"
+gh repo create 你的帳號.github.io --public
+git remote add origin https://github.com/你的帳號/你的帳號.github.io.git
+git push -u origin main</code></pre>
+    <p>幾分鐘後打開 <code>你的帳號.github.io</code> 就能看到你的網站了 🌐</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">⚠</span>常見錯誤和解決方法</div>
+  <div class="step-body">
+    <p>🔴 <strong>磁碟空間不足，無法安裝</strong><br>
+    → 參考第一篇筆記，用終端機清除 App 快取，通常能釋出好幾 GB 空間。</p>
+    <p>🔴 <strong>指令跑一半卡住不動</strong><br>
+    → 等久一點（網路慢很正常），或按 <code>Ctrl + C</code> 取消後重新貼一次。</p>
+    <p>🔴 <strong>看到紅色錯誤訊息</strong><br>
+    → 把整段錯誤文字複製，貼給 Claude Code 問「這是什麼意思，怎麼解決？」它會告訴你。</p>
+    <p>🔴 <strong>網站打開是空白的</strong><br>
+    → 確認資料夾裡有 index.html，用瀏覽器直接打開確認內容沒問題，再重新 push 一次。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>給小白的心理建設</div>
+  <div class="step-body">
+    <p>說真的，我剛開始也覺得很難，很多指令看不懂，遇到奇怪的錯誤也不知道怎麼辦。但是——</p>
+    <p>👉 <strong>不懂沒關係</strong>，把看不懂的東西丟給 Claude Code 問，它不會嫌你問題蠢<br>
+    👉 <strong>錯了可以重來</strong>，程式不會爆炸，最多就是重新做一次<br>
+    👉 <strong>每個工程師都是從小白開始的</strong>，你只是剛好比他們晚一點開始而已</p>
+    <p>現在你正在看的這個網站，就是我用 Claude Code 一句一句說出來做的。<br>
+    如果我可以，你也可以 🌱</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：工程小白可以用 Claude Code 做網站嗎？</strong></p>
+    <p>A：完全可以。Claude Code 讓你用說中文的方式告訴 AI 你想要什麼，它會直接幫你寫好所有程式碼。不需要學任何程式語言，只需要清楚表達你的需求。</p>
+  </div>
+</div>',
+  '新手教學、Claude Code',
+  '2026-05-14',
+  false
+),
+(
+  'Claude in Chrome 如何分析 Instagram 帳號經營策略',
+  'AI 看了我的 IG，說了一句讓我愣住的話',
+  '<p style="margin-bottom:0.9rem">我也是最近才發現這件事——原來 Claude 不只能聊天寫程式，它還可以直接「看到」你的 Instagram，幫你分析帳號、給你方向建議。這篇記錄我親身試用的過程。</p><div class="note-step"><div class="step-header"><span class="step-num">！</span>先說結論</div><div class="step-body"><p>透過 <strong>Claude in Chrome</strong> 這個瀏覽器擴充功能，Claude 可以連進你正在瀏覽的網頁，包括你的 IG 主頁。它能看到你的頭貼、bio、精選限時動態、貼文九宮格——然後直接幫你分析、給建議。不需要把截圖一張一張傳給它。它就在你的瀏覽器旁邊，陪你一起看。</p></div></div><svg style="display:block;width:100%;max-width:460px;margin:1rem auto 0;border-radius:10px" viewBox="0 0 460 155" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="n3ill" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0d1014"/><stop offset="100%" stop-color="#0d1a24"/></linearGradient></defs><rect width="460" height="155" fill="url(#n3ill)" rx="10"/><rect x="15" y="15" width="248" height="128" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/><rect x="15" y="15" width="248" height="26" rx="8" fill="#1c2128"/><rect x="15" y="32" width="248" height="9" fill="#1c2128"/><circle cx="30" cy="28" r="4" fill="#ff5f57" opacity="0.8"/><circle cx="44" cy="28" r="4" fill="#febc2e" opacity="0.8"/><circle cx="58" cy="28" r="4" fill="#28c840" opacity="0.8"/><rect x="75" y="21" width="160" height="14" rx="7" fill="#0d1117" stroke="#30363d" stroke-width="1"/><text x="155" y="32" text-anchor="middle" font-family="monospace" font-size="8" fill="#56ccf2">instagram.com/@you</text><circle cx="55" cy="70" r="17" fill="none" stroke="#f7c948" stroke-width="1.5" opacity="0.8"/><circle cx="55" cy="70" r="10" fill="#f7c948" opacity="0.2"/><text x="90" y="66" font-family="sans-serif" font-size="9" fill="#e2e8f0" font-weight="bold">@username</text><rect x="90" y="71" width="80" height="3" rx="1.5" fill="#4b5563"/><rect x="90" y="78" width="55" height="3" rx="1.5" fill="#4b5563"/><rect x="20" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="60" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="100" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="140" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="180" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="220" y="97" width="36" height="36" rx="2" fill="#1f2937" stroke="#374151" stroke-width="0.5"/><rect x="20" y="97" width="36" height="36" rx="2" fill="#f7c948" opacity="0.08"/><rect x="60" y="97" width="36" height="36" rx="2" fill="#56ccf2" opacity="0.06"/><line x1="266" y1="77" x2="294" y2="77" stroke="#6fcf97" stroke-width="2" stroke-dasharray="5,3" stroke-linecap="round"/><polyline points="290,71 298,77 290,83" fill="none" stroke="#6fcf97" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="280" y="70" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#6fcf97">分析</text><rect x="305" y="15" width="140" height="128" rx="8" fill="#1a2040" stroke="#56ccf2" stroke-width="1.5"/><rect x="305" y="15" width="140" height="28" rx="8" fill="#1e2d50"/><rect x="305" y="34" width="140" height="9" fill="#1e2d50"/><circle cx="323" cy="29" r="7" fill="#56ccf2" opacity="0.25"/><text x="323" y="33" text-anchor="middle" font-family="monospace" font-size="10" fill="#56ccf2" font-weight="bold">C</text><text x="350" y="33" font-family="sans-serif" font-size="8.5" fill="#e2e8f0">Claude in Chrome</text><rect x="345" y="54" width="90" height="26" rx="6" fill="#2d4060"/><text x="390" y="66" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#e2e8f0">分析我的 IG，</text><text x="390" y="76" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#e2e8f0">給我建議</text><rect x="310" y="90" width="128" height="45" rx="6" fill="#243350"/><text x="374" y="104" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#6fcf97">* 正在分析...</text><rect x="318" y="110" width="100" height="3" rx="1.5" fill="#56ccf2" opacity="0.6"/><rect x="318" y="117" width="78" height="3" rx="1.5" fill="#56ccf2" opacity="0.4"/><rect x="318" y="124" width="90" height="3" rx="1.5" fill="#56ccf2" opacity="0.5"/><rect x="318" y="133" width="5" height="8" rx="1" fill="#f7c948" opacity="0.9"/></svg><div class="note-step"><div class="step-header"><span class="step-num">01</span>怎麼讓 Claude 連進你的瀏覽器</div><div class="step-body"><p>這個功能叫做 <strong>Claude in Chrome</strong>，需要先安裝一個 Chrome 擴充功能：</p><p>① 確認你有 <strong>Claude 付費方案</strong>（Pro、Max、Team 或 Enterprise）<br>② 在 Claude.ai 左下角點名字縮寫 → Settings<br>③ 找到 Claude in Chrome，打開它<br>④ 去 Chrome Web Store 搜尋「Claude」，點「Add to Chrome」<br>⑤ 裝好後把 Claude 釘選在工具列</p><p>⚠️ 目前只支援 Google Chrome。</p></div></div><div class="note-step"><div class="step-header"><span class="step-num">02</span>打開你的 IG，叫 Claude 幫你看</div><div class="step-body"><p>安裝好後直接打開 IG 主頁，在 Claude 側邊欄輸入：「幫我分析我的 IG 帳號，給我經營建議」。Claude 會截圖你的頁面，然後開始分析——大頭貼、bio、精選動態、貼文九宮格全部都看。</p><p>它第一眼看到我的帳號就說：<strong>「你的精選動態全是旅遊地名，這是生活型帳號的語言，不是思想型帳號的語言。」</strong></p></div></div><div class="note-step"><div class="step-header"><span class="step-num">03</span>它說中了我</div><div class="step-body"><p>我說我把深入的觀點都放限時動態。它說：<strong>「你把最值錢的東西放在會消失的地方。」</strong></p><p>限時動態 24 小時後消失、只有追蹤者看得到、演算法不推給陌生人。我以為那樣是保護自己，結果是在限制自己的影響力。</p><p>它給我一個最簡單的建議：「下次想在限時動態打觀點之前，先把它做成貼文，再分享到限時動態。同樣的時間，影響力差十倍。」</p></div></div><div class="note-step"><div class="step-header"><span class="step-num">💛</span>這個功能適合你嗎？</div><div class="step-body"><p>如果你也有 IG 帳號但搞不清楚方向，這個方式值得試試。不需要找社群顧問，就是打開你的 IG，叫 Claude 陪你一起看。</p><p>👉 <strong>它會讓你看到自己沒注意到的盲點</strong><br>👉 <strong>它不給制式建議，它問你問題</strong><br>👉 <strong>最後你得到的，是你自己想清楚的答案</strong></p><p>這大概是我目前用 AI 最有收穫的一次對話。</p></div></div><div class="note-step"><div class="step-header"><span class="step-num">FAQ</span>常見問題</div><div class="step-body"><p><strong>Q：Claude in Chrome 是什麼？</strong></p><p>A：Claude in Chrome 是 Anthropic 推出的 Chrome 瀏覽器擴充功能，讓 Claude AI 可以直接看到你正在瀏覽的網頁並提供協助，包括分析 Instagram 帳號、優化內容策略等。需要 Claude 付費方案才能使用。</p><p><strong>Q：Claude 可以幫我分析 Instagram 帳號嗎？</strong></p><p>A：可以。透過 Claude in Chrome，Claude 能直接讀取你的 IG 主頁，分析帳號定位、受眾方向、內容策略，並給出具體建議。</p></div></div>',
+  'Claude AI、IG 經營',
+  '2026-05-29',
+  false
+),
+(
+  'SEO 與 AIO 的差異：業主必懂的內容轉型五大心法',
+  '你的文章 Google 找得到，但 ChatGPT 不知道你存在',
+  '<p style="margin-bottom:0.9rem">你的文章在 Google 排名還不錯，但最近流量開始掉？原因很可能不是你寫得不好——而是搜尋行為正在改變。這篇寫給想把內容升級的業主，不需要懂技術，只需要懂邏輯。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">？</span>SEO 和 AIO 到底差在哪</div>
+  <div class="step-body">
+    <p><strong>SEO（Search Engine Optimization）</strong>——讓 Google 把你的網頁排在前面，使用者點進來看。</p>
+    <p><strong>AIO（AI Optimization）</strong>——讓 AI（ChatGPT、Claude、Gemini、Google AI Overview）在回答問題時，直接引用你的內容、甚至唸出你的名字。</p>
+    <p>關鍵差異：SEO 是爭排名，AIO 是爭被引用。用戶不一定會點進你的網站，但 AI 可能直接把你的答案說給他聽。</p>
+    <p>兩個都重要——但如果你現在只做 SEO，你正在慢慢輸掉未來的流量。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>心法一：從「關鍵字」思維轉向「問題」思維</div>
+  <div class="step-body">
+    <p>舊 SEO 思維：把關鍵字塞進標題和內文，讓 Google 爬蟲認出你。</p>
+    <p>AIO 思維：<strong>直接回答一個完整的問題</strong>，讓 AI 覺得你的內容「可以直接引用」。</p>
+    <p>✗ 舊寫法標題：「台北室內設計推薦 2026」<br>
+    ✓ 新寫法標題：「台北找室內設計師前，業主最常問的 5 個問題」</p>
+    <p>AI 在搜尋時尋找的是「能直接回答使用者問題的段落」，而不是關鍵字密度高的頁面。你的每一段內容，都應該能獨立回答一個問題。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>心法二：結構清晰比文采重要</div>
+  <div class="step-body">
+    <p>AI 在讀你的文章時，它在找的是結構——標題、副標、條列、定義句。文筆再好，如果沒有清晰的結構，AI 抓不到重點，就不會引用你。</p>
+    <p>幾個立刻可以做的事：</p>
+    <p>📌 <strong>每個段落第一句就說結論</strong>，不要把結論藏在最後<br>
+    📌 <strong>多用「是什麼」「為什麼」「怎麼做」</strong>當副標題<br>
+    📌 <strong>定義專業名詞</strong>——AI 特別喜歡引用有清晰定義的段落<br>
+    📌 <strong>條列優於長段落</strong>——讓 AI 容易擷取</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>心法三：建立你的「專業權威感」</div>
+  <div class="step-body">
+    <p>AI 在決定要不要引用你的內容時，有一個隱性標準：<strong>這個來源可不可信？</strong></p>
+    <p>這對應 Google 的 E-E-A-T 原則（經驗、專業、權威、可信度），在 AIO 時代更重要。</p>
+    <p>業主可以怎麼做：</p>
+    <p>✓ <strong>在文章裡說明你的經歷</strong>——「我們服務過 XX 間餐廳」比「我們很專業」有力<br>
+    ✓ <strong>引用真實數據或案例</strong>——哪怕是自己的客戶數據<br>
+    ✓ <strong>作者署名要清楚</strong>——AI 更願意引用「有人負責」的內容<br>
+    ✓ <strong>定期更新文章日期</strong>——新鮮度是 AI 選擇引用來源的標準之一</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>心法四：寫「AI 會被問到的問題」</div>
+  <div class="step-body">
+    <p>最直接的 AIO 策略：<strong>想像你的客戶會問 ChatGPT 什麼，然後把答案寫成文章。</strong></p>
+    <p>做法很簡單：</p>
+    <p>① 打開 ChatGPT 或 Claude，輸入你客戶最常問你的問題<br>
+    ② 看 AI 怎麼回答，它引用了哪些概念<br>
+    ③ 用你的專業和真實經驗，把同樣的問題寫得比 AI 更好、更具體、更有憑據</p>
+    <p>當你的內容比 AI 現有的答案更好時，AI 就會開始引用你。</p>
+    <p>這不是在和 AI 競爭，而是讓 AI 成為你的通路。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>心法五：SEO 和 AIO 不衝突，同步做</div>
+  <div class="step-body">
+    <p>很多業主擔心：「我要放棄 SEO 去做 AIO 嗎？」</p>
+    <p>答案是：<strong>不需要選邊站。</strong> 好的 AIO 內容，本來就符合 SEO 的基本原則——清晰結構、回答問題、有權威感。</p>
+    <p>兩件事同步做：</p>
+    <p>✓ <strong>技術 SEO 繼續維持</strong>——網站速度、手機版顯示、基本 meta 標籤<br>
+    ✓ <strong>內容策略升級為 AIO</strong>——問題導向、結構清晰、權威建立</p>
+    <p>你不需要重寫所有舊文章。從現在開始，新文章用 AIO 思維寫；舊文章每個月挑 2-3 篇更新結構就夠了。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">📚</span>線上課程怎麼選？三個判斷標準</div>
+  <div class="step-body">
+    <p>市面上現在有很多講師在推 SEO／AIO 線上課程，怎麼判斷值不值得學？</p>
+    <p>✓ <strong>講師有沒有實際操作案例</strong>——能秀出真實客戶成效，而不只是理論<br>
+    ✓ <strong>課程內容有沒有跟上 2025 年後的 AI 搜尋變化</strong>——2023 年以前的 SEO 課程很多已經過時<br>
+    ✓ <strong>有沒有教你「寫什麼」而不只是「怎麼優化」</strong>——工具會變，內容思維才是核心</p>
+    <p>最後一點最重要：<strong>任何課程都只是起點，你的產業知識和真實經驗，才是 AI 無法取代、也最值得被引用的內容。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：SEO 和 AIO 有什麼差別？</strong></p>
+    <p>A：SEO 是讓 Google 把你的網頁排在搜尋結果前面；AIO（AI Optimization）是讓 ChatGPT、Claude、Gemini、Google AI Overview 等 AI 工具在回答問題時引用你的內容。兩者都重要，但 AIO 是未來趨勢。</p>
+  </div>
+</div>',
+  'SEO／AIO、新手教學',
+  '2026-05-29',
+  false
+),
+(
+  'Claude 和 ChatGPT 的差異是什麼？內容創作者的三個月真實比較',
+  '同時用了兩個 AI，我摸索出這套分工邏輯',
+  '<p style="margin-bottom:0.9rem">這篇不是規格比較表。網路上那種「Claude 在 X 項目得 ★★★★，ChatGPT 在 Y 項目得 ★★★」的文章已經夠多了。我想說的是：作為一個廣告人、內容創作者，我實際同時使用兩個 AI 三個月之後，真實的感受是什麼。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 一句話結論：執行任務用 Claude，創意發散用 ChatGPT，重要決策兩個都問。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">前言</span>我現在的使用習慣</div>
+  <div class="step-body">
+    <p>我現在問問題，會同時問兩個 AI，然後看哪個答案更好。</p>
+    <p>不是因為我閒，而是因為這兩個工具的「個性」真的不一樣——同樣一個問題，它們給你的角度、深度、風格，往往差很多。</p>
+    <p>慢慢地，我開始知道什麼問題該問誰。這篇就是我摸索出來的那套邏輯。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>ChatGPT 比較像一個「聰明的朋友」</div>
+  <div class="step-body">
+    <p>ChatGPT 很擅長「跟人有關」的事情。</p>
+    <p>📌 <strong>聊天、腦力激盪</strong>——它會跟你來回對話，給你很多方向<br>
+    📌 <strong>分析人的行為和心理</strong>——問它受眾分析、消費者洞察，它給的角度很豐富<br>
+    📌 <strong>創意發散</strong>——需要很多不同方向的想法時，ChatGPT 的廣度很夠</p>
+    <p>它的感覺比較像在跟一個很博學的朋友聊天——輕鬆、有來有往、會給你意想不到的連結。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>Claude 比較像一個「可靠的執行夥伴」</div>
+  <div class="step-body">
+    <p>Claude 最讓我印象深刻的，是執行任務時的清晰和輕鬆。</p>
+    <p>📌 <strong>執行具體任務</strong>——給它一個明確的目標，它會把事情做完，不會繞圈子<br>
+    📌 <strong>電腦和工程問題</strong>——遇到技術問題，Claude 給的解法直接、可以照著做<br>
+    📌 <strong>長篇內容和結構性工作</strong>——需要有條理、有架構的輸出，Claude 更穩定</p>
+    <p>這個網站，就是我和 Claude 一起從零建起來的。從安裝環境、寫程式碼、到部署上線——我一行程式都不會，但 Claude 帶著我一步一步完成了。這件事讓我對它的信任，超過任何評測。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>寫程式這件事，其實兩個都可以</div>
+  <div class="step-body">
+    <p>很多人說「寫程式要用 Claude」，但我的經驗是：ChatGPT 寫程式也完全沒問題。</p>
+    <p>真正的差別不在能力，在<strong>溝通風格</strong>。</p>
+    <p>Claude 在執行工程任務時，比較不會「多話」——它不會給你五種可能的解法讓你選，它會直接給你最好的那個，然後解釋為什麼。對我這種想要「告訴我該怎麼做就好」的人，這種風格更順。</p>
+    <p>ChatGPT 比較傾向給你選項和背景知識，如果你想學習原理，它反而更適合。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>我的使用分工</div>
+  <div class="step-body">
+    <p>三個月下來，我自然形成了這套分工：</p>
+    <p>🔵 <strong>用 Claude 的時候：</strong><br>
+    需要執行一件具體的事、遇到技術問題、寫需要結構的長篇內容、建網站改程式</p>
+    <p>🟢 <strong>用 ChatGPT 的時候：</strong><br>
+    需要腦力激盪、分析人的行為和動機、想要多個不同角度、純粹想聊想法</p>
+    <p>🔄 <strong>兩個都問的時候：</strong><br>
+    重要的決策、不確定哪個答案更好、想看不同切入點</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">實例</span>我用 Claude 做到的具體事情</div>
+  <div class="step-body">
+    <p>這不是理論，是我實際發生的事：</p>
+    <p>📌 <strong>從零建立個人網站</strong>——完全不懂程式，花了兩週和 Claude 對話，建出你現在看到的這個網站，包含 SEO 設定、Google Analytics、電子報訂閱系統<br>
+    📌 <strong>解決 Mac 磁碟空間問題</strong>——電腦只剩 4GB，Claude 帶我用終端機指令找出佔空間的元兇，釋出 10GB 空間<br>
+    📌 <strong>分析 IG 帳號策略</strong>——Claude in Chrome 直接讀取我的 IG 主頁，指出我把最有價值的內容放在限時動態的盲點<br>
+    📌 <strong>SEO 到 AIO 的內容轉型</strong>——幫客戶梳理內容策略，從關鍵字思維升級到 AI 引用邏輯</p>
+    <p>這些事，過去我不是找不到人做，就是做不到。Claude 讓我的「可能性邊界」往外擴了一圈。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>給內容創作者的建議</div>
+  <div class="step-body">
+    <p>如果你是內容創作者，我的建議是：<strong>兩個都用，但先搞清楚你要解決什麼問題。</strong></p>
+    <p>不要問「哪個比較好」，要問「我現在要做的這件事，哪個更適合」。</p>
+    <p>AI 工具不是競爭關係，它們是不同性格的工作夥伴。學會在對的時機找對的人，才是真正的 AI 時代競爭力。</p>
+    <p>而且說實話——同時用兩個，讓你永遠有第二個意見。在這個資訊爆炸的時代，有第二個意見，比什麼都珍貴。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：Claude 和 ChatGPT 哪個比較適合寫文案？</strong></p>
+    <p>A：兩個各有優勢。ChatGPT 在創意發散和多角度發想上更靈活；Claude 在結構清晰、執行具體任務上更穩定。建議：發想階段用 ChatGPT，定稿和優化用 Claude。</p>
+    <p><strong>Q：Claude Code 和 ChatGPT 寫程式哪個更好？</strong></p>
+    <p>A：Claude Code 是專門為程式任務設計的工具，在執行工程任務時更直接、不繞圈子。ChatGPT 寫程式也可以，但更傾向給你多個選項和背景說明。如果你想要「直接告訴我怎麼做」，Claude Code 更適合。</p>
+    <p><strong>Q：Claude 和 ChatGPT 可以同時使用嗎？</strong></p>
+    <p>A：完全可以，而且建議這樣做。重要問題同時問兩個 AI，比較答案，能讓你得到更全面的視角。兩個工具的月費加起來約台幣 600-900 元，但省下的時間和提升的決策品質遠超過這個成本。</p>
+    <p><strong>Q：沒有技術背景可以用 Claude 建網站嗎？</strong></p>
+    <p>A：可以。這個網站就是我完全不懂程式、用中文和 Claude 對話兩週建出來的。Claude Code 讓你用說話的方式告訴 AI 你想要什麼，它直接幫你寫好所有程式碼。</p>
+    <p><strong>Q：Claude 和 ChatGPT 最大的差異是什麼？</strong></p>
+    <p>A：最直觀的感受是「個性」不同。ChatGPT 像一個聰明的朋友，喜歡聊天、給你很多方向；Claude 像一個可靠的執行夥伴，給你清晰的答案和具體的步驟。不是哪個更好，而是不同情境適合不同工具。</p>
+  </div>
+</div>',
+  'AI 工具、Claude AI',
+  '2026-06-08',
+  false
+),
+(
+  '用 AI 寫 IG 文案會被看出來嗎？我測試了五種方法',
+  '高手看得出來。但一般人不在乎——除非你犯了這幾個錯',
+  '<p style="margin-bottom:0.9rem">先說結論：AI 寫的文案，高手一眼就知道。但大多數人根本不在意——他們在意的是內容有沒有打中他們。問題不是「會不會被看出來」，而是「你有沒有把 AI 寫的東西，變成真正屬於你的東西」。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 核心觀點：AI 是起點，不是終點。直接貼上 AI 的輸出，才是被看穿的真正原因。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>方法一：直接貼上 AI 的原始輸出</div>
+  <div class="step-body">
+    <p><strong>怎麼做：</strong>叫 AI 寫一段 IG 文案，直接複製貼上，一個字不改。</p>
+    <p><strong>結果：</strong>最容易被看出來。</p>
+    <p>AI 原始輸出有幾個特徵——句子結構太工整、每段長度差不多、用詞「積極正面」得有點假。最明顯的是：它沒有你說話的節奏，沒有你會用的那個詞，沒有那個只有你才會有的小細節。</p>
+    <p>高手看到這種文案，三秒內就知道。因為它太「完整」了——真實的人寫東西，不會每句話都剛好收得那麼好。</p>
+    <p>⚠️ <strong>結論：不要這樣做。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>方法二：AI 起草，自己改語氣</div>
+  <div class="step-body">
+    <p><strong>怎麼做：</strong>讓 AI 寫草稿，然後把你不會說的詞換掉，加入你的說話習慣。</p>
+    <p><strong>結果：</strong>好很多，但還是有痕跡。</p>
+    <p>這是大多數人用 AI 寫文案的方式。問題是——很多人「改語氣」改了表面，沒改骨架。AI 的句子邏輯還在，只是換了幾個詞。</p>
+    <p>真正有效的改法是：把 AI 的文案當成「素材」，拆散它，用自己的方式重新組裝。不是改詞，是改結構。</p>
+    <p>✅ <strong>結論：可以用，但要改得夠徹底。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>方法三：給 AI 你的真實故事，讓它幫你整理</div>
+  <div class="step-body">
+    <p><strong>怎麼做：</strong>先自己寫一段流水帳——今天發生了什麼、你的感受、你想說什麼，不管文筆好不好。然後把這段話餵給 AI，叫它幫你整理成 IG 文案，但保留你的語氣。</p>
+    <p><strong>結果：</strong>這是五種方法裡最自然的。</p>
+    <p>為什麼？因為素材是你的。AI 只是幫你「排版」，核心的故事、細節、情緒都是你的。讀者感受到的溫度，來自那些真實的細節——AI 編不出來，因為它不在現場。</p>
+    <p>這個方法有個額外的好處：你不需要有好文筆。你只需要有真實的經歷。</p>
+    <p>✅ <strong>結論：最推薦。靈魂在你身上，AI 只是幫你說清楚。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>方法四：叫 AI 模仿你的寫作風格</div>
+  <div class="step-body">
+    <p><strong>怎麼做：</strong>把你過去寫得最好的 3-5 篇 IG 貼文貼給 AI，說「這是我的風格，請用這個風格幫我寫關於 XX 的文案」。</p>
+    <p><strong>結果：</strong>有趣，但有上限。</p>
+    <p>AI 可以學你的句子長短、標點習慣、常用詞。但它學不到你的「為什麼」——你為什麼在這個時間點說這件事、你在意這件事的哪個部分、你說話時的那個情緒。</p>
+    <p>輸出的文案看起來像你，但少了一點什麼。就像有人模仿你的字跡，遠看很像，近看就差了。</p>
+    <p>✅ <strong>結論：可以用來快速產出，但重要的貼文不要完全依賴。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>方法五：故意保留「不完美」</div>
+  <div class="step-body">
+    <p><strong>怎麼做：</strong>讓 AI 寫完之後，故意加入一個「人味」的元素——一個口語化的詞、一句沒收好的話、一個你真實的困惑或猶豫。</p>
+    <p><strong>結果：</strong>反而最有溫度。</p>
+    <p>這聽起來很反直覺——為什麼要故意讓文案「不完美」？</p>
+    <p>因為完美是疏離的。人們連結的不是完美的表達，而是那個讓他們說「對，我也是這樣」的瞬間。那個瞬間，往往藏在一個猶豫、一個沒說完的話、一個你以為不夠好的細節裡。</p>
+    <p>AI 寫不出你的猶豫。那是你最值錢的東西。</p>
+    <p>✅ <strong>結論：最高段的 AI 文案使用方式。用 AI 的骨架，放你的靈魂進去。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>真正的結論</div>
+  <div class="step-body">
+    <p>被看出來不是問題。問題是——你的文案有沒有讓人停下來？</p>
+    <p>AI 是一個工具，不是一個替代品。它可以幫你說得更清楚，但說不了你的故事。</p>
+    <p>最好的 IG 文案，不是 AI 寫的，也不是你自己憋出來的——而是你把真實的自己，透過 AI 的幫助，說得更好的那個版本。</p>
+    <p>那個版本，高手看得出來有 AI 的影子。但他們也看得出來，裡面有一個真實的人。</p>
+    <p>那才是值得被追蹤的理由。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：用 AI 寫 IG 文案會被演算法懲罰嗎？</strong></p>
+    <p>A：目前沒有證據顯示 Instagram 演算法會懲罰 AI 生成的文字內容。演算法更在意的是互動率——按讚、留言、分享、存檔。只要你的內容能引發真實互動，AI 輔助寫作不會影響觸及率。</p>
+    <p><strong>Q：怎麼讓 AI 寫出更像自己風格的文案？</strong></p>
+    <p>A：把你過去最滿意的 3-5 篇貼文貼給 AI，說明你的受眾是誰、你想傳達什麼情緒，然後讓它模仿你的風格起草。重點是：把你真實的故事或細節餵給它，AI 負責整理，你負責提供靈魂。</p>
+    <p><strong>Q：哪種 AI 文案最容易被看出來？</strong></p>
+    <p>A：直接貼上 AI 原始輸出、沒有做任何修改的文案最容易被識破。特徵包括：句子結構過於工整、用詞正面但空洞、缺少個人細節和真實情緒、每段長度過於均勻。</p>
+    <p><strong>Q：完全不用 AI 寫文案比較好嗎？</strong></p>
+    <p>A：不一定。關鍵不是用不用 AI，而是你有沒有把 AI 的輸出變成真正屬於你的內容。用 AI 幫你整理思路、優化表達完全沒問題——前提是素材和靈魂來自你自己。</p>
+  </div>
+</div>',
+  'AI 工具、IG 經營',
+  '2026-06-08',
+  false
+),
+(
+  '用 AI 做品牌聲譽監控，比請公關公司便宜十倍',
+  '台灣業界的現實：網軍存在，但 AI 讓你先看清楚自己的處境',
+  '<p style="margin-bottom:0.9rem">台灣有一個沒人想公開說、但業界都知道的現實：當品牌出現負評，有些公司第一個想到的不是解決問題，而是「花錢處理」。這篇不是要評判那個選擇，而是要說：在你決定花錢之前，你有沒有先用 AI 看清楚自己的處境？</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 核心觀點：品牌聲譽監控不是危機發生後才做的事。用 AI 建立日常監控習慣，比任何公關公司都更即時、更便宜、更誠實。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">現實</span>台灣業界的品牌危機處理生態</div>
+  <div class="step-body">
+    <p>當品牌在網路上出現負評或危機，台灣業主通常有三條路：</p>
+    <p>📌 <strong>自己處理</strong>——回覆留言、發聲明，但往往不知道問題有多嚴重、擴散到哪裡<br>
+    📌 <strong>請公關公司</strong>——月費從三萬到數十萬不等，幫你監控、撰寫回應、媒體關係<br>
+    📌 <strong>找口碑操作業者（俗稱網軍）</strong>——用假帳號刷正評、壓制負評，費用不透明，風險極高</p>
+    <p>第三條路在台灣確實存在市場，但風險很明確：一旦被揭露，品牌傷害比原本的危機大十倍。PTT、Dcard、社群媒體上有太多「品牌花錢買評價被抓包」的案例。</p>
+    <p>更根本的問題是：很多業主在選擇怎麼「處理」之前，根本不清楚問題有多嚴重。這才是 AI 可以幫上忙的地方。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>第一步：用 AI 搜尋，了解你的品牌現在被怎麼說</div>
+  <div class="step-body">
+    <p>最簡單的品牌聲譽監控，從這幾個動作開始：</p>
+    <p><strong>用 ChatGPT 或 Claude 直接問：</strong></p>
+    <p>💬「請幫我搜尋關於『品牌名稱』的評價，包含正評和負評，來源包含 PTT、Google 評論、社群媒體」</p>
+    <p>💬「『品牌名稱』在消費者之間的口碑如何？有什麼常見的投訴或稱讚？」</p>
+    <p>這不能取代專業的社群聆聽工具，但可以讓你在五分鐘內得到一個大致的輪廓——你的品牌在 AI 的「認知」裡是什麼樣子。</p>
+    <p>⚠️ 重要：AI 的資料有時間差，不是即時的。這是初步了解，不是完整監控。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>第二步：設定 Google Alerts，免費的即時預警</div>
+  <div class="step-body">
+    <p><strong>Google Alerts</strong> 是最被低估的免費工具。設定你的品牌名稱、產品名稱、甚至競品名稱，只要網路上出現相關內容，Google 就會寄 email 通知你。</p>
+    <p>設定方法：<br>
+    ① 打開 <code>google.com/alerts</code><br>
+    ② 輸入你想監控的關鍵字（品牌名、產品名、負責人名字）<br>
+    ③ 選擇通知頻率（即時、每天、每週）<br>
+    ④ 設定完成，免費</p>
+    <p>建議監控的關鍵字：品牌名稱、品牌名稱＋「評價」、品牌名稱＋「推薦」、品牌名稱＋「詐騙」或「黑心」（這類負面關鍵字最重要）</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>第三步：用 AI 分析輿情，不只是收集</div>
+  <div class="step-body">
+    <p>收集到評論之後，AI 真正的價值在這裡——幫你分析。</p>
+    <p>把你收集到的評論貼給 Claude 或 ChatGPT，問它：</p>
+    <p>💬「這些是關於我品牌的評論，請幫我分析：主要的正面關鍵詞是什麼？主要的負面投訴是什麼？有沒有反覆出現的問題？」</p>
+    <p>💬「根據這些評論，消費者對這個品牌的核心印象是什麼？和品牌想傳達的形象有沒有落差？」</p>
+    <p>這種分析，過去需要公關公司花幾天做報告。現在你自己五分鐘就能得到一個初步的輿情分析。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>第四步：危機發生時，先用 AI 草擬回應</div>
+  <div class="step-body">
+    <p>當負評出現，很多業主的第一反應是情緒性回覆，或者完全不回覆。這兩個都是錯的。</p>
+    <p>正確做法：先把情況說給 AI 聽，請它幫你草擬幾個不同角度的回應。</p>
+    <p>💬「我的品牌收到這則負評：[貼上負評內容]。請幫我草擬三種回應方式：一個道歉型、一個說明型、一個邀請解決型。語氣要真誠，不要防衛性。」</p>
+    <p>AI 草擬的不是最終回應——你還需要加入你對這件事的真實了解和態度。但它可以幫你在情緒激動的時候，先看到幾個理性的選項。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>什麼時候才需要花錢？</div>
+  <div class="step-body">
+    <p>用 AI 做日常監控之後，你對自己品牌的聲譽狀況會有更清楚的認識。這時候你才能做出更理性的決定：</p>
+    <p>✅ <strong>日常監控</strong>——Google Alerts + AI 分析，免費，自己可以做<br>
+    ✅ <strong>輕度危機</strong>——AI 草擬回應 + 真誠處理，不需要花錢<br>
+    💰 <strong>中度危機</strong>——影響擴散到主流媒體，這時候請公關公司介入是值得的<br>
+    ⚠️ <strong>絕對不要做</strong>——花錢找口碑操作業者。短期看起來有效，長期是定時炸彈</p>
+    <p>最重要的一句話：<strong>品牌聲譽的根本是產品和服務，不是公關操作。</strong> AI 工具幫你看清楚問題在哪裡，但解決問題還是要靠你自己。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：AI 可以做即時的品牌聲譽監控嗎？</strong></p>
+    <p>A：AI 本身有資料時間差，不適合做即時監控。即時監控建議用 Google Alerts（免費）或專業社群聆聽工具。AI 的價值在於幫你分析和整理已收集到的資料，以及草擬回應策略。</p>
+    <p><strong>Q：台灣找口碑操作業者（網軍）合法嗎？</strong></p>
+    <p>A：在台灣，付費刷評、假帳號操作口碑屬於法律灰色地帶，但若涉及不實廣告或欺騙消費者，可能違反公平交易法。更大的風險是商譽風險——一旦被揭露，品牌傷害往往遠大於原始危機。</p>
+    <p><strong>Q：品牌聲譽監控要多久做一次？</strong></p>
+    <p>A：建議設定 Google Alerts 做即時預警，每週用 AI 做一次輿情分析整理，每月做一次較完整的競品比較分析。危機期間則需要每日監控。</p>
+    <p><strong>Q：中小企業有必要做品牌聲譽監控嗎？</strong></p>
+    <p>A：有，而且現在比以前更重要。消費者在購買前會搜尋評價，AI 搜尋引擎也會引用網路上關於你品牌的內容。你的品牌聲譽不只影響人的決策，也影響 AI 怎麼介紹你。</p>
+  </div>
+</div>',
+  'AI 工具、SEO／AIO',
+  '2026-06-08',
+  false
+),
+(
+  '中小企業主的 AI 入門清單：按工作類型分類',
+  '不用全部學會，先從你最痛的地方開始',
+  '<p style="margin-bottom:0.9rem">很多業主知道 AI 很重要，但不知道從哪裡開始。這份清單不是要你把所有工具都學會——而是按照你的工作類型，告訴你最值得先學的那一個。從最痛的地方開始，其他的慢慢來。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 核心原則：不要學 AI，要用 AI 解決你現在最花時間的問題。工具是手段，問題才是起點。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">先學</span>所有業主都應該先學會的兩件事</div>
+  <div class="step-body">
+    <p>不管你是哪個產業，這兩個能力學會了，其他所有 AI 應用都會變得更容易：</p>
+    <p>📌 <strong>學會問問題（Prompt）</strong><br>
+    AI 的輸出品質，90% 取決於你怎麼問。「幫我寫文案」和「幫我寫一段針對 30-40 歲台灣媽媽、強調省時省力、語氣親切不誇張的產品介紹文案」，得到的結果差十倍。<br>
+    <em>今天就能做：把你最常問 AI 的三個問題，重新寫得更具體，比較輸出結果的差異。</em></p>
+    <p>📌 <strong>學會寫提案和企劃</strong><br>
+    不管是對客戶提案、跟供應商談判、還是內部報告，AI 可以幫你把想法整理成有說服力的文件。這是投資報酬率最高的 AI 應用之一。<br>
+    <em>今天就能做：把你下週要做的一個提案，先說給 Claude 聽，請它幫你整理成提案大綱。</em></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">行銷</span>行銷部門：從內容到影片全面升級</div>
+  <div class="step-body">
+    <p><strong>🎬 AI 拍影片——門檻最低、效果最驚人</strong></p>
+    <p>現在有幾個工具可以讓你不需要攝影師、不需要後製，直接產出行銷影片：</p>
+    <p>📌 <strong>HeyGen</strong>——上傳你的照片或影片，AI 幫你生成會說話的數位人，適合產品介紹、公司介紹影片<br>
+    📌 <strong>Runway</strong>——文字轉影片，輸入你想要的場景描述，AI 直接生成<br>
+    📌 <strong>CapCut AI</strong>——自動剪輯、加字幕、生成短影音，適合 IG Reels 和 TikTok</p>
+    <p><strong>📢 行銷活動曝光——讓 AI 幫你規劃和執行</strong></p>
+    <p>📌 <strong>活動企劃</strong>：告訴 Claude 你的產品、預算、目標受眾，請它幫你規劃完整的行銷活動方案，包含時程、渠道、文案方向<br>
+    📌 <strong>多平台內容</strong>：一篇核心內容，請 AI 幫你改寫成 IG 貼文、FB 文章、LINE 官方帳號訊息、電子報——同樣的資訊，觸及四個平台<br>
+    📌 <strong>廣告文案測試</strong>：請 AI 同時生成五個不同角度的廣告文案，你來選最好的，或全部測試看哪個轉換率最高</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">客服</span>客服部門：24 小時不下班的第一線</div>
+  <div class="step-body">
+    <p><strong>最值得先做的：建立 AI 客服知識庫</strong></p>
+    <p>把你最常被問的 20 個問題整理成文件，餵給 AI，設定成自動回覆。80% 的客服問題是重複的，AI 可以處理這 80%，讓你的人力專注在真正需要判斷的 20%。</p>
+    <p>📌 <strong>LINE 官方帳號接 AI</strong>——透過 Manychat 或 ManyBot，讓 LINE 官方帳號自動回覆常見問題<br>
+    📌 <strong>負評處理</strong>——遇到 Google 評論或社群負評，把評論內容貼給 Claude，請它幫你起草一個專業、有溫度、不卑不亢的回覆<br>
+    📌 <strong>客訴分析</strong>——每個月把客訴記錄貼給 AI 分析，找出最常出現的問題根源，比你自己看快十倍</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">財務</span>財務部門：把數字變成決策依據</div>
+  <div class="step-body">
+    <p><strong>注意：AI 不能替你做財務決策，但可以幫你理解數字在說什麼。</strong></p>
+    <p>📌 <strong>財務報告解讀</strong>——把你的損益表或現金流量表貼給 Claude，問它「這份報告有哪些值得注意的訊號？」，它會幫你找出異常和趨勢<br>
+    📌 <strong>預算企劃書</strong>——告訴 AI 你的業務目標和現有資源，請它幫你起草下季的預算分配建議<br>
+    📌 <strong>合約審閱</strong>——把合約條文貼給 Claude，請它標出需要注意的條款和潛在風險（正式簽約前還是要找律師確認）<br>
+    📌 <strong>日常定時作業</strong>——每週固定把銷售數據貼給 AI，請它生成一頁式週報，省去整理和撰寫的時間</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">營運</span>營運部門：讓重複的事情自動化</div>
+  <div class="step-body">
+    <p><strong>日常定時作業——這是業主最容易被 AI 解放的地方</strong></p>
+    <p>📌 <strong>會議記錄</strong>——用 Otter.ai 或 Notion AI 自動轉錄會議內容，生成摘要和待辦事項，再也不用有人專門記錄<br>
+    📌 <strong>週報月報</strong>——把各部門的數據丟給 AI，自動生成格式一致的報告<br>
+    📌 <strong>SOP 文件</strong>——把你腦子裡的作業流程說給 AI 聽，請它幫你整理成標準作業程序文件，新人培訓時間直接減半<br>
+    📌 <strong>供應商比價</strong>——把多家供應商的報價單貼給 AI，請它整理成比較表並分析優劣<br>
+    📌 <strong>人才招募</strong>——請 AI 幫你寫職缺描述、設計面試問題、或初步篩選履歷重點</p>
+    <p><strong>自動化工具推薦：</strong><br>
+    📌 <strong>Zapier + AI</strong>——連結你使用的各種工具（Email、Google Sheets、CRM），設定自動觸發的 AI 工作流程<br>
+    📌 <strong>Make（原 Integromat）</strong>——比 Zapier 更彈性的自動化工具，適合有特定需求的流程</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">清單</span>今天就能開始的五件事</div>
+  <div class="step-body">
+    <p>不需要等，今天就可以做：</p>
+    <p>① <strong>設定 Google Alerts</strong>——監控你的品牌名稱（免費，五分鐘搞定）<br>
+    ② <strong>問 AI 一個你最頭痛的業務問題</strong>——不管是文案、策略還是決策，先試試 AI 給你什麼答案<br>
+    ③ <strong>把下一份提案大綱交給 AI 起草</strong>——你說方向，它整理結構<br>
+    ④ <strong>用 CapCut AI 做一支 30 秒產品影片</strong>——不需要攝影師，手機拍素材就夠<br>
+    ⑤ <strong>把最常見的五個客服問題整理成文件</strong>——這是建立 AI 客服的第一步</p>
+    <p>不需要一次全部做完。這週做一件，下週再做一件。三個月後，你的工作方式會完全不一樣。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：中小企業導入 AI 工具，應該從哪裡開始？</strong></p>
+    <p>A：從你現在最花時間、最重複的工作開始。不要問「AI 能做什麼」，要問「我每週花最多時間在哪件事上，AI 可以幫我減少多少？」找到那個答案，就是你的起點。</p>
+    <p><strong>Q：不懂技術的業主可以用 AI 工具嗎？</strong></p>
+    <p>A：完全可以。現在大多數 AI 工具都是對話介面——你用中文說你想要什麼，它直接給你結果。不需要學程式，不需要懂技術，只需要學會把問題說清楚。</p>
+    <p><strong>Q：AI 會取代我的員工嗎？</strong></p>
+    <p>A：AI 更可能取代的是「重複性工作」，而不是「人」。導入 AI 的目的是讓你的員工從重複的事情裡解放出來，專注在真正需要判斷力和創造力的工作。善用 AI 的團隊，會比不用的競爭對手更有效率。</p>
+    <p><strong>Q：用 AI 做行銷影片需要什麼設備？</strong></p>
+    <p>A：最基本只需要一支手機。用手機拍攝產品或場景素材，再用 CapCut AI 自動剪輯、加字幕、生成短影音。進階一點可以用 HeyGen 生成 AI 數位人，完全不需要出鏡。</p>
+  </div>
+</div>',
+  'AI 工具、新手教學',
+  '2026-06-08',
+  false
+),
+(
+  'KOL 合作怎麼用 AI 評估？廣告人的篩選清單',
+  '粉絲數不是重點，CP 值才是——用 AI 算清楚再決定',
+  '<p style="margin-bottom:0.9rem">做了多年廣告，我看過太多業主在 KOL 合作上踩雷：粉絲數漂亮但互動率是假的、受眾根本不對、60 秒業配內容創意全無、單集流量不如預期、轉換率低得可憐——然後報價還不便宜。這篇想說的是：在你付錢之前，先讓 AI 幫你把帳算清楚。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 廣告人的真心話：業主最大的盲點是「廣告就是要有轉換」——但在轉換之前，你有沒有選對人？用 AI 評估 KOL 的 CP 值，是這個問題的起點。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">痛點</span>KOL 合作最常見的四個地雷</div>
+  <div class="step-body">
+    <p>在談怎麼用 AI 評估之前，先說清楚業界真實存在的問題：</p>
+    <p>💥 <strong>地雷一：粉絲數漂亮，互動率是假的</strong><br>
+    買粉、買讚、買留言在台灣是公開的秘密。一個有 10 萬粉絲的帳號，真實互動率可能只有 0.3%——比你公司的官方帳號還低。</p>
+    <p>💥 <strong>地雷二：受眾根本不是你的客戶</strong><br>
+    網紅的粉絲喜歡他這個人，不代表他們會買你的產品。美妝網紅的粉絲可能對你的 B2B 軟體完全沒興趣——但報價單上不會告訴你這件事。</p>
+    <p>💥 <strong>地雷三：60 秒業配，創意和品牌完全脫節</strong><br>
+    很多網紅的業配方式是：前面說自己的內容，最後 15 秒硬塞品牌訊息。觀眾早就滑走了。真正有效的業配，是創意內容和品牌自然融合——但這需要雙方都願意花時間溝通。</p>
+    <p>💥 <strong>地雷四：報價不透明，CP 值無從計算</strong><br>
+    「這支影片報價 8 萬，幫你觸及 5 萬人」——但這 5 萬人裡有多少是你的目標受眾？觸及之後有多少人會採取行動？這些問題，你付錢之前就應該問清楚。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>用 AI 計算 KOL 的真實 CP 值</div>
+  <div class="step-body">
+    <p>CP 值的計算，過去需要媒體採購的專業知識。現在你可以把數據丟給 AI，請它幫你算。</p>
+    <p><strong>你需要收集的數據：</strong><br>
+    📌 粉絲總數<br>
+    📌 最近 10 篇貼文的平均按讚數、留言數、分享數<br>
+    📌 報價金額<br>
+    📌 對方提供的「觸及人數」或「觀看次數」預估</p>
+    <p><strong>然後把這些數據貼給 Claude，問：</strong></p>
+    <p>💬「這是一個 KOL 的數據：粉絲數 XX、平均按讚 XX、平均留言 XX、報價 XX 元、預估觸及 XX 人。請幫我計算：互動率是多少？CPE（每次互動成本）是多少？CPM（每千次觸及成本）是多少？和業界平均相比，這個報價合理嗎？」</p>
+    <p>AI 會幫你算出幾個關鍵指標，讓你有數字根據去談判或決策。</p>
+    <p><strong>業界參考標準：</strong><br>
+    📌 健康的互動率：IG 1-3%、YouTube 2-5%、TikTok 5-10%<br>
+    📌 低於 0.5% 的互動率要特別謹慎<br>
+    📌 台灣市場 CPM 合理範圍：NT$100-500，依平台和受眾而異</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>用 AI 分析 KOL 的受眾是不是你的客戶</div>
+  <div class="step-body">
+    <p>這一步很多業主跳過，但它是最關鍵的。</p>
+    <p><strong>做法一：讓 AI 分析留言內容</strong><br>
+    去這個 KOL 最近的貼文，複製 30-50 則留言，貼給 Claude：</p>
+    <p>💬「這些是一個 KOL 貼文的留言，請幫我分析：留言者大概是什麼年齡層？他們的主要興趣是什麼？有沒有消費能力的線索？這群人和『30-40 歲、有購買力、關注健康飲食的台灣女性』這個受眾描述吻合嗎？」</p>
+    <p><strong>做法二：讓 AI 評估內容與品牌的吻合度</strong><br>
+    把這個 KOL 最近十篇貼文的標題或主題，加上你的品牌描述，一起貼給 AI：</p>
+    <p>💬「這是一個 KOL 最近的內容主題，這是我們品牌的核心價值和目標受眾。請評估這個 KOL 的受眾和內容風格，與我們品牌的契合度是高、中、還是低？理由是什麼？」</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>用 AI 設計 60 秒業配的創意方向</div>
+  <div class="step-body">
+    <p>這是最多業主和網紅都做錯的地方。</p>
+    <p>60 秒業配最常見的失敗模式：網紅說自己的事 45 秒，最後 15 秒念稿介紹品牌。觀眾早就不在了，品牌訊息完全沒有進入。</p>
+    <p><strong>用 AI 設計真正融合的業配創意：</strong></p>
+    <p>💬「這個 KOL 的內容風格是 XX（例如：日常生活分享、幽默情境劇、知識型解說）。我的品牌是 XX，核心訊息是 XX，目標受眾是 XX。請幫我設計三個 60 秒業配的創意方向，要求品牌訊息自然融入內容，不能有明顯的廣告感。」</p>
+    <p>然後把 AI 給你的創意方向，帶到和網紅的溝通會議裡討論。這樣你有了具體的方向，網紅也有了可以發揮的空間，不再是各說各話。</p>
+    <p><strong>跨領域行銷的關鍵：</strong>找到品牌和網紅內容之間的「共同價值」。不是強迫網紅說你要說的話，而是找到他的粉絲也在意、同時也能呈現你品牌價值的那個交叉點。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>用 AI 建立你的 KOL 篩選清單</div>
+  <div class="step-body">
+    <p>把以下這個 prompt 存起來，每次評估新的 KOL 合作就用它：</p>
+    <p style="background:#1b2b46; border-radius:8px; padding:1rem 1.2rem; color:#9dcfee; font-size:0.85rem; font-family:monospace; line-height:1.8;">
+    我正在評估一個 KOL 合作，以下是相關資料：<br><br>
+    【KOL 基本資料】<br>
+    - 平台：<br>
+    - 粉絲數：<br>
+    - 主要內容類型：<br>
+    - 最近 10 篇平均按讚：<br>
+    - 最近 10 篇平均留言：<br>
+    - 報價：<br><br>
+    【品牌資料】<br>
+    - 品牌名稱和產品：<br>
+    - 目標受眾：<br>
+    - 核心訊息：<br>
+    - 預算：<br><br>
+    請幫我：1) 計算互動率和 CPE 2) 評估受眾契合度 3) 判斷報價是否合理 4) 給出合作建議（強烈推薦／可以談談／不建議）及理由
+    </p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>廣告人的真心建議</div>
+  <div class="step-body">
+    <p>很多業主說「廣告就是要有轉換」——這沒有錯，但轉換是結果，不是起點。</p>
+    <p>在轉換之前，你需要：對的人、對的訊息、對的時機。</p>
+    <p>KOL 合作最大的價值不是「賣東西」，而是「讓對的人認識你的品牌」。如果你選了一個受眾完全不對的網紅，再好的創意、再高的預算，轉換都不會好。</p>
+    <p>用 AI 把這些基本功做好，不是要取代你的直覺和經驗——而是讓你的直覺和經驗有數據支撐。</p>
+    <p>付錢之前，先把帳算清楚。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：KOL 合作的互動率多少才算健康？</strong></p>
+    <p>A：一般參考標準是 Instagram 1-3%、YouTube 2-5%、TikTok 5-10%。低於 0.5% 要特別謹慎，可能有買粉買讚的情況。但互動率只是指標之一，受眾的質量和品牌契合度同樣重要。</p>
+    <p><strong>Q：如何判斷 KOL 的粉絲是否為真實受眾？</strong></p>
+    <p>A：除了看互動率，可以觀察留言內容的質量——真實互動的留言通常有具體內容，假留言多半是表情符號或制式短句。也可以把留言貼給 AI 分析，讓它判斷留言模式是否自然。</p>
+    <p><strong>Q：60 秒業配如何讓品牌訊息自然融入？</strong></p>
+    <p>A：關鍵是找到品牌和網紅內容的「共同價值」。不是讓網紅念廣告稿，而是找到他的粉絲也在意、同時能呈現品牌價值的交叉點。用 AI 幫你設計創意方向，再和網紅一起討論，效果遠比直接給稿好。</p>
+    <p><strong>Q：CPE 和 CPM 分別是什麼？</strong></p>
+    <p>A：CPE（Cost Per Engagement）是每次互動成本，計算方式是報價除以總互動數（按讚+留言+分享）；CPM（Cost Per Mille）是每千次觸及成本，計算方式是報價除以觸及人數再乘以 1000。這兩個數字可以幫你客觀比較不同 KOL 的報價合理性。</p>
+  </div>
+</div>',
+  'AI 工具、IG 經營',
+  '2026-06-08',
+  false
+),
+(
+  '線上課程行銷的背後：破解手法、工具箱、和那個沒人說的真相',
+  '你買的不是課程，你買的是「焦慮消失」的那一刻',
+  '<p style="margin-bottom:0.9rem">先說一個沒人想承認的事實：大多數人買了線上課程之後，從來沒有認真上完過。不是因為課程不好，而是因為他們當初買的，根本不是「學習」——他們買的是「知識焦慮消失」的那一刻。</p>
+
+<p style="margin-bottom:0.9rem">線上課程產業深諳這一點，並且把它發展成了一套精密的行銷系統。這篇想做兩件事：拆解這套系統讓你看清楚，然後告訴你如果你是業主，怎麼用同樣的工具做出真正有價值的課程行銷。</p>
+
+<div style="background:#fff3f3; border-left:4px solid #e05050; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#5a1a1a; font-weight:500;">⚠️ 先說清楚立場：這篇不是要你用這些手法去販賣焦慮。而是讓你看懂背後的邏輯——消費者看懂了可以保護自己，業主看懂了可以選擇做得更有良心。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">真相</span>知識焦慮，是線上課程最大的銷售引擎</div>
+  <div class="step-body">
+    <p>線上課程產業賣的不是知識，賣的是三種感覺：</p>
+    <p>😰 <strong>「我落後了」</strong>——你不學 AI，你會被淘汰；你不學投資，你會窮一輩子；你不學這個技能，你的競爭對手已經在學了<br>
+    😤 <strong>「這次我要改變」</strong>——買課的那一刻，大腦釋放多巴胺，感覺自己已經在進步了<br>
+    😌 <strong>「焦慮暫時消失」</strong>——付完款，那個「我應該學這個」的念頭暫時得到了安撫</p>
+    <p>問題是：多巴胺消退之後，課程還在那裡，但學習的動力已經不見了。</p>
+    <p>這不是你的問題，這是人類大腦的運作方式。線上課程產業只是非常精準地利用了它。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">手法</span>五種最常見的線上課程行銷手法拆解</div>
+  <div class="step-body">
+    <p><strong>🔴 手法一：痛點文案</strong><br>
+    「你是不是每天加班卻存不到錢？」「你是不是看著別人升職，自己卻原地踏步？」<br>
+    原理：先讓你感覺到痛，再告訴你這門課是止痛藥。<br>
+    <em>看穿它：問自己「這個痛點是我真實的問題，還是看到文案才覺得自己有這個問題？」</em></p>
+
+    <p><strong>🔴 手法二：見證人影片和截圖</strong><br>
+    「上完這門課，我三個月賺了 XX 萬」「我從零開始，現在已經自由工作者了」<br>
+    原理：社會認同——別人做到了，我也可以。<br>
+    <em>看穿它：見證人是最好的那幾個，不是平均值。問：「100 個學員裡，有幾個達到這個結果？」</em></p>
+
+    <p><strong>🔴 手法三：限時優惠倒數計時</strong><br>
+    「原價 9,800，限時 48 小時特價 3,800，倒數計時 47:23:15」<br>
+    原理：製造稀缺感和緊迫感，讓你來不及思考。<br>
+    <em>看穿它：絕大多數限時優惠是假的，計時器歸零後換個日期繼續跑。</em></p>
+
+    <p><strong>🔴 手法四：Email 催促序列</strong><br>
+    你留了 email 之後，接下來七天會收到精心設計的信件序列：第一天分享免費價值、第三天說你的故事、第五天推薦課程、第六天提醒快截止、第七天最後機會。<br>
+    原理：重複接觸，每次接觸都在加深你的信任和購買意願。<br>
+    <em>看穿它：這是系統自動發的，不是有人真的在關心你。</em></p>
+
+    <p><strong>🔴 手法五：社群炒作和免費直播</strong><br>
+    免費的三天挑戰賽、免費直播課、免費社團——最後一天開賣。<br>
+    原理：先給你價值，建立互惠心理；群體氛圍讓你感覺「大家都在買」。<br>
+    <em>看穿它：免費的內容是設計好的鉤子，真正的系統在付費課程裡——但付費課程裡又有更高價的課程等著你。</em></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">工具</span>背後的技術工具箱</div>
+  <div class="step-body">
+    <p>這套行銷系統背後，有一套標準的技術架構：</p>
+    <p>📌 <strong>Landing Page 工具</strong>——Clickfunnels、Kartra、台灣常用的 Teachify 或 Pressplay，建立銷售頁面和課程平台<br>
+    📌 <strong>Email 行銷工具</strong>——Mailchimp、ConvertKit、ActiveCampaign，自動發送預設的 email 序列<br>
+    📌 <strong>倒數計時工具</strong>——Deadline Funnel，可以追蹤個別用戶，讓每個人看到的倒數計時不一樣<br>
+    📌 <strong>廣告像素追蹤</strong>——Facebook Pixel、Google Tag，追蹤你在網站上的每個行為，再精準投放廣告<br>
+    📌 <strong>社群直播工具</strong>——Zoom Webinar、StreamYard，做免費直播課程<br>
+    📌 <strong>會員平台</strong>——Kajabi、Teachable、台灣的 Hahow，存放和銷售課程內容</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">製作</span>用 AI 做線上課程的完整流程</div>
+  <div class="step-body">
+    <p>如果你是業主，想自己做線上課程，以下是 AI 可以幫你做的每一個環節：</p>
+    <p><strong>① 課程規劃（Claude / ChatGPT）</strong><br>
+    💬「我想教『XX』這個主題，目標學員是 XX，請幫我設計一個 8 週的課程大綱，每週的學習目標和主要內容是什麼？」</p>
+    <p><strong>② 課程內容製作（AI 輔助）</strong><br>
+    📌 簡報製作：Gamma.app——輸入大綱，AI 自動生成精美簡報<br>
+    📌 影片腳本：Claude 幫你把每堂課的重點整理成說話稿<br>
+    📌 AI 主播：HeyGen——不想出鏡，讓 AI 數位人幫你上課</p>
+    <p><strong>③ 銷售頁面文案（Claude / ChatGPT）</strong><br>
+    💬「請幫我寫一個線上課程的銷售頁面，課程名稱是 XX，目標受眾的痛點是 XX，課程能解決的問題是 XX，請包含：吸引人的標題、痛點描述、課程介紹、學員見證區塊（格式）、FAQ、和 CTA。」</p>
+    <p><strong>④ Email 序列（Claude）</strong><br>
+    💬「請幫我寫一個 7 天的 email 序列，目的是讓潛在學員了解課程並決定購買，每封信的主題和重點如下...」</p>
+    <p><strong>⑤ 社群內容（Claude / Canva AI）</strong><br>
+    用 AI 幫你產出課程上市前的預熱內容，包含 IG 貼文、限時動態、Facebook 社團發文</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>如果你要做課程，請做這一件事</div>
+  <div class="step-body">
+    <p>行銷手法可以學，技術工具可以用。但在你決定做線上課程之前，請先誠實問自己一個問題：</p>
+    <p><strong>「學完這門課之後，學員的生活或工作會有什麼具體改變？」</strong></p>
+    <p>如果你有清楚的答案，那你有資格做這門課。</p>
+    <p>如果你的答案是「他們會學到很多知識」——那還不夠。知識本身不改變任何事，改變生活的是學員把知識用出來的那個行動。</p>
+    <p>台灣的線上課程市場已經被過度販賣的焦慮填滿了。下一個有機會的，是那些真的讓人學完、真的改變了什麼的課程。</p>
+    <p>用 AI 把行銷做好，但先把課程做好。這才是真正的護城河。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：線上課程行銷最有效的方式是什麼？</strong></p>
+    <p>A：最有效也最永續的方式是真實的學員成果。行銷手法可以帶來第一批學員，但口碑才能帶來持續的銷售。把精力放在確保學員真的完課並獲得成果，比花更多錢在廣告上更值得。</p>
+    <p><strong>Q：沒有技術背景可以自己架設線上課程平台嗎？</strong></p>
+    <p>A：可以。Hahow（台灣）、Teachable、Kajabi 等平台提供完整的課程架設功能，不需要技術背景。如果預算有限，從 Hahow 投稿開始是最低門檻的選擇；如果想自有平台，Teachable 的基礎方案月費約 $39 美元。</p>
+    <p><strong>Q：如何判斷一門線上課程值不值得買？</strong></p>
+    <p>A：問三個問題：①這門課能解決我一個具體的問題，而不只是讓我「更了解某個主題」嗎？②我現在的狀態是真的需要這個技能，還是只是被焦慮推著走？③如果沒有限時優惠，我下個月還會買嗎？三個都是肯定的，再買。</p>
+    <p><strong>Q：用 AI 製作線上課程內容，學員會感覺得出來嗎？</strong></p>
+    <p>A：如果你的課程核心是你的真實經驗和觀點，AI 只是幫你整理和表達，學員感受到的價值不會打折。如果你讓 AI 從頭到尾生成內容，沒有注入你的真實洞見，學員遲早會感覺到那種「空洞感」。</p>
+  </div>
+</div>',
+  'AI 工具、SEO／AIO',
+  '2026-06-09',
+  false
+),
+(
+  'AI 時代，行銷公司的出路在哪裡？',
+  '一個廣告人的自我盤問：我們還剩下什麼？',
+  '<p style="margin-bottom:0.9rem">我在廣告和行銷產業工作多年。過去一年，我看著 AI 一步一步進入這個產業——文案可以生成、設計可以生成、投放可以自動優化、數據分析可以自動報告。然後我開始問自己一個很不舒服的問題：行銷公司，還剩下什麼？</p>
+
+<p style="margin-bottom:0.9rem">這篇是我的自我盤問，也是我觀察這個產業之後，認為真正有出路的方向。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 核心觀點：AI 不是行銷公司的敵人，是照妖鏡。它照出了哪些公司在靠執行量撐著、哪些公司真的有思考能力。有思考能力的，反而因為 AI 變得更有價值。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">現實</span>三個正在發生的威脅</div>
+  <div class="step-body">
+    <p><strong>威脅一：AI 取代了執行層的工作</strong></p>
+    <p>文案、基礎設計、廣告投放優化、數據報告——這些工作過去是行銷公司的主要收費項目，現在 AI 可以在幾分鐘內完成初稿。</p>
+    <p>不是說 AI 做得比人好，而是「夠用」的門檻大幅降低了。客戶過去願意付 3 萬請你寫十篇文案，現在他用 AI 生成，再花一點時間修改，成本降到幾千元。</p>
+    <p><strong>威脅二：客戶自己學會用 AI</strong></p>
+    <p>中小企業業主開始自己用 Claude 寫文案、用 Canva AI 做設計、用 Meta 的 AI 工具自動優化投放。他們不需要行銷公司做執行，只需要有人告訴他們「策略方向」。</p>
+    <p>但很多行銷公司賣的剛好就是執行，不是策略。</p>
+    <p><strong>威脅三：行銷公司自己不會用 AI</strong></p>
+    <p>最諷刺的威脅是這個——一些還在用傳統流程做事的行銷公司，正在被那些會用 AI 提升效率的競爭對手取代。同樣的品質，對方只需要一半的人力和時間。</p>
+    <p>客戶不在乎你用不用 AI，他們在乎的是結果和報價。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">盤問</span>行銷公司真正的價值是什麼？</div>
+  <div class="step-body">
+    <p>在說出路之前，先問一個根本問題：你的公司，客戶真正在付錢買什麼？</p>
+    <p>如果答案是「執行」——文案、設計、投放操作——那你確實面臨很大的威脅。因為這些 AI 都能做，而且越來越好。</p>
+    <p>如果答案是「判斷」——什麼該做、什麼不該做、為什麼這樣做比那樣做更有效——那你的價值不只沒有消失，反而因為 AI 被放大了。</p>
+    <p>因為 AI 可以執行任何指令，但它需要有人告訴它正確的方向。那個「告訴它方向」的能力，才是行銷公司真正的護城河。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">出路</span>我認為真正有出路的四個方向</div>
+  <div class="step-body">
+    <p><strong>方向一：從執行公司轉型為策略顧問</strong></p>
+    <p>停止賣「做十篇文案、管三個月社群」，開始賣「幫你想清楚品牌定位、受眾策略、內容方向」。執行讓客戶自己用 AI 做，你負責確保他們做的是對的事。</p>
+    <p>這個轉型很痛，因為顧問費比執行費難賣——但它有更高的護城河。</p>
+
+    <p><strong>方向二：成為客戶的「AI 導入夥伴」</strong></p>
+    <p>很多中小企業業主知道要用 AI，但不知道怎麼用在自己的業務上。行銷公司有行業知識，又懂 AI 工具，可以幫客戶建立「AI 行銷工作流程」——這是一個新的服務品項，而且目前市場上供給還很少。</p>
+
+    <p><strong>方向三：用 AI 大幅提升自己的效率，降低報價門檻</strong></p>
+    <p>如果你還是想做執行，那就用 AI 把你的效率提升到競爭對手的兩倍。同樣的品質，你可以用更低的價格或更快的速度交付。小型行銷公司靠這個策略，反而可以搶到過去做不到的客戶。</p>
+
+    <p><strong>方向四：深耕特定產業，成為該產業的行銷專家</strong></p>
+    <p>AI 不懂產業 know-how。一個深耕醫療產業十年的行銷公司，它對醫療法規、病患心理、醫師社群的了解，是 AI 無法取代的。越垂直、越深，AI 反而越難競爭。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">行動</span>這週就能開始做的三件事</div>
+  <div class="step-body">
+    <p>不管你選擇哪個方向，這三件事這週就能開始：</p>
+    <p>① <strong>盤點你的服務項目，哪些是 AI 可以替代的？</strong><br>
+    把你的服務清單列出來，對每一項問：「客戶現在可以用 AI 自己做這件事嗎？」誠實回答，才知道哪裡需要轉型。</p>
+    <p>② <strong>學會用 AI 做你現在最花時間的工作</strong><br>
+    不是要你變成 AI 專家，而是找出你每週重複做的那件事，學會用 AI 在一半時間內完成它。省下來的時間，用來思考策略。</p>
+    <p>③ <strong>跟你最信任的三個客戶做一次誠實的對話</strong><br>
+    問他們：「你現在用 AI 做了哪些行銷工作？你最希望我幫你做的，是什麼？」這個答案，比任何市場研究都準確。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>給還在這個產業的人</div>
+  <div class="step-body">
+    <p>這個產業正在快速改變，但它不會消失。</p>
+    <p>品牌還是需要有人幫它思考，業主還是需要有人幫它做決定，消費者還是需要有人創造真正打動他們的內容。</p>
+    <p>AI 改變的是「用什麼工具做」，不是「為什麼要做」和「做什麼」。</p>
+    <p>那個「為什麼」和「做什麼」的判斷能力——是人的事，是你的事。</p>
+    <p>學會用 AI，但不要把自己變成 AI。你最值錢的東西，是你這些年看過的、做過的、失敗過的那些經驗和判斷。沒有任何模型可以訓練出來。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：AI 會完全取代行銷公司嗎？</strong></p>
+    <p>A：不會完全取代，但會淘汰那些只靠執行量維持的公司。真正有策略思考能力、深耕特定產業、或能幫客戶導入 AI 工作流程的行銷公司，反而會因為 AI 變得更有競爭力。</p>
+    <p><strong>Q：行銷公司應該怎麼向客戶收費？</strong></p>
+    <p>A：建議從「按執行量收費」轉向「按成果和策略價值收費」。例如從「每月社群管理費 3 萬」轉向「品牌策略顧問費 + 績效獎金」。這樣的收費模式更能反映你真正的價值，也更難被 AI 直接比較。</p>
+    <p><strong>Q：不懂 AI 工具的行銷從業人員該怎麼辦？</strong></p>
+    <p>A：從你每天最重複的工作開始學。不需要一次學會所有工具，先找一個每週花你最多時間的工作，學會用 AI 把它做得更快。第一個月學一個工具，三個月後你的工作效率會有明顯改變。</p>
+    <p><strong>Q：小型行銷公司在 AI 時代有競爭優勢嗎？</strong></p>
+    <p>A：有。小型公司可以比大公司更快轉型，用 AI 把效率提升到和大公司相當，但報價更靈活。同時，小公司更容易深耕特定產業或客群，建立大公司難以複製的專業壁壘。</p>
+  </div>
+</div>',
+  'AI 工具、SEO／AIO',
+  '2026-06-09',
+  false
+),
+(
+  '2026 台灣社群媒體現況：哪個平台還值得經營？',
+  '數據說話，廣告人的真實建議',
+  '<p style="margin-bottom:0.9rem">「現在還要經營 Facebook 嗎？Threads 該不該開？TikTok 值得投入嗎？」這是我這兩年被問最多次的問題。這篇用真實數據回答，加上廣告人的第一線觀察。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 結論先說：不是每個平台都值得你的時間。2026 年的台灣，你應該認真經營的平台只有兩到三個——選對比全部都做更重要。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">數據</span>2026 台灣社群媒體現況</div>
+  <div class="step-body">
+    <p>根據 DataReportal《Digital 2025 Taiwan》報告和最新調查數據：</p>
+    <p>📌 <strong>LINE：2,200 萬月活躍用戶</strong>，使用率 86.5%，幾乎等於全台人口，穩坐第一<br>
+    📌 <strong>YouTube：1,840 萬用戶</strong>，廣告觸及率 79.4%，超越 Facebook 成為第二大平台<br>
+    📌 <strong>Facebook：1,710 萬用戶</strong>，廣告觸及率 73.8%，但有機觸及率剩 1-2%<br>
+    📌 <strong>Instagram：1,130 萬用戶</strong>，女性佔 53.7%，18-34 歲是主力<br>
+    📌 <strong>TikTok：834 萬用戶</strong>，年成長率 47.7%，是所有平台中成長最快的<br>
+    📌 <strong>Threads：</strong>全球流量台灣佔 22% 居冠，是黑馬平台</p>
+    <p>整體趨勢：台灣人每天平均上網 7 小時，影音內容使用率躍升為第一，和親友聯繫並列 67.3%。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>LINE：每個品牌都應該有，但要用對方式</div>
+  <div class="step-body">
+    <p><strong>現況：</strong>台灣滲透率最高，幾乎人人都用。但 LINE 官方帳號的開啟率和互動率正在下滑——因為大家的 LINE 都已經被太多品牌塞滿了。</p>
+    <p><strong>值得經營嗎？</strong>值得，但重點是質量不是頻率。</p>
+    <p>✅ 適合：會員管理、促銷通知、客服、忠實顧客維繫<br>
+    ❌ 不適合：想靠 LINE 帶來新客，那個時代已經過了</p>
+    <p><strong>廣告人觀察：</strong>現在 LINE 最有效的用法是「已經認識你的人的維繫工具」，不是獲取新客的管道。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>Facebook：還沒死，但有機觸及已經死了</div>
+  <div class="step-body">
+    <p><strong>現況：</strong>用戶數還是龐大，但 Facebook 粉專的有機觸及率已經跌到 1-2%。你有 1 萬個粉絲，發一篇文，大約只有 100-200 人看到。</p>
+    <p><strong>值得經營嗎？</strong>要看你的目標。</p>
+    <p>✅ 適合：45 歲以上受眾、下廣告投放（付費觸及還是有效）、社團經營<br>
+    ❌ 不適合：想靠有機觸及增加曝光、35 歲以下年輕受眾</p>
+    <p><strong>廣告人觀察：</strong>Facebook 粉專現在的價值在於「廣告投放的基礎設施」——你需要它來跑廣告、裝 Pixel、做再行銷。但如果你只想靠發文帶流量，那投資報酬率非常低。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>Instagram：知識型品牌的主戰場</div>
+  <div class="step-body">
+    <p><strong>現況：</strong>1,130 萬用戶，18-34 歲是主力，女性略多。對 Z 世代來說，IG 已經是搜尋工具——他們找餐廳、看穿搭、搜品牌，第一站是 IG 不是 Google。</p>
+    <p><strong>值得經營嗎？</strong>如果你的受眾是 35 歲以下，或者你的內容有視覺性——絕對值得。</p>
+    <p>✅ 適合：個人品牌、知識型創作者、視覺感強的品牌、美妝餐飲服飾<br>
+    ❌ 不適合：B2B 品牌、45 歲以上受眾、沒有視覺內容的服務業</p>
+    <p><strong>廣告人觀察：</strong>Reels 現在是 IG 觸及率最高的格式，演算法主動推給非追蹤者。如果你只能在 IG 做一件事，就是做 Reels。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>TikTok：成長最快，但要想清楚再進</div>
+  <div class="step-body">
+    <p><strong>現況：</strong>年成長 47.7%，834 萬用戶，是所有平台中動能最強的。演算法對新帳號友善，就算零粉絲也可能爆紅。</p>
+    <p><strong>值得經營嗎？</strong>要評估你的受眾和你的內容生產能力。</p>
+    <p>✅ 適合：25 歲以下受眾、娛樂性強的品牌、願意持續產出短影音<br>
+    ❌ 不適合：受眾是 40 歲以上、內容無法影音化、沒有時間持續產出</p>
+    <p><strong>廣告人觀察：</strong>TikTok 要做就要做好——它需要高頻率的內容輸出，隨便做反而傷品牌形象。進場前先問：你的團隊每週能產出幾支影片？答案少於三支，先等等。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>Threads：2026 最值得卡位的黑馬</div>
+  <div class="step-body">
+    <p><strong>現況：</strong>台灣用戶在 Threads 全球流量佔比 22% 居冠——台灣人對這個平台的接受度出乎意料地高。目前還在成長期，演算法對新創作者友善。</p>
+    <p><strong>值得經營嗎？</strong>現在進場成本最低，回報可能最高。</p>
+    <p>✅ 適合：文字型創作者、個人品牌、想建立思想領袖形象的人<br>
+    ❌ 不適合：需要立即轉換的品牌、沒有文字內容的產品型業主</p>
+    <p><strong>廣告人觀察：</strong>Threads 現在的氛圍像早期的 Twitter——觀點型內容很吃香，廣告還沒進來，有機觸及很好。這是現在進場成本最低的時機，等廣告進來之後就晚了。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">選擇</span>不同目標應該選哪個平台？</div>
+  <div class="step-body">
+    <p><strong>如果你是個人品牌／知識型創作者：</strong><br>
+    主戰場：IG + Threads<br>
+    IG 做視覺內容和 Reels，Threads 做觀點文字，兩個互相導流。</p>
+    <p><strong>如果你是中小企業業主：</strong><br>
+    主戰場：LINE + Facebook 廣告<br>
+    LINE 維繫現有客戶，Facebook 用付費廣告獲取新客。IG 視你的受眾年齡決定要不要加。</p>
+    <p><strong>如果你想快速爆紅：</strong><br>
+    主戰場：TikTok + IG Reels<br>
+    短影音是現在觸及率最高的格式，但需要持續高頻率輸出。</p>
+    <p><strong>廣告人最後的建議：</strong><br>
+    不要因為別人都在某個平台，你就跟著去。先問：我的目標受眾在哪裡？我能持續產出什麼格式的內容？答案決定平台，不是反過來。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：2026 年台灣還值得經營 Facebook 粉絲專頁嗎？</strong></p>
+    <p>A：值得保留但不值得投入大量心力。Facebook 粉專現在的主要價值是廣告投放基礎設施和觸及 45 歲以上受眾，有機觸及率已跌至 1-2%。建議維持基本更新，主要預算放在付費廣告或其他平台。</p>
+    <p><strong>Q：台灣 TikTok 用戶成長這麼快，現在應該開始經營嗎？</strong></p>
+    <p>A：要評估兩件事：你的目標受眾是否在 TikTok（主要是 35 歲以下），以及你能否持續每週產出至少 3 支短影音。兩個都是肯定的，現在進場時機很好；如果內容生產能力不足，建議先不要進場，隨便做反而傷品牌。</p>
+    <p><strong>Q：Threads 值得花時間經營嗎？</strong></p>
+    <p>A：目前是進場成本最低、回報潛力最高的時機。台灣用戶在 Threads 全球流量佔比 22% 居冠，平台還在成長期，演算法對新創作者友善。特別適合文字型個人品牌和知識型創作者，趁廣告還沒大規模進來之前卡位。</p>
+    <p><strong>Q：個人品牌應該同時經營幾個社群平台？</strong></p>
+    <p>A：建議最多兩到三個，而且要有明確分工。同時經營太多平台，每個都做得普通，不如集中火力在一兩個做得出色。先把一個平台做到穩定產出，再考慮擴展到其他平台。</p>
+  </div>
+</div>',
+  'AI 工具、IG 經營',
+  '2026-06-09',
+  false
+),
+(
+  '我如何用 AI 做出一首基督教爵士詩歌——從零到上架 YouTube 的完整流程',
+  '2-3 小時，Suno AI，詩篇 23 篇，和一個關於爸爸的畫面',
+  '<p style="margin-bottom:0.9rem">這件事我做之前覺得很遠，做完之後覺得——其實沒有那麼難。從有想法到影片上架 YouTube，我只花了 2-3 個小時。這篇記錄完整的流程，給每一個心裡有一首歌、但不知道從哪裡開始的人。</p>
+
+<div style="background:#f0f7ff; border-left:4px solid #1a6bb5; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#1a2a4a; font-weight:500;">📌 這首歌叫《Still Waters》，靈感來自詩篇 23 篇，爵士風格。背後有一個很私人的畫面——爸爸在睡覺的樣子。那種平靜，就是我想用音樂傳遞的感覺。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">起點</span>為什麼想做這件事</div>
+  <div class="step-body">
+    <p>我有一個 YouTube 頻道叫 <strong>Dear Abba Jazz</strong>——「給天父的爵士樂」。</p>
+    <p>很久以前就想做，一直覺得自己不會作曲、不會編曲、不懂音樂製作，所以一直沒開始。</p>
+    <p>直到我發現 Suno AI，才意識到：那些我以為的門檻，其實不存在了。</p>
+    <p>你需要的只是：一個想說的故事，和一個想傳遞的感覺。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>第一步：選定主題和風格</div>
+  <div class="step-body">
+    <p>我選了<strong>詩篇 23 篇</strong>。</p>
+    <p>「耶和華是我的牧者，我必不至缺乏。他使我躺臥在青草地上，領我在可安歇的水邊。」</p>
+    <p>這段話給我的畫面，是爸爸在睡覺的樣子。那種完全的平靜、完全的安全感——不需要防備任何事，因為有人在顧著你。</p>
+    <p>風格選爵士。因為爵士有一種特質——它不急，它讓你呼吸，它給你空間去感受。和詩篇 23 篇的氛圍完全吻合。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>第二步：用 AI 生成歌詞</div>
+  <div class="step-body">
+    <p>我把詩篇 23 篇的內容和我想傳遞的感覺告訴 Claude：</p>
+    <p>💬「請幫我根據詩篇 23 篇寫一首英文爵士詩歌的歌詞，風格要柔和、有呼吸感、像一個人在安靜的夜裡輕聲說話。不要太多歌詞，留白比填滿更重要。」</p>
+    <p>Claude 給我的第一版我改了幾個詞——把我自己對那個畫面的感受加進去。這一步大概花了 20 分鐘。</p>
+    <p>重點是：AI 給你骨架，你放靈魂進去。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>第三步：用 Suno AI 生成音樂</div>
+  <div class="step-body">
+    <p>打開 <strong>Suno AI</strong>（suno.com），把歌詞貼進去，設定風格描述：</p>
+    <p style="background:#1b2b46; border-radius:8px; padding:1rem 1.2rem; color:#9dcfee; font-size:0.85rem; font-family:monospace; line-height:1.8;">Style: Christian jazz, soft piano, gentle bass, brushed drums, warm vocals, peaceful, meditative, late night jazz club atmosphere</p>
+    <p>按生成，等大約 1-2 分鐘。</p>
+    <p>Suno 會給你兩個版本，我通常兩個都聽，選感覺更對的那個。有時候會再生成一次，看看有沒有更好的版本。</p>
+    <p>這一步花了大概 30 分鐘，包含反覆生成和挑選。</p>
+    <p>免費帳號每天有額度，夠用來做第一首歌。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>第四步：做成影片</div>
+  <div class="step-body">
+    <p>音樂做好了，需要一個影片畫面。</p>
+    <p>我的選擇是最簡單的：用一張照片或一個靜態畫面，配上音樂，做成影片。</p>
+    <p>我選了爸爸在睡覺的畫面——那個安靜的、被好好照顧的感覺，就是詩篇 23 篇給我的感受。</p>
+    <p><strong>做法：</strong><br>用 <strong>CapCut</strong> 把照片和音樂合在一起，設定好時間長度，加上歌詞字幕，導出影片。大概花 30 分鐘。</p>
+    <p>你不需要拍攝，不需要剪輯技術。一張有感覺的照片，加上好的音樂，就夠了。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>第五步：上架 YouTube</div>
+  <div class="step-body">
+    <p>打開 YouTube，建立頻道，上傳影片。</p>
+    <p>頻道名稱：<strong>Dear Abba Jazz</strong><br>標語：<em>where faith meets jazz</em></p>
+    <p>標題、說明、標籤——這些我也交給 Claude 幫我寫，把頻道定位和這首歌的故事告訴它，請它幫我優化 SEO。</p>
+    <p>從上傳到發布，大概 20 分鐘。</p>
+    <p>整個流程加起來：<strong>2-3 小時，第一首歌上線了。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>給每一個心裡有一首歌的人</div>
+  <div class="step-body">
+    <p>我不會樂器，不懂樂理，沒有錄音室，沒有製作人。</p>
+    <p>但我有一個想說的故事，和一個想傳遞的感覺。</p>
+    <p>AI 把那道門打開了。</p>
+    <p>如果你心裡也有一首歌——一段聖經、一個禱告、一個想獻給某個人的旋律——你現在就可以開始。不需要等到「準備好」，因為你永遠不會覺得準備好。</p>
+    <p>從一首歌開始。就像我從詩篇 23 篇開始一樣。</p>
+    <p>👉 <a href="https://www.youtube.com/@DearAbbaJazz" target="_blank" style="color:#1a6bb5;">Dear Abba Jazz YouTube 頻道</a></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：Suno AI 是免費的嗎？</strong></p>
+    <p>A：有免費方案，每天有固定的生成額度，做第一首歌完全夠用。付費方案可以生成更多歌曲，也可以商業使用。</p>
+    <p><strong>Q：不懂音樂可以用 Suno AI 嗎？</strong></p>
+    <p>A：完全可以。你只需要描述你想要的感覺和風格，Suno 會生成完整的音樂，包含編曲、人聲、樂器。不需要任何音樂知識。</p>
+    <p><strong>Q：用 AI 生成的音樂可以上架 YouTube 嗎？</strong></p>
+    <p>A：可以，但要注意：Suno AI 免費版生成的音樂不能商業使用，如果想靠 YouTube 收益，需要升級到付費方案。非商業的分享和傳播沒有問題。</p>
+    <p><strong>Q：Dear Abba Jazz 頻道在哪裡？</strong></p>
+    <p>A：在 YouTube 搜尋「Dear Abba Jazz」，或直接訪問頻道。第一首歌《Still Waters》靈感來自詩篇 23 篇，爵士風格，歡迎來聽 🎵</p>
+  </div>
+</div>',
+  'AI 工具、Claude AI',
+  '2026-06-23',
+  false
+),
+(
+  'Threads 上的網軍、炎上與公關操作：怎麼分辨真假資訊？',
+  '一個廣告人的觀察——當平台的公信力開始被消耗',
+  '<p style="margin-bottom:0.9rem">我最近在 Threads 上觀察到一個現象：一堆帳號在寫攻擊台灣的政治文，或是在網紅炎上事件後突然出現大量「中立分析」。點進去看對方帳號——粉絲數很少、發文內容高度重複、沒有真實的個人生活。</p>
+
+<p style="margin-bottom:0.9rem">這讓我開始想一個問題：Threads 的公信力和流量，業主和創作者還需要認真看待嗎？</p>
+
+<div style="background:#fff3f3; border-left:4px solid #e05050; border-radius:8px; padding:1rem 1.2rem; margin:1rem 0;">
+  <p style="margin:0; font-size:0.95rem; color:#5a1a1a; font-weight:500;">⚠️ 這篇分兩個角度：給一般讀者的「怎麼不被帶風向」，和給業主的「炎上時怎麼保護自己的品牌」。</p>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">現象</span>Threads 上正在發生什麼</div>
+  <div class="step-body">
+    <p>我觀察到三種模式：</p>
+    <p>🔴 <strong>模式一：政治攻擊帳號</strong><br>
+    固定發攻擊台灣的政治文，帳號粉絲數極少，發文時間密集且規律，沒有個人生活內容，留言幾乎都是同溫層互捧。這些帳號的目的不是說服你，是製造「這個觀點很多人認同」的假象。</p>
+    <p>🔴 <strong>模式二：炎上後的「中立文」</strong><br>
+    網紅或品牌發生爭議後，突然出現大量「中立分析」的文章——看起來客觀，但結論幾乎都指向同一個方向。這是公關操作的常見手法：用看似中立的聲音，幫特定一方收拾殘局。</p>
+    <p>🔴 <strong>模式三：廉價的品牌操作</strong><br>
+    有些品牌或個人，花錢買帳號在 Threads 上製造聲量——大量轉發、大量按讚、大量留言。成本比以前低很多，但效果也越來越差，因為平台用戶開始有免疫力了。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>給讀者：五個辨別假帳號和帶風向的方法</div>
+  <div class="step-body">
+    <p><strong>① 看帳號年齡和發文密度</strong><br>
+    真實的人不會每天發 10 則政治文。帳號成立時間很短但發文量極大，是第一個警訊。</p>
+    <p><strong>② 看粉絲數和互動比例</strong><br>
+    粉絲 50 人但每則貼文有 200 個讚——數字不合理，可能有買讚或協同操作。</p>
+    <p><strong>③ 看發文內容的多樣性</strong><br>
+    真實的人會發各種內容：生活、工作、感受、觀點。只發單一議題的帳號要特別注意。</p>
+    <p><strong>④ 看「中立文」的結論方向</strong><br>
+    真正中立的分析，結論是「這件事有多個角度」。如果每篇「中立文」最後都指向同一個結論，那不是中立，是有目的的敘事。</p>
+    <p><strong>⑤ 用 AI 幫你交叉比對</strong><br>
+    把你看到的說法貼給 Claude 或 ChatGPT，問：「這個說法有沒有其他角度？有沒有被忽略的資訊？」AI 可以幫你快速找到你沒看到的那一面。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>給業主：炎上時怎麼保護你的品牌</div>
+  <div class="step-body">
+    <p>品牌在 Threads 上遇到炎上，最常犯的錯誤是：<strong>太快回應，或完全不回應。</strong></p>
+    <p><strong>炎上的黃金 24 小時處理原則：</strong></p>
+    <p>📌 <strong>第一步：先觀察，不要急著回應</strong><br>
+    炎上的前 2-4 小時，先搞清楚：這是真實的消費者不滿？還是有組織的攻擊？兩個完全不同的應對方式。</p>
+    <p>📌 <strong>第二步：用 AI 分析留言</strong><br>
+    把炎上的留言截圖，貼給 Claude 分析：「這些留言是真實的消費者抱怨，還是有組織操作的跡象？」AI 可以幫你識別留言的模式是否自然。</p>
+    <p>📌 <strong>第三步：真實的問題，真誠回應</strong><br>
+    如果是真實的消費者不滿，不要用公關稿回應。用真實的語氣說：「我們知道了，我們在處理，這是我們的做法。」比任何公關文案都有效。</p>
+    <p>📌 <strong>第四步：有組織的攻擊，不要餵食</strong><br>
+    如果是帶風向的攻擊，回應只會讓話題繼續燃燒。正確做法是：不理、持續發正常內容、讓演算法自然把炎上的討論稀釋掉。</p>
+    <p>📌 <strong>第五步：事後做品牌聲譽監控</strong><br>
+    炎上結束後，用 Google Alerts 和 AI 持續監控你的品牌聲音，確認負面情緒有沒有持續蔓延。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>Threads 的公信力，業主還需要認真看嗎？</div>
+  <div class="step-body">
+    <p>這是一個很好的問題。我的答案是：<strong>要看，但要懂得看。</strong></p>
+    <p>Threads 的流量是真實的——台灣用戶在全球佔比 22%，是現在成長最快的平台之一。但它的「聲量」越來越容易被操作，這讓很多數字變得不可信。</p>
+    <p>作為業主，你需要區分兩件事：</p>
+    <p>✅ <strong>真實用戶的有機互動</strong>——值得重視，這代表你的內容真的打中了人<br>
+    ❌ <strong>操作出來的聲量</strong>——不值得追，追了只會讓你的品牌操作越來越廉價</p>
+    <p>廉價的公關操作在台灣越來越普遍，但用戶的免疫力也越來越強。長期來看，<strong>真實的聲音永遠比操作出來的聲量更有價值。</strong></p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>在資訊戰的時代，保持自己的判斷力</div>
+  <div class="step-body">
+    <p>我在 Jane''s Lens 最開始說的一句話是：「資訊爆炸的時代，眼光才是真正的稀缺資源。」</p>
+    <p>Threads 上的網軍和公關操作，只是這個現象的一個縮影。</p>
+    <p>AI 讓製造假資訊的成本降到接近零，但同時也讓識別假資訊的能力變得更容易取得。</p>
+    <p>你不需要變成一個陰謀論者，對每則訊息都存疑。但養成「停一秒，問自己這個資訊從哪裡來、對誰有利」的習慣——在這個時代，比任何工具都重要。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：怎麼判斷 Threads 上的帳號是不是網軍？</strong></p>
+    <p>A：看三個指標：帳號成立時間短但發文量大、粉絲數和互動比例不合理、發文內容高度集中在單一議題且缺乏個人生活內容。三個都符合，高度可疑。</p>
+    <p><strong>Q：品牌在社群上被炎上，第一步應該做什麼？</strong></p>
+    <p>A：先觀察 2-4 小時，搞清楚這是真實的消費者不滿還是有組織的攻擊。兩種狀況的應對方式完全不同——前者需要真誠回應，後者需要不回應、不餵食。</p>
+    <p><strong>Q：Threads 上的聲量可以相信嗎？</strong></p>
+    <p>A：要區分「有機互動」和「操作聲量」。真實用戶的留言和分享值得重視；異常密集、帳號來源可疑的互動不值得追。台灣 Threads 生態中，廉價的公關操作越來越普遍，但用戶的識別能力也在提升。</p>
+    <p><strong>Q：如何用 AI 幫助識別假資訊？</strong></p>
+    <p>A：把你看到的說法或留言貼給 Claude 或 ChatGPT，問「這個說法有沒有其他角度？有沒有被忽略的資訊？這些留言的模式是否自然？」AI 可以快速幫你交叉比對，找到你可能忽略的面向。</p>
+  </div>
+</div>',
+  'SEO／AIO、IG 經營',
+  '2026-06-23',
+  false
+),
+(
+  '2026 AI眼鏡完全指南：趨勢、翻譯實力與個資風險全解析',
+  '無螢幕才是王道？入手前，這五件事一定要搞懂',
+  '<p style="margin-bottom:0.9rem">AI眼鏡這兩年最大的轉折，不是螢幕變得更清晰，而是「捨棄螢幕」反而成了主流路線。當你搞懂這個邏輯，選購時就不會再被規格表迷惑——更重要的是，2026年這個品類正式從「科技玩具」變成「隱私爭議焦點」，這篇會把趨勢、價格、翻譯實力，到你最該擔心的個資問題，一次講清楚。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>2026年AI眼鏡三大發展趨勢</div>
+  <div class="step-body">
+    <p><strong>1｜「無螢幕」與極致輕量化成主流</strong><br>
+    Rokid在CES 2026發表的「Style」款大膽捨棄螢幕，重量壓在38.5公克，透過雙晶片架構（NXP RT600負責低功耗待命、Qualcomm AR1負責AI運算），一般使用情境下可達12小時電池續航。這代表產業判斷：多數人要的不是「戴著螢幕」，而是「戴著一個聰明的助理」。</p>
+    <p><strong>2｜多模態AI與智慧助理深度整合</strong><br>
+    動口喚醒Gemini、Meta AI等助理，眼鏡就能「看見」你眼前的事物——辨識招牌、翻譯外文、即時問答、規劃導航。以Rokid Glasses為例，支援89種語言即時語音翻譯、6種離線翻譯，還能在會議或演講模式下自動轉寫語音並生成摘要。</p>
+    <p><strong>3｜巨頭全面入局，市場熱度衝高</strong><br>
+    IDC數據顯示，無顯示器智慧眼鏡在2026年第一季出貨量約225萬副，年增167%，Ray-Ban系列就占了整體出貨量的69%。Google在MWC 2026展示AI智慧眼鏡，業界解讀是受Meta刺激，同時也向蘋果發出警訊——三強角力，代表這個品類已正式進入主戰場。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>三大產品類型與代表品牌</div>
+  <div class="step-body">
+    <p><strong>拍攝／語音型：</strong>Ray-Ban Meta、Meta Glasses、小米AI眼鏡——主打生活記錄與AI助理整合，出貨量最大。</p>
+    <p><strong>輕量音訊／翻譯入門型：</strong>多數平價款——主打藍牙通話、聽音樂、基礎翻譯，價格親民，但要留意「不是真AR裝置」。</p>
+    <p><strong>沉浸式／專業AR顯示型：</strong>Xreal系列——鏡片具光學投影技術，主打「行動巨幕」，適合追劇、遊戲，但需接線使用。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>價格總表（2026年8月，新台幣估算）</div>
+  <div class="step-body">
+    <div style="overflow-x:auto; margin:0.3rem 0 1rem;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.85rem; min-width:560px;">
+        <thead>
+          <tr style="background:#f2f6ff;">
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">產品</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">類型</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">參考價格</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">重量</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a;">核心特色</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Meta Glasses（Adventurer／Fury）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$9,500起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Meta自有品牌，最親民入門款</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Rokid Style</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">無螢幕輕量型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$9,750</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">38.5g</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">雙晶片、續航12小時、支援4K錄影</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">小米AI眼鏡</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$12,999</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">可搭載GPT／Gemini等AI模型</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Xreal 1S</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">AR沉浸顯示型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$14,500</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">89g</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">投射最大171吋（可達500吋）螢幕</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Ray-Ban Meta（標準款）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$12,000〜18,990</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">雷朋經典造型，AI拍攝主力機種</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Ray-Ban Meta（新款客製化）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">拍攝／語音型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$16,000起（未含處方鏡片）</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">—</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">支援漸進多焦，加鏡片再加200〜300美元</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Rokid Glasses</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">AR顯示＋翻譯型</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">NT$19,999</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">49g</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">台灣寶島眼鏡代理，光波導成像、懸浮字幕</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem;">Xreal One Pro</td>
+            <td style="padding:0.55rem 0.7rem;">AR沉浸顯示型</td>
+            <td style="padding:0.55rem 0.7rem; white-space:nowrap;">NT$25,900</td>
+            <td style="padding:0.55rem 0.7rem;">87g</td>
+            <td style="padding:0.55rem 0.7rem;">支援SteamDeck／ROG，3ms超低延遲</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.85rem; color:#999;">＊Ray-Ban Meta台灣尚無官方通路，代購價會依匯率、關稅與活動折扣浮動。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>AI翻譯的敏捷度與多國語言適用性</div>
+  <div class="step-body">
+    <p>語言覆蓋範圍差異很大：Meta Glasses新增14種翻譯語言（含中日韓），Rokid Glasses主打89種語言即時翻譯加6種離線翻譯；市面平價款雖標榜130〜160種語言，但多仰賴通用翻譯引擎，冷門語言的準確度落差明顯。</p>
+    <p>離線與連網翻譯的延遲表現也差很多——離線模式省去雲端來回時間，回應通常更快，但語言包較小、品質會打折。整體而言，中高階款翻譯準確率高、幾乎無延遲，特別適合出國溝通，但重要商務談判仍建議搭配真人溝通，翻譯終究難以完全傳達語氣與文化脈絡。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>個資與隱私爭議：2026年最該正視的問題</div>
+  <div class="step-body">
+    <div style="background:#fff3f3; border-left:4px solid #e05050; border-radius:8px; padding:1rem 1.2rem; margin:0 0 1rem;">
+      <p style="margin:0; font-size:0.95rem; color:#5a1a1a; font-weight:500;">⚠️ 這不是危言聳聽，而是這幾個月正在發生的真實事件：</p>
+    </div>
+    <p>2026年3月，兩名原告對Meta及Luxottica提起聯邦集體訴訟，指控Ray-Ban智慧眼鏡的錄影片段被送往肯亞人工標記員審閱，包含浴室畫面、裸露內容及個人財務資訊，許多使用者根本不知道攝影機正在運作。</p>
+    <p>坊間出現「隱身模式」改裝服務，破壞錄影提示LED讓旁人無從察覺被拍，Meta已宣布強制韌體更新，偵測到破壞行為會在硬體層級直接禁用攝影功能。</p>
+    <p>哈佛大學實驗證實，將AI眼鏡與公開AI工具串接，就能即時辨識陌生人姓名、家庭成員、工作單位甚至住家地址。</p>
+    <p>紐約州法院系統已於7月20日起禁止錄影功能眼鏡進入全州1,240間法庭，延續費城、夏威夷、威斯康辛等地的類似規定。</p>
+    <p>Meta內部正討論新一代「超感知」眼鏡是否取消自動亮起的錄影提示燈，若成真，旁人恐在不知情下入鏡。</p>
+    <p style="margin-top:0.9rem"><strong>給讀者的實用建議：</strong><br>
+    看到鏡框角落有白光LED常亮，代表對方正在錄影；<br>
+    選購前確認品牌是否承諾「原始資料不上傳雲端」或「不用於AI模型訓練」；<br>
+    若職業涉及客戶隱私（財務、醫療、法律），會議中建議避免配戴具攝錄功能的AI眼鏡；<br>
+    台灣目前尚無明確法規規範AI眼鏡的錄影提示義務。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">06</span>選購避雷：三個最容易踩坑的地方</div>
+  <div class="step-body">
+    <p><strong>① 先確認「有沒有螢幕」與顯示方式</strong><br>
+    很多平價款標榜「AI翻譯」，實際是藍牙耳機唸給你聽，並非鏡片顯示字幕。</p>
+    <p><strong>② 重量與配戴舒適度</strong><br>
+    超過50〜60克長時間配戴容易壓迫鼻樑，建議選40克左右、重心分佈良好的款式。</p>
+    <p><strong>③ 漏音與隱私</strong><br>
+    平價開放式揚聲器常有漏音問題，大品牌通常用定向音訊技術改善。</p>
+    <p><strong>④ 語言與生態系支援</strong><br>
+    優先選擇有台灣官方代理（如Rokid Glasses的寶島眼鏡）的款式，售後與試戴服務更有保障。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>現階段選AI眼鏡，關鍵不是「哪個規格最強」，而是先問自己：你要解決的是日常小卡點，還是想搶先體驗沉浸式AR顯示？</p>
+    <p>但更重要的是——在按下購買鍵之前，先確認自己能接受這副眼鏡背後的資料流向。科技便利與隱私邊界，這會是接下來幾年AI眼鏡市場最核心的拉鋸戰。</p>
+  </div>
+</div>',
+  '科技趨勢分析',
+  '2026-08-05',
+  false
+),
+(
+  'AI化的世代：10種正在悄悄弱化的能力，你可能渾然不覺',
+  '不是AI讓我們變笨，是我們把「思考」外包得太徹底',
+  '<p style="margin-bottom:0.9rem">「大腦用則進，退則廢」——這句老話，正在AI時代被重新驗證。2026年多所頂尖大學已經用實驗數據證明：我們正在用便利，換掉一部分原本擁有的能力。這篇不只列現象，更想講清楚：這些能力是怎麼被練出來的、又是怎麼被放棄的，以及後果究竟有多嚴重。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>記憶力弱化：風險族群其實是「還在發展中」跟「重度使用」的人，不是你想的那樣</div>
+  <div class="step-body">
+    <p>心理學研究表明，越容易獲得的信息，大腦越傾向於遺忘。智慧型手機已經成為大腦的「外存」——以前記住10個以上電話號碼是小菜一碟，現在做得到的人已經不多。</p>
+    <p>但這裡有個容易被誤解的重點：受影響最深的不是中老年人，而是年輕世代。台大心理系教授曾祥非指出，二十歲以前人類的前額葉都尚未發展完全，過度使用手機恐影響發展；如果年輕人長時間重度依賴手機、都沒有進行深度思考，會讓腦區活動減少，相當於手機取代了腦區深度思考的功能。MIT媒體實驗室鎖定18到39歲的年輕人做腦電圖實驗，正是這個年齡層的AI重度使用者最值得關注。</p>
+    <p>反而是《自然人類行為》期刊一項梳理57項研究、涵蓋41萬名平均年齡69歲受試者的統合分析發現，至少對50歲以上的人來說，「數位失智症」假說可能不成立——數位工具對已經發展成熟的中高齡大腦，影響沒有想像中大。換句話說，最該警惕的不是你父母，是還在發展、還在建立思考習慣的孩子跟年輕上班族。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>方向感弱化：這個能力是怎麼練出來的，但我們正主動放棄練習</div>
+  <div class="step-body">
+    <p>方向感不是天生的，是「用進廢退」最典型的例子。倫敦計程車司機的研究發現，經過密集的空間訓練後，司機的海馬迴明顯增長——這些成年人在受訓過程中，大腦真的出現結構性改變。研究人員還發現，如果司機退休了，海馬迴就會萎縮，不是因為年齡大了，而是因為比較少使用。</p>
+    <p>要考取倫敦計程車執照，得靠人腦記住超過兩萬六千條街道，過程需要三到四年，最後只有一半的學員能通過。這代表空間記憶不是「有沒有天分」的問題，而是「有沒有持續主動回想、建構路徑」的問題——每次你自己判斷方向、努力回想路怎麼走，就是在鍛鍊這塊腦區。</p>
+    <p>而GPS出現之前，人們出門靠記路；現在，離開導航軟體我們寸步難行，因為長期依賴導航的人，在陌生環境中定位、辨別方向的能力明顯下降。</p>
+    <p>更值得注意的是延伸效益：哈佛醫學院分析近900萬名美國死者資料發現，計程車與救護車司機——這些工作需要頻繁處理空間與導航記憶的職業——阿茲海默症相關死亡率明顯低於其他職業，計程車司機僅1.03%、救護車司機僅0.91%，遠低於公車司機的1.65%與飛機駕駛的2.34%。換句話說，放棄練習方向感，放棄的可能不只是「認路能力」，長期而言可能也放棄了一種保護大腦的機制。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>獨立思考與批判性能力弱化：後果不是「變笨」這麼簡單，是決策品質全面下滑</div>
+  <div class="step-body">
+    <p>卡內基美隆大學、MIT、UCLA與牛津大學的研究團隊測試發現，即使只使用AI協助10到15分鐘，參與者自力解題的能力與堅持力就出現顯著下降。研究團隊特別強調：短時間使用都會造成能力下降，如果日常AI使用持續數月甚至數年，影響可能更深且難以逆轉。</p>
+    <p>這件事的後果，正在從個人蔓延到組織層級：Gartner預測，到2026年，全球50%的組織將被迫強制實施「AI-free」技能評估，以因應生成式AI使用導致的批判性思考能力退化，金融、醫療、法律等高風險產業首當其衝，因為獨立思考的人才正變得稀缺，企業的人才獲取成本因此上升；到2027年，75%的招募流程將要求證明AI熟練度——這形成了「技能悖論」：企業一方面要求員工善用AI，一方面又擔心員工失去獨立思考的能力。</p>
+    <p>白話來說：獨立思考能力下降的後果，不只是個人「變得比較不會想事情」，而是會直接反映在你能不能通過面試、能不能被信任做重要決策上。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>「認知投降」：這種心態放大到社會層級，容易變成什麼都用立場站隊、不再自己查證</div>
+  <div class="step-body">
+    <p>賓州大學華頓商學院研究者將這個現象命名為「認知投降」（Cognitive Surrender）。他們找來1,372人，用一個會刻意偶爾給出錯誤答案的AI聊天機器人測試，結果發現：只用AI獲取提示的參與者能力未受影響，但把問題「全部丟給」AI的參與者，一旦需要自己動腦，批判性思考力在幾分鐘內就近乎失能。</p>
+    <p>這個機制放到社會層級來看是有風險的：當一群人習慣性地把「查證」這件事外包出去、不再自己交叉比對資訊來源，剩下的判斷依據往往只剩「這個說法跟我原本的立場一不一致」。換句話說，認知投降削弱的不只是解題能力，更是「主動查核、願意被說服」的心理彈性——而這正是社會對立最容易滋生的土壤：不是雙方掌握的事實不同，而是雙方都放棄了驗證事實的動作，只剩情緒與立場在對撞。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>認知失憶：連自己剛說過、寫過什麼都記不清楚，這件事有多嚴重？</div>
+  <div class="step-body">
+    <p>研究揭示「認知失憶」（Cognitive Amnesia）現象普遍存在——高達83%的ChatGPT使用者，即使是幾分鐘前由AI輔助完成的句子，也無法準確回憶或引用，相對地「純大腦組」只有11%出現同樣狀況。</p>
+    <p>MIT研究進一步發現，使用LLM協助寫作的組別中，高達83.3%的參與者無法提供正確引用，完全答對的人數是0；而使用Google搜尋的組別只有11.1%遇到同樣困難，且這種模式在後續實驗階段持續存在，顯示LLM使用對記憶編碼與檢索能力有持續性的負面影響。</p>
+    <p>嚴重程度在於：這不是「記性不好」的個人小事，而是牽涉到可信度。如果你在工作會議上提出一個論點，卻說不清楚這個論點的根據是什麼、甚至記不清自己前一天寫過的內容，長期下來會動搖別人對你專業判斷的信任——尤其在需要當責的職場情境裡，「我不確定，是AI幫我寫的」不會是一個能被接受的答案。這也解釋了為什麼企業開始要求「AI-free」的技能驗證：不是要禁止用AI，而是要確認人本身仍保有對自己輸出內容的掌握力。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">06</span>面對面與文字溝通的落差：同理心正在被悄悄稀釋</div>
+  <div class="step-body">
+    <p>長期習慣透過螢幕溝通，容易讓人越來越看不懂他人表情裡的痛苦，也越來越聽不懂對方聲音裡的寂寞，這讓人們對彼此的舉動更不知該如何反應；在虛擬世界，因為越來越難以想像螢幕背後的他人是如何因為自己的文字而受到傷害，所以可以輕易釋放惡意，或者說，對於自己的惡意不以為意。</p>
+    <p>溝通研究也指出，語言本質上總是模稜兩可，每個語言表達都能傳達不止一種意圖；當我們直接與另一人面對面交流時，除了處理對方語句、擷取整體含義，還會同時接收表情、語氣、停頓等非語言訊號，這些訊號在純文字溝通中會完全消失。</p>
+    <p>這正是為什麼很多在LINE或文字訊息上爆發的爭執，換成講電話或見面談，反而容易化解——不是內容變了，是文字拿掉了原本能緩衝誤會的訊號。當你越來越習慣用文字（甚至讓AI代寫）處理人際溝通，這種「讀懂弦外之音」的能力，也會像肌肉一樣逐漸生疏。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">07</span>文字表達能力弱化：越來越寫不出完整句子</div>
+  <div class="step-body">
+    <p>大學教授從教學現場觀察到，年輕世代因為長期觀看社群媒體的短影音、圖檔，並習慣撰寫簡短文字，導致文字表達能力逐漸退化，越來越無法寫出完整的句子，也不知道如何正確斷句。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">08</span>手寫與肌肉記憶弱化：書寫的思考過程正在消失</div>
+  <div class="step-body">
+    <p>手寫過程能觸發大腦多個區域運作，有助於深化記憶與思考能力，書寫不僅是抄寫，更是一種思想互動的過程。但當作業與筆記交給AI完成，學習者雖然拿到滿意結果，卻失去了這段思考的機會。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">09</span>語言表達同質化：每個人的AI寫作聽起來越來越像</div>
+  <div class="step-body">
+    <p>過度依賴AI寫作，可能導致人類語言表達「同質化」，缺乏獨特語氣、風格與深層情感表達，長期下來會削弱個人創造力——這對創作者而言，是特別值得警惕的一點。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">10</span>組織級的「AI依賴惡性循環」：企業如果要出手，具體能做什麼？</div>
+  <div class="step-body">
+    <p>Brookings Institution在2026年1月發表的全球研究，花一年時間在超過50個國家訪談K-12學生、家長、教師與科技專家，結論相當嚴峻：56%的回饋強調AI的危害，僅44%提及益處。研究者定義出「AI依賴惡性循環」——學生用AI完成作業、認知能力因缺乏練習而萎縮、萎縮的認知能力又加深AI依賴，形成持續惡化的循環。</p>
+    <p>具體來說，企業可以做的事包括：</p>
+    <p><strong>建立「先思考、後協作」的工作流程規範</strong><br>
+    要求任何寫作或分析任務先獨立構思、寫出初稿，再讓AI擔任潤飾與編輯的角色——研究發現這樣做的人，大腦活躍度與工作滿意度明顯優於直接把任務丟給AI的人。</p>
+    <p><strong>導入「AI-free」技能評估機制</strong><br>
+    如Gartner所預測的方向，定期讓員工在不使用AI輔助的情況下完成關鍵任務，確認核心判斷力沒有隨AI依賴而流失，這在金融、醫療、法律等高風險產業尤其關鍵。</p>
+    <p><strong>把「隱性知識結構化」而非只囤積AI知識庫</strong><br>
+    企業常見的盲點是把焦點全放在知識庫內容，卻沒把組織裡的隱性知識（經驗、判斷邏輯、工作流程品質管理）結構化，導致AI效益過度依賴特定個人，難以定期累積與改善。</p>
+    <p><strong>建立清晰的人機協作分工架構</strong><br>
+    理解哪些工作該由AI處理、哪些必須由人親自完成並保有判斷權，才能避免「什麼都交給AI」的全面外包心態，同時也才能真正發揮人才的核心價值。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>AI不是把我們變笨的兇手，是我們選擇了「省力」而非「鍛鍊」。從記憶力、方向感、獨立思考，到同理心與文字表達，這10種現象背後有一個共同邏輯：能力是用進廢退的，而AI最擅長的，正是幫你省去「用」的那個步驟。</p>
+    <p>這些現象大多還在早期階段，可逆轉的空間仍然很大——但前提是，你得先看見它正在發生，並主動決定哪些鍛鍊，是你不打算外包出去的。</p>
+  </div>
+</div>',
+  'AI觀察',
+  '2026-08-05',
+  false
+),
+(
+  'AI裁員的真相：企業省下的人力，到底去哪了？',
+  '算力比人力貴，這波轉型不是取代，是重新分配——但沒人告訴你摩擦有多大',
+  '<p style="margin-bottom:0.9rem">新聞標題總是很聳動：「科技業裁員12萬人」、「AI取代白領」。但把數字拆開來看，會發現一個更有意思的問題：企業真的是因為AI「做得更好」才裁員嗎？還是因為AI「太貴」才不得不砍別的預算？而那些離開大企業的人，真的都靠接案、遊牧重新站穩腳步了嗎？</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>先破解一個迷思：多數裁員不是「AI取代」，是「資本重分配」</div>
+  <div class="step-body">
+    <p>2026年第一季科技業裁員統計達78,557人，但美國聯邦準備銀行3月發布的研究報告指出，針對紐約聯邦儲備銀行地區調查的詳細分析顯示，很少有企業在前一年報告了AI引發的裁員；報告使用的措辭是「部分非AI職位招聘減少」與「高度暴露職業的入門層面疲軟」，並未認定存在AI大規模取代員工的現象。Deutsche Bank分析師更直接指出，「AI冗餘洗白」是2026年的顯著特徵——企業藉AI之名美化的，其實是後疫情過度招聘修正、季度財務壓力等其他原因導致的裁員決策。</p>
+    <p>真正的財務邏輯是資本重分配：公司不是因為AI「做到了什麼」而裁員，而是因為AI基礎設施建設「需要錢」而裁員——把資金從人力成本抽出來，注入GPU機架、資料中心和AI研發。這個模式在Oracle身上體現得最明顯：季度雲端營收暴增84%，卻同步裁員上萬人；Meta將AI資本支出翻倍至1,350億美元，卻同步削減數千個職位。這波裁員潮的真正主角不是「AI比人厲害」，是「AI比人貴，貴到得從別的地方擠錢出來養」。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>算力成本正在反噬「用AI省錢」的算盤</div>
+  <div class="step-body">
+    <p>根據《The Information》最新分析與科技大廠第一季財報，「用算力換人力」的如意算盤並不如預期。飆升的AI晶片投資與難以預測的Token消耗，正成為企業毛利率的新威脅。AI雖然能提升效率並精簡人力，但運行的「隱形成本」——晶片採購、能源消耗與雲端服務費——都極其高昂且具備高度不確定性。對企業而言，AI不再是單純的「省錢工具」，而是一場高投入、高風險的長期資本博弈。</p>
+    <p>這個成本壓力已經開始逆轉部分決策：計算成本不斷上漲、運營出現難題以及結果的不穩定性，促使一些公司改變策略、重新僱用人類員工。針對600名過去12個月內執行過裁員的人資專業人士調查顯示，十家公司裡有九家表示會重新考慮之前與AI相關的裁員決定——業內人士普遍認為，需要良好判斷力、創造力、客戶互動與品質控制的職位，仍應由人主導。算力和成本本身就是天花板，企業不可能無限制地把人力全部換成AI，這條路線很快就會撞到毛利率的牆。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>那麼，被裁掉的人到底去哪了？</div>
+  <div class="step-body">
+    <p>這是最關鍵、也最少被認真回答的問題。答案分成兩層：</p>
+    <p><strong>①官方統計上，「淨增長」是存在的，但分布極不均勻</strong><br>
+    世界經濟論壇《未來工作報告2025》調查全球55個經濟體、22種產業群的1000個領先企業雇主，預期到2030年，結構性勞動力市場轉型將影響當前職位總量的22%：14%的新職位被創造、8%的職位被取代，最終實現7%淨增長（約7,800萬個職位）。增長最快的職業由技術需求驅動，包括大數據專家、金融科技工程師、AI與機器學習專家；但數量增長最大的職業，其實是送貨司機、建築工人與食品加工工人，醫護、社工與教師等照護與教育職位也顯著增長。</p>
+    <p>換句話說，官方數字看起來是「淨增長」，但增長的職缺跟被裁掉的職缺，根本不是同一群人能無縫轉換的——一個被裁的中階行銷主管，不會因為「送貨司機職缺變多」就順利接住這份工作。這正是結構性轉型最殘酷的地方：總量對得起來，個體卻對不上。</p>
+    <p><strong>②個人接案／數位遊牧確實在成長，但這不是一張安全網，是一場高風險自僱</strong><br>
+    台灣104人力銀行調查顯示，超過55%的上班族有意在正職外發展斜槓收入；全球數位遊牧人口已達3,500萬人，年增率超過10%。中國「數字游民」規模已突破800萬人（另一份報告估算廣義規模達4,200萬），90後與00後占比超過七成，35歲以上轉型者也接近四成。</p>
+    <p>但這條路遠不像社群媒體上呈現的那麼光鮮：2026年的自由職業市場更成熟、也更擁擠：低技能副業已被AI大量替代、海外平台門檻提升、社保稅務必須合規、收入波動風險加劇。超過四成的數字游民在過去一年經歷過收入波動超過30%的情況——項目制結款周期長、甲方臨時砍單、平台規則變化，都可能導致現金流緊張；更棘手的是，由於沒有固定雇傭單位，許多人的社保繳納存在斷檔風險，選擇第三方代繳的話，個人與企業部分全部自付，每月支出還會增加近四成。</p>
+    <p>台灣的免費接案平台雖然案件量大，但競爭同樣激烈——案主常同時收到十幾份提案，若不能第一時間寫出吸睛的自我介紹與作品包裝，很容易被埋沒。這解釋了為什麼「自由接案」對很多人來說只是過渡期，而非長期解方：它承接了一部分被擠出大企業的人力，但同時把原本由雇主承擔的風險（社保、現金流、案源穩定性）全部轉嫁回個人身上。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>真正該問的問題：不是「AI取代了誰」，是「摩擦成本誰在承擔」</div>
+  <div class="step-body">
+    <p>把三段資訊放在一起看，會得出一個跟主流敘事不太一樣的結論：</p>
+    <ul style="margin:0.2rem 0 0.9rem 1.2rem; padding:0; color:#555; font-size:0.93rem; line-height:1.82;">
+      <li style="margin-bottom:0.5rem;">企業裁員，很大一部分是為了把錢挪去養算力，不是因為AI真的做得比人好。</li>
+      <li style="margin-bottom:0.5rem;">算力成本本身有天花板，已經開始有企業因為成本與品質問題重新僱人。</li>
+      <li style="margin-bottom:0.5rem;">官方統計的「職缺淨增長」是真的，但增長的職缺類型（藍領、照護服務）跟被裁掉的職缺類型（白領、中階管理）高度不對稱。</li>
+      <li>個人接案與數位遊牧接住了一部分人，但這是把「穩定性風險」從企業轉嫁給個人，不是憑空生出新的長期保障。</li>
+    </ul>
+    <p>這也是為什麼會有「大量使用AI也是算力和成本問題」的直覺——因為這確實是事實，只是媒體更愛講「AI取代人」這個比較聳動的版本。真正該關注的，或許不是這波裁員潮會不會持續（它大機率會持續，只是速度受算力成本制約），而是：當結構性轉型的摩擦成本主要由被裁員的個人承擔時，社會安全網（社保、職業媒合、技能轉型補貼）有沒有跟上這個速度。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>AI裁員的真相，比「機器取代人」複雜得多，也比它殘酷得多——不是因為AI太強，而是因為資本正在被重新分配，而承接這場重分配摩擦成本的，往往是最沒有議價能力的那群人。</p>
+    <p>個人接案與數位遊牧確實提供了緩衝，但它是止血帶，不是治本的解方。</p>
+  </div>
+</div>',
+  'AI觀察',
+  '2026-08-06',
+  false
+),
+(
+  '台灣缺工實錄：AI裁員的同時，這5大產業正在搶人搶到祭出百萬年薪',
+  '一邊裁員一邊缺工不是矛盾，是同一場轉型的兩個面向',
+  '<p style="margin-bottom:0.9rem">前一篇談到AI裁員的真相，很多人心裡會冒出一個疑問：「如果AI真的取代了這麼多人，為什麼新聞又常常說缺工缺很兇？」答案是——這兩件事根本不衝突，它們是同一場結構性轉型的兩個面向。裁掉的人跟缺的人，往往不是同一群人、也不是同一種技能。這篇用台灣本地最新數據，把「誰在裁、誰在缺」講清楚。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>先看整體圖像：台灣正走進「兩個世界」</div>
+  <div class="step-body">
+    <p>2025年台灣憑藉AI浪潮交出15年來最亮眼的經濟成績單，成長率高達7.37%。但在輝煌數字背後，台灣正步入「兩個世界」的極端分野：一面是AI帶動的科技榮景，另一邊是傳統產業在關稅壓力與缺工壓力下的苦戰。《天下雜誌》針對兩千大企業CEO的景氣預測調查發現，62.3%的科技製造業認為台灣產業前景偏好，但只有52.9%的傳統製造業這麼認為，落差超過9個百分點。</p>
+    <p>這句話講白一點就是：如果你在AI／半導體供應鏈裡，現在是好時代；如果你在傳統製造或服務業，正在同時面對缺工跟成本壓力的雙重夾擊。這就是為什麼「裁員」跟「缺工」的新聞會同時出現在你的動態牆上——它們發生在不同的產業，甚至同一個產業的不同職位層級上。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>五大缺工產業，數字比你想的更誇張</div>
+  <div class="step-body">
+    <p>根據1111人力銀行2026年第一季調查，就業市場的求才需求最炙熱的五大產業是：科技業、建築營造／不動產、餐飲／住宿業、醫療／照護／環境衛生、傳產製造業。企業最急迫要補的兩塊缺口，是基層執行人力（46%）跟專業技術人才（32.5%）——這反映出企業在數位轉型、自動化導入，跟維持基本服務量能之間，對人力的依賴其實並沒有真的減輕。</p>
+    <p>其中最誇張的是民生服務業：104人力銀行《2026民生服務業人才白皮書》指出，2026年每月人才缺口高達67.3萬人，平均每個職缺只有0.28人應徵——換句話說，一個職缺放出去，連一個人來投履歷都湊不齊。另一份統計抓出人才缺口達53萬人，業者為了搶到人，甚至祭出百萬年薪搶店長、主廚。</p>
+    <p>這代表什麼？很多人對「服務業缺工」的想像還停留在「低薪、進入門檻低」，但2026年的實際狀況是：這些職位已經在用高薪搶人，而且還搶不到。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>AI人才需求正在往「應用端」擴散，不是只有科技業在搶人</div>
+  <div class="step-body">
+    <p>一般人以為AI人才需求集中在科技業，但數據顯示完全不是這樣：</p>
+    <p>民生服務業每月平均招募的AI人才，從2022年的6,000人，成長到2026年的1.7萬人，5年成長近3倍。批發／零售／傳直銷業的AI工作機會最多，2026年每月平均招募9,007名AI人才，顯示這個產業正積極把AI導入精準行銷、商品推薦、客服營運與內部管理等場景。成長幅度最誇張的是旅遊／休閒／運動業，AI工作機會從2022年的151個，暴增到2026年的939個，增幅超過6倍——這是因為這個產業的低基期，加上業務擴展到數位行銷、旅遊規劃與會員經營等新場景，才推升了這麼大的人才需求。</p>
+    <p>觀察民生服務業導入AI的狀況：不動產業的AI職務占比6.1%最高，5年成長3.8個百分點，用在行銷推廣、客戶經營、市場分析與營運管理；批發零售業AI職缺占比5.3%排第二，反映持續推動數位轉型與智慧零售；運輸物流及倉儲業3.1%排第三，是智慧物流提升作業效率所帶動的需求。</p>
+    <p>白話翻譯：如果你的專長是「行銷＋AI工具應用」，機會其實不在科技業，而是在傳統的零售、旅遊、不動產這些正在數位轉型的產業裡——這些產業比科技業更需要「懂產業、也懂AI」的人，而不是純技術背景的工程師。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>半導體磁吸效應：不是沒人，是人都被吸過去了</div>
+  <div class="step-body">
+    <p>57.4%的台灣雇主直言，招募最核心的痛點在於「整體勞動力市場的專業人才短缺」，這是本次調查中比重最高、影響力最大的單一因素，遠遠超過薪酬結構或品牌知名度不足等問題。多位不同產業的受訪者直接點名，新竹科學園區就像一個無比巨大的「人才磁鐵」，源源不絕地把工程、技術型人才從傳統製造業吸納過去。</p>
+    <p>高科技如半導體、電動車大舉擴廠，起薪高出1到2萬、履歷價值又高，磁吸年輕勞力掏空傳統產業。科技業職缺高達16.9萬個，傳統製造業雖然有穩定福利，卻因為薪資天花板低，競爭不過。</p>
+    <p>這代表「缺工」不完全是「人口不夠」的問題，更精確地說是「人才分配失衡」——同一批具備技術能力的人，被少數高薪產業集中吸走，留給傳統產業的選擇越來越少。加上少子化的結構性壓力：從2012年到2023年，台灣新生兒數量從23萬跌到13.5萬，未來4年每年進入職場的人數還會再少1萬人。傳統製造業不只搶不到新血，還得面對老員工陸續退休的斷層危機。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>企業徵才動機正在轉變：不只是補人，是真的在擴張</div>
+  <div class="step-body">
+    <p>2026年台灣企業因應「業務增長與擴張」而延伸出的招募比例，從2025年的24%顯著爬升到32.8%——這代表企業增人擴編的實質需求正在大幅增加，不再只是單純填補離職空缺（這個比重反而從2025年的54.1%下降到41%）。</p>
+    <p>這個轉變很關鍵：如果企業徵才只是為了「補人補到跟去年一樣多」，代表產業沒有真的在成長；但當「因為業務擴張而徵才」的比例明顯上升，代表這些產業是真的有新的業務量、新的機會在長出來，不是原地踏步。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">06</span>被裁的人跟被缺的職缺，到底對不對得上？</div>
+  <div class="step-body">
+    <p>把前面幾段放在一起看，答案其實很清楚：大部分對不上。</p>
+    <p><strong>被裁掉的，多半是這些：</strong><br>
+    白領辦公室工作——中階行銷、初階法律分析、會計查帳、程式撰寫、一般行政。</p>
+    <p><strong>現在缺最兇的，是這些：</strong><br>
+    基層執行人力（服務業店長、餐飲、照護）跟專業技術人才（半導體、建築技術工），還有需要「懂產業＋懂AI應用」的複合型行銷／營運人才。</p>
+    <p>一個被裁的行銷企劃，理論上比較容易轉去零售業、旅遊業做「AI行銷應用」相關職位——因為這正是需求成長最快、也最缺人的方向；但如果他想轉去半導體產業做技術職，門檻就高很多；如果想轉去傳統服務業做基層店長，雖然職缺多、薪水也在上升，但工作內容跟原本的白領辦公室經驗差異很大，需要重新適應。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>AI裁員跟缺工同時發生，不是矛盾，而是同一場轉型正在重新洗牌：資本往AI基礎設施跟半導體集中，人才需求也跟著往這個方向磁吸；同時，服務業與傳統製造業因為少子化跟磁吸效應，缺口越來越大，只能用加薪搶人。</p>
+    <p>這對正在轉職或思考職涯方向的人來說，其實是個訊號：與其問「AI會不會取代我的工作」，不如問「我的技能，能不能移動到現在正在成長、正在缺人的地方」——尤其是「懂產業本身，又懂得怎麼把AI工具用在這個產業裡」的複合型人才，正是目前市場上最缺、也最搶手的一群人。</p>
+  </div>
+</div>',
+  'AI觀察',
+  '2026-08-06',
+  false
+),
+(
+  '2026年行銷人必看的AI工具地圖：31款工具怎麼選、中小企業該從哪裡開始',
+  '不是工具越多越好，而是先看懂自己缺哪一塊',
+  '<p style="margin-bottom:0.9rem">Supermetrics最新發布的《2026行銷資料報告》整理出一個很值得注意的落差：80%的行銷人感受到採用AI的壓力，但真正把AI成功嵌進日常工作流程的只有6%。問題不是工具不夠多，反而是選擇太多、不知道從哪裡開始。這篇把這份指南整理的31款工具，按照六大核心功能分類，並加入台灣中小企業角度的判斷，幫你找到真正該優先導入的那一兩個。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>一、行銷AI工具的六大核心功能</div>
+  <div class="step-body">
+    <p>完整的AI行銷工具組合，通常涵蓋六個功能：市場情報分析、內容創作、電子郵件行銷、素材製作、付費媒體投放、SEO優化，另外還有社群媒體管理跟免費入門工具兩個補充類別。多數行銷人目前主要把AI用在內容產出、報告製作、數據分析跟流程自動化這四塊。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>二、每個類別的代表工具（重點摘要）</div>
+  <div class="step-body">
+    <div style="overflow-x:auto; margin:0.3rem 0 1rem;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.85rem; min-width:560px;">
+        <thead>
+          <tr style="background:#f2f6ff;">
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">功能類別</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">代表工具</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">定價起點</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a;">核心優勢</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">市場情報</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Supermetrics</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">月費約US$37起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">跨平台數據整合，內建AI異常偵測</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">內容創作</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Jasper</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">每席位月費US$59起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">品牌語氣一致性，適合團隊規模化產出</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">電子郵件</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Klaviyo</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">月費US$45起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">AI自動生成客群分眾，適合電商</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">素材製作</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Canva</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">年費US$144起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Magic Studio可即時生成圖像影片</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">付費投放</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Smartly.io</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">依廣告預算計費</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">預測性廣告預算分配</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">SEO</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Surfer SEO</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">月費US$99起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">即時內容評分與排名訊號</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">社群媒體</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Lately</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">客製報價</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">長文內容拆解再利用</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; white-space:nowrap;">免費入門</td>
+            <td style="padding:0.55rem 0.7rem; white-space:nowrap;">Claude</td>
+            <td style="padding:0.55rem 0.7rem; white-space:nowrap;">免費（付費方案另計）</td>
+            <td style="padding:0.55rem 0.7rem;">長文本分析與推理能力</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>三、比較貼近台灣中小企業／個人接案者的選擇</div>
+  <div class="step-body">
+    <p>上表列的多數是國際企業級工具，定價跟部署複雜度對中小企業或個人工作室來說偏高。以下是幾個對你、或對你不動產客戶更實際的替代思路：</p>
+    <p><strong>內容創作：</strong>不需要Jasper這種企業級品牌聲音管理系統，ChatGPT搭配你自己整理的品牌語氣說明文件，或直接用Claude做長文本分析（例如整理客戶訪談內容、拆解房仲觀點素材），就能達到八成效果，且免費版就堪用。</p>
+    <p><strong>素材製作：</strong>Canva Pro是目前CP值最高的選擇，年費不到台幣5,000元，Magic Studio的即時圖像生成，正好能用在「一支影片拆多版本＋物件封面圖」的流程上。</p>
+    <p><strong>短影音再利用：</strong>Opus Clip（月費US$15起）是專門把長影片拆解成高互動短片段的工具，概念上跟用ffmpeg手動處理的邏輯相通，如果未來素材量變大，這類工具可以省下不少剪輯時間。</p>
+    <p><strong>SEO／內容優化：</strong>Surfer SEO或Semrush這類工具對經營網站SEO/AIO內容會有幫助，但月費不便宜，可以先用免費的Google Search Console搭配AI輔助分析關鍵字缺口，等內容量夠大、有明確ROI需求時再考慮付費升級。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>四、選工具前，先問自己這五個問題</div>
+  <div class="step-body">
+    <p>① 這個工具是不是真的解決你的具體問題，而不是「聽起來很潮」就想用。</p>
+    <p>② 輸出品質能不能維持你自己的品牌調性跟語氣，不是所有AI寫出來的東西都能直接用。</p>
+    <p>③ 總持有成本——不只是月費，還包含團隊上手、資料整理的時間成本。</p>
+    <p>④ 資料隱私與合規——尤其如果客戶資料會被匯入工具，要先確認資料儲存與使用政策。</p>
+    <p>⑤ 多快能看到成效——優先選擇能快速看到時間節省或成果提升的工具，不要一次導入太多。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>五、真正決定AI工具效果的，是背後的數據品質</div>
+  <div class="step-body">
+    <p>AI工具的產出品質，取決於餵給它的數據夠不夠乾淨、夠不夠完整。如果數據本身是零散、手動整理、格式不一致的，再好的AI工具也只會放大這個混亂，而不是解決它。這是一個很重要的提醒：先把客戶名單、物件資料這些基礎資料整理乾淨，再談AI工具，順序不能反過來。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>31款工具聽起來很多，但真正該做的不是全部研究一遍，而是先盤點自己流程裡最卡的環節（是內容產出太慢？素材再利用效率低？還是名單管理混亂？），針對那個環節挑一個工具深入用熟，比同時淺嘗多個工具更有效果。</p>
+    <p style="font-size:0.85rem; color:#999;">＊資料來源：Supermetrics《2026行銷資料報告》與〈31 Best AI tools for marketing〉。</p>
+  </div>
+</div>',
+  'AI 工具',
+  '2026-08-26',
+  false
+);
