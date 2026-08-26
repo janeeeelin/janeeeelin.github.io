@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026年行銷人必看的AI工具地圖：31款工具怎麼選、中小企業該從哪裡開始 - Jane's Lens</title>
+  <meta name="description" content="Supermetrics最新報告點出：80%行銷人有AI採用壓力，卻只有6%真正把AI嵌進工作流程。這篇整理31款行銷AI工具的六大分類，加上台灣中小企業角度的實際選擇建議。">
+  <meta property="og:title" content="2026年行銷人必看的AI工具地圖：31款工具怎麼選、中小企業該從哪裡開始 - Jane's Lens">
+  <meta property="og:description" content="80%行銷人感受到AI採用壓力，只有6%真正落地。31款工具的六大分類，加上中小企業的實際選擇建議。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-19.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.ai-tools { background: #fef9c3; color: #854d0e; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 0.6rem; }
+    .note-page-subtitle { font-size: 0.95rem; color: #888; line-height: 1.6; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #1a1408 0%, #241c0e 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">主頁</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="services.html">諮詢服務</a></li>
+        <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-08-26</span>
+        <span class="note-tag ai-tools">AI 工具</span>
+      </div>
+      <h1 class="note-page-title">2026年行銷人必看的AI工具地圖：31款工具怎麼選、中小企業該從哪裡開始</h1>
+      <p class="note-page-subtitle">不是工具越多越好，而是先看懂自己缺哪一塊</p>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv19bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1a1408"/>
+              <stop offset="100%" stop-color="#241c0e"/>
+            </linearGradient>
+            <linearGradient id="cv19accent" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#c99a3d"/>
+              <stop offset="100%" stop-color="#f0c878"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv19bg)" rx="12"/>
+          <ellipse cx="240" cy="76" rx="220" ry="90" fill="rgba(201,154,61,0.07)"/>
+          <!-- dashed map route -->
+          <path d="M55,100 Q95,55 140,72 T230,55 T320,80 T410,58" fill="none" stroke="url(#cv19accent)" stroke-width="1.6" stroke-dasharray="5,4" opacity="0.55" stroke-linecap="round"/>
+          <!-- waypoint nodes -->
+          <circle cx="55" cy="100" r="4" fill="#f0c878" opacity="0.5"/>
+          <circle cx="140" cy="72" r="4" fill="#f0c878" opacity="0.6"/>
+          <circle cx="230" cy="55" r="4" fill="#f0c878" opacity="0.7"/>
+          <circle cx="320" cy="80" r="4" fill="#f0c878" opacity="0.6"/>
+          <circle cx="410" cy="58" r="4" fill="#f0c878" opacity="0.5"/>
+          <!-- start-here pin, larger -->
+          <circle cx="140" cy="72" r="9" fill="none" stroke="#f0c878" stroke-width="1.5" opacity="0.85"/>
+          <circle cx="140" cy="72" r="3.2" fill="#f0c878" opacity="0.95"/>
+          <text x="140" y="50" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="#f0c878" opacity="0.85">從這裡開始</text>
+          <!-- 31 badge -->
+          <circle cx="405" cy="112" r="20" fill="rgba(240,200,120,0.10)" stroke="#f0c878" stroke-width="1.2" opacity="0.8"/>
+          <text x="405" y="117" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f0c878" opacity="0.9">31</text>
+          <!-- Title -->
+          <text x="220" y="132" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="14" fill="#f2ddb8" letter-spacing="1.5" opacity="0.92">2026 AI工具地圖</text>
+          <!-- Subtitle -->
+          <text x="220" y="148" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#c9ac78" opacity="0.75">六大功能分類 · 中小企業選擇 · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">Supermetrics最新發布的《2026行銷資料報告》整理出一個很值得注意的落差：80%的行銷人感受到採用AI的壓力，但真正把AI成功嵌進日常工作流程的只有6%。問題不是工具不夠多，反而是選擇太多、不知道從哪裡開始。這篇把這份指南整理的31款工具，按照六大核心功能分類，並加入台灣中小企業角度的判斷，幫你找到真正該優先導入的那一兩個。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>一、行銷AI工具的六大核心功能</div>
+  <div class="step-body">
+    <p>完整的AI行銷工具組合，通常涵蓋六個功能：市場情報分析、內容創作、電子郵件行銷、素材製作、付費媒體投放、SEO優化，另外還有社群媒體管理跟免費入門工具兩個補充類別。多數行銷人目前主要把AI用在內容產出、報告製作、數據分析跟流程自動化這四塊。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>二、每個類別的代表工具（重點摘要）</div>
+  <div class="step-body">
+    <div style="overflow-x:auto; margin:0.3rem 0 1rem;">
+      <table style="width:100%; border-collapse:collapse; font-size:0.85rem; min-width:560px;">
+        <thead>
+          <tr style="background:#f2f6ff;">
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">功能類別</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">代表工具</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a; white-space:nowrap;">定價起點</th>
+            <th style="text-align:left; padding:0.6rem 0.7rem; border-bottom:2px solid #dce8ff; color:#1a3a6a;">核心優勢</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">市場情報</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Supermetrics</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">月費約US$37起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">跨平台數據整合，內建AI異常偵測</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">內容創作</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Jasper</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">每席位月費US$59起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">品牌語氣一致性，適合團隊規模化產出</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">電子郵件</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Klaviyo</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">月費US$45起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">AI自動生成客群分眾，適合電商</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">素材製作</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Canva</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">年費US$144起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">Magic Studio可即時生成圖像影片</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">付費投放</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Smartly.io</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">依廣告預算計費</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">預測性廣告預算分配</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">SEO</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Surfer SEO</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">月費US$99起</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">即時內容評分與排名訊號</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">社群媒體</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">Lately</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa; white-space:nowrap;">客製報價</td>
+            <td style="padding:0.55rem 0.7rem; border-bottom:1px solid #eef2fa;">長文內容拆解再利用</td>
+          </tr>
+          <tr>
+            <td style="padding:0.55rem 0.7rem; white-space:nowrap;">免費入門</td>
+            <td style="padding:0.55rem 0.7rem; white-space:nowrap;">Claude</td>
+            <td style="padding:0.55rem 0.7rem; white-space:nowrap;">免費（付費方案另計）</td>
+            <td style="padding:0.55rem 0.7rem;">長文本分析與推理能力</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>三、比較貼近台灣中小企業／個人接案者的選擇</div>
+  <div class="step-body">
+    <p>上表列的多數是國際企業級工具，定價跟部署複雜度對中小企業或個人工作室來說偏高。以下是幾個對你、或對你不動產客戶更實際的替代思路：</p>
+    <p><strong>內容創作：</strong>不需要Jasper這種企業級品牌聲音管理系統，ChatGPT搭配你自己整理的品牌語氣說明文件，或直接用Claude做長文本分析（例如整理客戶訪談內容、拆解房仲觀點素材），就能達到八成效果，且免費版就堪用。</p>
+    <p><strong>素材製作：</strong>Canva Pro是目前CP值最高的選擇，年費不到台幣5,000元，Magic Studio的即時圖像生成，正好能用在「一支影片拆多版本＋物件封面圖」的流程上。</p>
+    <p><strong>短影音再利用：</strong>Opus Clip（月費US$15起）是專門把長影片拆解成高互動短片段的工具，概念上跟用ffmpeg手動處理的邏輯相通，如果未來素材量變大，這類工具可以省下不少剪輯時間。</p>
+    <p><strong>SEO／內容優化：</strong>Surfer SEO或Semrush這類工具對經營網站SEO/AIO內容會有幫助，但月費不便宜，可以先用免費的Google Search Console搭配AI輔助分析關鍵字缺口，等內容量夠大、有明確ROI需求時再考慮付費升級。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>四、選工具前，先問自己這五個問題</div>
+  <div class="step-body">
+    <p>① 這個工具是不是真的解決你的具體問題，而不是「聽起來很潮」就想用。</p>
+    <p>② 輸出品質能不能維持你自己的品牌調性跟語氣，不是所有AI寫出來的東西都能直接用。</p>
+    <p>③ 總持有成本——不只是月費，還包含團隊上手、資料整理的時間成本。</p>
+    <p>④ 資料隱私與合規——尤其如果客戶資料會被匯入工具，要先確認資料儲存與使用政策。</p>
+    <p>⑤ 多快能看到成效——優先選擇能快速看到時間節省或成果提升的工具，不要一次導入太多。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>五、真正決定AI工具效果的，是背後的數據品質</div>
+  <div class="step-body">
+    <p>AI工具的產出品質，取決於餵給它的數據夠不夠乾淨、夠不夠完整。如果數據本身是零散、手動整理、格式不一致的，再好的AI工具也只會放大這個混亂，而不是解決它。這是一個很重要的提醒：先把客戶名單、物件資料這些基礎資料整理乾淨，再談AI工具，順序不能反過來。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>31款工具聽起來很多，但真正該做的不是全部研究一遍，而是先盤點自己流程裡最卡的環節（是內容產出太慢？素材再利用效率低？還是名單管理混亂？），針對那個環節挑一個工具深入用熟，比同時淺嘗多個工具更有效果。</p>
+    <p style="font-size:0.85rem; color:#999;">＊資料來源：Supermetrics《2026行銷資料報告》與〈31 Best AI tools for marketing〉。</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-19')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-19')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-19" onclick="shareNote('copy','note-19')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-19">0</span>)</p>
+        <div data-comments-list="note-19" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-19" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-19')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-19');
+    document.querySelector('[data-comment-input="note-19"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-19'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
