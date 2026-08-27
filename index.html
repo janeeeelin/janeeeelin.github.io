@@ -1080,6 +1080,7 @@
         <li><a class="nav-link" href="#footer-subscribe">訂閱</a></li>
         <li><a class="nav-link" href="services.html">諮詢服務</a></li>
         <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+        <li><button id="auth-nav-btn" class="nav-link" style="border:none;cursor:pointer;font-family:inherit;">註冊／登入</button></li>
       </ul>
     </div>
     <div id="reading-progress"></div>
@@ -1516,6 +1517,9 @@
     </div>
   </div><!-- end .page-outer -->
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="member-auth.js"></script>
   <script>
     // ── Data ──────────────────────────────────────────────────────────────────
 
@@ -3453,6 +3457,19 @@ git push -u origin main</code></pre>
     let activeTag = null;
     let searchQuery = '';
     let visibleCount = 4;
+    let memberFlags = {};   // { [articleId]: boolean } — 由 article_flags 這個 view 取得
+    let loggedIn = false;
+
+    async function refreshMemberState() {
+      memberFlags = await getMemberFlags();
+      loggedIn = await isLoggedIn();
+    }
+
+    // 登入狀態改變時（member-auth.js 會呼叫這個），重新抓一次旗標並重繪文章列表
+    window.onMemberAuthChange = async function () {
+      await refreshMemberState();
+      renderNotes();
+    };
 
     // ── Helpers ───────────────────────────────────────────────────────────────
     function escapeHtml(str) {
@@ -3677,6 +3694,11 @@ git push -u origin main</code></pre>
     const CHEVRON = '<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
 
     function noteHTML(note) {
+      const numId = parseInt(note.id.replace('note-', ''));
+      const locked = !!memberFlags[numId] && !loggedIn;
+      const contentHTML = locked
+        ? memberPreviewHTML(note.content, 200)
+        : injectQuote(note.content, note.id, note.quote);
       return '<div class="note-item" id="' + note.id + '">' +
         '<div class="note-header-row">' +
           '<div class="note-meta">' +
@@ -3699,7 +3721,7 @@ git push -u origin main</code></pre>
         '<div class="note-body" id="body-' + note.id + '">' +
           '<div class="note-body-inner">' +
             (NOTE_COVERS[note.id] ? '<div class="note-cover">' + NOTE_COVERS[note.id] + '</div>' : '') +
-            '<div class="note-content">' + injectQuote(note.content, note.id, note.quote) + '</div>' +
+            '<div class="note-content">' + contentHTML + '</div>' +
             '<div class="share-bar">' +
               '<span class="share-bar-label">分享</span>' +
               '<button class="share-btn" onclick="shareNote(\'facebook\',\'' + note.id + '\')">' +
@@ -3981,7 +4003,9 @@ git push -u origin main</code></pre>
     }
 
     // ── Init ──────────────────────────────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      initAuthWidget();
+      await refreshMemberState();
       renderNotes();
       renderTimeline();
       renderSidebarCategories();

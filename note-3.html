@@ -101,6 +101,7 @@
         <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
         <li><a class="nav-link" href="services.html">諮詢服務</a></li>
         <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+        <li><button id="auth-nav-btn" class="nav-link" style="border:none;cursor:pointer;font-family:inherit;">註冊／登入</button></li>
       </ul>
     </div>
   </nav>
@@ -216,6 +217,13 @@
     renderComments('note-3');
     document.querySelector('[data-comment-input="note-3"]').addEventListener('keydown', function(e) { if((e.ctrlKey||e.metaKey)&&e.key==='Enter') submitComment('note-3'); });
     function shareNote(type,id) { const url='https://janeeeelin.github.io/'+id+'.html'; if(type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank'); else if(type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank'); else if(type==='copy') { navigator.clipboard.writeText(url).then(()=>{ const btn=document.getElementById('copy-'+id); if(btn){btn.classList.add('copied');btn.textContent='已複製！';setTimeout(()=>{btn.classList.remove('copied');btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結';},2000);}});} }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="member-auth.js"></script>
+  <script>
+    initAuthWidget();
+    applyMemberGate(3, document.querySelector('.note-content'));
   </script>
 </body>
 </html>

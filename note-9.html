@@ -107,6 +107,7 @@
         <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
         <li><a class="nav-link" href="services.html">諮詢服務</a></li>
         <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+        <li><button id="auth-nav-btn" class="nav-link" style="border:none;cursor:pointer;font-family:inherit;">註冊／登入</button></li>
       </ul>
     </div>
   </nav>
@@ -356,6 +357,13 @@
         });
       }
     }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="member-auth.js"></script>
+  <script>
+    initAuthWidget();
+    applyMemberGate(9, document.querySelector('.note-content'));
   </script>
 </body>
 </html>
