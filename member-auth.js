@@ -157,13 +157,16 @@
     btn.disabled = true;
 
     if (authMode === 'login') {
-      const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+      const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
       btn.disabled = false;
       if (error) {
         msg.classList.add('show', 'err');
         msg.textContent = '登入失敗：' + error.message;
         return;
       }
+      // 直接用這次登入回傳的 session 更新按鈕，不等 onAuthStateChange 事件，
+      // 避免因為事件觸發時機而讓按鈕沒有立刻反映登入狀態。
+      setAuthButtonState(data.session);
       closeAuthModal();
     } else {
       const { data, error } = await supabaseClient.auth.signUp({
@@ -182,19 +185,30 @@
   });
 
   // ── 導覽列的登入／使用者按鈕 ─────────────────────────────────────────────
-  async function refreshAuthButton() {
+  // 直接吃 session 物件更新按鈕，不用另外再打一次 getSession() —— 這樣不管是從
+  // onAuthStateChange 事件、還是登入成功當下直接呼叫，結果都是同一個、不會有時間差。
+  function setAuthButtonState(session) {
     const btn = document.getElementById('auth-nav-btn');
     if (!btn) return;
-    const { data: { session } } = await supabaseClient.auth.getSession();
     if (session) {
       btn.textContent = session.user.email;
+      btn.title = '登入身分：' + session.user.email + '（點擊登出）';
       btn.onclick = async () => {
-        if (confirm('要登出嗎？')) await supabaseClient.auth.signOut();
+        if (confirm('要登出嗎？')) {
+          await supabaseClient.auth.signOut();
+          setAuthButtonState(null);
+        }
       };
     } else {
       btn.textContent = '註冊／登入';
+      btn.removeAttribute('title');
       btn.onclick = () => openAuthModal('login');
     }
+  }
+
+  async function refreshAuthButton() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    setAuthButtonState(session);
   }
 
   window.initAuthWidget = function () {
@@ -203,7 +217,7 @@
   };
 
   supabaseClient.auth.onAuthStateChange((_event, session) => {
-    refreshAuthButton();
+    setAuthButtonState(session);
     if (typeof window.onMemberAuthChange === 'function') window.onMemberAuthChange(session);
   });
 
