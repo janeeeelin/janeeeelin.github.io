@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>未來20年網紅還會紅嗎？答案藏在一件「急不得」的事 - Jane's Lens</title>
+  <meta name="description" content="網紅產業不會消失，但正在快速分化：巨型網紅信任度下滑、AI虛擬網紅崛起、消費者對包裝內容越來越有戒心。這篇拆解為什麼「拍得更真實」不是解法，真正決定誰能留下來的是急不得的長期信任累積。">
+  <meta property="og:title" content="未來20年網紅還會紅嗎？答案藏在一件「急不得」的事 - Jane's Lens">
+  <meta property="og:description" content="護城河的本質就是需要時間才能長出來，這是別人抄不走的東西。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-25.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.ai-observation { background: #dde2e7; color: #4a5a6a; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 0.6rem; }
+    .note-page-subtitle { font-size: 0.95rem; color: #888; line-height: 1.6; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #16181e 0%, #20242e 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+  <!-- GEO-SCHEMA-ARTICLE-note25 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "未來20年網紅還會紅嗎？答案藏在一件「急不得」的事",
+    "url": "https://janeeeelin.github.io/note-25.html",
+    "image": "https://janeeeelin.github.io/og-image.png",
+    "datePublished": "2026-09-07T00:00:00+08:00",
+    "dateModified": "2026-09-07T00:00:00+08:00",
+    "author": {
+      "@id": "https://janeeeelin.github.io/about.html#person"
+    },
+    "publisher": {
+      "@id": "https://janeeeelin.github.io/about.html#organization"
+    }
+  }
+  </script>
+  <!-- GEO-SCHEMA-FAQPAGE-note25 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "網紅行銷還值得投資嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "值得，但預算配置的邏輯要調整——與其把資源集中在少數大型網紅追求觸及，不如分散給多個調性吻合、長期配合的中小型創作者，累積可驗證的口碑紀錄。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "要怎麼讓內容看起來更真實？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "這個問題本身可能問錯了方向。與其追求看起來真實的技巧，不如把力氣放在讓內容經得起事後驗證——講的東西發生了沒有、承諾的效果有沒有兌現，這比任何拍攝手法都更難被複製。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "AI虛擬網紅會取代真人創作者嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "會在特定領域(美妝、時尚等視覺展示型內容)快速擴大市占，但在需要高度信任的領域(不動產、金融、醫療等)，真人創作者的說服力目前仍明顯領先，短期內取代的急迫性較低。"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">主頁</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="services.html">諮詢服務</a></li>
+        <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+        <li><button id="auth-nav-btn" class="nav-link" style="border:none;cursor:pointer;font-family:inherit;">註冊／登入</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-09-07</span>
+        <span class="note-tag ai-observation">AI觀察</span>
+      </div>
+      <h1 class="note-page-title">未來20年網紅還會紅嗎？答案藏在一件「急不得」的事</h1>
+      <p class="note-page-subtitle">從反向種草到AI引用，決定誰能被長期信任的底層邏輯</p>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv25bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#16181e"/>
+              <stop offset="100%" stop-color="#20242e"/>
+            </linearGradient>
+            <linearGradient id="cv25line" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#9fb4ff"/>
+              <stop offset="100%" stop-color="#f2d98a"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv25bg)" rx="12"/>
+          <ellipse cx="240" cy="80" rx="220" ry="90" fill="rgba(159,180,255,0.07)"/>
+          <path d="M45,120 C130,116 180,108 240,92 C310,73 360,48 435,30" fill="none" stroke="url(#cv25line)" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="45" cy="120" r="4" fill="#9fb4ff" opacity="0.8"/>
+          <circle cx="150" cy="112" r="3" fill="#b3c2f5" opacity="0.6"/>
+          <circle cx="240" cy="92" r="3" fill="#c9c8e8" opacity="0.6"/>
+          <circle cx="330" cy="58" r="3.5" fill="#e0cfa0" opacity="0.75"/>
+          <circle cx="435" cy="30" r="5" fill="#f2d98a"/>
+          <text x="240" y="18" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="13" fill="#f2d98a" letter-spacing="1" opacity="0.9">信任是複利，不是單次表演</text>
+          <text x="240" y="147" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#9fb4ff" opacity="0.7">時間 · 一致性 · 可驗證 · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">網紅產業會不會消失，是我最近常被問的問題。答案是：這個產業不會消失，但正在快速分化——巨型網紅的信任度持續下滑，AI虛擬網紅在特定領域快速崛起，消費者也越來越會對「太完美」的內容產生戒心。但如果你以為解法是學會「拍得更真實」，那就想錯方向了。真正決定誰能留下來的，是一件沒有捷徑、也急不得的事：能不能被長期、持續地信任。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>網紅產業不會消失，但正在分化</div>
+  <div class="step-body">
+    <p>創作者經濟市場規模2026年約249億美元，預計到2033年成長到1054億美元，年複合成長率22.9%；網紅行銷產業支出2026年全球約325億美元，超過八成的行銷人員打算跟創作者建立長期合作關係。這個產業不是在萎縮，是在擴大跟重組。</p>
+    <p>但重組的方向很明確：61%的13到39歲年輕人表示，網紅業配太多會讓他們失去信任；65%反而偏好追蹤粉絲較少的創作者；44%認為網紅的影響力已經不如從前。預算正在從巨型網紅流向微型、奈米型創作者，原因正是真實感跟信任感，比觸及人數更值錢。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>AI虛擬網紅是最大變數，但不是均勻取代</div>
+  <div class="step-body">
+    <p>虛擬網紅市場成長速度驚人，2026年約117億美元，年成長率超過40%，在美妝、時尚這種視覺展示型內容上，互動率甚至平均比真人高出三倍。但關鍵數據是：在真實性至關重要的領域，真人創作者的說服力可以比虛擬網紅高出2.7倍。不動產這類高決策成本、高信任需求的領域，正好是AI虛擬網紅目前最弱的環節。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>消費者是在「免疫」，不是在「精準識破」</div>
+  <div class="step-body">
+    <p>這裡有個容易誤解的地方：很多人以為消費者會越來越會分辨真假，但實際上這比較像一場軍備競賽。一旦「不完美、隨性、手震運鏡」變成市場想要的東西，它本身就會變成一個可以被複製、被下brief要求的套路——已經有業內報導指出，品牌現在會在合作條件裡明確要求創作者保留一點瑕疵感，「看起來真實」正在變成一種新的表演形式，而不是真實本身。</p>
+    <p>假訊息研究領域有個穩固的發現叫「持續影響效應」：研究讓人看假新聞並加上警告標示，第一週效果很好、大家真的比較不信；但兩週後追蹤，原本的信念程度跟立場偏誤幾乎完全恢復。提醒大家要小心辨別，短期有用，但這個警覺性本身不太持久，會隨時間鬆懈。所以消費者不是會「越來越會分辨真假」，而是會「越來越快對上一輪的包裝手法免疫」，然後製作端再演化出下一輪包裝手法，兩邊一直在互相追。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>AI時代的信任邏輯：時間跟一致性，是造不了假的</div>
+  <div class="step-body">
+    <p>真正能穩定留下來的，不是看起來真實的技巧，而是可以被事後驗證的東西——誠實揭露不完美細節之所以有效，不是因為它看起來隨性，而是因為交屋後、用了之後，真的對得上，經得起驗證。</p>
+    <p>有意思的是，AI時代不但沒有讓這件事變得可以抄捷徑，某種程度上反而更看重這種累積。AI在判斷一個來源可不可信時，參考的訊號本質上就是一致性跟時間：這個人在各平台講的話有沒有互相印證、講的案例經不經得起長期檢驗、有沒有持續在同一個領域深耕而不是每個月換一個人設。這跟AI搜尋引擎判斷網站內容可信度的邏輯是同一件事——看的是累積下來的紀錄，不是單次表現。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：網紅行銷還值得投資嗎？</strong><br>值得，但預算配置的邏輯要調整——與其把資源集中在少數大型網紅追求觸及，不如分散給多個調性吻合、長期配合的中小型創作者，累積可驗證的口碑紀錄。</p>
+    <p><strong>Q：要怎麼讓內容看起來更真實？</strong><br>這個問題本身可能問錯了方向。與其追求看起來真實的技巧，不如把力氣放在讓內容經得起事後驗證——講的東西發生了沒有、承諾的效果有沒有兌現，這比任何拍攝手法都更難被複製。</p>
+    <p><strong>Q：AI虛擬網紅會取代真人創作者嗎？</strong><br>會在特定領域(美妝、時尚等視覺展示型內容)快速擴大市占，但在需要高度信任的領域(不動產、金融、醫療等)，真人創作者的說服力目前仍明顯領先，短期內取代的急迫性較低。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>技術面能做的事——內容規劃、拍攝手法、平台優化——頂多是讓你被看見。但看見之後願不願意持續相信你，靠的是背後那個人或品牌撐不撐得住反覆檢驗，這件事真的沒有捷徑，因為信任本質上是時間疊出來的，不是靠一次拍得很真實的內容就能一次到位。別人可以抄走你的拍攝手法，抄不走你花時間累積出來的可信度。</p>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-25')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-25')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-25" onclick="shareNote('copy','note-25')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-25">0</span>)</p>
+        <div data-comments-list="note-25" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-25" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-25')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-25');
+    document.querySelector('[data-comment-input="note-25"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-25'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="member-auth.js"></script>
+  <script>
+    initAuthWidget();
+    applyMemberGate(25, document.querySelector('.note-content'));
+  </script>
+</body>
+</html>
