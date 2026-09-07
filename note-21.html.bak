@@ -94,31 +94,6 @@
     gtag('js', new Date());
     gtag('config', 'G-TWSNFDVYF8');
   </script>
-<!-- GEO-SCHEMA-ARTICLE-note21 -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "網紅媒合完整流程拆解：從篩選、談合作到成效追蹤，一次搞懂",
-  "url": "https://janeeeelin.github.io/note-21.html",
-  "image": "https://janeeeelin.github.io/og-image.png",
-  "datePublished": "2026-09-01",
-  "dateModified": "2026-09-01",
-  "author": {
-    "@type": "Person",
-    "name": "Jane",
-    "url": "https://janeeeelin.github.io/about.html"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Jane's Lens",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://janeeeelin.github.io/og-image.png"
-    }
-  }
-}
-</script>
 </head>
 <body>
 

@@ -1068,55 +1068,6 @@
     gtag('js', new Date());
     gtag('config', 'G-TWSNFDVYF8');
   </script>
-<!-- GEO-SCHEMA-FAQPAGE -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "網紅/KOC 怎麼挑選？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "互動率與留言品質優先於粉絲數；運用工具驗證帳號真實性，並核對品牌調性匹配度。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "都更／不動產產業的行銷服務內容是什麼？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "專精此領域，掌握法規紅線與敏感詞彙，確保內容合規。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "SEO 跟 AIO 差在哪裡？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "SEO 是讓 Google 把你的網頁排在搜尋結果前面；AIO 是讓 ChatGPT、Claude、Gemini 等引用你的內容。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "使用 Claude Code 需要程式基礎嗎？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "不需要程式基礎，用中文表達需求即可。"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Mac 安裝空間不足怎麼解決？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "清除應用程式快取檔案，可釋出 10GB 以上空間。"
-      }
-    }
-  ]
-}
-</script>
 </head>
 <body>
 

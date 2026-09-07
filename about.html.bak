@@ -142,30 +142,6 @@
     gtag('js', new Date());
     gtag('config', 'G-TWSNFDVYF8');
   </script>
-<!-- GEO-SCHEMA-PERSON -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Jane",
-  "url": "https://janeeeelin.github.io/about.html",
-  "sameAs": [
-    "https://www.instagram.com/janeeeelin",
-    "https://janeeeelin.substack.com"
-  ],
-  "jobTitle": "AI行銷顧問 / 網紅媒合操作者",
-  "worksFor": {
-    "@type": "Organization",
-    "name": "JC.Strategy"
-  },
-  "knowsAbout": [
-    "AI行銷",
-    "網紅/KOC媒合",
-    "都更與不動產短影音行銷",
-    "SEO與AIO內容策略"
-  ]
-}
-</script>
 </head>
 <body>
 
