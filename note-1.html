@@ -114,6 +114,101 @@
     gtag('js', new Date());
     gtag('config', 'G-TWSNFDVYF8');
   </script>
+<!-- GEO-SCHEMA-ARTICLE-note-1 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "如何在空間不足的 Mac 上安裝 Claude Code",
+  "url": "https://janeeeelin.github.io/note-1.html",
+  "image": "https://janeeeelin.github.io/og-image.png",
+  "datePublished": "2026-05-14T00:00:00+08:00",
+  "dateModified": "2026-09-07T00:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Jane",
+    "url": "https://janeeeelin.github.io/about.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Jane's Lens",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://janeeeelin.github.io/og-image.png"
+    }
+  }
+}
+</script>
+<!-- GEO-SCHEMA-FAQPAGE-note-1 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "如何在 Mac 磁碟空間不足的情況下安裝 Claude Code？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "先用終端機指令掃描佔空間的快取資料夾，清除 Claude App、Slack、WebEx 等應用程式的快取，通常可以釋出 10GB 以上的空間，再進行安裝。"
+      }
+    }
+  ]
+}
+</script>
+<!-- GEO-SCHEMA-HOWTO-note-1 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "怎麼在空間不足的 Mac 上安裝 Claude Code",
+  "description": "先用終端機找出佔空間的快取資料夾並清除，釋出足夠空間後，依序安裝 Homebrew、Node.js，最後安裝 Claude Code。",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "發現問題：需要 10.57 GB",
+      "text": "安裝程式提示至少需要 10.57 GB 的可用空間，但 Mac 只剩不到 5 GB，需要先清出空間。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "用終端機找出佔空間的元兇",
+      "text": "用「du -sh ~/* | sort -rh」掃描哪些資料夾最佔空間，再深入 Library/Caches 找出真正的元兇。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "發現快取佔了大量空間",
+      "text": "掃描結果顯示 Claude 桌面版快取佔了將近 13 GB，加上 Slack、WebEx 快取共超過 16 GB。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 4,
+      "name": "清除快取，成功釋出 10 GB",
+      "text": "用「rm -rf」清除 Claude、Slack、WebEx 的快取資料夾，總共釋出超過 10 GB 空間。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 5,
+      "name": "安裝 Homebrew",
+      "text": "透過官方安裝指令安裝 Homebrew，作為 Mac 上的套件管理工具，供後續安裝 Node.js 使用。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 6,
+      "name": "安裝 Node.js",
+      "text": "用「brew install node」安裝 Claude Code 所需的 Node.js 環境，並確認版本安裝成功。"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 7,
+      "name": "安裝 Claude Code，大功告成",
+      "text": "用「npm install -g @anthropic-ai/claude-code」全域安裝，建立測試資料夾並啟動，看到提示符號出現即代表成功。"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
