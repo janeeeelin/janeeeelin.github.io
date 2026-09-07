@@ -10,6 +10,7 @@
 - [SEO 與 AIO 的差異](https://janeeeelin.github.io/note-4.html): SEO與AIO(讓AI引用你的內容)的差別與轉型心法
 - [AI 時代行銷公司的出路](https://janeeeelin.github.io/note-11.html): AI時代下行銷產業的轉型策略
 - [網紅媒合完整流程拆解](https://janeeeelin.github.io/note-21.html): 從篩選網紅、談合作到成效追蹤的完整方法
+- [少子化＋繼承潮 vs 買得起的人決定房價](https://janeeeelin.github.io/note-24.html): 用台灣數據與日本經驗分析房產未來30年會不會大跌
 
 ## 常見問題
 - [首頁 FAQ](https://janeeeelin.github.io/): 網紅篩選、都更產業服務、SEO 與 AIO 差異、Claude Code 使用等常見問題解答

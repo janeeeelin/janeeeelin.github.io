@@ -303,6 +303,8 @@
     .note-tag[data-tag="ai-observation"]:hover { background: #4a5a6a; color: white; }
     .note-tag[data-tag="kol-matching"] { background: #fee2e2; color: #b91c1c; }
     .note-tag[data-tag="kol-matching"]:hover { background: #b91c1c; color: white; }
+    .note-tag[data-tag="real-estate-trend"] { background: #e0e7ff; color: #3730a3; }
+    .note-tag[data-tag="real-estate-trend"]:hover { background: #3730a3; color: white; }
     .note-toggle {
       display: flex;
       align-items: center;
@@ -1447,6 +1449,7 @@
           <button class="tag-filter-btn" data-tag="tech-trend">科技趨勢分析</button>
           <button class="tag-filter-btn" data-tag="ai-observation">AI觀察</button>
           <button class="tag-filter-btn" data-tag="kol-matching">網紅媒合實戰</button>
+          <button class="tag-filter-btn" data-tag="real-estate-trend">房產趨勢觀察</button>
         </div>
 
         <!-- 筆記列表 -->
@@ -1538,6 +1541,7 @@
             <button class="tag-cloud-btn" data-stag="tech-trend" onclick="filterFromSidebar('tech-trend')">科技趨勢分析</button>
             <button class="tag-cloud-btn" data-stag="ai-observation" onclick="filterFromSidebar('ai-observation')">AI觀察</button>
             <button class="tag-cloud-btn" data-stag="kol-matching" onclick="filterFromSidebar('kol-matching')">網紅媒合實戰</button>
+            <button class="tag-cloud-btn" data-stag="real-estate-trend" onclick="filterFromSidebar('real-estate-trend')">房產趨勢觀察</button>
           </div>
         </div>
 
@@ -1577,6 +1581,66 @@
     // ── Data ──────────────────────────────────────────────────────────────────
 
     const NOTES = [
+      {
+        id: 'note-24',
+        date: '2026-09-07',
+        tags: ['real-estate-trend'],
+        tagLabels: { 'real-estate-trend': '房產趨勢觀察' },
+        title: '少子化＋繼承潮 vs 買得起的人決定房價：房產真的會跌30年嗎？',
+        subtitle: '兩派論點都只對一半，真正的答案藏在「你手上是哪一種房子」',
+        quote: '房產會不會跌，不是看少子化多嚴重，而是看你手上的是哪一種房子。',
+        content: `<p style="margin-bottom:0.9rem">最近常聽到兩種說法互相打架：一派說「房產的價值終究是買得起的人決定的」，另一派說「少子化加上大繼承時代，未來30年房產會大跌」。這兩派其實都只對一半——房產不會全面大跌，但也不會像過去一樣買到就賺。台灣正在走東京走過的路：精華區靠人口跟資金持續撐住，邊陲老屋則會提早進入繼承潮跟乏人接手的跌價循環。答案不是「會不會跌」，而是「你手上是哪一種房子」。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>兩派論點，其實都有道理</div>
+  <div class="step-body">
+    <p>「房產價值是買得起的人決定的」講的是需求端的天花板——房子再稀缺，價格終究要有人付得起、貸得動才能成交，這是事實，也是為什麼雙北房貸負擔率一旦衝破六成，市場就會出現買氣停滯的訊號。</p>
+    <p>「少子化＋繼承家產＝未來30年房產大跌」講的是供需結構的長期反轉——買方越來越少、賣方（繼承人）越來越多，理論上價格終究要修正。這在數字上也站得住腳：台灣2025年總生育率只剩0.695，遠低於維持人口所需的2.1；25到44歲適婚族未婚率超過五成，女性有偶率從52%一路跌到41%。往後推30年，30到45歲這個買房主力年齡層，人口會從440萬掉到240萬，等於購屋需求少了將近一半。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>台灣的真實數據：不是不會跌，是不會一起跌</div>
+  <div class="step-body">
+    <p>現在最值得注意的，其實不是生育率數字本身，而是空屋數據已經開始分化。全台一年到晚不亮燈的房子將近一百萬間，建商手上還壓著11.2萬間賣不掉的新屋；但拆開來看，新成屋的空屋率其實降到18%，反而是屋齡30到50年的老公寓被大量拋棄，把整體空屋率推上15年新高的10.43%。換句話說，人不是不買房了，是不買「那種」房了。</p>
+    <p>有建築師把這個現象拆成四個象限：低餘屋、低空屋的區域（像板橋、新莊）跌幅預估只有3到5%；餘屋多但空屋率還低的區域（龜山、北屯）大概5到10%；餘屋跟空屋都高的區域（高雄、台南部分地段）可能修正10到20%；至於沒有新屋餘屋、但空屋率又高的偏鄉，直接面臨流動性歸零——想賣都賣不掉，不是價格問題，是根本沒有買方。</p>
+    <p>「大繼承時代」正是壓垮邊陲區域的最後一根稻草：未來年輕世代平均會繼承一到三間房子，這些人手上已經有房，不會再進場買，反而變成賣方。都更常被當成解方，但流程動輒十到三十年，如果本身沒有真實居住需求，都更頂多是把舊房子變成賣不掉的新房子，並不會創造出需求。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>日本已經走過這條路：不是崩盤，是M型分化</div>
+  <div class="step-body">
+    <p>台灣現在的處境，日本大概二十年前就經歷過。日本從1990年代泡沫破裂後，全國房價一度重挫35%，照理說少子化、高齡化這麼嚴重，房市應該一路崩到底——但東京房價從2012年到現在反而漲了將近30%。</p>
+    <p>關鍵在於「都心回歸」：日本全國人口在減少，但全日本三分之一的人口集中住在東京都，人口是往都市集中，不是均勻分散變少。偏鄉因為生活機能差持續外流，日本政府甚至要推「搬家費」補貼鼓勵大家從東京搬出去、地方政府則要設「空屋銀行」處理閒置空屋——這正是贏者全拿、輸者歸零的活生生案例。人口不是房價唯一的決定因素，稅制、貨幣政策、資金流向同樣關鍵，不能只用生育率一個數字推論全部房市。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>台灣正在複製同一套劇本</div>
+  <div class="step-body">
+    <p>台灣現在的房市論述已經有人直接用「贏者全拿」來形容：信義、大安、板橋、新莊，還有桃園航空城、新竹科學園區周邊、台中七期、台南安平、高雄美術館這些有產業、有交通建設支撐的區域，會是贏家圈；缺乏產業支撐、人口持續外流的鄉鎮，還有三十年以上沒電梯的老公寓，會是輸家圈。少子化不等於房價必跌，關鍵在於選對地點了沒有。</p>
+    <p>真正的結構轉折點，多數分析指向2041年前後——現在出生率極低的世代長大到40歲、成為（或沒能成為）購屋主力的時候，才會是真正的考驗。在那之前，市場會持續分化，而不是突然崩盤。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">05</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：現在該買蛋黃區還是蛋白區？</strong><br>這篇不是投資建議，但從數據上看，決定價格韌性的關鍵是有沒有產業與人口持續移入，而不是行政區的名氣，做決定前建議實際查該地段的人口遷入、空屋率趨勢，而不是只看過去房價漲跌。</p>
+    <p><strong>Q：都更能不能挽救老屋房價？</strong><br>都更能解決房子老舊的問題，但解決不了這個地段有沒有人想住的問題。如果本身缺乏真實居住需求，都更後頂多是換一批賣不掉的新房子。</p>
+    <p><strong>Q：少子化這麼嚴重，為什麼房價現在還沒跌？</strong><br>因為真正的人口結構衝擊要到2041年前後現在的低出生世代進入購屋年齡才會全面顯現，現階段看到的是供給端（老屋、偏鄉）先開始鬆動，精華區則靠人口與資金集中效應撐住，這是分化的前段，不是還沒跌代表不會跌。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>房產不會全面崩盤，也不會全面撐住，未來會走向精華區與邊陲區、新屋與老屋、有產業支撐與沒有產業支撐的明顯分化。如果你正在規劃都更或不動產相關的內容與行銷策略，歡迎找我聊聊，一起看看你手上的案子屬於哪個象限。</p>
+    <p style="font-size:0.8rem;color:#aaa;margin-top:0.8rem">資料來源：今周刊房市「生死象限」報導、udn房地產少子化衝擊房市報導、ETtoday房產雲東京房價數據、安傳媒不動產「贏者全拿」分析、政大不動產研究中心繼承房產趨勢文章。</p>
+  </div>
+</div>`,
+      },
       {
         id: 'note-23',
         date: '2026-09-03',
@@ -4095,7 +4159,8 @@ git push -u origin main</code></pre>
       { label: 'SEO／AIO', tag: 'seo-aio'  },
       { label: '新手教學',  tag: 'beginner' },
       { label: '科技趨勢分析', tag: 'tech-trend' },
-      { label: 'AI觀察', tag: 'ai-observation' }
+      { label: 'AI觀察', tag: 'ai-observation' },
+      { label: '房產趨勢觀察', tag: 'real-estate-trend' }
     ];
 
     function renderSidebarCategories() {
