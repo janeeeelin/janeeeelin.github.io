@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>美國房產巨頭重押Pinterest：不動產行銷,是不是也該從「貼公告」變成「回答問題」？ - Jane's Lens</title>
+  <meta name="description" content="Zillow把廣告工具Elevate第一次擴大上架到Pinterest，鎖定的是還在規劃階段、離成交還有好幾年的買家。這篇拆解這則新聞背後的數據，以及台灣沒有Pinterest的情況下，這套「規劃期內容」邏輯可以怎麼搬到不動產與KOL行銷上。">
+  <meta property="og:title" content="美國房產巨頭重押Pinterest：不動產行銷,是不是也該從「貼公告」變成「回答問題」？ - Jane's Lens">
+  <meta property="og:description" content="40%美國高收入家庭在Pinterest上規劃買房，台灣沒有Pinterest，但這套邏輯搬過來一樣受用。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-26.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.channel-strategy { background: #fde2e4; color: #b91c3c; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 0.6rem; }
+    .note-page-subtitle { font-size: 0.95rem; color: #888; line-height: 1.6; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #241626 0%, #341a2e 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+  <!-- GEO-SCHEMA-ARTICLE-note26 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "美國房產巨頭重押Pinterest：不動產行銷,是不是也該從「貼公告」變成「回答問題」？",
+    "url": "https://janeeeelin.github.io/note-26.html",
+    "image": "https://janeeeelin.github.io/og-image.png",
+    "datePublished": "2026-09-08T00:00:00+08:00",
+    "dateModified": "2026-09-08T00:00:00+08:00",
+    "author": {
+      "@type": "Person",
+      "name": "Jane",
+      "url": "https://janeeeelin.github.io/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Jane's Lens",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://janeeeelin.github.io/og-image.png"
+      }
+    }
+  }
+  </script>
+  <!-- GEO-SCHEMA-FAQPAGE-note26 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "台灣的不動產行銷需要跟著去經營Pinterest嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "不用。Pinterest在台灣的滲透率非常低，多數台灣用戶不會把它當日常使用平台，硬要為了這則新聞開帳號經營並不划算。真正該學的不是「換平台」，而是Zillow這次操作背後那套「規劃期內容」邏輯——把一部分資源留給還在做夢、還沒開始看房的族群，而不是把預算全押在已經在比較物件的成交期客群上。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "台灣沒有Pinterest，這套邏輯可以搬到哪裡？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "小紅書、IG的Reels搜尋、YouTube影片搜尋都是類似的「非品牌型搜尋」戰場——用戶會主動搜「老屋改造」「頂加設計」「小宅收納」，這類內容不用直接業配任何建案，卻能在對方還沒準備要買、只是在收集靈感的階段就先卡位，等到真正要看屋時，你已經是他熟悉的臉孔。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "這種規劃期內容能追蹤成效嗎？會不會做了也看不到轉換？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "很難用「這篇帶來幾組來電」直接歸因，這也是很多業主不想做的原因。但可以退一步想：Zillow願意砸資源做這件事，正是因為房產是規劃期長達數年的決策，越早進入對方的靈感收藏清單，成交時被記得的機率越高。建議把這類內容當作品牌資產長期經營，用內容庫累積和品牌搜尋量成長評估，而不是逐篇要求立即轉換。"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">主頁</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="services.html">諮詢服務</a></li>
+        <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+        <li><button id="auth-nav-btn" class="nav-link" style="border:none;cursor:pointer;font-family:inherit;">註冊／登入</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-09-08</span>
+        <span class="note-tag channel-strategy">行銷通路觀察</span>
+      </div>
+      <h1 class="note-page-title">美國房產巨頭重押Pinterest：不動產行銷,是不是也該從「貼公告」變成「回答問題」？</h1>
+      <p class="note-page-subtitle">40%美國高收入家庭在Pinterest上規劃買房，台灣沒有Pinterest，但這套「規劃期內容」邏輯搬過來一樣受用</p>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv26bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#241626"/>
+              <stop offset="100%" stop-color="#341a2e"/>
+            </linearGradient>
+            <linearGradient id="cv26pin" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ff8a9d"/>
+              <stop offset="100%" stop-color="#e63958"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv26bg)" rx="12"/>
+          <ellipse cx="240" cy="80" rx="220" ry="90" fill="rgba(230,57,88,0.08)"/>
+          <circle cx="120" cy="70" r="26" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+          <circle cx="240" cy="55" r="34" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+          <circle cx="355" cy="80" r="22" fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+          <path d="M240 40c-10 0-18 8-18 18 0 13 18 30 18 30s18-17 18-30c0-10-8-18-18-18z" fill="url(#cv26pin)"/>
+          <circle cx="240" cy="58" r="6" fill="#341a2e"/>
+          <text x="240" y="16" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="12" fill="#ffb6c1" letter-spacing="1" opacity="0.9">規劃期內容 · 搜尋型思維</text>
+          <text x="240" y="147" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#ffd7dd" opacity="0.7">Zillow x Pinterest · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">上禮拜滑新聞滑到一則消息：Zillow——美國最大的房產搜尋平台——把它的廣告工具 Elevate，史上第一次擴大上架到 Pinterest。我盯著這則新聞想了好一陣子，因為在多數人心裡，Pinterest大概就是「食譜跟婚紗版型收藏區」，怎麼看都跟看房、買房搭不上邊。但把數據攤開來看之後，我整個改觀——而且越想越覺得，這則新聞真正戳中的不是「該不該用Pinterest」，而是我們做不動產行銷，是不是長期把資源全押在同一個階段的客群身上，忘了還有一大群人根本還沒準備好被推銷。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>Zillow到底做了什麼</div>
+  <div class="step-body">
+    <p>Zillow這次是透過Pinterest的Media Network Connect，把自家廣告工具Elevate的資料庫直接接進Pinterest，開放品牌鎖定34種消費者族群——買家、租客，甚至像「正在考慮老屋翻新的屋主」這種很細的族群，背後靠的是超過200個房產相關的行為訊號。試營運的品牌案例是Kohler，鎖定「老屋翻新」跟「新手屋主」族群投放，比起Pinterest原本的興趣式廣告，成長出82%的增量觸及，影片廣告互動率更高達23.54%。</p>
+    <p>我在意的不是Pinterest這個平台，而是「Zillow」這兩個字。這是一家手握全美最完整的房產搜尋跟成交數據的公司，他們決定把預算跟資料押在一個大家印象中「跟看房無關」的平台上，這件事本身就值得停下來想一想：他們到底看到了什麼，是我們一直沒看到的。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>真正的關鍵數字，藏在「規劃期」三個字</div>
+  <div class="step-body">
+    <p>Pinterest目前有6.4億月活躍用戶，連續12季創下用戶成長紀錄，觸及了40%年收入15萬美元以上的美國家庭；更關鍵的是，平台上96%的搜尋都是「非品牌型」——用戶打的關鍵字是「客廳裝潢靈感」，不是特定建商或特定建案，代表這是一群還在收集想法、根本還沒鎖定要買誰的人。而根據報導引用的調查，85%的每週活躍用戶表示看到Pin文之後真的買過相關的東西，Pinterest的角色比較接近「有購買力的許願清單」，不是隨便滑滑的娛樂內容。</p>
+    <p>報導裡舉了一個我很喜歡的例子：演員黛安・基頓（Diane Keaton）自己說她洛杉磯那棟以1800萬美元賣出的豪宅，是「Pinterest蓋出來的房子」——她花了好幾年，透過Pinterest規劃裝修細節，才把房子改造成後來成交的樣子。買房、蓋房本來就是一個橫跨好幾年的決策，多數行銷卻只服務「這三個月要簽約」的最後一哩路，中間那幾年的規劃期幾乎是空白的。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>台灣沒有Pinterest，但這件事跟平台無關</div>
+  <div class="step-body">
+    <p>先說老實話：Pinterest在台灣的日常使用率非常低，我身邊做不動產、做代銷的朋友幾乎沒人把它當經營陣地，所以這篇的重點真的不是叫大家去開Pinterest帳號。值得借鏡的，是Zillow願意花預算服務「規劃期」這件事背後的邏輯——而這個邏輯放到台灣，戰場只是換了地方而已：小紅書、IG的Reels搜尋、YouTube影片搜尋，都是類似的「非品牌型搜尋」戰場，用戶會主動打「老屋翻新」「頂加改造」「小宅收納」，不是打建案名稱。</p>
+    <p>我自己觀察台灣多數代銷跟不動產KOL的貼文，九成以上其實都是「成交喜訊」「接待中心美照」「來電衝這波」這種只服務「已經在看房」的成交期客群的內容，等於整個規劃期的族群完全沒人接住。不是這樣做不對，是資源分配太集中在漏斗最下面那一小段，忘了漏斗上面那群「還在做夢」的人，其實才是三年後真正要簽約的人。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>具體可以怎麼做</div>
+  <div class="step-body">
+    <p>報導裡Zillow給品牌的建議，其實可以直接改寫成台灣版的操作清單：</p>
+    <p><strong>文案要具體，不要只寫美美的形容詞。</strong>Zillow建議Pin文要放進地區名、坪數、房型、特色，而不是空泛的「夢想中的家」。放到台灣就是：貼文標題別再寫「療癒系宅美學」，改成「板橋30年老公寓兩房改一房，室內實際多12坪的收納怎麼做」——具體到能被搜尋到，才有機會被想法還在成形中的人找到。</p>
+    <p><strong>季節性內容要提早1到2個月佈局。</strong>Zillow觀察到「萬聖節門廊佈置」的搜尋量從8月中就開始起漲，建議品牌9月就要開始鋪內容，而不是等到10月才做。台灣的對照版本是：學區宅要在暑假前就開始鋪陳、換屋潮通常落在農曆年後，內容至少要提前一季準備，等旺季到了才做，等於錯過整個規劃期的曝光。</p>
+    <p><strong>有個性的空間，比制式樣品屋更容易被收藏。</strong>Pinterest的搜尋趨勢顯示「my room, my rules」這類展現個人風格的內容搜尋量成長415%，代表大家對千篇一律的樣品屋美學越來越無感。找KOL合作時，與其一直重複制式的接待中心導覽，不如讓創作者用自己的生活感去詮釋空間，反而更容易被存下來、被分享。</p>
+    <p><strong>讓一部分KOL專門負責「陪逛規劃期」而不是「催促成交」。</strong>這正好呼應我平常在幫品牌做網紅媒合時常遇到的狀況——業主九成的預算都想砸在「這篇能不能直接帶來來電」，但如果你手上有品牌預算允許，分一部分出來做完全不業配、單純陪讀者做功課的內容（例如「北市老屋都更常見的三種格局規劃」），反而更容易在對方還沒開始比較建案時，先把你放進口袋名單。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：台灣的不動產行銷需要跟著去經營Pinterest嗎？</strong><br>A：不用。Pinterest在台灣的滲透率非常低，多數台灣用戶不會把它當日常使用平台，硬要為了這則新聞開帳號經營並不划算。真正該學的不是「換平台」，而是Zillow這次操作背後那套「規劃期內容」邏輯——把一部分資源留給還在做夢、還沒開始看房的族群，而不是把預算全押在已經在比較物件的成交期客群上。</p>
+    <p><strong>Q：台灣沒有Pinterest，這套邏輯可以搬到哪裡？</strong><br>A：小紅書、IG的Reels搜尋、YouTube影片搜尋都是類似的「非品牌型搜尋」戰場——用戶會主動搜「老屋改造」「頂加設計」「小宅收納」，這類內容不用直接業配任何建案，卻能在對方還沒準備要買、只是在收集靈感的階段就先卡位，等到真正要看屋時，你已經是他熟悉的臉孔。</p>
+    <p><strong>Q：這種規劃期內容能追蹤成效嗎？會不會做了也看不到轉換？</strong><br>A：很難用「這篇帶來幾組來電」直接歸因，這也是很多業主不想做的原因。但可以退一步想：Zillow願意砸資源做這件事，正是因為房產是規劃期長達數年的決策，越早進入對方的靈感收藏清單，成交時被記得的機率越高。建議把這類內容當作品牌資產長期經營，用內容庫累積和品牌搜尋量成長評估，而不是逐篇要求立即轉換。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>這篇報導最打動我的，其實不是Pinterest這個平台本身，而是Zillow願意花預算，去服務一群「還沒準備好被推銷」的人。台灣的不動產行銷長期習慣把資源全押在「已經在看屋」的族群身上，但真正決定一個人會不會在幾年後找上你的，往往是他還在做夢的那個階段，誰先出現在他的收藏清單裡。如果你想聊聊怎麼幫你的建案或品牌規劃這種「規劃期內容」策略，或是想找調性合適的KOL一起經營，歡迎來找我聊聊。</p>
+    <p style="font-size:0.8rem;color:#aaa;margin-top:0.8rem">資料來源：Inman News〈Zillow Just Bet On Pinterest. Should You?〉，Jessi Healey，2026-08-24，https://www.inman.com/2026/08/24/zillow-pinterest-real-estate-marketing/ 。文中Pinterest平台數據引用自該報導所整理之Pinterest公司公開數據與Sprout Social研究。</p>
+  </div>
+</div>
+<div style="margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid #e8eeff;">
+  <p style="font-size:0.78rem;color:#aaa;letter-spacing:0.06em;margin-bottom:0.6rem;">延伸閱讀</p>
+  <div style="display:flex;flex-direction:column;gap:0.4rem;">
+    <a href="note-20.html" style="font-size:0.9rem;color:#1a6bb5;text-decoration:none;">→ 都更爆量時代，建商為什麼開始找網紅？</a>
+    <a href="note-23.html" style="font-size:0.9rem;color:#1a6bb5;text-decoration:none;">→ 預售屋/新成屋想找網紅合作，該注意哪些眉角？常見雷區與避坑指南</a>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-26')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-26')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-26" onclick="shareNote('copy','note-26')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-26">0</span>)</p>
+        <div data-comments-list="note-26" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-26" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-26')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-26');
+    document.querySelector('[data-comment-input="note-26"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-26'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="member-auth.js"></script>
+  <script>
+    initAuthWidget();
+    applyMemberGate(26, document.querySelector('.note-content'));
+  </script>
+</body>
+</html>
