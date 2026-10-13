@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>品牌邀創作者合作，不如讓創作者主動發你：Instagram最新數據揭開「誰按發布鍵」的差距 - Jane's Lens</title>
+  <meta name="description" content="Social Media Today引用Emplifi最新研究，分析2026上半年超過52萬篇Instagram貼文發現，創作者自己發布的品牌合作貼文，表現全面超越品牌自己發布的合作貼文，電商／零售產業的擴散力甚至可以達到一般貼文的5倍以上。這篇拆解「誰按下發布鍵」為什麼差這麼多，以及台灣中小企業主跟網紅合作時，可以怎麼把IG的協作功能用對地方。">
+  <meta property="og:title" content="品牌邀創作者合作，不如讓創作者主動發你：Instagram最新數據揭開「誰按發布鍵」的差距 - Jane's Lens">
+  <meta property="og:description" content="觸及差距不是來自內容好壞，是來自誰按下了那個發布鍵。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-29.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://janeeeelin.github.io/note-29.html">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.ig { background: #fce7f3; color: #be185d; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 0.6rem; }
+    .note-page-subtitle { font-size: 0.95rem; color: #888; line-height: 1.6; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #1e1620 0%, #2a1a2e 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+  <!-- GEO-SCHEMA-ARTICLE-note29 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "品牌邀創作者合作，不如讓創作者主動發你：Instagram最新數據揭開「誰按發布鍵」的差距",
+    "url": "https://janeeeelin.github.io/note-29.html",
+    "image": "https://janeeeelin.github.io/og-image.png",
+    "datePublished": "2026-10-13T00:00:00+08:00",
+    "dateModified": "2026-10-13T00:00:00+08:00",
+    "inLanguage": "zh-TW",
+    "author": {
+      "@id": "https://janeeeelin.github.io/about.html#person"
+    },
+    "publisher": {
+      "@id": "https://janeeeelin.github.io/about.html#organization"
+    }
+  }
+  </script>
+  <!-- GEO-SCHEMA-FAQPAGE-note29 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "品牌自己發的「邀請合作」貼文，效果真的會比創作者自己發的差很多嗎？為什麼？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "研究看到的落差確實不小，尤其在電商／零售產業更明顯。合理的解釋是，創作者自己發布時，文案、語氣、挑的素材都更貼近自己平常發文的樣子，粉絲比較不會有「這是業配」的切換感，演算法大概也更願意把「這個帳號平常的內容」推給原本就關注他的人，而不是把一篇被品牌牽著走的貼文硬塞進去。品牌自己發的合作貼文，形式上再怎麼標記創作者，本質還是一篇企業帳號的貼文，粉絲的信任基礎不一樣。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "中小企業主不熟悉IG的「協作者邀請」功能，或覺得操作太麻煩，怎麼辦？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "這個功能其實很單純：發文時把合作的創作者加進「標記為協作者」，對方接受後，這篇貼文會同時出現在雙方的個人頁面與雙方粉絲的動態上，跟單純「在貼文裡標記某人」是兩件事。下次跟創作者談合作時，可以直接在合作條件裡寫清楚「請用協作者功能發布」，而不是請創作者側錄素材交給品牌自己發，這一步不需要額外成本，純粹是溝通上要講明白。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "我不是電商或零售產業，這組數據還適用嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "研究裡提到，電商／零售是增幅最明顯的產業，但其他產業的創作者主導合作貼文，分享與轉發數同樣明顯高於一般品牌貼文，只是放大的幅度沒那麼誇張。換句話說，「讓創作者自己發比品牌自己發更有效」這個方向是通用的，只是不同產業能期待的倍數不一樣，不動產、服務業一樣值得照這個邏輯調整合作方式。"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">主頁</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="services.html">諮詢服務</a></li>
+        <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+        <li><button id="auth-nav-btn" class="nav-link" style="border:none;cursor:pointer;font-family:inherit;">註冊／登入</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-10-13</span>
+        <span class="note-tag ig">IG 經營</span>
+      </div>
+      <h1 class="note-page-title">品牌邀創作者合作，不如讓創作者主動發你：Instagram最新數據揭開「誰按發布鍵」的差距</h1>
+      <p class="note-page-subtitle">Emplifi檢視2026上半年超過52萬篇IG貼文發現，創作者主動發布的合作貼文，電商／零售品牌的擴散力可以達一般貼文的5倍以上</p>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv29bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#241a26"/>
+              <stop offset="100%" stop-color="#301c2c"/>
+            </linearGradient>
+            <linearGradient id="cv29ig" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f09433"/>
+              <stop offset="35%" stop-color="#dc2743"/>
+              <stop offset="100%" stop-color="#bc1888"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv29bg)" rx="12"/>
+          <ellipse cx="240" cy="80" rx="220" ry="90" fill="rgba(220,39,67,0.08)"/>
+          <rect x="110" y="110" width="18" height="20" rx="3" fill="url(#cv29ig)" opacity="0.45"/>
+          <rect x="138" y="95" width="18" height="35" rx="3" fill="url(#cv29ig)" opacity="0.6"/>
+          <rect x="166" y="80" width="18" height="50" rx="3" fill="url(#cv29ig)" opacity="0.75"/>
+          <rect x="194" y="40" width="18" height="90" rx="3" fill="url(#cv29ig)"/>
+          <text x="203" y="30" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="12" fill="#f2d98a" opacity="0.9">5x</text>
+          <circle cx="330" cy="65" r="4" fill="#f2c08a" opacity="0.8"/>
+          <circle cx="355" cy="95" r="3" fill="#e0a9c9" opacity="0.6"/>
+          <text x="240" y="18" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="13" fill="#f2d98a" letter-spacing="1" opacity="0.9">Instagram協作貼文 · 52萬篇數據</text>
+          <text x="240" y="147" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#f2c08a" opacity="0.7">誰按發布鍵 · 創作者主導 · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">這禮拜看到Social Media Today引用Emplifi的一份研究，數字讓我愣了一下：品牌自己發的「邀請創作者合作」貼文，表現竟然普遍輸給創作者自己發的合作貼文，電商、零售產業的差距甚至拉到好幾倍。我平常幫品牌跟創作者談合作，最常被問的是「該找誰拍」「報價怎麼談」，但很少有業主會問「這篇到底該由誰按下發布鍵」——而這份研究告訴我們，這個看起來最不起眼的細節，可能才是決定這次合作值不值得的關鍵。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>同樣叫「合作貼文」，但「誰發布」是兩種完全不同的東西</div>
+  <div class="step-body">
+    <p>Instagram的「協作貼文」功能其實分兩種：一種是「品牌發布型」——品牌自己發文，邀請創作者加入成為協作者；另一種是「創作者發布型」——創作者自己發文，邀請品牌一起掛名、算是被品牌認可的合作。表面上看起來都是「品牌×創作者」的聯名貼文，兩邊帳號都會顯示，但發文的人是誰，決定了這篇內容從頭到尾是用誰的語氣、誰的素材邏輯做出來的。</p>
+    <p>Emplifi這份研究檢視了2026年1月到6月、來自3,791個品牌帳號、超過52萬篇Instagram貼文，是目前看到規模數一數二完整的協作貼文研究。報告裡提到超過73%的品牌已經在用這個「標記為協作者」的功能，代表這已經不是什麼新奇功能，而是多數品牌日常操作的一部分——只是大部分人可能沒有細想過，自己平常用的是哪一種。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>數字很直白：創作者自己發，贏得不是一點點</div>
+  <div class="step-body">
+    <p>研究結論很乾脆：創作者自己發布的合作貼文，表現全面超越一般品牌貼文，也超越品牌自己發布的合作貼文。在電商、零售這類本來就很依賴「種草」的產業，創作者發布的合作貼文，擴散效果（分享、轉發這類會讓內容自己長腿的指標）比起沒有掛協作標籤的一般貼文，可以拉到5倍以上的差距。其他產業的增幅沒有這麼誇張，但創作者發布的合作貼文，分享與轉發數仍然明顯高於一般品牌貼文——方向是一致的，只是倍數看產業。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>Reels漲最多，可能跟創作者「有沒有賺頭」有關</div>
+  <div class="step-body">
+    <p>報告也提到，不管哪種貼文形式，掛上協作標籤都有加分效果，但漲幅最猛的是Reels（短影音）。文章推測，這跟Meta今年三月擴大的聯盟行銷計畫有關係——創作者在Reels裡標產品連結，粉絲透過連結購買，創作者可以直接抽佣金。當創作者自己有實際的「賺頭」驅動，自然會更用心把素材拍好、文案寫好，而不是收了一次性業配費就交差了事。這也呼應我自己的觀察：給創作者的激勵結構，往往比合約裡寫的交付規格，更能決定內容最後的品質。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>台灣中小企業主可以怎麼調整合作方式</div>
+  <div class="step-body">
+    <p><strong>合作條件裡明寫「請用協作者功能發布」，而不是只收素材自己發。</strong>很多品牌習慣請創作者側錄素材、交回來自己剪自己發，覺得這樣比較好控管調性。但這份數據提醒我們，控管調性省下來的風險，換來的可能是觸及打對折。下次談合作，可以直接把「由創作者本人帳號發布、品牌以協作者身分掛名」寫進合作條件，不是額外成本，純粹是溝通要講清楚。</p>
+    <p><strong>如果你是電商或零售類型的業主，這個策略特別值得優先測試。</strong>研究裡增幅最明顯的正好是這個產業，產品好不好種草、創作者自己發文的語氣能不能帶動衝動購買，本來就是電商的強項，先從這裡測試成效最快有感。</p>
+    <p><strong>內容格式先排Reels，再補圖文。</strong>如果預算只夠先選一種格式，數據上Reels的加分效果最明顯，尤其如果創作者本身也能從導購連結分潤，等於雙方動機一致，不用你一直盯著進度。</p>
+    <p><strong>考慮用分潤或導購連結，取代純業配費。</strong>固定業配費的好處是可控，但創作者的投入程度容易停在「交件就好」；加一點分潤機制，哪怕金額不大，往往能讓創作者多花一點心思在「這篇真的要能帶來轉換」，跟品牌站在同一邊，而不是對立的甲方乙方。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：品牌自己發的「邀請合作」貼文，效果真的會比創作者自己發的差很多嗎？為什麼？</strong><br>A：研究看到的落差確實不小，尤其在電商／零售產業更明顯。合理的解釋是，創作者自己發布時，文案、語氣、挑的素材都更貼近自己平常發文的樣子，粉絲比較不會有「這是業配」的切換感，演算法大概也更願意把「這個帳號平常的內容」推給原本就關注他的人，而不是把一篇被品牌牽著走的貼文硬塞進去。品牌自己發的合作貼文，形式上再怎麼標記創作者，本質還是一篇企業帳號的貼文，粉絲的信任基礎不一樣。</p>
+    <p><strong>Q：中小企業主不熟悉IG的「協作者邀請」功能，或覺得操作太麻煩，怎麼辦？</strong><br>A：這個功能其實很單純：發文時把合作的創作者加進「標記為協作者」，對方接受後，這篇貼文會同時出現在雙方的個人頁面與雙方粉絲的動態上，跟單純「在貼文裡標記某人」是兩件事。下次跟創作者談合作時，可以直接在合作條件裡寫清楚「請用協作者功能發布」，而不是請創作者側錄素材交給品牌自己發，這一步不需要額外成本，純粹是溝通上要講明白。</p>
+    <p><strong>Q：我不是電商或零售產業，這組數據還適用嗎？</strong><br>A：研究裡提到，電商／零售是增幅最明顯的產業，但其他產業的創作者主導合作貼文，分享與轉發數同樣明顯高於一般品牌貼文，只是放大的幅度沒那麼誇張。換句話說，「讓創作者自己發比品牌自己發更有效」這個方向是通用的，只是不同產業能期待的倍數不一樣，不動產、服務業一樣值得照這個邏輯調整合作方式。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>說來有點諷刺，我自己做網紅媒合這幾年，一直很在意「品牌調性會不會被創作者帶歪」，所以常常建議業主多把關、多審稿——結果這份研究等於直接打臉：審得越緊、品牌自己發布，觸及反而可能越低。當然審稿該有的底線還是要有，但這次的數據提醒我，「控管」跟「把發布鍵交出去」這兩件事，其實可以同時存在：把合作條件、品牌調性在溝通階段談清楚，發布的那一下，就讓創作者自己來。如果你正在重新設計跟創作者的合作流程，想聊聊怎麼把這個邏輯套進你的品牌，歡迎來找我聊聊。</p>
+    <p style="font-size:0.8rem;color:#aaa;margin-top:0.8rem">資料來源：Social Media Today〈Report highlights the value of creator-led collabs on Instagram〉，作者Andrew Hutchinson，2026年9月16日刊登，https://www.socialmediatoday.com/news/report-highlights-the-value-of-creator-led-collabs-on-instagram/830619/ 。文中數據引用自該報導所整理之Emplifi研究。</p>
+  </div>
+</div>
+<div style="margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid #e8eeff;">
+  <p style="font-size:0.78rem;color:#aaa;letter-spacing:0.06em;margin-bottom:0.6rem;">延伸閱讀</p>
+  <div style="display:flex;flex-direction:column;gap:0.4rem;">
+    <a href="note-28.html" style="font-size:0.9rem;color:#1a6bb5;text-decoration:none;">→ 英國網紅經濟正式突破10億英鎊：當KOL預算從「試試看」變成「核心編列」，台灣還在哪一站？</a>
+    <a href="note-21.html" style="font-size:0.9rem;color:#1a6bb5;text-decoration:none;">→ 網紅媒合完整流程拆解：從篩選、談合作到成效追蹤，一次搞懂</a>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-29')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-29')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-29" onclick="shareNote('copy','note-29')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-29">0</span>)</p>
+        <div data-comments-list="note-29" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-29" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-29')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-29');
+    document.querySelector('[data-comment-input="note-29"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-29'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="member-auth.js"></script>
+  <script>
+    initAuthWidget();
+    applyMemberGate(29, document.querySelector('.note-content'));
+  </script>
+</body>
+</html>
