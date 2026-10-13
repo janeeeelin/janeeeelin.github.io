@@ -4133,6 +4133,7 @@ git push -u origin main</code></pre>
     let visibleCount = 4;
     let memberFlags = {};   // { [articleId]: boolean } — 由 article_flags 這個 view 取得
     let loggedIn = false;
+    const renderedNoteIds = new Set(); // 已經實際渲染進 DOM 的文章 id，避免一次把全部文章內容塞進頁面
 
     async function refreshMemberState() {
       memberFlags = await getMemberFlags();
@@ -4443,15 +4444,43 @@ git push -u origin main</code></pre>
       if (chevron) chevron.classList.toggle('open', open);
     }
 
+    function ensureNoteRendered(note, idx) {
+      if (renderedNoteIds.has(note.id)) return;
+      const container = document.getElementById('notes-container');
+      const wrap = document.createElement('div');
+      wrap.innerHTML = noteHTML(note);
+      const el = wrap.firstElementChild;
+      if (!el) return;
+      el.dataset.idx = idx;
+      container.appendChild(el);
+      renderedNoteIds.add(note.id);
+      initLike(note.id);
+      renderComments(note.id);
+    }
+
+    function reorderRenderedNotes() {
+      const container = document.getElementById('notes-container');
+      const items = Array.from(container.children);
+      items.sort((a, b) => Number(a.dataset.idx) - Number(b.dataset.idx));
+      items.forEach(el => container.appendChild(el));
+    }
+
     function renderNotes() {
       const container = document.getElementById('notes-container');
-      container.innerHTML = NOTES.map(noteHTML).join('');
-      NOTES.forEach(n => { initLike(n.id); renderComments(n.id); });
+      container.innerHTML = '';
+      renderedNoteIds.clear();
+      NOTES.forEach((note, idx) => {
+        if (idx < visibleCount) ensureNoteRendered(note, idx);
+      });
       applyFilter();
     }
 
     function loadMoreNotes() {
+      const prevCount = visibleCount;
       visibleCount = Math.min(visibleCount + 4, NOTES.length);
+      NOTES.forEach((note, idx) => {
+        if (idx >= prevCount && idx < visibleCount) ensureNoteRendered(note, idx);
+      });
       applyFilter();
     }
 
@@ -4479,15 +4508,21 @@ git push -u origin main</code></pre>
       let matchCount = 0;
 
       NOTES.forEach((note, idx) => {
-        const el = document.getElementById(note.id);
-        if (!el) return;
         const tagOk    = !activeTag || note.tags.includes(activeTag);
         const searchOk = !q || note.title.toLowerCase().includes(q) || stripHtml(note.content).toLowerCase().includes(q);
         const matches  = tagOk && searchOk;
         const withinLimit = isFiltering || idx < visibleCount;
-        el.style.display = matches && withinLimit ? '' : 'none';
+        const shouldShow = matches && withinLimit;
+
+        if (shouldShow) ensureNoteRendered(note, idx);
+
+        const el = document.getElementById(note.id);
+        if (el) el.style.display = shouldShow ? '' : 'none';
+
         if (matches) matchCount++;
       });
+
+      reorderRenderedNotes();
 
       const noResults  = document.getElementById('no-results');
       const countEl    = document.getElementById('search-count');
