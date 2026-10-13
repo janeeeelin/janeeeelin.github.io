@@ -4461,8 +4461,13 @@ git push -u origin main</code></pre>
     function reorderRenderedNotes() {
       const container = document.getElementById('notes-container');
       const items = Array.from(container.children);
-      items.sort((a, b) => Number(a.dataset.idx) - Number(b.dataset.idx));
-      items.forEach(el => container.appendChild(el));
+      const sorted = items.slice().sort((a, b) => Number(a.dataset.idx) - Number(b.dataset.idx));
+      let needsReorder = false;
+      for (let i = 0; i < items.length; i++) {
+        if (items[i] !== sorted[i]) { needsReorder = true; break; }
+      }
+      if (!needsReorder) return;
+      sorted.forEach(el => container.appendChild(el));
     }
 
     function renderNotes() {
