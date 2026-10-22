@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>90天開發100個名單，不靠砸廣告：美國房仲教練的作法，台灣代銷／房仲可以怎麼抄 - Jane's Lens</title>
+  <meta name="description" content="Inman專欄作者、HomeServices首席教練長Jimmy Burgess分享他90天開發100個名單的具體做法，核心是重新定義「名單」、挖掘既有關係裡被忽略的機會，完全不靠買名單或砸廣告。這篇拆解他的7個做法，並改寫成台灣代銷、房仲、建商業務可以直接套用的版本，包含到期委託回訪、跨區域轉介、社區連結者策略。">
+  <meta property="og:title" content="90天開發100個名單，不靠砸廣告：美國房仲教練的作法，台灣代銷／房仲可以怎麼抄 - Jane's Lens">
+  <meta property="og:description" content="名單不是讚數，是你知道接下來要打給誰。">
+  <meta property="og:image" content="https://janeeeelin.github.io/og-image.png">
+  <meta property="og:url" content="https://janeeeelin.github.io/note-30.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://janeeeelin.github.io/note-30.html">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; background: #f8f9fc; color: #1a1a2a; padding-top: 64px; }
+    #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: 64px; background: white; border-bottom: 1px solid #e8edf5; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+    #navbar.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.10); }
+    .nav-inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Noto Serif TC', serif; font-size: 1.2rem; color: #0d3b8e; text-decoration: none; letter-spacing: 0.06em; }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-link { color: #555; text-decoration: none; font-size: 0.88rem; letter-spacing: 0.04em; padding-bottom: 3px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .nav-link:hover { color: #1a6bb5; border-bottom-color: #1a6bb5; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; transition: transform 0.25s, opacity 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 600px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; align-items: center; gap: 0; padding: 0.4rem 0 0.8rem; border-top: 1px solid #e8edf5; }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-link { display: block; padding: 0.7rem 1rem; font-size: 0.9rem; }
+    }
+    .wrapper { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem 3rem; }
+    .note-page-card { background: white; border: 1px solid #e8edf5; border-left: 3px solid #1a6bb5; border-radius: 16px; padding: 2.2rem 2.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; overflow: hidden; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.4rem; color: #1a6bb5; text-decoration: none; font-size: 0.88rem; margin-bottom: 1.4rem; opacity: 0.8; transition: opacity 0.2s; }
+    .back-link:hover { opacity: 1; }
+    .note-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+    .note-date { font-size: 0.8rem; color: #aaa; }
+    .note-tag { font-size: 0.75rem; background: #d4e4fa; color: #1a5cbe; padding: 0.15rem 0.6rem; border-radius: 20px; }
+    .note-tag.channel-strategy { background: #fde2e4; color: #b91c3c; }
+    .note-page-title { font-family: 'Noto Serif TC', serif; font-size: clamp(1.3rem, 4vw, 1.8rem); color: #1a2a4a; line-height: 1.4; margin-bottom: 0.6rem; }
+    .note-page-subtitle { font-size: 0.95rem; color: #888; line-height: 1.6; margin-bottom: 1.4rem; }
+    .note-cover { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; border-radius: 12px; margin-bottom: 1.4rem; overflow: hidden; background: linear-gradient(135deg, #1e1620 0%, #2a1a2e 100%); }
+    .note-cover svg { width: 100%; height: 100%; }
+    .note-content { font-size: 0.95rem; color: #666; line-height: 1.85; }
+    .note-step { margin: 0.9rem 0; border: 1px solid #dce8ff; border-radius: 10px; overflow: hidden; }
+    .step-header { background: linear-gradient(90deg, #e8f0fe, #f2f7ff); padding: 0.52rem 1rem; font-size: 0.9rem; font-weight: 500; color: #1a3a6a; display: flex; align-items: center; gap: 0.55rem; border-bottom: 1px solid #dce8ff; }
+    .step-num { width: 22px; height: 22px; background: #1a6bb5; color: white; border-radius: 50%; font-size: 0.68rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-body { padding: 0.8rem 1rem; }
+    .step-body p { font-size: 0.93rem; color: #555; line-height: 1.82; margin-bottom: 0.55rem; }
+    .step-body p:last-child { margin-bottom: 0; }
+    .step-body strong { color: #1a3a6a; font-weight: 600; }
+    .share-bar { display: flex; gap: 0.6rem; margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; align-items: center; flex-wrap: wrap; }
+    .share-bar-label { font-size: 0.78rem; color: #aaa; letter-spacing: 0.06em; margin-right: 0.2rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.38rem 0.85rem; border-radius: 20px; border: 1px solid #dde8ff; background: #f4f8ff; color: #5588cc; font-size: 0.78rem; cursor: pointer; transition: background 0.2s, transform 0.15s; text-decoration: none; font-family: inherit; }
+    .share-btn:hover { background: #e0edff; transform: translateY(-1px); }
+    .share-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .share-btn.copied { border-color: #6fcf97; color: #27ae60; }
+    .comments-section { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #e8eeff; }
+    .comments-title { font-size: 0.9rem; color: #777; font-weight: 500; margin-bottom: 0.8rem; }
+    .comments-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+    .comment { background: white; border: 1px solid #e8eeff; border-radius: 8px; padding: 0.65rem 0.9rem; }
+    .comment-date { font-size: 0.74rem; color: #bbb; display: block; margin-bottom: 0.25rem; }
+    .comment p { font-size: 0.9rem; color: #555; line-height: 1.7; }
+    .no-comments { font-size: 0.85rem; color: #ccc; font-style: italic; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .comment-form textarea { width: 100%; padding: 0.65rem 0.9rem; border: 1.5px solid #dde8ff; border-radius: 8px; font-size: 0.9rem; font-family: 'Noto Sans TC', sans-serif; color: #333; resize: vertical; outline: none; background: white; transition: border-color 0.2s; }
+    .comment-form textarea:focus { border-color: #1a6bb5; box-shadow: 0 0 0 3px rgba(26,107,181,0.10); }
+    .comment-form button { align-self: flex-end; padding: 0.42rem 1.25rem; background: #1a6bb5; color: white; border: none; border-radius: 20px; font-size: 0.88rem; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; transition: background 0.18s; }
+    .comment-form button:hover { background: #155a9a; }
+    .note-ig-cta { margin-top: 2rem; padding: 1.4rem; border-radius: 14px; background: linear-gradient(135deg, #eef4ff 0%, #f5f0ff 100%); border: 1px solid rgba(26,107,181,0.12); display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+    .note-ig-cta-text p { margin: 0; font-size: 0.95rem; color: #444; line-height: 1.6; }
+    .note-ig-cta-text p strong { display: block; font-size: 1rem; color: #1a1a2e; margin-bottom: 0.2rem; }
+    .note-ig-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.3rem; border-radius: 30px; background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; font-size: 0.88rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none; white-space: nowrap; box-shadow: 0 4px 14px rgba(188,24,136,0.28); transition: transform 0.2s, box-shadow 0.2s; }
+    .note-ig-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 20px rgba(188,24,136,0.38); }
+    .note-ig-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+    @media (max-width: 480px) { .note-ig-cta { flex-direction: column; align-items: flex-start; } .note-ig-btn { width: 100%; justify-content: center; } }
+    .footer { text-align: center; color: #bbb; font-size: 0.84rem; padding: 1rem 0 1.5rem; letter-spacing: 0.06em; }
+    #back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; border-radius: 50%; background: #1a6bb5; box-shadow: 0 4px 16px rgba(26,107,181,0.35); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(16px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 999; }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top svg { width: 20px; height: 20px; stroke: white; }
+    @media (max-width: 600px) { .note-page-card { padding: 1.5rem 1.2rem; } .note-cover { height: 120px; } .share-bar { flex-wrap: wrap; } }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TWSNFDVYF8');
+  </script>
+  <!-- GEO-SCHEMA-ARTICLE-note30 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "90天開發100個名單，不靠砸廣告：美國房仲教練的作法，台灣代銷／房仲可以怎麼抄",
+    "url": "https://janeeeelin.github.io/note-30.html",
+    "image": "https://janeeeelin.github.io/og-image.png",
+    "datePublished": "2026-10-20T00:00:00+08:00",
+    "dateModified": "2026-10-20T00:00:00+08:00",
+    "inLanguage": "zh-TW",
+    "author": {
+      "@id": "https://janeeeelin.github.io/about.html#person"
+    },
+    "publisher": {
+      "@id": "https://janeeeelin.github.io/about.html#organization"
+    }
+  }
+  </script>
+  <!-- GEO-SCHEMA-FAQPAGE-note30 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "這套90天開發100個名單的方法，需要額外花廣告預算嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "原作者強調完全不靠買名單或大量投放廣告，重點是找出手邊已經存在、但被忽略的機會，並持續讓自己出現在這些機會面前。放到台灣的情境，像是回訪到期還沒成交的委託案、認真經營跨區域同業轉介網絡、固定留Google評論幫在地店家曝光，這些動作本身幾乎不需要額外預算，需要的是時間跟紀律，每天花一點時間持續做滿90天。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "我不是房仲，是做預售屋代銷或建商行銷，這套方法也適用嗎？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "適用，只是名單的定義要換算成你的情境。對代銷來說，名單可以是留下聯絡方式索取完整戶型資料的人、約了到接待中心賞屋的人，或是透過在地店家、物業管理公司轉介來的潛在買方。核心邏輯不變：先把「名單」定義成有明確後續跟進動作的對象，再去盤點手邊既有、但沒被好好經營的關係跟管道，而不是一開始就想著要砸預算買流量。"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "回訪到期還沒成交的委託案，會不會讓屋主覺得被打擾、甚至反感？",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "原作者的做法是先確認對方目前的狀態與意願，用關心而不是推銷的語氣接觸，並持續提供市場動態（例如定期的簡短影片），不施加成交壓力，讓對方自己決定什麼時候要回來找你。重點在於「陪伴感」而不是「追著問要不要賣」，只要頻率拿捏得當、內容對屋主真的有參考價值，被當成騷擾的機率其實不高，長期下來反而比陌生開發更容易建立信任。"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Jane's Lens ✦</a>
+      <button class="hamburger" id="hamburger" aria-label="選單"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="nav-links">
+        <li><a class="nav-link" href="index.html">主頁</a></li>
+        <li><a class="nav-link" href="index.html#notes">學習筆記</a></li>
+        <li><a class="nav-link" href="index.html#tools">工具推薦</a></li>
+        <li><a class="nav-link" href="services.html">諮詢服務</a></li>
+        <li><a class="nav-link" href="about.html">關於 Jane's Lens</a></li>
+        <li><button id="auth-nav-btn" class="nav-link" style="border:none;cursor:pointer;font-family:inherit;">註冊／登入</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper">
+    <div class="note-page-card">
+      <a href="index.html" class="back-link">← 回到筆記列表</a>
+      <div class="note-meta">
+        <span class="note-date">2026-10-20</span>
+        <span class="note-tag channel-strategy">行銷通路觀察</span>
+      </div>
+      <h1 class="note-page-title">90天開發100個名單，不靠砸廣告：美國房仲教練的作法，台灣代銷／房仲可以怎麼抄</h1>
+      <p class="note-page-subtitle">Inman專欄作者Jimmy Burgess拆解他親自示範的7個免費開發管道，核心不是流量，是重新盤點你手邊早就存在、卻一直被忽略的關係</p>
+
+      <div class="note-cover">
+        <svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cv30bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#241a26"/>
+              <stop offset="100%" stop-color="#301c2c"/>
+            </linearGradient>
+            <linearGradient id="cv30line" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f7c948"/>
+              <stop offset="100%" stop-color="#e6683c"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="160" fill="url(#cv30bg)" rx="12"/>
+          <ellipse cx="240" cy="80" rx="220" ry="90" fill="rgba(230,104,60,0.08)"/>
+          <text x="240" y="28" text-anchor="middle" font-family="'Noto Sans TC', sans-serif" font-size="13" fill="#f2d98a" letter-spacing="1" opacity="0.9">90天 · 100個名單 · 零廣告預算</text>
+          <line x1="50" y1="100" x2="430" y2="100" stroke="#3a2a38" stroke-width="3" stroke-linecap="round"/>
+          <line x1="50" y1="100" x2="300" y2="100" stroke="url(#cv30line)" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="50" cy="100" r="6" fill="#f7c948"/>
+          <circle cx="155" cy="100" r="5" fill="#f7c948"/>
+          <circle cx="300" cy="100" r="7" fill="#e6683c"/>
+          <circle cx="430" cy="100" r="6" fill="#4a3a48" stroke="#6a5a68" stroke-width="1"/>
+          <text x="50" y="122" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#cbb8c8">Day 1</text>
+          <text x="300" y="122" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#f2c08a">今天</text>
+          <text x="430" y="122" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#cbb8c8">Day 90</text>
+          <text x="240" y="147" text-anchor="middle" font-family="sans-serif" font-size="8.5" fill="#f2c08a" opacity="0.7">名單開發 · 舊關係盤點 · Jane's Lens</text>
+        </svg>
+      </div>
+
+      <div class="note-content">
+        <p style="margin-bottom:0.9rem">每次有業主問我「要不要先砸一波廣告衝名單」，我幾乎都會先問一句：「你現有的名單，真的都榨乾了嗎？」這週看到Inman一篇文章，作者是HomeServices首席教練長、Berkshire Hathaway HomeServices總裁Jimmy Burgess，他給自己出了一個題目：如果要在90天內開發100個名單，完全不買名單、不砸廣告，他會怎麼做。看完整篇我最大的感觸是——他講的七件事，沒有一件是什麼新技巧，全部都是「你本來就知道，但一直沒認真做」的事。這篇我把他的邏輯整理出來，改寫成台灣房仲、代銷、建商業務可以直接拿來用的版本。</p>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">01</span>先把「名單」重新定義清楚，目標才不會虛</div>
+  <div class="step-body">
+    <p>Burgess定義的「名單」很嚴格：要有明確的後續跟進動作，不是瀏覽量、不是按讚、也不是隨口聊兩句。他把90天開發100個名單換算成「每天大概1個、每週大概8個」，聽起來一下子就沒那麼恐怖了。</p>
+    <p>這個換算方式我覺得很值得搬到台灣的現場。不管你是房仲還是預售屋代銷，先問自己：對我來說，什麼程度才算一個「名單」？是對方留了電話要你寄完整戶型資料，還是約好了要去接待中心賞屋？把這個標準定清楚，再往下拆成每天、每週的量，你才知道自己到底是真的做不到，還是只是沒把每天該做的小事做滿。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">02</span>別人的名單，可能正躺在你隔壁</div>
+  <div class="step-body">
+    <p>Burgess提到兩個很現實的管道：第一，找正在轉行或準備退休的同業，談好轉介費，接手他們既有的客戶關係，但承諾維持同等服務品質（他自己提議的行情是30%轉介費，不過他也提醒，實際條件一定要符合各地法規與公司政策，這點台灣一樣要先確認清楚）。第二，主動幫同事或代銷團隊裡比較忙、分身不暇的人處理他們沒空服務的詢問——不是一上來就要分案，是先幫忙跟進、幫忙經營社群、幫忙準備活動，等對方覺得你真的有在幫忙，轉介自然會來。</p>
+    <p>台灣房仲業同一間店裡常常也有這種「資深業務案子接不完、新人卻等不到客人」的狀況，與其乾等公司分派，不如主動問資深同事「你那個客戶如果暫時沒空服務，要不要我先幫你跟進」。這件事零成本，差別只在於你有沒有開口。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">03</span>你的舊名單裡，藏著還沒挖完的金礦</div>
+  <div class="step-body">
+    <p>Burgess建議鎖定「委託到期6到18個月、但還沒成交」的物件，先確認屋主現在的狀態，再用關心而不是推銷的口吻了解對方的意願，定期寄市場動態影片給對方，不施加壓力。他自己估算，每週追蹤3位這樣的屋主，90天下來可以累積將近40位長期保持聯繫的屋主——這些人不是冷名單，是曾經有賣屋意願、只是當下沒成交的熱名單。</p>
+    <p>台灣的情境可以直接對應：一般委託或專任委託到期還沒成交的物件、甚至屋主自售後來放棄自己賣的案子，都是同樣邏輯的素材。他另外提到的「社區連結者」策略也很適合搬過來——幫客戶介紹在地店家、順手留一則具體的Google評論支持對方，不求立即回報，但長期下來，這些店家主理人本身往往也是潛在的買方或賣方，甚至會反過來把客人介紹給你。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">04</span>做「會引發對話」的內容，加上跨區域的人脈網</div>
+  <div class="step-body">
+    <p>Burgess給內容創作一個簡單的框架：圍繞「物件、人、地點、流程」四個面向拍影片，像是房源導覽、周邊區域比較、貸款資格QA，並在內容裡設計留言關鍵字或私訊索取完整資料、指南，用這個動作讓對方主動留下聯絡方式，而不是你自己跑去要。他也會用AI幫忙草擬市場報告，但一定自己核實資訊、依當地市場調整——這點我自己深有同感，AI適合幫你把第一版寫出來，最後能不能用，還是要靠你對在地市場的理解去把關。</p>
+    <p>另外他也在經營「跨市場轉介網絡」：找出買方主要從哪些城市移入本地，主動聯繫那些來源城市的頂尖同業，長期維持聯繫（他甚至每天手寫5張卡片寄給同業）。台灣北漂、南漂、外派族群一樣存在，如果你知道自己的客群常常從哪個縣市、甚至哪個國家移入，花時間跟對岸城市的同業搭上線，幾乎是零成本、卻能長期穩定帶來轉介的管道。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">FAQ</span>常見問題</div>
+  <div class="step-body">
+    <p><strong>Q：這套90天開發100個名單的方法，需要額外花廣告預算嗎？</strong><br>A：原作者強調完全不靠買名單或大量投放廣告，重點是找出手邊已經存在、但被忽略的機會，並持續讓自己出現在這些機會面前。放到台灣的情境，像是回訪到期還沒成交的委託案、認真經營跨區域同業轉介網絡、固定留Google評論幫在地店家曝光，這些動作本身幾乎不需要額外預算，需要的是時間跟紀律，每天花一點時間持續做滿90天。</p>
+    <p><strong>Q：我不是房仲，是做預售屋代銷或建商行銷，這套方法也適用嗎？</strong><br>A：適用，只是名單的定義要換算成你的情境。對代銷來說，名單可以是留下聯絡方式索取完整戶型資料的人、約了到接待中心賞屋的人，或是透過在地店家、物業管理公司轉介來的潛在買方。核心邏輯不變：先把「名單」定義成有明確後續跟進動作的對象，再去盤點手邊既有、但沒被好好經營的關係跟管道，而不是一開始就想著要砸預算買流量。</p>
+    <p><strong>Q：回訪到期還沒成交的委託案，會不會讓屋主覺得被打擾、甚至反感？</strong><br>A：原作者的做法是先確認對方目前的狀態與意願，用關心而不是推銷的語氣接觸，並持續提供市場動態（例如定期的簡短影片），不施加成交壓力，讓對方自己決定什麼時候要回來找你。重點在於「陪伴感」而不是「追著問要不要賣」，只要頻率拿捏得當、內容對屋主真的有參考價值，被當成騷擾的機率其實不高，長期下來反而比陌生開發更容易建立信任。</p>
+  </div>
+</div>
+
+<div class="note-step">
+  <div class="step-header"><span class="step-num">💛</span>結論</div>
+  <div class="step-body">
+    <p>說實話，看完這篇我有點心虛——文章裡提到的每一件事，手寫卡片、回訪舊客戶、幫同事轉介、留Google評論，我自己過去輔導業主的時候幾乎都講過，但大部分人（包括我）常常覺得這些事太「基本」、太「慢」，寧願先去想廣告投放、網紅合作這些看起來更有效率的做法。這篇文章提醒我的是：名單焦慮的解法，往往不是找到更厲害的新工具，是把手邊早就存在、卻被你晾著不管的關係，認真經營一輪。如果你也想盤點一下自己手上有哪些「被忽略的名單礦」，歡迎來找我聊聊，我們可以一起拆解看看怎麼排進你的90天計畫。</p>
+    <p style="font-size:0.8rem;color:#aaa;margin-top:0.8rem">資料來源：Inman〈If I had to generate 100 real estate leads in 90 days, here's exactly what I'd do〉，作者Jimmy Burgess，2026年10月18日刊登，https://www.inman.com/2026/10/18/real-estate-prospecting-ideas/ 。文中數字與做法引用自該篇文章，部分情境已改寫為台灣房仲／代銷業的對應做法。</p>
+  </div>
+</div>
+<div style="margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid #e8eeff;">
+  <p style="font-size:0.78rem;color:#aaa;letter-spacing:0.06em;margin-bottom:0.6rem;">延伸閱讀</p>
+  <div style="display:flex;flex-direction:column;gap:0.4rem;">
+    <a href="note-26.html" style="font-size:0.9rem;color:#1a6bb5;text-decoration:none;">→ 美國房產巨頭重押Pinterest：不動產行銷,是不是也該從「貼公告」變成「回答問題」？</a>
+    <a href="note-23.html" style="font-size:0.9rem;color:#1a6bb5;text-decoration:none;">→ 預售屋/新成屋想找網紅合作，該注意哪些眉角？常見雷區與避坑指南</a>
+  </div>
+</div>
+      </div>
+
+      <div class="share-bar">
+        <span class="share-bar-label">分享</span>
+        <button class="share-btn" onclick="shareNote('facebook','note-30')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</button>
+        <button class="share-btn" onclick="shareNote('line','note-30')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>LINE</button>
+        <button class="share-btn" id="copy-note-30" onclick="shareNote('copy','note-30')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結</button>
+      </div>
+
+      <div class="comments-section">
+        <p class="comments-title">💬 留言 (<span data-comment-count="note-30">0</span>)</p>
+        <div data-comments-list="note-30" class="comments-list"></div>
+        <div class="comment-form">
+          <textarea data-comment-input="note-30" rows="3" placeholder="留下你的想法…&#10;Ctrl＋Enter 快速送出"></textarea>
+          <button onclick="submitComment('note-30')">送出</button>
+        </div>
+      </div>
+
+      <div class="note-ig-cta">
+        <div class="note-ig-cta-text">
+          <p><strong>有想法嗎？</strong>來 Instagram 跟我聊聊！讀完有任何問題或心得，都歡迎來找我 ☕</p>
+        </div>
+        <a class="note-ig-btn" href="https://www.instagram.com/janeeeelin/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          來找我聊聊
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">© 2026 Jane's Lens · Made with ✦ Claude Code</footer>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 20));
+    document.getElementById('hamburger').addEventListener('click', function() {
+      this.classList.toggle('open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    const btt = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 300));
+    function getComments(id) { try { return JSON.parse(localStorage.getItem('comments_'+id)||'[]'); } catch { return []; } }
+    function submitComment(id) {
+      const ta = document.querySelector('[data-comment-input="'+id+'"]');
+      const text = ta ? ta.value.trim() : '';
+      if (!text) return;
+      const comments = getComments(id);
+      comments.push({ id: Date.now(), text, date: new Date().toLocaleDateString('zh-TW',{year:'numeric',month:'2-digit',day:'2-digit'}) });
+      localStorage.setItem('comments_'+id, JSON.stringify(comments));
+      ta.value = ''; renderComments(id);
+    }
+    function escapeHtml(str) { return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+    function renderComments(id) {
+      const list = document.querySelector('[data-comments-list="'+id+'"]');
+      const cnt = document.querySelector('[data-comment-count="'+id+'"]');
+      if (!list) return;
+      const comments = getComments(id);
+      if (cnt) cnt.textContent = comments.length;
+      list.innerHTML = comments.length === 0
+        ? '<p class="no-comments">還沒有留言，來說點什麼吧！</p>'
+        : comments.map(c => '<div class="comment"><span class="comment-date">'+escapeHtml(c.date)+'</span><p>'+escapeHtml(c.text).replace(/\n/g,'<br>')+'</p></div>').join('');
+    }
+    renderComments('note-30');
+    document.querySelector('[data-comment-input="note-30"]').addEventListener('keydown', function(e) { if ((e.ctrlKey||e.metaKey) && e.key==='Enter') submitComment('note-30'); });
+    function shareNote(type, id) {
+      const url = 'https://janeeeelin.github.io/'+id+'.html';
+      if (type==='facebook') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(url),'_blank');
+      else if (type==='line') window.open('https://line.me/R/msg/text/?'+encodeURIComponent(url),'_blank');
+      else if (type==='copy') {
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById('copy-'+id);
+          if (btn) { btn.classList.add('copied'); btn.textContent='已複製！'; setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製連結'; }, 2000); }
+        });
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="member-auth.js"></script>
+  <script>
+    initAuthWidget();
+    applyMemberGate(30, document.querySelector('.note-content'));
+  </script>
+</body>
+</html>
