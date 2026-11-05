@@ -1063,6 +1063,8 @@
     .tag-cloud-btn:hover, .tag-cloud-btn.active { background: #1a6bb5; border-color: #1a6bb5; color: white; }
   </style>
   <!-- Google Analytics -->
+  <link rel="preconnect" href="https://gaphkhchtmtghhcimwyf.supabase.co" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWSNFDVYF8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -4421,10 +4423,22 @@ git push -u origin main</code></pre>
     }
 
     // 登入狀態改變時（member-auth.js 會呼叫這個），重新抓一次旗標並重繪文章列表
-    window.onMemberAuthChange = async function () {
-      await refreshMemberState();
-      renderNotes();
-    };
+    // 只有登入狀態或會員旗標真的有變，才重畫列表，避免重複渲染造成卡頓
+    let memberStateKey = JSON.stringify([loggedIn, memberFlags]); // 首次畫面用的預設狀態
+    async function syncMemberState() {
+      try {
+        await Promise.race([
+          refreshMemberState(),
+          new Promise(resolve => setTimeout(resolve, 4000)) // 最多等 4 秒，Supabase 太慢就先不管
+        ]);
+      } catch (e) { /* 讀不到會員資料不影響文章顯示 */ }
+      const key = JSON.stringify([loggedIn, memberFlags]);
+      if (key !== memberStateKey) {
+        memberStateKey = key;
+        renderNotes();
+      }
+    }
+    window.onMemberAuthChange = function () { syncMemberState(); };
 
     // ── Helpers ───────────────────────────────────────────────────────────────
     function escapeHtml(str) {
@@ -5000,8 +5014,7 @@ git push -u origin main</code></pre>
 
     // ── Init ──────────────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', async () => {
-      initAuthWidget();
-      await refreshMemberState();
+      // 先把文章列表畫出來，不等 Supabase 回應（以前要等會員資料回來才顯示，網路慢時列表會空白很久）
       renderNotes();
       renderTimeline();
       renderSidebarCategories();
@@ -5009,6 +5022,10 @@ git push -u origin main</code></pre>
       initNavScroll();
       initBackToTop();
       initHamburger();
+
+      // 文章都顯示好之後，再在背景連 Supabase 處理會員登入與會員專屬文章
+      initAuthWidget();
+      syncMemberState();
 
       document.getElementById('search-input').addEventListener('input', e => {
         searchQuery = e.target.value;
